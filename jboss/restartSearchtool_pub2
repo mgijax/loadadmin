@@ -1,0 +1,17 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+echo 'Stopping Pub2 JBoss Instance'
+
+./stopSearchtool_pub2
+
+# Give the server time to shutdown gracefully.
+
+sleep 15
+
+echo 'Starting Pub2 JBoss Instance'
+
+./startSearchtool_pub2
+
+echo 'Pub2 Jboss Restarting, check logs for completion.'

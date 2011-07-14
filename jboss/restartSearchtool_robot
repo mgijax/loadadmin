@@ -1,0 +1,17 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+echo 'Stopping Robot JBoss Instance'
+
+./stopSearchtool_robot
+
+# Give the server time to shutdown gracefully.
+
+sleep 15
+
+echo 'Starting Robot JBoss Instance'
+
+./startSearchtool_robot
+
+echo 'Robot Jboss Restarting, check logs for completion.'

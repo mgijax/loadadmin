@@ -1,0 +1,75 @@
+#!/bin/csh -f
+
+##########################################
+#Usage >  logmover server shardname
+##########################################
+
+cd `dirname $0` && source ./Configuration
+
+if ( $#argv != 2 ) then
+    echo "This script must be invoked with two arguments, server and shardname"
+    exit 1
+endif
+
+echo "Starting JBoss Log File Migration for $1 $2"
+
+
+###############################################
+# Cleaning up the destination dir if needed
+###############################################
+
+# The base log dir.
+
+setenv LOGDIR /logs/www/$1/$2
+
+if ( ! -d ${LOGDIR} ) then
+    echo "Destination log directory does not exist, creating it."
+    mkdir ${LOGDIR}
+endif
+
+# The Year Subdirectory
+
+setenv LOGDIR ${LOGDIR}/`date "+%Y"`
+
+if ( ! -d ${LOGDIR} ) then
+    mkdir ${LOGDIR}
+endif
+
+# The month subdirectory
+
+setenv LOGDIR ${LOGDIR}/`date "+%m"`
+
+if (! -d ${LOGDIR} ) then
+    mkdir ${LOGDIR}
+endif
+
+##############################################
+# Grabbing the files from the remote server
+##############################################
+
+scp -rp mgiadmin@${1}:/usr/local/mgi/jboss/server/${2}/log ${LOGDIR}
+
+if ( $status != 0 ) then
+    echo "SCP Failed, aborting script!" 
+    exit 1
+endif
+
+## We only want to archive certain log files, remove the others.
+
+echo "Cleaning up copied log files..."
+
+setenv LOGDIR ${LOGDIR}/log
+
+rm $LOGDIR/console.*
+
+rm $LOGDIR/server.*
+
+rm $LOGDIR/debug.*
+
+rm $LOGDIR/boot.*
+
+##########################################
+#Cleaning up files on the remote server
+##########################################
+
+ssh ${1} "cd /usr/local/mgi/jboss/server/${2}/log; rm *.log.*"

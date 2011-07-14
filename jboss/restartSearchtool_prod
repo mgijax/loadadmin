@@ -1,0 +1,17 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+echo 'Stopping Prod JBoss Instance'
+
+./stopSearchtool_prod
+
+# Give the server time to shutdown gracefully.
+
+sleep 15
+
+echo 'Starting Prod JBoss Instance'
+
+./startSearchtool_prod
+
+echo 'Prod Jboss Restarting, check logs for completion.'

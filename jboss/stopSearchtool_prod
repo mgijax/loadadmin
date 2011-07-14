@@ -1,0 +1,28 @@
+#!/bin/tcsh -f
+
+cd `dirname $0` && source ./Configuration
+
+setenv JAVA_HOME /usr/mgijava6
+setenv JAVA ${JAVA_HOME}/bin/java
+setenv SERVER_NAME `uname -n`
+
+# Try to shutdown jboss gracefully.
+
+${JBOSS}/bin/shutdown.sh -s jnp://${SERVER_NAME}:1099 -S
+
+# Give jboss some time to shutdown on its own.
+
+sleep 15
+
+# Get the parent pid of the jboss server.
+
+setenv PARENT_PROCESS `ps -fu mgiadmin | grep searchtool_prod | grep -v grep | sed 's/ [ ]*/|/g' | cut -d '|' -f2`
+
+# For each child of that parent pid (including itself) kill it.
+# This takes care of the error condition where the shutdown script failed.
+
+foreach PID  (`ps -fu mgiadmin | sed 's/ [ ]*/|/g' | cut -d'|' -f2,3 | sed 's/$/|/' | grep "|${PARENT_PROCESS}|" | cut -d'|' -f1` ${PARENT_PROCESS})
+echo 'Killing jboss process:' ${PID}
+echo `ps -p ${PID} -f`
+kill -9 ${PID}
+end

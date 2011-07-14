@@ -1,0 +1,62 @@
+#!/bin/csh
+#
+#  stopTomcat
+###########################################################################
+#
+#  Purpose:
+#
+#      This script is a wrapper for stopping Tomcat.
+#
+#  Usage:
+#
+#      stopTomcat
+#
+#  Env Vars:
+#
+#      - See Configuration file (loadadmin product)
+#
+#      - See master.config.csh (mgiconfig product)
+#
+#  Inputs:  None
+#
+#  Outputs:  None
+#
+#  Exit Codes:  None
+#
+#  Assumes:  Nothing
+#
+#  Implementation:
+#
+#  Notes:  None
+#
+###########################################################################
+
+cd `dirname $0` && source ./Configuration
+
+#
+# Shut down Tomcat.
+#
+${TOMCAT}/bin/shutdown.sh
+
+#
+# Tomcat doesn't always shut down cleanly.
+# If the process doesn't go away in fifteen seconds, kill it.
+#
+sleep 10
+set PROCESS=`ps -aef | grep "MGISRV" | grep "javawi2" | awk '{print $2}'`
+
+if ( "${PROCESS}" != "" ) then
+        kill ${PROCESS}
+        echo "clean shutdown failed; killed Tomcat (process ${PROCESS})"
+endif
+
+#
+# Save the contents of catalina.out for batch query statistics before
+# removing the logs files.
+#
+if ( "${HOST}" == "gondor" ) then
+    cat ${CATALINA_BASE}/logs/catalina.out >> /logs/batchquery/catalina.out
+endif
+rm -rf ${CATALINA_BASE}/work/Standalone/localhost/javawi2/*
+rm -rf ${CATALINA_BASE}/logs/*
+

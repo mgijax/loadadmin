@@ -1,0 +1,41 @@
+#!/bin/csh
+#
+#  restartTomcat
+###########################################################################
+#
+#  Purpose:
+#
+#      This script is a wrapper for restarting Tomcat.
+#
+#  Usage:
+#
+#      restartTomcat
+#
+#  Env Vars:
+#
+#      - See Configuration file (loadadmin product)
+#
+#      - See master.config.csh (mgiconfig product)
+#
+#  Inputs:  None
+#
+#  Outputs:  None
+#
+#  Exit Codes:  None
+#
+#  Assumes:  Nothing
+#
+#  Implementation:
+#
+#  Notes:  None
+#
+###########################################################################
+
+cd `dirname $0` && source ./Configuration
+
+echo "Stop Tomcat ..."
+${LOADADMIN}/bin/stopTomcat
+
+echo " "
+echo "Start Tomcat ..."
+${LOADADMIN}/bin/startTomcat
