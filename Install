@@ -16,7 +16,7 @@ cd `dirname $0` && source ./Configuration
 foreach i (bin dev prod public robot jboss)
     cd $i
     rm -f Configuration
-    ln -s ../../Configuration .
+    ln -s ../Configuration .
     cd ..
 end
 
