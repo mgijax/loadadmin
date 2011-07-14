@@ -1,0 +1,43 @@
+#!/bin/csh
+
+#
+# Configuration file for the load administration product (loadadmin)
+#
+
+if ( ${?MGICONFIG} == 0 ) then
+    setenv MGICONFIG /usr/local/mgi/live/mgiconfig
+endif
+
+source ${MGICONFIG}/master.config.csh
+
+#
+# Logs directory
+#
+setenv LOGSDIR ${DATALOADSOUTPUT}/mgi/loadadmin/logs
+
+#
+# Java Stuff
+#
+setenv CATALINA_HOME	${TOMCAT}
+setenv CLASSPATH	.:${MGI_LIVE}/javawi2/WEB-INF/classes/properties:${MGI_LIVE}/lib/java/core.jar:${MGI_LIVE}/lib/java/webapp.jar:${MGI_LIVE}/lib/java/dbsmgd_ro.jar:/usr/java/jre/lib/rt.jar:${TOMCAT}/tomcat/common/lib/servlet.jar:${SYBASE}/jConnect-6_0/classes/jconn3.jar:${JAVA_HOME}/lib:/usr/local/lib/fileupload.jar
+setenv CATALINA_OPTS	"-DMGISRV=javawi2 -Xms512m -Xmx1024m"
+setenv CATALINA_BASE	${MGI_LIVE}/tomcat
+setenv TOMCATBIN	${TOMCAT}/bin
+
+setenv ADMIN_URL1       "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=admin&op=clearObjectCache"
+setenv ADMIN_URL2       "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=admin&op=reloadConf"
+setenv ADMIN_URL3       "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=admin&op=gc"
+
+#
+# Search tool settings
+#
+setenv ST_PROD_LOGDIR ${SEARCHTOOL_DATADIR}/logs_prod
+setenv ST_PUB_LOGDIR ${SEARCHTOOL_DATADIR}/logs_pub
+
+setenv ST_PROD_TARFILE ${SEARCHTOOL_DISTDIR}/indexes_prod.tar
+setenv ST_PUB_TARFILE ${SEARCHTOOL_DISTDIR}/indexes_pub.tar
+
+setenv ST_PROD_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_prod
+setenv ST_PUB1_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_pub1
+setenv ST_PUB2_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_pub2
+setenv ST_ROBOT_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_robot

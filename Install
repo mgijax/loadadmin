@@ -1,0 +1,40 @@
+#!/bin/csh
+
+#
+# Install script for the load administration product (loadadmin)
+#
+# Usage:  Install
+#
+cd `dirname $0` && source ./Configuration
+
+#
+# Create a symbolic link to the configuration file in each sub-directory.
+#
+# NOTE: The adhoc directory is excluded because it has its own configuration
+#       file and the adhoc load does not use mgiconfig.
+#
+foreach i (bin dev prod public robot jboss)
+    cd $i
+    rm -f Configuration
+    ln -s ../../Configuration .
+    cd ..
+end
+
+#
+# Make sure the log directory exists.
+#
+if ( ! -d ${LOGSDIR} ) then
+    mkdir -p ${LOGSDIR}
+endif
+
+#
+# Set permissions.
+#
+cd ${LOADADMIN}
+
+chmod 755 jboss/restartSearchtool*
+chmod 755 jboss/startSearchtool*
+chmod 755 jboss/stopSearchtool*
+chmod 700 bin/startTomcat bin/stopTomcat bin/restartTomcat
+chgrp www bin/startTomcat bin/stopTomcat bin/restartTomcat
+chown webster bin/startTomcat bin/stopTomcat bin/restartTomcat
