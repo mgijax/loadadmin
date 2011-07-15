@@ -46,7 +46,8 @@
 #      1) Source the configuration file to establish the environment.
 #      2) Wait for the flag to signal that the backup is available.
 #      3) Load the inactive database.
-#      4) Swap the active and inactive databases. If the swap attempt
+#      4) Grant permissions.
+#      5) Swap the active and inactive databases. If the swap attempt
 #         fails, it will retry several times.
 #
 #  Notes:  None
@@ -103,6 +104,13 @@ echo '------------------------------------------------------------' >> ${LOG}
 pg_restore -c -d ${PGMGD_INACTIVE_DB} -j ${PROCESSES} -O -U ${PGMGD_DBUSER} -v ${BACKUP_FILE} >>& ${LOG}
 echo "Return status = $status" | tee -a ${LOG}
 echo '------------------------------------------------------------' >> ${LOG}
+
+#
+# Grant permissions.
+#
+date | tee -a ${LOG}
+echo "Grant permissions" | tee -a ${LOG}
+psql -d ${PGMGD_INACTIVE_DB} -U ${PGMGD_DBUSER} -c "grant select on all tables in schema public to read_only_users"
 
 #
 # Swap the active and inactive databases. Make several attempts to complete
