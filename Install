@@ -30,8 +30,6 @@ endif
 #
 # Set permissions.
 #
-cd ${LOADADMIN}
-
 chmod 755 jboss/restartSearchtool*
 chmod 755 jboss/startSearchtool*
 chmod 755 jboss/stopSearchtool*
