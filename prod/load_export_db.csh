@@ -61,6 +61,10 @@ touch ${LOG}
 echo "$0" | tee -a ${LOG}
 env | sort | tee -a ${LOG}
 
+date | tee -a ${LOG}
+echo 'Reset process control flags in database export namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DB_EXPORT} ${SCRIPT_NAME}
+
 #
 # Load MGD export database.
 #
@@ -72,6 +76,10 @@ if ( $status != 0 ) then
     date | tee -a ${LOG}
     exit 1
 endif
+
+date | tee -a ${LOG}
+echo 'Set process control flag: Export DB Loaded' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DB_EXPORT} ${FLAG_EXP_DB_LOADED} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
