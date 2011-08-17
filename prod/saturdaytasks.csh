@@ -182,10 +182,6 @@ ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_GBSEQLOAD} ${SCRIPT_NAME}
 #endif
 
 date | tee -a ${LOG}
-echo 'Process Treefam Associations' | tee -a ${LOG}
-${TREEFAMLOAD}/treefamload.sh
-
-date | tee -a ${LOG}
 echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh ensembl
 
