@@ -13,7 +13,7 @@ cd `dirname $0` && source ./Configuration
 # NOTE: The adhoc directory is excluded because it has its own configuration
 #       file and the adhoc load does not use mgiconfig.
 #
-foreach i (bin dev prod public robot jboss)
+foreach i (bin dev jboss prod public robot)
     cd $i
     rm -f Configuration
     ln -s ../Configuration .
@@ -30,9 +30,13 @@ endif
 #
 # Set permissions.
 #
-chmod 755 jboss/restartSearchtool*
-chmod 755 jboss/startSearchtool*
-chmod 755 jboss/stopSearchtool*
+chmod 754 Configuration Install
+
+foreach i (adhoc bin dev jboss prod public robot)
+    chmod -fR 754 $i
+    chgrp -fR progs $i
+end
+
 chmod 700 bin/startTomcat bin/stopTomcat bin/restartTomcat
 chgrp www bin/startTomcat bin/stopTomcat bin/restartTomcat
 chown webster bin/startTomcat bin/stopTomcat bin/restartTomcat
