@@ -136,12 +136,6 @@ date | tee -a ${LOG}
 echo 'Process GenBank Incrementals' | tee -a ${LOG}
 ${GBSEQLOAD}/bin/gbseqload.sh
 
-#
-# 7/5/11 process control for genetraps commented out while
-# waiting for TIGM sequences and testing
-#
-
-# 7/5/11 Keep this because we still want to run the gbgtfilter on hobbiton
 date | tee -a ${LOG}
 echo 'Set process control flag: GB Seqload Done' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_GBSEQLOAD} ${SCRIPT_NAME}
@@ -150,36 +144,36 @@ ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_GBSEQLOAD} ${SCRIPT_NAME}
 # Wait for the "GT Filter Done" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
-#date | tee -a ${LOG}
-#echo 'Wait for the "GT Filter Done" flag to be set' | tee -a ${LOG}
-#
-#setenv RETRY ${PROC_CTRL_RETRIES}
-#while (${RETRY} > 0)
-#    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_GTFILTER}`
-#    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
-#
-#    if (${READY} == 1 || ${ABORT} == 1) then
-#        break
-#    else
-#        sleep ${PROC_CTRL_WAIT_TIME}
-#    endif
-#
-#    setenv RETRY `expr ${RETRY} - 1`
-#end
-#
+date | tee -a ${LOG}
+echo 'Wait for the "GT Filter Done" flag to be set' | tee -a ${LOG}
+
+setenv RETRY ${PROC_CTRL_RETRIES}
+while (${RETRY} > 0)
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_GTFILTER}`
+    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
+
+    if (${READY} == 1 || ${ABORT} == 1) then
+        break
+    else
+        sleep ${PROC_CTRL_WAIT_TIME}
+    endif
+
+    setenv RETRY `expr ${RETRY} - 1`
+end
+
 #
 # Terminate the script if the number of retries expired or the abort flag
 # was found.
 #
-#if (${RETRY} == 0) then
-#   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-#   date | tee -a ${LOG}
-#   exit 1
-#else if (${ABORT} == 1) then
-#   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-#   date | tee -a ${LOG}
-#   exit 1
-#endif
+if (${RETRY} == 0) then
+   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+   date | tee -a ${LOG}
+   exit 1
+else if (${ABORT} == 1) then
+   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+   date | tee -a ${LOG}
+   exit 1
+endif
 
 date | tee -a ${LOG}
 echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
@@ -193,63 +187,52 @@ date | tee -a ${LOG}
 echo 'Run VEGA Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh vega
 
+#
+# This is to update biotypes weekly since NCBI gene model load above
+# rarely runs.
+#
 date | tee -a ${LOG}
 echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
-# This is to update biotypes weekly since NCBI gene model load above
-# rarely runs
 ${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
-
-#
-# 7/5/11 process control for genetraps commented out while
-# waiting for TIGM sequences and testing
-#
 
 #
 # Wait for the "GT Blat Done" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
-#date | tee -a ${LOG}
-#echo 'Wait for the "GT Blat Done" flag to be set' | tee -a ${LOG}
-#
-#setenv RETRY ${PROC_CTRL_RETRIES}
-#while (${RETRY} > 0)
-#    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_GTBLAT}`
-#    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
-#
-#    if (${READY} == 1 || ${ABORT} == 1) then
-#        break
-#    else
-#        sleep ${PROC_CTRL_WAIT_TIME}
-#    endif
-#
-#    setenv RETRY `expr ${RETRY} - 1`
-#end
+date | tee -a ${LOG}
+echo 'Wait for the "GT Blat Done" flag to be set' | tee -a ${LOG}
+
+setenv RETRY ${PROC_CTRL_RETRIES}
+while (${RETRY} > 0)
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_GTBLAT}`
+    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
+
+    if (${READY} == 1 || ${ABORT} == 1) then
+        break
+    else
+        sleep ${PROC_CTRL_WAIT_TIME}
+    endif
+
+    setenv RETRY `expr ${RETRY} - 1`
+end
 
 #
 # Terminate the script if the number of retries expired or the abort flag
 # was found.
 #
-#if (${RETRY} == 0) then
-#   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-#   date | tee -a ${LOG}
-#   exit 1
-#else if (${ABORT} == 1) then
-#   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-#   date | tee -a ${LOG}
-#   exit 1
-#endif
+if (${RETRY} == 0) then
+   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+   date | tee -a ${LOG}
+   exit 1
+else if (${ABORT} == 1) then
+   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+   date | tee -a ${LOG}
+   exit 1
+endif
 
-# 7/5/11commented out while waiting for TIGM sequences and testing
-#date | tee -a ${LOG}
-#echo 'Run Gene Trap Load' | tee -a ${LOG}
-#${GENETRAPLOAD}/bin/genetrapload.sh
-
-# 7/5/11 added to run the alo marker association load while waiting for 
-# TIGM sequences and testing
 date | tee -a ${LOG}
-echo 'Create ALO Marker Associations' | tee -a ${LOG}
-${ALOMRKLOAD}/bin/alomrkload.sh
-
+echo 'Run Gene Trap Load' | tee -a ${LOG}
+${GENETRAPLOAD}/bin/genetrapload.sh
 
 date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
