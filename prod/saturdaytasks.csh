@@ -314,7 +314,7 @@ ${MGICACHELOAD}/vocallele.csh
 
 date | tee -a ${LOG}
 echo 'Generate Frontend Info' | tee -a ${LOG}
-${LOADADMIN}/bin/prod/genFrontend.csh
+${LOADADMIN}/prod/genFrontend.csh
 
 if ( -e ${MGI_LIVE}/ei.disable ) then
     date | tee -a ${LOG}
