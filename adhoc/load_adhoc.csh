@@ -6,8 +6,8 @@
 #  Purpose:
 #
 #      This script is a wrapper for loading the adhoc database. It waits
-#      for the PostgreSQL backup file to be available and loads the
-#      inactive database. Then it swaps the active/inactive database by
+#      for the Postgres backup file to be available and loads the inactive
+#      Postgres database. Then it swaps the active/inactive database by
 #      renaming them.
 #
 #  Usage:
@@ -20,7 +20,7 @@
 #
 #  Inputs:
 #
-#      - PostgreSQL backup file (${BACKUP_FILE})
+#      - Postgres backup file (${BACKUP_FILE})
 #
 #        /export/upload/mgd.postgres.dump
 #
@@ -45,9 +45,10 @@
 #
 #      1) Source the configuration file to establish the environment.
 #      2) Wait for the flag to signal that the backup is available.
-#      3) Load the inactive database.
-#      4) Grant permissions.
-#      5) Swap the active and inactive databases. If the swap attempt
+#      3) Drop/create the inactive database.
+#      4) Load the inactive database.
+#      5) Grant permissions.
+#      6) Swap the active and inactive databases. If the swap attempt
 #         fails, it will retry several times.
 #
 #  Notes:  None
@@ -66,10 +67,10 @@ echo "$0" | tee -a ${LOG}
 env | sort | tee -a ${LOG}
 
 #
-# Wait for the PostgreSQL backup file to be available.
-#
+# Wait for the Postgres backup file to be available.
+# 
 date | tee -a ${LOG}
-echo 'Wait for the PostgreSQL backup file to be available' | tee -a ${LOG}
+echo 'Wait for the Postgres backup file to be available' | tee -a ${LOG}
 
 setenv RETRY ${RETRIES}
 while ( ${RETRY} > 0 )
@@ -78,22 +79,32 @@ while ( ${RETRY} > 0 )
     else
         sleep ${WAIT_TIME}
     endif
-
+    
     setenv RETRY `expr ${RETRY} - 1`
 end
 
 if ( ${RETRY} == 0 ) then
     echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
+    date | tee -a ${LOG} 
+    exit 1 
 endif
 
 #
 # Remove the backup flag.
-#
+# 
 date | tee -a ${LOG}
 echo "Remove the backup flag (${BACKUP_FLAG})" | tee -a ${LOG}
 rm -f ${BACKUP_FLAG}
+
+#
+# Drop/create the inactive database.
+#
+date | tee -a ${LOG}
+echo "Drop/create the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
+psql -q -w -d postgres -U ${PGMGD_DBUSER} << EOF
+    drop database ${PGMGD_INACTIVE_DB};
+    create database ${PGMGD_INACTIVE_DB};
+EOF
 
 #
 # Load the inactive database.
@@ -101,7 +112,7 @@ rm -f ${BACKUP_FLAG}
 date | tee -a ${LOG}
 echo "Load the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
 echo '------------------------------------------------------------' >> ${LOG}
-pg_restore -c -d ${PGMGD_INACTIVE_DB} -j ${PROCESSES} -O -U ${PGMGD_DBUSER} -v ${BACKUP_FILE} >>& ${LOG}
+pg_restore -d ${PGMGD_INACTIVE_DB} -j ${PROCESSES} -O -U ${PGMGD_DBUSER} -v ${BACKUP_FILE} >>& ${LOG}
 echo "Return status = $status" | tee -a ${LOG}
 echo '------------------------------------------------------------' >> ${LOG}
 
@@ -110,7 +121,9 @@ echo '------------------------------------------------------------' >> ${LOG}
 #
 date | tee -a ${LOG}
 echo "Grant permissions" | tee -a ${LOG}
-psql -d ${PGMGD_INACTIVE_DB} -U ${PGMGD_DBUSER} -c "grant select on all tables in schema public to read_only_users"
+psql -q -w -d ${PGMGD_INACTIVE_DB} -U ${PGMGD_DBUSER} << EOF
+    grant select on all tables in schema public to read_only_users;
+EOF
 
 #
 # Swap the active and inactive databases. Make several attempts to complete
