@@ -97,22 +97,22 @@ echo "Remove the backup flag (${BACKUP_FLAG})" | tee -a ${LOG}
 rm -f ${BACKUP_FLAG}
 
 #
-# Drop/create the inactive database.
+# Drop/create the mgd schema in the inactive database.
 #
 date | tee -a ${LOG}
-echo "Drop/create the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
-psql -q -w -d postgres -U ${PGMGD_DBUSER} << EOF
-    drop database ${PGMGD_INACTIVE_DB};
-    create database ${PGMGD_INACTIVE_DB};
+echo "Drop/create the mgd schema in the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
+psql -q -w -d ${PGMGD_INACTIVE_DB} -U ${PGMGD_DBUSER} << EOF
+    drop schema if exists ${PGMGD_SCHEMA} cascade;
+    create schema ${PGMGD_SCHEMA};
 EOF
 
 #
-# Load the inactive database.
+# Load the mgd schema in the inactive database.
 #
 date | tee -a ${LOG}
-echo "Load the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
+echo "Load the mgd schema in the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
 echo '------------------------------------------------------------' >> ${LOG}
-pg_restore -d ${PGMGD_INACTIVE_DB} -j ${PROCESSES} -O -U ${PGMGD_DBUSER} -v ${BACKUP_FILE} >>& ${LOG}
+pg_restore -d ${PGMGD_INACTIVE_DB} -n ${PGMGD_SCHEMA} -j ${PROCESSES} -O -U ${PGMGD_DBUSER} -v ${BACKUP_FILE} >>& ${LOG}
 echo "Return status = $status" | tee -a ${LOG}
 echo '------------------------------------------------------------' >> ${LOG}
 
@@ -122,7 +122,8 @@ echo '------------------------------------------------------------' >> ${LOG}
 date | tee -a ${LOG}
 echo "Grant permissions" | tee -a ${LOG}
 psql -q -w -d ${PGMGD_INACTIVE_DB} -U ${PGMGD_DBUSER} << EOF
-    grant select on all tables in schema public to read_only_users;
+    grant usage on schema ${PGMGD_SCHEMA} to read_only_users;
+    grant select on all tables in schema ${PGMGD_SCHEMA} to read_only_users;
 EOF
 
 #
