@@ -45,8 +45,8 @@
 #
 #      1) Source the configuration file to establish the environment.
 #      2) Wait for the flag to signal that the backup is available.
-#      3) Drop/create the inactive database.
-#      4) Load the inactive database.
+#      3) Drop/create the mgd schema in the inactive database.
+#      4) Load the mgd schema in the inactive database.
 #      5) Grant permissions.
 #      6) Swap the active and inactive databases. If the swap attempt
 #         fails, it will retry several times.
