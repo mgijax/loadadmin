@@ -126,6 +126,10 @@ echo 'Human, Rat, etc., EntrezGene Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadAll.csh
 
 date | tee -a ${LOG}
+echo 'Mapview Load (skip marker/location cache)' | tee -a ${LOG}
+${MAPVIEWLOAD}/bin/mapviewload.sh false
+
+date | tee -a ${LOG}
 echo 'Delete Dummy Sequences' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/runDeleteObsoleteDummy.csh ${MGD_DBSERVER} ${MGD_DBNAME}
 
