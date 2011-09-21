@@ -1,3 +1,11 @@
+TAG: loadadmin-4-4-1-8
+DATE: 9/21/2011
+STAFF: dbm
+CHANGES:
+1) dropallusers.csh - removed to end support for Sybase adhoc database
+2) load_adhoc_db.csh - removed to end support for Sybase adhoc database
+3) sundaytasks.csh - added call to mapviewload.sh
+
 TAG: loadadmin-4-4-1-7
 DATE: 8/28/2011
 STAFF: dbm
