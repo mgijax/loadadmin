@@ -1,3 +1,9 @@
+TAG: loadadmin-4-4-1-9
+DATE: 9/26/2011
+STAFF: dbm
+CHANGES:
+1) saturdaytasks.csh - added call to bibcitation.csh
+
 TAG: loadadmin-4-4-1-8
 DATE: 9/21/2011
 STAFF: dbm
