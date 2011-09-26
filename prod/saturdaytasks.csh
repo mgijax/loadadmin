@@ -292,6 +292,9 @@ echo 'Load Allele/CRE Cache Table' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecrecache.csh
 
 date | tee -a ${LOG}
+echo 'Load Bib Citation Cache Table' | tee -a ${LOG}
+${MGICACHELOAD}/bibcitation.csh
+date | tee -a ${LOG}
 echo 'Load Image Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/imgcache.csh
 
