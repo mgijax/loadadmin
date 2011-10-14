@@ -1,3 +1,10 @@
+TAG: loadadmin-4-4-2-1
+DATE: 10/14/2011
+STAFF: dbm
+CHANGES:
+1) dailytasks.csh - removed use of NS_ADHOC_LOAD namespace
+2) fridaytasks.csh - removed use of NS_ADHOC_LOAD namespace
+
 TAG: loadadmin-4-4-1-9
 DATE: 9/26/2011
 STAFF: dbm
