@@ -19,7 +19,9 @@ setenv LOGSDIR ${DATALOADSOUTPUT}/mgi/loadadmin/logs
 # Java Stuff
 #
 setenv CATALINA_HOME	${TOMCAT}
-setenv CLASSPATH	.:${MGI_LIVE}/javawi2/WEB-INF/classes/properties:${MGI_LIVE}/lib/java/core.jar:${MGI_LIVE}/lib/java/webapp.jar:${MGI_LIVE}/lib/java/dbsmgd_ro.jar:/usr/java/jre/lib/rt.jar:${TOMCAT}/tomcat/common/lib/servlet.jar:${SYBASE}/jConnect-6_0/classes/jconn3.jar:${JAVA_HOME}/lib:/usr/local/lib/fileupload.jar
+if ( ${?JAVA_HOME} != 0 ) then
+    setenv CLASSPATH	.:${MGI_LIVE}/javawi2/WEB-INF/classes/properties:${MGI_LIVE}/lib/java/core.jar:${MGI_LIVE}/lib/java/webapp.jar:${MGI_LIVE}/lib/java/dbsmgd_ro.jar:/usr/java/jre/lib/rt.jar:${TOMCAT}/tomcat/common/lib/servlet.jar:${SYBASE}/jConnect-6_0/classes/jconn3.jar:${JAVA_HOME}/lib:/usr/local/lib/fileupload.jar
+endif
 setenv CATALINA_OPTS	"-DMGISRV=javawi2 -Xms512m -Xmx1024m"
 setenv CATALINA_BASE	${MGI_LIVE}/tomcat
 setenv TOMCATBIN	${TOMCAT}/bin
