@@ -1,3 +1,9 @@
+TAG: loadadmin-4-4-2-3
+DATE: 12/13/2011
+STAFF: dbm
+CHANGES:
+1) Configuration.default - only try to set CLASSPATH if JAVA_HOME is defined
+
 TAG: loadadmin-4-4-2-2
 DATE: 11/11/2011
 STAFF: dbm
