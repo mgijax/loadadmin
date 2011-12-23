@@ -1,3 +1,11 @@
+TAG: loadadmin-5-0-0-1
+DATE: 12/23/2011
+STAFF: dbm
+CHANGES:
+1) Configuration.default: add postgres jdbc jar to CLASSPATH
+2) jboss/startFewi_test1: New
+3) jboss/stopFewi_test1: New
+
 TAG: loadadmin-4-4-2-3
 DATE: 12/13/2011
 STAFF: dbm
