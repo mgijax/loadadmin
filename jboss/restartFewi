@@ -1,0 +1,11 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+echo 'Stopping Pub1 JBoss Instance'
+./stopSearchtool_pub1
+
+echo 'Starting Pub1 JBoss Instance'
+./startSearchtool_pub1
+
+echo 'Fewi Jboss Restarting - Check logs for completion.'
