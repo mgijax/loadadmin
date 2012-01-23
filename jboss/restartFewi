@@ -2,10 +2,10 @@
 
 cd `dirname $0` && source ./Configuration
 
-echo 'Stopping Pub1 JBoss Instance'
-./stopSearchtool_pub1
+echo 'Stopping FEWI JBoss Instance'
+./stopFewi
 
-echo 'Starting Pub1 JBoss Instance'
-./startSearchtool_pub1
+echo 'Starting FEWI JBoss Instance'
+./startFewi
 
 echo 'Fewi Jboss Restarting - Check logs for completion.'
