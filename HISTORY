@@ -1,3 +1,10 @@
+TAG: loadadmin-5-0-0-2
+DATE: 1/30/2012
+STAFF: dbm
+CHANGES:
+1) prod/genFrontend.csh: call new gen_webshare_prod
+2) prod/load_prod_indexes.csh: call new gen_webshare_prod
+
 TAG: loadadmin-5-0-0-1
 DATE: 12/23/2011
 STAFF: dbm
