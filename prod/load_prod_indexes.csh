@@ -126,7 +126,7 @@ endif
 date | tee -a ${LOG}
 echo 'Regenerate templates and GlobalConfig from webshare' | tee -a ${LOG}
 cd ${MGI_LIVE}/mgiconfig/bin
-gen_webshare
+gen_webshare_prod
 
 #
 # Restart the production JBoss server.

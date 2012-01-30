@@ -1,6 +1,6 @@
 #!/bin/csh -f
 #
-#  restartTomcat
+#  genFrontend.csh
 ###########################################################################
 #
 #  Purpose:
@@ -56,6 +56,6 @@ gen_includes
 date
 echo 'Regenerate templates and GlobalConfig from webshare'
 cd ${MGI_LIVE}/mgiconfig/bin
-gen_webshare
+gen_webshare_prod
 
 date
