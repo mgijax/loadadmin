@@ -68,8 +68,8 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
 # Determine whether pub1 or pub2 is currently inactive by checking the
@@ -79,7 +79,9 @@ date | tee -a ${LOG}
 echo 'Determine if pub1 or pub2 is currently inactive' | tee -a ${LOG}
 
 setenv SETTING `${PROC_CTRL_CMD_PUB}/getSetting ${SET_INACTIVE_PUB}`
-if ( "${SETTING}" != "pub1" && "${SETTING}" != "pub2") then
+if ( "${SETTING}" == "pub1" || "${SETTING}" == "pub2") then
+    echo "Inactive Public: ${SETTING}" | tee -a ${LOG}
+else
     echo 'Cannot determine whether pub1 or pub2 is inactive' | tee -a ${LOG}
     date | tee -a ${LOG}
     exit 1

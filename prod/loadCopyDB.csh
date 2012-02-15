@@ -67,8 +67,8 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 set weekday=`date '+%u'`
 
@@ -98,13 +98,13 @@ end
 # was found.
 #
 if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 endif
 
 #

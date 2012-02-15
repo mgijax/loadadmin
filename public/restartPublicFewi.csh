@@ -42,7 +42,7 @@
 #      1) Source the configuration file to establish the environment.
 #      2) Determine if this script is being run on the Fewi server
 #         that is currently inactive. Exit if this server is active.
-#      3) Wait for the flag to signal that the public WIs have been swapped.
+#      3) Wait for the flag to signal that webshare has been swapped.
 #      4) Regenerate templates and GlobalConfig from webshare.
 #      5) Restart the public Fewi JBoss instance.
 #
@@ -58,8 +58,8 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
 # Determine whether pub1 or pub2 is currently inactive by checking the
@@ -70,7 +70,9 @@ date | tee -a ${LOG}
 echo 'Determine if pub1 or pub2 is currently inactive' | tee -a ${LOG}
 
 setenv SETTING `${PROC_CTRL_CMD_PUB}/getSetting ${SET_INACTIVE_PUB}`
-if ( "${SETTING}" != "pub1" && "${SETTING}" != "pub2") then
+if ( "${SETTING}" == "pub1" || "${SETTING}" == "pub2") then
+    echo "Inactive Public: ${SETTING}" | tee -a ${LOG}
+else
     echo 'Cannot determine whether pub1 or pub2 is inactive' | tee -a ${LOG}
     date | tee -a ${LOG}
     exit 1
@@ -94,15 +96,15 @@ if ( "${PUB_NUM}" != "${SERVER_NUM}" ) then
 endif
 
 #
-# Wait for the "WI Swapped" flag to be set. Stop waiting if the
+# Wait for the "Webshare Swapped" flag to be set. Stop waiting if the
 # number of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
-echo 'Wait for the "WI Swapped" flag to be set' | tee -a ${LOG}
+echo 'Wait for the "Webshare Swapped" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_WI_SWAPPED}`
+    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_WEBSHR_SWAPPED}`
     setenv ABORT `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
@@ -119,13 +121,13 @@ end
 # was found.
 #
 if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 endif
 
 #

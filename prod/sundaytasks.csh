@@ -53,8 +53,8 @@ touch ${LOG}
 setenv SNPCACHELOAD_LOG ${DATALOADSOUTPUT}/mgi/snpcacheload/logs/snpmarker_weekly.stdouterr.log
 setenv DOTS_NIA_DFCI_LOG ${DATALOADSOUTPUT}/mgi/mgddbutilities/logs/dots_nia_dfci.stdouterr.log
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 date | tee -a ${LOG}
 echo 'Reset process control flags in production load namespace' | tee -a ${LOG}
@@ -251,13 +251,13 @@ end
 # was found.
 #
 if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 endif
 
 #

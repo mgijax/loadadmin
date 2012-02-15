@@ -67,8 +67,8 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
 # Determine whether pub1 or pub2 is currently inactive by checking the
@@ -78,8 +78,11 @@ date | tee -a ${LOG}
 echo 'Determine if pub1 or pub2 is currently inactive' | tee -a ${LOG}
 
 setenv INACTIVE_PUB `${PROC_CTRL_CMD_PUB}/getSetting ${SET_INACTIVE_PUB}`
-if ( "${INACTIVE_PUB}" != "pub1" && "${INACTIVE_PUB}" != "pub2") then
+if ( "${INACTIVE_PUB}" == "pub1" || "${INACTIVE_PUB}" == "pub2") then
+    echo "Inactive Public: ${INACTIVE_PUB}" | tee -a ${LOG}
+else
     echo 'Cannot determine whether pub1 or pub2 is inactive' | tee -a ${LOG}
+    date | tee -a ${LOG}
     exit 1
 endif
 
@@ -91,8 +94,11 @@ date | tee -a ${LOG}
 echo 'Determine if bot1 or bot2 is currently inactive' | tee -a ${LOG}
 
 setenv INACTIVE_BOT `${PROC_CTRL_CMD_ROBOT}/getSetting ${SET_INACTIVE_BOT}`
-if ( "${INACTIVE_BOT}" != "bot1" && "${INACTIVE_BOT}" != "bot2") then
+if ( "${INACTIVE_BOT}" == "bot1" || "${INACTIVE_BOT}" == "bot2") then
+    echo "Inactive Robot: ${INACTIVE_BOT}" | tee -a ${LOG}
+else
     echo 'Cannot determine whether bot1 or bot2 is inactive' | tee -a ${LOG}
+    date | tee -a ${LOG}
     exit 1
 endif
 
@@ -108,7 +114,7 @@ ${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DB_EXPORT} ${FLAG_PG_DUMP_READY} ${SCRIPT_N
 #
 date | tee -a ${LOG}
 echo "Export Sybase to Postgres" | tee -a ${LOG}
-${EXPORTER}/bin/export_wrapper.sh
+${EXPORTER}/bin/export_wrapper.sh >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -120,7 +126,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Build the frontend Postgres database" | tee -a ${LOG}
-${FEMOVER}/control/buildDB.sh postgres
+${FEMOVER}/control/buildDB.sh postgres >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -132,7 +138,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Dump the frontend Postgres database" | tee -a ${LOG}
-${PGDBUTILITIES}/bin/dumpDB.csh ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP}
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}

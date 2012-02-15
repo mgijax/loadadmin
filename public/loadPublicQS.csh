@@ -61,14 +61,17 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
-# Determine which public QS indexes are currently inactive by checking the
+# Determine whether pub1 or pub2 is currently inactive by checking the
 # "Inactive Public" setting. The inactive QS indexes are the ones that need
 # to be loaded.
 #
+date | tee -a ${LOG}
+echo 'Determine if pub1 or pub2 is currently inactive' | tee -a ${LOG}
+
 setenv SETTING `${PROC_CTRL_CMD_PUB}/getSetting ${SET_INACTIVE_PUB}`
 if ( "${SETTING}" == "pub1" ) then
     setenv ST_INDEX ${ST_PUB1_INDEXES}
@@ -76,8 +79,10 @@ else if ( "${SETTING}" == "pub2" ) then
     setenv ST_INDEX ${ST_PUB2_INDEXES}
 else
     echo 'Cannot determine whether pub1 or pub2 is inactive' | tee -a ${LOG}
+    date | tee -a ${LOG}
     exit 1
 endif
+echo "Inactive Public: ${SETTING}" | tee -a ${LOG}
 
 #
 # Wait for the "QS Index Tar File Ready" flag to be set. Stop waiting if the
@@ -105,13 +110,13 @@ end
 # was found.
 #
 if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 endif
 
 #
