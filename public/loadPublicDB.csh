@@ -176,11 +176,11 @@ if ( $status != 0 ) then
 endif
 
 #
-# Load the snp schema.
+# Load the snp schema. Run analyze command on "pub" database.
 #
 date | tee -a ${LOG}
 echo "Load snp schema (${PG_DBSERVER}.${PG_DBNAME}.snp)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} snp ${SNP_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh -a ${PG_DBSERVER} ${PG_DBNAME} snp ${SNP_BACKUP}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -188,11 +188,11 @@ if ( $status != 0 ) then
 endif
 
 #
-# Load the fe schema.
+# Load the fe schema. Run analyze command on "fe" database.
 #
 date | tee -a ${LOG}
 echo "Load fe schema (${PG_FE_DBSERVER}.${PG_FE_DBNAME}.fe)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh -a ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
