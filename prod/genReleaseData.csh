@@ -61,7 +61,7 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv FE_BACKUP /export/dump/fe.postgres.backup
+setenv FE_BACKUP /export/dump/fe.postgres.dump
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
