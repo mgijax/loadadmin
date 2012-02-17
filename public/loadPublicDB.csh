@@ -113,8 +113,8 @@ echo 'Wait for the "PG Dump Ready" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY}`
-    setenv ABORT `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_ABORT}`
+    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_DB_EXPORT} ${FLAG_PG_DUMP_READY}`
+    setenv ABORT `${PROC_CTRL_CMD_PUB}/getFlag ${NS_DB_EXPORT} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
         break
