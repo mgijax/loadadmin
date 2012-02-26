@@ -144,7 +144,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Load radar schema (${PG_DBSERVER}.${PG_DBNAME}.radar)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${RADAR_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${RADAR_BACKUP} >> ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -156,7 +156,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Load mgd schema (${PG_DBSERVER}.${PG_DBNAME}.mgd)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${MGD_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${MGD_BACKUP} >> ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -168,7 +168,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Grant modify permission on the text search tables." | tee -a ${LOG}
-${PG_DBUTILS}/bin/grantTxtPerms.csh ${PG_DBSERVER} ${PG_DBNAME}
+${PG_DBUTILS}/bin/grantTxtPerms.csh ${PG_DBSERVER} ${PG_DBNAME} >> ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -180,7 +180,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Load snp schema (${PG_DBSERVER}.${PG_DBNAME}.snp)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh -a ${PG_DBSERVER} ${PG_DBNAME} snp ${SNP_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh -a ${PG_DBSERVER} ${PG_DBNAME} snp ${SNP_BACKUP} >> ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -192,7 +192,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Load fe schema (${PG_FE_DBSERVER}.${PG_FE_DBNAME}.fe)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh -a ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh -a ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP} >> ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
