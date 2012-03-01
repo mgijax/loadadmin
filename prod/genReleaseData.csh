@@ -138,7 +138,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Dump the frontend Postgres database" | tee -a ${LOG}
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP}
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_FE_DBSERVER} ${PG_FE_DBNAME} fe ${FE_BACKUP} >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
