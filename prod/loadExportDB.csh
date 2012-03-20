@@ -1,6 +1,6 @@
 #!/bin/csh -f
 #
-#  load_export_db.csh
+#  loadExportDB.csh
 ###########################################################################
 #
 #  Purpose:
@@ -10,7 +10,7 @@
 #
 #  Usage:
 #
-#      load_export_db.csh
+#      loadExportDB.csh
 #
 #  Env Vars:
 #
@@ -39,10 +39,13 @@
 #
 #  Implementation:
 #
-#      This script will perform following steps:
+#      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Load the MGD export database.
+#      2) Reset all flags in the export database namespace.
+#      3) Wait for the flag to signal that the MGD backup is available.
+#      4) Load the MGD export database.
+#      5) Set the flag to signal that the export database has been loaded.
 #
 #  Notes:  None
 #
@@ -58,12 +61,47 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 date | tee -a ${LOG}
 echo 'Reset process control flags in database export namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DB_EXPORT} ${SCRIPT_NAME}
+
+#
+# Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
+# of retries expires or the abort flag is found.
+#
+date | tee -a ${LOG}
+echo 'Wait for the "MGD Backup Ready" flag to be set' | tee -a ${LOG}
+
+setenv RETRY ${PROC_CTRL_RETRIES}
+while (${RETRY} > 0)
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP}`
+    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
+
+    if (${READY} == 1 || ${ABORT} == 1) then
+        break
+    else
+        sleep ${PROC_CTRL_WAIT_TIME}
+    endif
+
+    setenv RETRY `expr ${RETRY} - 1`
+end
+
+#
+# Terminate the script if the number of retries expired or the abort flag
+# was found.
+#
+if (${RETRY} == 0) then
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+else if (${ABORT} == 1) then
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
 
 #
 # Load MGD export database.

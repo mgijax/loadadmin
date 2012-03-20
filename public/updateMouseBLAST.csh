@@ -1,15 +1,15 @@
 #!/bin/csh -f
 #
-#  setMouseBLASTdb.csh
+#  updateMouseBLAST.csh
 ###########################################################################
 #
 #  Purpose:
 #
-#      This script is a wrapper for swapping the public MouseBLAST.
+#      This script is a wrapper for updating the MouseBLAST WI.
 #
 #  Usage:
 #
-#      setMouseBLASTdb.csh
+#      updateMouseBLAST.csh
 #
 #  Env Vars:
 #
@@ -36,13 +36,13 @@
 #
 #  Implementation:
 #
-#      This script will perform following steps:
+#      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
 #      2) Wait for the flag to signal that the public WIs have been swapped.
-#      3) Swap MouseBLAST WI configuration file links.
-#      4) Update include files for MouseBLAST WI.
-#      5) Regenerate templates and GlobalConfig from webshare.
+#      3) Update include files for MouseBLAST WI.
+#      4) Regenerate templates and GlobalConfig from webshare.
+#      5) Set the flag to signal that the MouseBLAST WI has been updated.
 #
 #  Notes:  None
 #
@@ -56,8 +56,8 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
 # Wait for the "WI Swapped" flag to be set. Stop waiting if the number
@@ -85,31 +85,14 @@ end
 # was found.
 #
 if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 endif
-
-#
-# Clear the "WI Swapped" flag.
-#
-date | tee -a ${LOG}
-echo 'Clear process control flag: WI Swapped' | tee -a ${LOG}
-${PROC_CTRL_CMD_PUB}/clearFlag ${NS_PUB_LOAD} ${FLAG_WI_SWAPPED} ${SCRIPT_NAME}
-
-#
-# Swap MouseBLAST WI configuration file links.
-#
-date | tee -a ${LOG}
-echo 'Swap MouseBLAST WI configuration file links' | tee -a ${LOG}
-cd ${MGI_LIVE}/mblast_wi
-mv Configuration.old saveold
-mv Configuration Configuration.old
-mv saveold Configuration
 
 #
 # Update include files for MouseBLAST WI.
@@ -128,11 +111,11 @@ cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
 #
-# Set the "MouseBLAST Swapped" flag.
+# Set the "MouseBLAST Updated" flag.
 #
 date | tee -a ${LOG}
-echo 'Set process control flag: MouseBLAST Swapped' | tee -a ${LOG}
-${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_MBLAST_SWAPPED} ${SCRIPT_NAME}
+echo 'Set process control flag: MouseBLAST Updated' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_MBLAST_UPDATED} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}

@@ -61,8 +61,8 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 set weekday=`date '+%u'`
 
@@ -73,12 +73,14 @@ set weekday=`date '+%u'`
 set tomorrow=`/usr/local/bin/date -d tomorrow +%m/%d/%Y`
 
 date | tee -a ${LOG}
-echo 'Reset all process control flags' | tee -a ${LOG}
+echo 'Reset process control flags' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/resetFlags ${NS_DEV_LOAD} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
+
+if ( $weekday == 2 ) then
+    ${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
+    ${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
+endif
 
 #
 # Generate the MGI marker feed as early as possible for JAX folks.
@@ -207,8 +209,11 @@ date | tee -a ${LOG}
 echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
+
+if ( $weekday == 2 ) then
+    ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
+    ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
+endif
 
 #date | tee -a ${LOG}
 #echo 'Process GenBank Deletes' | tee -a ${LOG}

@@ -1,15 +1,16 @@
 #!/bin/csh -f
 #
-#  load_prod_indexes.csh
+#  loadProdQS.csh
 ###########################################################################
 #
 #  Purpose:
 #
-#      This script is a wrapper for loading the production indexes.
+#      This script is a wrapper for loading the production quick search
+#      indexes.
 #
 #  Usage:
 #
-#      load_prod_indexes.csh
+#      loadProdQS.csh
 #
 #  Env Vars:
 #
@@ -40,11 +41,12 @@
 #
 #  Implementation:
 #
-#      This script will perform following steps:
+#      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Wait for the flag to signal that the index tar file is available.
-#      3) Load the production indexes from the tar file.
+#      2) Wait for the flag to signal that the QS index tar file is
+#         available.
+#      3) Load the production QS indexes from the QS index tar file.
 #      4) Regenerate templates and GlobalConfig from webshare.
 #      5) Restart the production JBoss server.
 #
@@ -60,19 +62,19 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
-# Wait for the "Index Tar File Ready" flag to be set. Stop waiting if the
+# Wait for the "QS Index Tar File Ready" flag to be set. Stop waiting if the
 # number of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
-echo 'Wait for the "Index Tar File Ready" flag to be set' | tee -a ${LOG}
+echo 'Wait for the "QS Index Tar File Ready" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_INDEX_TAR_FILE}`
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_QS_TAR_FILE}`
     setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
@@ -89,21 +91,21 @@ end
 # was found.
 #
 if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 endif
 
 #
-# Clear the "Index Tar File Ready" flag.
+# Clear the "QS Index Tar File Ready" flag.
 #
 date | tee -a ${LOG}
-echo 'Clear process control flag: Index Tar File Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/clearFlag ${NS_PROD_LOAD} ${FLAG_INDEX_TAR_FILE} ${SCRIPT_NAME}
+echo 'Clear process control flag: QS Index Tar File Ready' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/clearFlag ${NS_PROD_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
 
 #
 # Remove the contents of the production index directory and reload it

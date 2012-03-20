@@ -1,15 +1,15 @@
 #!/bin/csh -f
 #
-#  restart_public_indexes.csh
+#  restartPublicQS.csh
 ###########################################################################
 #
 #  Purpose:
 #
-#      This script is a wrapper for restarting the public indexes.
+#      This script is a wrapper for restarting the public Quick Search (QS).
 #
 #  Usage:
 #
-#      restart_public_indexes.csh
+#      restartPublicQS.csh
 #
 #  Env Vars:
 #
@@ -30,17 +30,19 @@
 #      0:  Successful completion
 #      1:  Fatal error occurred
 #
-#  Assumes:  Nothing
+#  Assumes:  The Quick Search that needs to be restarted is still the
+#            inactive one (based on the "Inactive Public" Setting) at the
+#            time when this script is started.
 #
 #  Implementation:
 #
-#      This script will perform following steps:
+#      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Determine which public index is currently inactive.
+#      2) Determine which public QS is currently inactive.
 #      3) Wait for the flag to signal that webshare has been swapped.
 #      4) Regenerate templates and GlobalConfig from webshare.
-#      5) Restart the inactive public JBoss server.
+#      5) Restart the public QS JBoss instance.
 #
 #  Notes:  None
 #
@@ -54,17 +56,23 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
-# Determine which public index is currently inactive by checking the
-# "Inactive Public DB" setting. The inactive index is the one that needs
-# to be restarted.
+# Determine which public QS is currently inactive by checking the
+# "Inactive Public" setting. The inactive QS is the one that needs to be
+# restarted.
 #
-setenv SETTING `${PROC_CTRL_CMD_PUB}/getSetting ${SET_INACTIVE_PUB_DB}`
-if ( "${SETTING}" != "pub_1" && "${SETTING}" != "pub_2") then
-    echo 'Cannot determine which public index is inactive' | tee -a ${LOG}
+date | tee -a ${LOG}
+echo 'Determine if pub1 or pub2 is currently inactive' | tee -a ${LOG}
+
+setenv SETTING `${PROC_CTRL_CMD_PUB}/getSetting ${SET_INACTIVE_PUB}`
+if ( "${SETTING}" == "pub1" || "${SETTING}" == "pub2") then
+    echo "Inactive Public: ${SETTING}" | tee -a ${LOG}
+else
+    echo 'Cannot determine whether pub1 or pub2 is inactive' | tee -a ${LOG}
+    date | tee -a ${LOG}
     exit 1
 endif
 
@@ -94,21 +102,14 @@ end
 # was found.
 #
 if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
 endif
-
-#
-# Clear the "Webshare Swapped" flag.
-#
-date | tee -a ${LOG}
-echo 'Clear process control flag: Webshare Swapped' | tee -a ${LOG}
-${PROC_CTRL_CMD_PUB}/clearFlag ${NS_PUB_LOAD} ${FLAG_WEBSHR_SWAPPED} ${SCRIPT_NAME}
 
 #
 # Regenerate templates and GlobalConfig from webshare.
@@ -119,16 +120,15 @@ cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
 #
-# Restart the inactive public JBoss server.
+# Restart the public QS JBoss instance.
 #
 date | tee -a ${LOG}
-echo 'Restart the inactive public JBoss server' | tee -a ${LOG}
-if ( "${SETTING}" == "pub_1" ) then
+echo 'Restart the public QS JBoss instance' | tee -a ${LOG}
+if ( "${SETTING}" == "pub1" ) then
     ${LOADADMIN}/jboss/restartSearchtool_pub1
 else
     ${LOADADMIN}/jboss/restartSearchtool_pub2
 endif
-sleep 60
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
