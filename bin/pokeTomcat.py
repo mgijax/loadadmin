@@ -41,6 +41,8 @@ import httpReader
 httpReader.getURL(os.environ['ADMIN_URL1'])
 httpReader.getURL(os.environ['ADMIN_URL2'])
 httpReader.getURL(os.environ['ADMIN_URL3'])
+# refresh dio map for elsevier
+httpReader.getURL('http://services.informatics.jax.org/doi/imageMap?id=refresh')
 
 # urls to prime cache
 host = 'http://www.informatics.jax.org'
