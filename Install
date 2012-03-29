@@ -37,6 +37,6 @@ foreach i (adhoc bin dev jboss prod public robot)
     chgrp -fR progs $i
 end
 
-chmod 700 bin/startTomcat bin/stopTomcat bin/restartTomcat
-chgrp www bin/startTomcat bin/stopTomcat bin/restartTomcat
-chown webster bin/startTomcat bin/stopTomcat bin/restartTomcat
+chmod 700 bin/startTomcat bin/stopTomcat bin/restartTomcat bin/updateImsr*
+chgrp www bin/startTomcat bin/stopTomcat bin/restartTomcat bin/updateImsr*
+chown webster bin/startTomcat bin/stopTomcat bin/restartTomcat bin/updateImsr*
