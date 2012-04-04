@@ -37,6 +37,20 @@ foreach i (adhoc bin dev jboss prod public robot)
     chgrp -fR progs $i
 end
 
+#
+# Skip public and robot Fewi servers where there is no webster user.
+#
+switch (${SERVER_NAME})
+    case mgi-pubfewi1:
+    case mgi-pubfewi2:
+    case mgi-botfewi1:
+    case mgi-botfewi2:
+        exit 0
+        breaksw
+    default:
+        breaksw
+endsw
+
 chmod 700 bin/startTomcat bin/stopTomcat bin/restartTomcat bin/updateImsr*
 chgrp www bin/startTomcat bin/stopTomcat bin/restartTomcat bin/updateImsr*
 chown webster bin/startTomcat bin/stopTomcat bin/restartTomcat bin/updateImsr*
