@@ -101,13 +101,6 @@ else if (${ABORT} == 1) then
 endif
 
 #
-# Clear the "QS Index Tar File Ready" flag.
-#
-date | tee -a ${LOG}
-echo 'Clear process control flag: QS Index Tar File Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/clearFlag ${NS_PROD_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
-
-#
 # Remove the contents of the production index directory and reload it
 # from the tar file.
 #
