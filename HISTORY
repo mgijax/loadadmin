@@ -1,3 +1,11 @@
+TAG: loadadmin-5-0-0-7
+DATE: 4/6/2012
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) prod/loadProdQS.csh: don't clear flag
+2) dev/loadDevDB.csh: new - replaces load_prod_to_dev.csh
+
 TAG: loadadmin-5-0-0-6
 DATE: 4/4/2012
 STAFF: dbm
