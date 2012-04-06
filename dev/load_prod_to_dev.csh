@@ -63,8 +63,8 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-echo "$0" | tee -a ${LOG}
-env | sort | tee -a ${LOG}
+echo "$0" >> ${LOG}
+env | sort >> ${LOG}
 
 #
 # Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
@@ -100,13 +100,6 @@ else if (${ABORT} == 1) then
    date | tee -a ${LOG}
    exit 1
 endif
-
-#
-# Clear the "MGD Backup Ready" flag.
-#
-date | tee -a ${LOG}
-echo 'Clear process control flag: MGD Backup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_DEV}/clearFlag ${NS_DEV_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 
 #
 # Load MGD and RADAR databases from the production backups.
