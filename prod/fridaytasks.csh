@@ -71,8 +71,6 @@ date | tee -a ${LOG}
 echo 'Reset all process control flags' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/resetFlags ${NS_DEV_LOAD} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
 
 # run this as early as possible for JAX folks
 date | tee -a ${LOG}
@@ -111,8 +109,6 @@ date | tee -a ${LOG}
 echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
 echo 'Mammalian Phenotype Load' | tee -a ${LOG}
