@@ -1,3 +1,14 @@
+TAG: loadadmin-5-0-0-9
+DATE: 4/30/2012
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) public/restartPublicFewi.csh, robot/restartRobotFewi.csh: Send stdout and
+   stderr to /dev/null when calling restartFewi script. Otherwise, a defunct
+   process is left hanging under Linux and no cron mail is received from the
+   JBoss startup until the next time it is stopped. The output can be found
+   in the JBoss console log instead.
+
 TAG: loadadmin-5-0-0-8
 DATE: 4/10/2012
 STAFF: dbm
