@@ -143,7 +143,7 @@ gen_webshare
 #
 date | tee -a ${LOG}
 echo 'Restart the robot Fewi JBoss instance' | tee -a ${LOG}
-${LOADADMIN}/jboss/restartFewi
+${LOADADMIN}/jboss/restartFewi >& /dev/null
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
