@@ -210,11 +210,6 @@ echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 
-if ( $weekday == 2 ) then
-    ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-    ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-endif
-
 #date | tee -a ${LOG}
 #echo 'Process GenBank Deletes' | tee -a ${LOG}
 #${SEQDELETER}/bin/seqdeleter.sh gbseqdeleter.config
