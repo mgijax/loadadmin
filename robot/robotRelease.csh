@@ -79,7 +79,7 @@ env | sort >> ${LOG}
 date | tee -a ${LOG}
 echo 'Determine if bot1 or bot2 is currently inactive' | tee -a ${LOG}
 
-setenv SETTING `${PROC_CTRL_CMD_ROBOT}/getSetting ${SET_INACTIVE_ROBOT}`
+setenv SETTING `${PROC_CTRL_CMD_ROBOT}/getSetting ${SET_INACTIVE_BOT}`
 if ( "${SETTING}" == "bot1" ) then
     setenv NEW_BOT bot2
 else if ( "${SETTING}" == "bot2" ) then
