@@ -1,3 +1,12 @@
+TAG: loadadmin-5-0-0-10
+DATE: 5/8/2012
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) prod/dailytasks.csh: don't need to set FLAG_BACKUP_READY for public/robot
+2) robot/robotRelease.csh: fix bug where SET_INACTIVE_ROBOT was used instead
+                           of SET_INACTIVE_BOT
+
 TAG: loadadmin-5-0-0-9
 DATE: 4/30/2012
 STAFF: dbm
