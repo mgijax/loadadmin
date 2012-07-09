@@ -111,9 +111,6 @@ ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_mbp.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_hmgu.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_wtsi.config
-${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_regeneron.config
-${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_norcomm_cmhd.config
-${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_norcomm_mfgc.config
 
 date | tee -a ${LOG}
 echo 'Process cDNA Load Incrementals' | tee -a ${LOG}
