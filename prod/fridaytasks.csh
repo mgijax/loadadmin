@@ -89,9 +89,9 @@ date | tee -a ${LOG}
 echo 'Update Statistics' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/updateStatisticsAll.csh ${MGD_DBSERVER} ${MGD_DBNAME} ${MGD_DBSCHEMADIR}
 
-date | tee -a ${LOG}
-echo 'Start DBCC Checker' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_check_db.csh ${MGD_DBSERVER} ${MGD_DBNAME}
+#date | tee -a ${LOG}
+#echo 'Start DBCC Checker' | tee -a ${LOG}
+#${MGI_DBUTILS}/bin/mgi_check_db.csh ${MGD_DBSERVER} ${MGD_DBNAME}
 
 date | tee -a ${LOG}
 echo 'Create Reference Set' | tee -a ${LOG}
