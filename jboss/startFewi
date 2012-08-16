@@ -4,6 +4,5 @@ cd `dirname $0` && source ./Configuration
 
 setenv JAVA_HOME /usr/java/default
 setenv JAVA ${JAVA_HOME}/bin/java
-setenv SERVER_NAME `uname -n`
 
-/usr/local/mgi/jboss/bin/run.sh -b ${SERVER_NAME} -c fewi &
+nohup /usr/local/mgi/jboss/bin/standalone.sh &
