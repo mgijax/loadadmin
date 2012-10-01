@@ -267,9 +267,11 @@ date | tee -a ${LOG}
 echo 'Load Marker/MCV Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkmcv.csh
 
-date | tee -a ${LOG}
-echo 'Load Genetic Map Tables' | tee -a ${LOG}
-${GENMAPLOAD}/bin/genmapload.sh
+# removed this call for Build 38 release as we don't yet have
+# data to update cM for Build 38
+#date | tee -a ${LOG}
+#echo 'Load Genetic Map Tables' | tee -a ${LOG}
+#${GENMAPLOAD}/bin/genmapload.sh
 
 date | tee -a ${LOG}
 echo 'Load Allele/Label Cache Table' | tee -a ${LOG}
