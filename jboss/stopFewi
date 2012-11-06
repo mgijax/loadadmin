@@ -2,19 +2,11 @@
 
 cd `dirname $0` && source ./Configuration
 
-#capture name of this server
+setenv JAVA_HOME /usr/mgijava6
+setenv JAVA ${JAVA_HOME}/bin/java
 setenv SERVER_NAME `uname -n`
 
-# Try to shutdown jboss gracefully, allowing time to finish
-/usr/local/mgi/jboss/bin/shutdown.sh -s jnp://${SERVER_NAME}.jax.org:1099 -S
-sleep 20
+# Try to shutdown jboss gracefully.
 
-# Ensure fewi shutdown.  If the shutdown script failed, we need to kill
-# the processes.  We first get the parent pid of the jboss server.
-# For each child of that parent pid (including itself) kill it.
-setenv PARENT_PROCESS `ps -fu mgiadmin | grep fewi | grep -v grep | grep -v solr | sed 's/ [ ]*/|/g' | cut -d '|' -f2`
-foreach PID  (`ps -fu mgiadmin | sed 's/ [ ]*/|/g' | cut -d'|' -f2,3 | sed 's/$/|/' | grep "|${PARENT_PROCESS}|" | cut -d'|' -f1` ${PARENT_PROCESS})
-echo 'Killing jboss process:' ${PID}
-echo `ps -p ${PID} -f`
-kill -9 ${PID}
-end
+${JBOSS}/bin/jboss-cli.sh --connect controller:${SERVER_NAME}:9999 :shutdown
+

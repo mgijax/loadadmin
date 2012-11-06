@@ -5,5 +5,6 @@ cd `dirname $0` && source ./Configuration
 setenv JAVA_HOME /usr/mgijava6
 setenv JAVA ${JAVA_HOME}/bin/java
 setenv SERVER_NAME `uname -n`
+setenv JAVA_OPTS "-d64 -Xms6g -Xmx6g" 
 
-${JBOSS}/bin/run.sh -b ${SERVER_NAME} -c searchtool_robot &
+${JBOSS}/bin/standalone.sh -b=${SERVER_NAME} -Djboss.server.base.dir=${JBOSS}/searchtool_robot &

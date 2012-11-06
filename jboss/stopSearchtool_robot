@@ -8,21 +8,5 @@ setenv SERVER_NAME `uname -n`
 
 # Try to shutdown jboss gracefully.
 
-${JBOSS}/bin/shutdown.sh -s jnp://${SERVER_NAME}:21099 -S
+${JBOSS}/bin/jboss-cli.sh --connect controller:${SERVER_NAME}:29999 :shutdown
 
-# Give jboss some time to shutdown on its own.
-
-sleep 15
-
-# Get the parent pid of the jboss server.
-
-setenv PARENT_PROCESS `ps -fu mgiadmin | grep searchtool_robot | grep -v grep | sed 's/ [ ]*/|/g' | cut -d '|' -f2`
-
-# For each child of that parent pid (including itself) kill it.
-# This takes care of the error condition where the shutdown script failed.
-
-foreach PID  (`ps -fu mgiadmin | sed 's/ [ ]*/|/g' | cut -d'|' -f2,3 | sed 's/$/|/' | grep "|${PARENT_PROCESS}|" | cut -d'|' -f1` ${PARENT_PROCESS})
-echo 'Killing jboss process:' ${PID}
-echo `ps -p ${PID} -f`
-kill -9 ${PID}
-end
