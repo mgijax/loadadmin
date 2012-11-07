@@ -48,7 +48,7 @@
 #      6) Swap the webshare GlobalConfig links.
 #      7) Regenerate templates and GlobalConfig from webshare.
 #      8) Set the flag to signal that webshare has been swapped.
-#      9) Refresh the Java WI.
+#      9) Restart tomcat.
 #      10) Swap Java WI cache directory links and clean out the old one.
 #      11) Run gen_includes on the inactive Python WI.
 #      12) Swap the links for the Python WI.
@@ -194,11 +194,11 @@ echo 'Set process control flag: Webshare Swapped' | tee -a ${LOG}
 ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_WEBSHR_SWAPPED} ${SCRIPT_NAME}
 
 #
-# Clean memory cache, reload config file, suggest garbage collection.
+# Restart tomcat
 #
 date | tee -a ${LOG}
-echo 'Clean memory cache, reload config file, suggest garbage collection' | tee -a ${LOG}
-${LOADADMIN}/bin/pokeTomcat.py
+echo 'Restart tomcat' | tee -a ${LOG}
+${LOADADMIN}/bin/restartTomcat
 
 #
 # Swap Java WI cache directory links and clean out the old one.

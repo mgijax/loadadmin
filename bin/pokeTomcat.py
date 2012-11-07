@@ -31,7 +31,8 @@
 #	- new
 # 05/28/2008	marka
 #	- added priming functionality
-#
+# 10/18/2012	jsb
+#	- removed several pages that no longer exist in public javawi2_pg
 
 import sys
 import os
@@ -41,27 +42,20 @@ import httpReader
 httpReader.getURL(os.environ['ADMIN_URL1'])
 httpReader.getURL(os.environ['ADMIN_URL2'])
 httpReader.getURL(os.environ['ADMIN_URL3'])
-# refresh dio map for elsevier
+
+# refresh doi map for elsevier
 httpReader.getURL('http://services.informatics.jax.org/doi/imageMap?id=refresh')
 
 # urls to prime cache
 host = 'http://www.informatics.jax.org'
 
-pages = ['/javawi2/servlet/WIFetch?page=markerDetail&key=12184', 
-	'/javawi2/servlet/WIFetch?page=markerGO&key=12184',
+pages = [
 	'/javawi2/servlet/WIFetch?page=alleleDetail&key=37141',
-	'/javawi2/servlet/WIFetch?page=glossaryTerm&key=x_chromosome',	
+	'/javawi2/servlet/WIFetch?page=glossaryTerm&key=x_chromosome',
 	'/javawi2/servlet/WIFetch?page=markerQF',
-	'/javawi2/servlet/WIFetch?page=batchQF',
 	'/javawi2/servlet/WIFetch?page=omimVocab&subset=A',
-	'/javawi2/servlet/WIFetch?page=expressionQF',
 	'/javawi2/servlet/WIFetch?page=expressionQFexpanded',
-	'/javawi2/servlet/WIFetch?page=cDNAQF',
 	'/javawi2/servlet/WIFetch?page=pirsfVocab&subset=S',
-	'/javawi2/servlet/WIFetch?page=probeQF',
-	'/javawi2/servlet/WIFetch?page=snpQF',
-	'/javawi2/servlet/WIFetch?page=snpQF',
-	'/javawi2/servlet/WIFetch?page=snpQF',
 	'/javawi2/servlet/WIFetch?page=snpQF']
 
 # prime the cache with the given urls

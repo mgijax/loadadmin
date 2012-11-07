@@ -1,3 +1,15 @@
+TAG: loadadmin-5-1-1-1
+DATE: 11/07/2012
+STAFF: marka
+CHANGES:  merging tr7106 to trunk
+
+TAG: loadadmin-tr7106-1
+DATE: 10/01/2012
+STAFF: sc
+CHANGES: 
+1) Any changed Mark may have made
+2) saturdaytasks.csh - commented out genmapload
+
 TAG: loadadmin-tr7106-BP
 DATE: 8/17/2012
 STAFF: marka
