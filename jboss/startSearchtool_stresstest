@@ -1,9 +1,0 @@
-#!/bin/csh -f
-
-cd `dirname $0` && source ./Configuration
-
-setenv JAVA_HOME /usr/mgijava6
-setenv JAVA ${JAVA_HOME}/bin/java
-setenv SERVER_NAME `uname -n`
-
-${JBOSS}/bin/run.sh -b ${SERVER_NAME} -c searchtool_stresstest &
