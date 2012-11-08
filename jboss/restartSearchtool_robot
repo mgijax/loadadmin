@@ -2,16 +2,13 @@
 
 cd `dirname $0` && source ./Configuration
 
-echo 'Stopping Robot JBoss Instance'
+echo 'Stopping FEWI JBoss Instance'
+./stopFewi
 
-./stopSearchtool_robot
+echo 'Clearing jboss tmp files'
+rm -R /usr/local/mgi/jboss/server/searchtool_robot/tmp/work/*
 
-# Give the server time to shutdown gracefully.
+echo 'Starting FEWI JBoss Instance'
+./startFewi
 
-sleep 15
-
-echo 'Starting Robot JBoss Instance'
-
-./startSearchtool_robot
-
-echo 'Robot Jboss Restarting, check logs for completion.'
+echo 'Fewi Jboss Restarting - Check logs for completion.'

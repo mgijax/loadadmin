@@ -6,7 +6,7 @@ echo 'Stopping FEWI JBoss Instance'
 ./stopFewi
 
 echo 'Clearing jboss tmp files'
-rm -R /usr/local/mgi/jboss/standalone/tmp/work/jboss.web/default-host/fewi
+rm -R /usr/local/mgi/jboss/server/fewi/tmp/work/*
 
 echo 'Starting FEWI JBoss Instance'
 ./startFewi

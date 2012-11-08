@@ -2,16 +2,13 @@
 
 cd `dirname $0` && source ./Configuration
 
-echo 'Stopping Pub1 JBoss Instance'
+echo 'Stopping FEWI JBoss Instance'
+./stopFewi
 
-./stopSearchtool_pub1
+echo 'Clearing jboss tmp files'
+rm -R /usr/local/mgi/jboss/server/searchtool_pub1/tmp/work/*
 
-# Give the server time to shutdown gracefully.
+echo 'Starting FEWI JBoss Instance'
+./startFewi
 
-sleep 15
-
-echo 'Starting Pub1 JBoss Instance'
-
-./startSearchtool_pub1
-
-echo 'Pub1 Jboss Restarting, check logs for completion.'
+echo 'Fewi Jboss Restarting - Check logs for completion.'
