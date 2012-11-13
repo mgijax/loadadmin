@@ -6,9 +6,9 @@ echo 'Stopping FEWI JBoss Instance'
 ./stopFewi
 
 echo 'Clearing jboss tmp files'
-rm -R /usr/local/mgi/jboss/server/searchtool_robot/tmp/work/*
+rm -R /usr/local/mgi/jboss/searchtool_robot/tmp/work/*
 
 echo 'Starting FEWI JBoss Instance'
-./startFewi
+./startSearchtool_robot
 
 echo 'Fewi Jboss Restarting - Check logs for completion.'
