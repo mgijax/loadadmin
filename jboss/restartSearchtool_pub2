@@ -2,13 +2,13 @@
 
 cd `dirname $0` && source ./Configuration
 
-echo 'Stopping FEWI JBoss Instance'
-./stopFewi
+echo 'Stopping Searchtool_pub2 JBoss Instance'
+./stopSearchtool_pub2
 
 echo 'Clearing jboss tmp files'
 rm -R /usr/local/mgi/jboss/searchtool_pub2/tmp/work/*
 
-echo 'Starting FEWI JBoss Instance'
+echo 'Starting Searchtool_pub2 JBoss Instance'
 ./startSearchtool_pub2
 
-echo 'Fewi Jboss Restarting - Check logs for completion.'
+echo 'Searchtool_pub2 Jboss Restarting - Check logs for completion.'
