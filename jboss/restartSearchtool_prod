@@ -5,9 +5,6 @@ cd `dirname $0` && source ./Configuration
 echo 'Stopping Searchtool_prod JBoss Instance'
 ./stopSearchtool_prod
 
-echo 'Clearing jboss tmp files'
-rm -R /usr/local/mgi/jboss/searchtool_prod/tmp/work/*
-
 echo 'Starting Searchtool_prod JBoss Instance'
 ./startSearchtool_prod
 
