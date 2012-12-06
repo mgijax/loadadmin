@@ -5,6 +5,8 @@ cd `dirname $0` && source ./Configuration
 echo 'Stopping FEWI JBoss Instance'
 ./stopFewi
 
+sleep 10
+
 echo 'Clearing jboss tmp files'
 rm -R /usr/local/mgi/jboss/fewi/tmp/work/*
 

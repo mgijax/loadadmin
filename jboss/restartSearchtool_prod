@@ -5,6 +5,8 @@ cd `dirname $0` && source ./Configuration
 echo 'Stopping Searchtool_prod JBoss Instance'
 ./stopSearchtool_prod
 
+sleep 10
+
 echo 'Starting Searchtool_prod JBoss Instance'
 ./startSearchtool_prod
 

@@ -5,6 +5,8 @@ cd `dirname $0` && source ./Configuration
 echo 'Stopping Searchtool_pub2 JBoss Instance'
 ./stopSearchtool_pub2
 
+sleep 10
+
 echo 'Clearing jboss tmp files'
 rm -R /usr/local/mgi/jboss/searchtool_pub2/tmp/work/*
 
