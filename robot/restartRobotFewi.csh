@@ -139,6 +139,14 @@ cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
 #
+# Reinstall Fewi to pull in GlobalConfig.
+#
+date | tee -a ${LOG}
+echo 'Reinstall Fewi to pull in GlobalConfig' | tee -a ${LOG}
+cd ${MGI_LIVE}/fewi
+./Install
+
+#
 # Restart the robot Fewi JBoss instance.
 #
 date | tee -a ${LOG}
