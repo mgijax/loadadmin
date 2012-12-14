@@ -10,6 +10,8 @@ endif
 
 source ${MGICONFIG}/master.config.csh
 
+setenv HOST `uname -n`
+
 #
 # Logs directory
 #
