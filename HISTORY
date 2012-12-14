@@ -1,3 +1,10 @@
+TAG: loadadmin-5-1-1-7
+DATE: 12/14/2012
+STAFF: dbm
+CHANGES:
+1) Configuration.default: set HOST variable for stopTomcat script since it
+   is no longer coming from the .cshrc file when the "-f" option is used
+
 TAG: loadadmin-5-1-1-6
 DATE: 12/6/2012
 STAFF: dbm
