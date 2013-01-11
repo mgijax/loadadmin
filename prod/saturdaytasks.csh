@@ -121,6 +121,14 @@ echo 'Process MGC Associations' | tee -a ${LOG}
 ${MGCLOAD}/bin/MGCLoad.sh
 
 date | tee -a ${LOG}
+echo 'Sanger MP Load' | tee -a ${LOG}
+${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
+
+date | tee -a ${LOG}
+echo 'Europhenome MP Load' | tee -a ${LOG}
+${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/europhenompload.config ${HTMPLOAD}/annotload.config
+
+date | tee -a ${LOG}
 echo 'Process SwissPROT/TrEMBL' | tee -a ${LOG}
 ${SPSEQLOAD}/bin/spseqload.sh spseqload.config
 ${SPSEQLOAD}/bin/spseqload.sh trseqload.config
