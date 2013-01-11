@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-2-1
+DATE: 1/11/2013
+STAFF: dbm
+CHANGES:
+1) jboss/logmover: remove steps that remove certain log files after the
+   archive (due to differences between log files with JBoss4 vs JBoss7)
+2) prod/saturdaytasks.csh: added called to Sanger and Europhenome loads
+
 TAG: loadadmin-5-1-1-7
 DATE: 12/14/2012
 STAFF: dbm
