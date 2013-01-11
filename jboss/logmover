@@ -54,20 +54,6 @@ if ( $status != 0 ) then
     exit 1
 endif
 
-## We only want to archive certain log files, remove the others.
-
-echo "Cleaning up copied log files..."
-
-setenv LOGDIR ${LOGDIR}/log
-
-rm $LOGDIR/console.*
-
-rm $LOGDIR/server.*
-
-rm $LOGDIR/debug.*
-
-rm $LOGDIR/boot.*
-
 ##########################################
 #Cleaning up files on the remote server
 ##########################################
