@@ -43,7 +43,7 @@ ${TOMCAT}/bin/shutdown.sh
 # If the process doesn't go away in fifteen seconds, kill it.
 #
 sleep 10
-set PROCESS=`ps -aef | grep "MGISRV" | grep "javawi2" | awk '{print $2}'`
+set PROCESS=`ps -aef | grep "MGISRV=${JAVAWI_NAME} " | grep -v grep | awk '{print $2}'`
 
 if ( "${PROCESS}" != "" ) then
         kill ${PROCESS}
