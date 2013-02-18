@@ -200,6 +200,10 @@ date | tee -a ${LOG}
 echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
 
+date | tee -a ${LOG}
+echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
+${MRKCOORDLOAD}/bin/mrkcoordload.sh
+
 #
 # Wait for the "GT Blat Done" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
