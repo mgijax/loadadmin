@@ -122,7 +122,7 @@ echo 'OMIM Load' | tee -a ${LOG}
 ${VOCLOAD}/runSimpleIncLoadNoArchive.sh OMIM.config
 
 date | tee -a ${LOG}
-echo 'Human, Rat, etc., EntrezGene Load' | tee -a ${LOG}
+echo 'Non-Mouse EntrezGene Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadAll.csh
 
 date | tee -a ${LOG}
@@ -140,9 +140,11 @@ ${SEQCACHELOAD}/seqdummy.csh
 date | tee -a ${LOG}
 echo 'Load Sequence/Marker Cache Table' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqmarker.csh
+
 date | tee -a ${LOG}
 echo 'Load Sequence/Probe Cache Table' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqprobe.csh
+
 date | tee -a ${LOG}
 echo 'Load Sequence/Description Cache Table' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdescription.csh
@@ -152,33 +154,32 @@ echo 'Load Marker/Probe Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkprobe.csh
 
 date | tee -a ${LOG}
-echo 'Generate Orthologyload Files (Human, Rat, Cattle, Chimp, Dog)' | tee -a ${LOG}
-${ORTHOLOGYLOAD}/bin/genInputFiles.csh human.config rat.config cattle.config chimp.config dog.config
+echo 'NextProt Load' | tee -a ${LOG}
+${NEXTPROTLOAD}/bin/nextprotload.sh
 
 date | tee -a ${LOG}
-echo 'Generate Orthologyload Files (HCOP)' | tee -a ${LOG}
-${MGD_DBUTILS}/bin/generateHCOP.csh
-
-date | tee -a ${LOG}
-echo 'Run Orthologyload (Human, Rat, Cattle, Chimp, Dog, HCOP)' | tee -a ${LOG}
-${ORTHOLOGYLOAD}/bin/orthologyload.csh ${ORTHOLOGYLOAD}/human.config ${ORTHOLOGYLOAD}/rat.config ${ORTHOLOGYLOAD}/cattle.config ${ORTHOLOGYLOAD}/chimp.config ${ORTHOLOGYLOAD}/dog.config ${ORTHOLOGYLOAD}/hcop.config
+echo 'Homology Load' | tee -a ${LOG}
+${HOMOLOGYLOAD}/bin/homologyload.sh
 
 # run this after orthologyload. Note mrkhomology.csh is run by orthologyload.csh
 date | tee -a ${LOG}
 echo 'Load Marker/Label Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklabel.csh
+
 date | tee -a ${LOG}
 echo 'Load Marker/Reference Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkref.csh
+
 date | tee -a ${LOG}
 echo 'Load Marker/Location Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklocation.csh
+
 date | tee -a ${LOG}
 echo 'Load Marker/OMIM Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkomim.csh
 
 date | tee -a ${LOG}
-echo 'Load GOA Annotations' | tee -a ${LOG}
+echo 'GOA Load' | tee -a ${LOG}
 ${GOALOAD}/bin/goa.csh
 
 date | tee -a ${LOG}
@@ -190,19 +191,21 @@ echo 'GO/RefGenome Load' | tee -a ${LOG}
 ${GOREFGENLOAD}/bin/gorefgen.sh
 
 date | tee -a ${LOG}
-echo 'Load GOA/Human Annotations' | tee -a ${LOG}
+echo 'GOA/Human Load' | tee -a ${LOG}
 ${GOAHUMANLOAD}/bin/goahuman.sh
 
 date | tee -a ${LOG}
-echo 'GOCFP Load' | tee -a ${LOG}
+echo 'GO/CFP Load' | tee -a ${LOG}
 ${GOCFPLOAD}/bin/gocfp.sh
 
 date | tee -a ${LOG}
 echo 'Load Voc/Count Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/voccounts.csh
+
 date | tee -a ${LOG}
 echo 'Load Voc/Marker Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/vocmarker.csh
+
 date | tee -a ${LOG}
 echo 'Load Voc/Allele Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/vocallele.csh
