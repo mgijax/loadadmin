@@ -50,7 +50,6 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-setenv SNPCACHELOAD_LOG ${DATALOADSOUTPUT}/mgi/snpcacheload/logs/snpmarker_weekly.stdouterr.log
 setenv DOTS_NIA_DFCI_LOG ${DATALOADSOUTPUT}/mgi/mgddbutilities/logs/dots_nia_dfci.stdouterr.log
 
 echo "$0" >> ${LOG}
@@ -79,15 +78,6 @@ ${ENTREZGENELOAD}/loadFiles.csh
 date | tee -a ${LOG}
 echo 'Mouse EntrezGene Load' | tee -a ${LOG}
 ${EGLOAD}/bin/egload.sh
-
-#
-# Weekly SNP marker cacheload needs to run after the mouse EntrezGene
-# load to pick up reload marker/egid associations
-# run in background
-#
-date | tee -a ${LOG}
-echo 'Run Weekly SNP Marker Load In The Background' | tee -a ${LOG}
-${SNPCACHELOAD}/snpmarker_weekly.sh >& ${SNPCACHELOAD_LOG} &
 
 date | tee -a ${LOG}
 echo 'UniGene Load' | tee -a ${LOG}
@@ -227,48 +217,6 @@ ${MGD_DBUTILS}/bin/generateGIAssoc.csh >& ${DOTS_NIA_DFCI_LOG} &
 date | tee -a ${LOG}
 echo 'Create Post-Sunday Database Backup' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" postsunday
-
-#
-# Wait for the "SNP DB Loaded" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "SNP DB Loaded" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_SNP_LOADED}`
-    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
-# Clear the "SNP DB Loaded" flag.
-#
-date | tee -a ${LOG}
-echo 'Clear process control flag: SNP DB Loaded' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/clearFlag ${NS_PROD_LOAD} ${FLAG_SNP_LOADED} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
 echo 'Generate Frontend Info' | tee -a ${LOG}
