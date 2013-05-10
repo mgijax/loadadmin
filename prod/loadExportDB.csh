@@ -42,7 +42,7 @@
 #      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Reset all flags in the export database namespace.
+#      2) Reset all flags in the data prep namespace.
 #      3) Wait for the flag to signal that the MGD backup is available.
 #      4) Load the MGD export database.
 #      5) Set the flag to signal that the export database has been loaded.
@@ -65,8 +65,8 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 date | tee -a ${LOG}
-echo 'Reset process control flags in database export namespace' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DB_EXPORT} ${SCRIPT_NAME}
+echo 'Reset process control flags in data prep namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_PREP} ${SCRIPT_NAME}
 
 #
 # Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
@@ -117,7 +117,7 @@ endif
 
 date | tee -a ${LOG}
 echo 'Set process control flag: Export DB Loaded' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DB_EXPORT} ${FLAG_EXP_DB_LOADED} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_EXP_DB_LOADED} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}

@@ -42,16 +42,19 @@
 #      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Convert the radar, mgd and snp databases from Sybase to Postgres.
-#      3) Build the frontend Postgres database.
-#      4) Create a dump of the frontend Postgres database.
-#      5) Set the flag to signal that the Postgres database dumps are ready.
-#      6) Build the inactive public frontend Solr indexes.
-#      7) Set the flag to signal that the inactive public frontend Solr
-#         indexes have been loaded.
-#      8) Build the inactive robot frontend Solr indexes.
-#      9) Set the flag to signal that the inactive robot frontend Solr
-#         indexes have been loaded.
+#      2) Export the radar and mgd databases from Sybase to Postgres.
+#      3) Set the flag to signal that the export is done.
+#      4) Wait for the flag to signal that the snp database is ready.
+#      5) Create a dump of the SNP Postgres database.
+#      6) Build the frontend Postgres database.
+#      7) Create a dump of the frontend Postgres database.
+#      8) Set the flag to signal that the Postgres database dumps are ready.
+#      9) Build the inactive public frontend Solr indexes.
+#      10) Set the flag to signal that the inactive public frontend Solr
+#          indexes have been loaded.
+#      11) Build the inactive robot frontend Solr indexes.
+#      12) Set the flag to signal that the inactive robot frontend Solr
+#          indexes have been loaded.
 #
 #  Notes:  None
 #
@@ -61,6 +64,7 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
+setenv SNP_BACKUP /export/dump/snp.postgres.dump
 setenv FE_BACKUP /export/dump/fe.postgres.dump
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
@@ -107,7 +111,7 @@ endif
 #
 date | tee -a ${LOG}
 echo 'Clear process control flag: Postgres Dump Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DB_EXPORT} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PUB}/clearFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_ROBOT}/clearFlag ${NS_ROBOT_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 
@@ -117,6 +121,64 @@ ${PROC_CTRL_CMD_ROBOT}/clearFlag ${NS_ROBOT_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT
 date | tee -a ${LOG}
 echo "Export Sybase to Postgres" | tee -a ${LOG}
 ${EXPORTER}/bin/export_wrapper.sh >>& ${LOG}
+if ( $status != 0 ) then
+    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
+
+#
+# Set the "Export Done" flag.
+#
+date | tee -a ${LOG}
+echo 'Set process control flag: Export Done' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_EXPORT_DONE} ${SCRIPT_NAME}
+
+#
+# Wait for the "SNP Loaded" flag to be set. Stop waiting if the number
+# of retries expires or the abort flag is found.
+#
+date >> ${LOG}
+echo 'Wait for the "SNP Loaded" flag to be set' >> ${LOG}
+
+RETRY=${PROC_CTRL_RETRIES}
+while [ ${RETRY} -gt 0 ]
+do
+    READY=`${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_SNP_LOADED}`
+    ABORT=`${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_ABORT}`
+
+    if [ ${READY} -eq 1 -o ${ABORT} -eq 1 ]
+    then
+        break
+    else
+        sleep ${PROC_CTRL_WAIT_TIME}
+    fi
+
+    RETRY=`expr ${RETRY} - 1`
+done
+
+#
+# Terminate the script if the number of retries expired or the abort flag
+# was found.
+#
+if [ ${RETRY} -eq 0 ]
+then
+    echo "${SCRIPT_NAME} timed out" >> ${LOG}
+    date >> ${LOG}
+    exit 1
+elif [ ${ABORT} -eq 1 ]
+then
+    echo "${SCRIPT_NAME} aborted by process controller" >> ${LOG}
+    date >> ${LOG}
+    exit 1
+fi
+
+#
+# Dump the SNP Postgres database.
+#
+date | tee -a ${LOG}
+echo "Dump the SNP Postgres database" | tee -a ${LOG}
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} snp ${SNP_BACKUP} >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -152,7 +214,7 @@ endif
 #
 date | tee -a ${LOG}
 echo 'Set process control flag: Postgres Dump Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DB_EXPORT} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 
