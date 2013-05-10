@@ -65,7 +65,7 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 date | tee -a ${LOG}
-echo 'Reset process control flags in database export namespace' | tee -a ${LOG}
+echo 'Reset process control flags in data prep namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_PREP} ${SCRIPT_NAME}
 
 #
