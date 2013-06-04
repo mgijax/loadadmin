@@ -69,20 +69,23 @@
 #          7) Set the flag to signal that the QS index tar file is ready for
 #             the production load.
 #      6) If the public QS indexes need to be generated:
-#          1) Delete the private data from the MGD database.
-#          2) Build the QS indexes for public (without private data).
-#          3) Save the prior public log directory.
-#          4) Save the new public log directory.
-#          5) Save the prior public QS index tar file.
-#          6) Create a tar file of the new public QS indexes.
-#          7) Copy the public QS index tar file to the public/robot searchtool
+#          1) Build the QS indexes for public (without private data).
+#          2) Save the prior public log directory.
+#          3) Save the new public log directory.
+#          4) Save the prior public QS index tar file.
+#          5) Create a tar file of the new public QS indexes.
+#          6) Copy the public QS index tar file to the public/robot searchtool
 #             server if it is different than the current server.
-#          8) Set the flag to signal that the QS index tar file is ready for
+#          7) Set the flag to signal that the QS index tar file is ready for
 #             the public load.
-#          9) Set the flag to signal that the QS index tar file is ready for
+#          8) Set the flag to signal that the QS index tar file is ready for
 #             the robot load.
 #
 #  Notes:  None
+#
+#  HISTORY:
+#
+#	sc TR11353 - no longer deletes private data
 #
 ###########################################################################
 
@@ -273,23 +276,6 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     setenv TMP_FILE /tmp/${SCRIPT_NAME}.$$
     rm -f ${TMP_FILE}
     touch ${TMP_FILE}
-
-    #
-    # Delete private data from the MGD database.
-    #
-    date | tee -a ${LOG}
-    echo 'Delete private data from the MGD database' | tee -a ${LOG}
-cat - <<EOSQL | doisql.csh ${MGDBE_DBSERVER} ${MGDBE_DBNAME} $0 | tee -a ${TMP_FILE}
-
-exec MGI_deletePrivateData
-
-if @@error != 0 print "ERROR Detected"
-go
-
-checkpoint
-go
-
-EOSQL
 
     #
     # If there are any errors detected from within the isql block, terminate the

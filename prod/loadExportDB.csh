@@ -49,6 +49,10 @@
 #
 #  Notes:  None
 #
+#  HISTORY:
+#
+#       sc TR11353 - no longer deletes private data
+#
 ###########################################################################
 
 cd `dirname $0` && source ./Configuration
@@ -107,8 +111,8 @@ endif
 # Load MGD export database.
 #
 date | tee -a ${LOG}
-echo "Load MGD export database (${MGDEXP_DBSERVER}..${MGDEXP_DBNAME}) and delete private data" | tee -a ${LOG}
-${MGI_DBUTILS}/bin/load_db.csh ${MGDEXP_DBSERVER} ${MGDEXP_DBNAME} ${MGD_BACKUP} deleteprivate
+echo "Load MGD export database (${MGDEXP_DBSERVER}..${MGDEXP_DBNAME})" | tee -a ${LOG}
+${MGI_DBUTILS}/bin/load_db.csh ${MGDEXP_DBSERVER} ${MGDEXP_DBNAME} ${MGD_BACKUP}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
