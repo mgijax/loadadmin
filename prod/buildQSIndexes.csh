@@ -83,9 +83,9 @@
 #
 #  Notes:  None
 #
-#  HISTORY:
-#
-#	sc TR11353 - no longer deletes private data
+# HISTORY
+#    sc; tr11353
+#       06/04/2013 - no longer has option to remove private data
 #
 ###########################################################################
 
