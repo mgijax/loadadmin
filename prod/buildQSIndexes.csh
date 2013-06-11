@@ -59,7 +59,7 @@
 #      3) Wait for the flag to signal that the MGD backup is available.
 #      4) Load the MGD database.
 #      5) If the production QS indexes need to be generated:
-#          1) Build the QS indexes for production (with private data).
+#          1) Build the QS indexes for production 
 #          2) Save the prior production log directory.
 #          3) Save the new production log directory.
 #          4) Save the prior production QS index tar file.
@@ -69,7 +69,7 @@
 #          7) Set the flag to signal that the QS index tar file is ready for
 #             the production load.
 #      6) If the public QS indexes need to be generated:
-#          1) Build the QS indexes for public (without private data).
+#          1) Build the QS indexes for public 
 #          2) Save the prior public log directory.
 #          3) Save the new public log directory.
 #          4) Save the prior public QS index tar file.
@@ -178,7 +178,7 @@ endif
 if ( ${DO_PROD_INDEXES} == 1 ) then
 
     #
-    # Build the QS indexes for production (with private data).
+    # Build the QS indexes for production
     #
     date | tee -a ${LOG}
     echo 'Build the QS indexes for production' | tee -a ${LOG}
@@ -270,27 +270,7 @@ endif # End of production QS index build
 if ( ${DO_PUB_INDEXES} == 1 ) then
 
     #
-    # Create a temp file that will be used to capture errors that occur within
-    # the isql block.
-    #
-    setenv TMP_FILE /tmp/${SCRIPT_NAME}.$$
-    rm -f ${TMP_FILE}
-    touch ${TMP_FILE}
-
-    #
-    # If there are any errors detected from within the isql block, terminate the
-    # script with a non-zero exit code.
-    #
-    if ( "`cat ${TMP_FILE} | grep -c '^ERROR'`" != "0" ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
-        rm -f ${TMP_FILE}
-        exit 1
-    endif
-    rm -f ${TMP_FILE}
-
-    #
-    # Build the QS indexes for public (without private data).
+    # Build the QS indexes for public
     #
     date | tee -a ${LOG}
     echo 'Build the QS indexes for public' | tee -a ${LOG}

@@ -1,8 +1,10 @@
+TAG: loadadmin-tr11353-2
 TAG: loadadmin-tr11353-1
 DATE: 06/04/2013
 STAFF: sc
 CHANGES:
-1) buildQSIndexes.csh - no longer deletes private data
+1) buildQSIndexes.csh - no longer deletes private data - and removed
+   associated error checking and documentation 
 2) loadExportDB.csh - no longer deletes private data
 
 TAG: loadadmin-tr11353-BP
