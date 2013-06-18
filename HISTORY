@@ -1,3 +1,10 @@
+TAG: loadadmin-5-1-4-3
+DATE: 5/28/2013
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) jboss/startFewi: use min/max memory config settings on startup
+
 TAG: loadadmin-tr11353-BP
 DATE: 06/04/2013
 STAFF: sc
