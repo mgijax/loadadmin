@@ -112,6 +112,7 @@ endif
 date | tee -a ${LOG}
 echo 'Clear process control flag: Postgres Dump Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DATA_PREP} ${FLAG_EXPORT_DONE} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PUB}/clearFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_ROBOT}/clearFlag ${NS_ROBOT_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 
@@ -159,17 +160,15 @@ end
 # Terminate the script if the number of retries expired or the abort flag
 # was found.
 #
-if [ ${RETRY} -eq 0 ]
-then
+if (${RETRY} == 0) then
     echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
     date | tee -a ${LOG}
     exit 1
-elif [ ${ABORT} -eq 1 ]
-then
+else if (${ABORT} == 1) then
     echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
     date | tee -a ${LOG}
     exit 1
-fi
+endif
 
 #
 # Dump the SNP Postgres database.
