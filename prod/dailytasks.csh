@@ -231,20 +231,6 @@ echo 'Daily Public Reports' | tee -a ${LOG}
 ${PUBRPTS}/nightly_reports.csh
 
 #
-# The weekly public reports need to run on Tuesday night so they are ready
-# for a Wednesday morning public release.
-#
-if ( $weekday == 2 ) then
-    date | tee -a ${LOG}
-    echo 'Weekly Public Reports' | tee -a ${LOG}
-    ${PUBRPTS}/weekly_reports.csh
-
-    date | tee -a ${LOG}
-    echo 'Set process control flag: Public Reports Ready' | tee -a ${LOG}
-    ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_PUB_RPT_READY} ${SCRIPT_NAME}
-endif
-
-#
 # Run the GO load last to allow time for the updated gene ontology OBO file
 # to be downloaded at 1:30 AM.
 #
