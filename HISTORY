@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-4-6
+DATE: 7/16/2013
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) added start/stop/restart scripts for batch fewi
+2) call restartFewiBatch from public/restartPublicFewi.csh
+
 TAG: loadadmin-5-1-4-5
 DATE: 6/27/2013
 STAFF: dbm
