@@ -153,6 +153,13 @@ date | tee -a ${LOG}
 echo 'Restart the public Fewi JBoss instance' | tee -a ${LOG}
 ${LOADADMIN}/jboss/restartFewi >& /dev/null
 
+#
+# Restart the public Fewi Batch JBoss instance.
+#
+date | tee -a ${LOG}
+echo 'Restart the public Fewi Batch JBoss instance' | tee -a ${LOG}
+${LOADADMIN}/jboss/restartFewiBatch >& /dev/null
+
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
 exit 0
