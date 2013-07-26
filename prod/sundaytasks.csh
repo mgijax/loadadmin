@@ -96,10 +96,6 @@ echo 'Adult Mouse Anatomy Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MA.config
 
 date | tee -a ${LOG}
-echo 'RPCI Load' | tee -a ${LOG}
-${RPCILOAD}/bin/RPCILoad.sh
-
-date | tee -a ${LOG}
 echo 'CCDS Load' | tee -a ${LOG}
 ${CCDSLOAD}/bin/ccdsload.sh
 
