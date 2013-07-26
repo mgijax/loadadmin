@@ -1,3 +1,9 @@
+TAG: loadadmin-5-1-4-7
+DATE: 7/26/2013
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: removed RPCI load
+
 TAG: loadadmin-5-1-4-6
 DATE: 7/16/2013
 STAFF: dbm
