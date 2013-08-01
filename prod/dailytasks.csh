@@ -227,8 +227,17 @@ echo 'QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
 date | tee -a ${LOG}
-echo 'Daily Public Reports' | tee -a ${LOG}
-${PUBRPTS}/nightly_reports.csh
+echo 'Daily Sybase Public Reports' | tee -a ${LOG}
+${PUBRPTS}/run_daily_sybase.csh
+
+#
+# Run the weekly sybase public reports on Tuesday night.
+#
+if ( $weekday == 2 ) then
+    date | tee -a ${LOG}
+    echo 'Weekly Sybase Public Reports' | tee -a ${LOG}
+    ${PUBRPTS}/run_weekly_sybase.csh
+endif
 
 #
 # Run the GO load last to allow time for the updated gene ontology OBO file
