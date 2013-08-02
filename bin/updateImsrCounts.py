@@ -29,7 +29,7 @@ REQUIRED_PARAMETERS = [
 	'PG_FE_DBSERVER',
 	'PG_FE_DBNAME',
 	'PG_FE_DBUSER',
-	'PG_FE_DBPASSWORDFILE',
+	'PG_DBPASSWORDFILE',
 	]
 
 ###--- functions ---###
@@ -64,7 +64,7 @@ def checkEnvironment():
 def doDatabaseLogin():
 	pg_db.useOneConnection(1)
 	pg_db.set_sqlUser (os.environ['PG_FE_DBUSER'])
-	pg_db.set_sqlPasswordFromPgpass (os.environ['PG_FE_DBPASSWORDFILE'])
+	pg_db.set_sqlPasswordFromPgpass (os.environ['PG_DBPASSWORDFILE'])
 	pg_db.set_sqlServer (os.environ['PG_FE_DBSERVER'])
 	pg_db.set_sqlDatabase (os.environ['PG_FE_DBNAME'])
 
