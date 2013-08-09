@@ -1,16 +1,16 @@
 #!/bin/csh -f
 #
-#  build_indexes.csh
+#  buildQSIndexes.csh
 ###########################################################################
 #
 #  Purpose:
 #
-#      This script is a wrapper for creating the production and public
+#      This script is a wrapper for creating the production and/or public
 #      Quick Search (QS) indexes.
 #
 #  Usage:
 #
-#      build_indexes.csh  [ NOPROD | NOPUB ]
+#      buildQSIndexes.csh  [ NOPROD | NOPUB ]
 #
 #      where
 #          NOPROD = optional flag to skip the production indexes
@@ -22,11 +22,7 @@
 #
 #      - See master.config.csh (mgiconfig product)
 #
-#  Inputs:
-#
-#      - MGD database backup files (from /lindon/sybase)
-#
-#      - Process control flags
+#  Inputs:  None
 #
 #  Outputs:
 #
@@ -56,10 +52,8 @@
 #      1) Source the configuration file to establish the environment.
 #      2) Check the arguments to the script to see if the production or
 #         public indexes should be skipped.
-#      3) Wait for the flag to signal that the MGD backup is available.
-#      4) Load the MGD database.
-#      5) If the production QS indexes need to be generated:
-#          1) Build the QS indexes for production 
+#      3) If the production QS indexes need to be generated:
+#          1) Build the QS indexes for production.
 #          2) Save the prior production log directory.
 #          3) Save the new production log directory.
 #          4) Save the prior production QS index tar file.
@@ -68,8 +62,8 @@
 #             searchtool server if it is different than the current server.
 #          7) Set the flag to signal that the QS index tar file is ready for
 #             the production load.
-#      6) If the public QS indexes need to be generated:
-#          1) Build the QS indexes for public 
+#      4) If the public QS indexes need to be generated:
+#          1) Build the QS indexes for public.
 #          2) Save the prior public log directory.
 #          3) Save the new public log directory.
 #          4) Save the prior public QS index tar file.
@@ -83,17 +77,11 @@
 #
 #  Notes:  None
 #
-# HISTORY
-#    sc; tr11353
-#       06/04/2013 - no longer has option to remove private data
-#
 ###########################################################################
 
 cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
-
-setenv MGD_BACKUP /lindon/sybase/mgd.backup
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
@@ -126,53 +114,6 @@ if ( ${DO_PROD_INDEXES} == 0 && ${DO_PUB_INDEXES} == 0 ) then
 endif
 
 #
-# Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "MGD Backup Ready" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP}`
-    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
-# Load MGD database from backup.
-#
-date | tee -a ${LOG}
-echo 'Load MGD database' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/load_db.csh ${MGDBE_DBSERVER} ${MGDBE_DBNAME} ${MGD_BACKUP}
-if ( $status != 0 ) then
-    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
 # Perform the production build steps, if applicable.
 #
 if ( ${DO_PROD_INDEXES} == 1 ) then
@@ -185,7 +126,7 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
-    ${SEARCHTOOL_INDEXER}/bin/makeIndexes
+    ${ST_INDEXER_PROD}/bin/makeIndexes
 
     #
     # If there is anything in the exception log, it is considered a fatal error.
@@ -277,7 +218,7 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
-    ${SEARCHTOOL_INDEXER}/bin/makeIndexes
+    ${ST_INDEXER_PUB}/bin/makeIndexes
 
     #
     # If there is anything in the exception log, it is considered a fatal error.
