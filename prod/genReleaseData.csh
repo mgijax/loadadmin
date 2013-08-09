@@ -192,7 +192,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Delete private data from the MGD schema" | tee -a ${LOG}
-${PG_DBUTILS}/sp/MGI_deletePrivateData.csh >>& ${LOG}
+${PG_DBUTILS}/sp/MGI_deletePrivateData.csh ${PG_DBSERVER} ${PG_DBNAME} >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
