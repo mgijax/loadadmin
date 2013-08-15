@@ -141,39 +141,35 @@ ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_EXPORT_DONE} ${SCRIPT_NAME}
 # of retries expires or the abort flag is found.
 #
 date >> ${LOG}
-echo 'Wait for the "SNP Loaded" flag to be set' >> ${LOG}
+echo 'Wait for the "SNP Loaded" flag to be set' | tee -a ${LOG}
 
-RETRY=${PROC_CTRL_RETRIES}
-while [ ${RETRY} -gt 0 ]
-do
-    READY=`${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_SNP_LOADED}`
-    ABORT=`${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_ABORT}`
+setenv RETRY ${PROC_CTRL_RETRIES}
+while (${RETRY} > 0)
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_SNP_LOADED}`
+    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_ABORT}`
 
-    if [ ${READY} -eq 1 -o ${ABORT} -eq 1 ]
-    then
+    if (${READY} == 1 || ${ABORT} == 1) then
         break
     else
         sleep ${PROC_CTRL_WAIT_TIME}
-    fi
+    endif
 
-    RETRY=`expr ${RETRY} - 1`
+    setenv RETRY `expr ${RETRY} - 1`
 done
 
 #
 # Terminate the script if the number of retries expired or the abort flag
 # was found.
 #
-if [ ${RETRY} -eq 0 ]
-then
-    echo "${SCRIPT_NAME} timed out" >> ${LOG}
-    date >> ${LOG}
+if (${RETRY} == 0) then
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
     exit 1
-elif [ ${ABORT} -eq 1 ]
-then
-    echo "${SCRIPT_NAME} aborted by process controller" >> ${LOG}
-    date >> ${LOG}
+else if (${ABORT} == 1) then
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
     exit 1
-fi
+endif
 
 #
 # Dump the SNP schema.
