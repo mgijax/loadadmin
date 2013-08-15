@@ -155,7 +155,7 @@ while (${RETRY} > 0)
     endif
 
     setenv RETRY `expr ${RETRY} - 1`
-done
+end
 
 #
 # Terminate the script if the number of retries expired or the abort flag
