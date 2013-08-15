@@ -126,7 +126,7 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
-    ${ST_INDEXER_PROD}/bin/makeIndexes
+    ${ST_INDEXER_PROD}/bin/makeIndexes >>& ${LOG}
 
     #
     # If there is anything in the exception log, it is considered a fatal error.
@@ -218,7 +218,7 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
-    ${ST_INDEXER_PUB}/bin/makeIndexes
+    ${ST_INDEXER_PUB}/bin/makeIndexes >>& ${LOG}
 
     #
     # If there is anything in the exception log, it is considered a fatal error.
