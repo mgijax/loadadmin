@@ -140,7 +140,7 @@ ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_EXPORT_DONE} ${SCRIPT_NAME}
 # Wait for the "SNP Loaded" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
-date >> ${LOG}
+date | tee -a ${LOG}
 echo 'Wait for the "SNP Loaded" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
