@@ -2,6 +2,7 @@
 
 cd `dirname $0` && source ./Configuration
 
+setenv JAVA_HOME /usr/mgijava7
 setenv SERVER_NAME `uname -n`
 setenv JAVA_OPTS "-d64 -Xms6g -Xmx6g" 
 
