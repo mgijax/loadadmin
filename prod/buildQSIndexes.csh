@@ -121,8 +121,8 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Build the QS indexes for production
     #
-    date | tee -a ${LOG}
-    echo 'Build the QS indexes for production' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Build the QS indexes for production' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
@@ -132,16 +132,16 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     # If there is anything in the exception log, it is considered a fatal error.
     #
     if ( ! -z ${SEARCHTOOL_LOGDIR}/exception.log ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
     #
     # Save the prior production log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior production log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior production log directory' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${ST_PROD_LOGDIR}.old
     if ( -d ${ST_PROD_LOGDIR} ) then
@@ -151,8 +151,8 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Save the new production log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the new production log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the new production log directory' >>& ${LOG}
     if ( -d ${SEARCHTOOL_LOGDIR} ) then
         mv ${SEARCHTOOL_LOGDIR} ${ST_PROD_LOGDIR}
     endif
@@ -160,8 +160,8 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Save the prior production QS index tar file.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior production QS index tar file.' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior production QS index tar file.' >>& ${LOG}
     rm -f ${ST_PROD_TARFILE}.old
     if ( -e ${ST_PROD_TARFILE} ) then
         mv ${ST_PROD_TARFILE} ${ST_PROD_TARFILE}.old
@@ -170,13 +170,13 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Create a tar file of the new production QS indexes.
     #
-    date | tee -a ${LOG}
-    echo 'Create a tar file of the new production QS indexes' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Create a tar file of the new production QS indexes' >>& ${LOG}
     cd ${SEARCHTOOL_BUILDDIR}
-    tar cvf ${ST_PROD_TARFILE} *
+    tar cvf ${ST_PROD_TARFILE} * >>& ${LOG}
     if ( $status != 0 ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
@@ -186,12 +186,12 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     # server than the one where this script generated them.
     #
     if ( ${ST_PROD_SERVER} != ${SERVER_NAME} ) then
-        date | tee -a ${LOG}
-        echo "Copy the production QS index tar file to ${ST_PROD_SERVER}" | tee -a ${LOG}
+        date >>& ${LOG}
+        echo "Copy the production QS index tar file to ${ST_PROD_SERVER}" >>& ${LOG}
         scp ${ST_PROD_TARFILE} ${ST_PROD_SERVER}:${SEARCHTOOL_DISTDIR}
         if ( $status != 0 ) then
-            echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-            date | tee -a ${LOG}
+            echo "${SCRIPT_NAME} failed" >>& ${LOG}
+            date >>& ${LOG}
             exit 1
         endif
     endif
@@ -199,8 +199,8 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Set the "QS Index Tar File Ready" flag.
     #
-    date | tee -a ${LOG}
-    echo 'Set process control flag: QS Index Tar File Ready' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Set process control flag: QS Index Tar File Ready' >>& ${LOG}
     ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
 
 endif # End of production QS index build
@@ -213,8 +213,8 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     #
     # Build the QS indexes for public
     #
-    date | tee -a ${LOG}
-    echo 'Build the QS indexes for public' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Build the QS indexes for public' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
@@ -224,16 +224,16 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     # If there is anything in the exception log, it is considered a fatal error.
     #
     if ( ! -z ${SEARCHTOOL_LOGDIR}/exception.log ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
     #
     # Save the prior public log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior public log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior public log directory' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${ST_PUB_LOGDIR}.old
     if ( -d ${ST_PUB_LOGDIR} ) then
@@ -243,8 +243,8 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     #
     # Save the new public log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the new public log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the new public log directory' >>& ${LOG}
     if ( -d ${SEARCHTOOL_LOGDIR} ) then
         mv ${SEARCHTOOL_LOGDIR} ${ST_PUB_LOGDIR}
     endif
@@ -252,8 +252,8 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     #
     # Save the prior public QS index tar file.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior public QS index tar file.' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior public QS index tar file.' >>& ${LOG}
     rm -f ${ST_PUB_TARFILE}.old
     if ( -e ${ST_PUB_TARFILE} ) then
         mv ${ST_PUB_TARFILE} ${ST_PUB_TARFILE}.old
@@ -262,13 +262,13 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     #
     # Create a tar file of the new public QS indexes.
     #
-    date | tee -a ${LOG}
-    echo 'Create a tar file of the new public QS indexes' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Create a tar file of the new public QS indexes' >>& ${LOG}
     cd ${SEARCHTOOL_BUILDDIR}
-    tar cvf ${ST_PUB_TARFILE} *
+    tar cvf ${ST_PUB_TARFILE} * >>& ${LOG}
     if ( $status != 0 ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
@@ -278,12 +278,12 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     # server than the one where this script generated them.
     #
     if ( ${ST_PUB_SERVER} != ${SERVER_NAME} ) then
-        date | tee -a ${LOG}
-        echo "Copy the public QS index tar file to ${ST_PUB_SERVER}" | tee -a ${LOG}
+        date >>& ${LOG}
+        echo "Copy the public QS index tar file to ${ST_PUB_SERVER}" >>& ${LOG}
         scp ${ST_PUB_TARFILE} ${ST_PUB_SERVER}:${SEARCHTOOL_DISTDIR}
         if ( $status != 0 ) then
-            echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-            date | tee -a ${LOG}
+            echo "${SCRIPT_NAME} failed" >>& ${LOG}
+            date >>& ${LOG}
             exit 1
         endif
     endif
@@ -291,19 +291,19 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     #
     # Set the "QS Index Tar File Ready" flag.
     #
-    date | tee -a ${LOG}
-    echo 'Set process control flag: QS Index Tar File Ready' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Set process control flag: QS Index Tar File Ready' >>& ${LOG}
     ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
 
     #
     # Set the "QS Index Tar File Ready" flag.
     #
-    date | tee -a ${LOG}
-    echo 'Set process control flag: QS Index Tar File Ready' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Set process control flag: QS Index Tar File Ready' >>& ${LOG}
     ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
 
 endif # End of public QS index build
 
-echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
-date | tee -a ${LOG}
+echo "${SCRIPT_NAME} completed successfully" >>& ${LOG}
+date >>& ${LOG}
 exit 0
