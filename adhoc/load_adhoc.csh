@@ -6,9 +6,9 @@
 #  Purpose:
 #
 #      This script is a wrapper for loading the adhoc database. It waits
-#      for the Postgres backup file to be available and loads the inactive
-#      Postgres database. Then it swaps the active/inactive database by
-#      renaming them.
+#      for the Postgres backup files to be available and loads the schemas
+#      in the inactive Postgres database. Then it swaps the active/inactive
+#      databases by renaming them.
 #
 #  Usage:
 #
@@ -20,9 +20,13 @@
 #
 #  Inputs:
 #
-#      - Postgres backup file (${BACKUP_FILE})
+#      - Postgres mgd schema backup (${MGD_BACKUP})
 #
 #        /export/upload/mgd.postgres.dump
+#
+#      - Postgres snp schema backup (${SNP_BACKUP})
+#
+#        /export/upload/snp.postgres.dump
 #
 #      - Backup-ready flag (${BACKUP_FLAG})
 #
@@ -47,8 +51,11 @@
 #      2) Wait for the flag to signal that the backup is available.
 #      3) Drop/create the mgd schema in the inactive database.
 #      4) Load the mgd schema in the inactive database.
-#      5) Grant permissions.
-#      6) Swap the active and inactive databases. If the swap attempt
+#      5) Grant permissions for the mgd schema.
+#      6) Drop/create the snp schema in the inactive database.
+#      7) Load the snp schema in the inactive database.
+#      8) Grant permissions for the snp schema.
+#      9) Swap the active and inactive databases. If the swap attempt
 #         fails, it will retry several times.
 #
 #  Notes:  None
@@ -100,30 +107,60 @@ rm -f ${BACKUP_FLAG}
 # Drop/create the mgd schema in the inactive database.
 #
 date | tee -a ${LOG}
-echo "Drop/create the mgd schema in the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
-psql -q -w -d ${PGMGD_INACTIVE_DB} -U ${PGMGD_DBUSER} << EOF
-    drop schema if exists ${PGMGD_SCHEMA} cascade;
-    create schema ${PGMGD_SCHEMA};
+echo "Drop/create the mgd schema in the inactive database (${PG_INACTIVE_DB})" | tee -a ${LOG}
+psql -q -w -d ${PG_INACTIVE_DB} -U ${PG_DBUSER} << EOF
+    drop schema if exists mgd cascade;
+    create schema mgd;
 EOF
 
 #
 # Load the mgd schema in the inactive database.
 #
 date | tee -a ${LOG}
-echo "Load the mgd schema in the inactive database (${PGMGD_INACTIVE_DB})" | tee -a ${LOG}
+echo "Load the mgd schema in the inactive database (${PG_INACTIVE_DB})" | tee -a ${LOG}
 echo '------------------------------------------------------------' >> ${LOG}
-pg_restore -d ${PGMGD_INACTIVE_DB} -n ${PGMGD_SCHEMA} -j ${PROCESSES} -O -U ${PGMGD_DBUSER} -v ${BACKUP_FILE} >>& ${LOG}
+pg_restore -d ${PG_INACTIVE_DB} -n mgd -j ${PROCESSES} -O -U ${PG_DBUSER} -v ${MGD_BACKUP} >>& ${LOG}
 echo "Return status = $status" | tee -a ${LOG}
 echo '------------------------------------------------------------' >> ${LOG}
 
 #
-# Grant permissions.
+# Grant permissions for the mgd schema.
 #
 date | tee -a ${LOG}
-echo "Grant permissions" | tee -a ${LOG}
-psql -q -w -d ${PGMGD_INACTIVE_DB} -U ${PGMGD_DBUSER} << EOF
-    grant usage on schema ${PGMGD_SCHEMA} to read_only_users;
-    grant select on all tables in schema ${PGMGD_SCHEMA} to read_only_users;
+echo "Grant permissions for the mgd schema" | tee -a ${LOG}
+psql -q -w -d ${PG_INACTIVE_DB} -U ${PG_DBUSER} << EOF
+    grant usage on schema mgd to read_only_users;
+    grant select on all tables in schema mgd to read_only_users;
+EOF
+
+#
+# Drop/create the snp schema in the inactive database.
+#
+date | tee -a ${LOG}
+echo "Drop/create the snp schema in the inactive database (${PG_INACTIVE_DB})" | tee -a ${LOG}
+psql -q -w -d ${PG_INACTIVE_DB} -U ${PG_DBUSER} << EOF
+    drop schema if exists snp cascade;
+    create schema snp;
+EOF
+
+#
+# Load the snp schema in the inactive database.
+#
+date | tee -a ${LOG}
+echo "Load the snp schema in the inactive database (${PG_INACTIVE_DB})" | tee -a ${LOG}
+echo '------------------------------------------------------------' >> ${LOG}
+pg_restore -d ${PG_INACTIVE_DB} -n snp -j ${PROCESSES} -O -U ${PG_DBUSER} -v ${SNP_BACKUP} >>& ${LOG}
+echo "Return status = $status" | tee -a ${LOG}
+echo '------------------------------------------------------------' >> ${LOG}
+
+#
+# Grant permissions for the snp schema.
+#
+date | tee -a ${LOG}
+echo "Grant permissions for the snp schema" | tee -a ${LOG}
+psql -q -w -d ${PG_INACTIVE_DB} -U ${PG_DBUSER} << EOF
+    grant usage on schema snp to read_only_users;
+    grant select on all tables in schema snp to read_only_users;
 EOF
 
 #

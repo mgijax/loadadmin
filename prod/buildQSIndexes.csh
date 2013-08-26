@@ -1,16 +1,16 @@
 #!/bin/csh -f
 #
-#  build_indexes.csh
+#  buildQSIndexes.csh
 ###########################################################################
 #
 #  Purpose:
 #
-#      This script is a wrapper for creating the production and public
+#      This script is a wrapper for creating the production and/or public
 #      Quick Search (QS) indexes.
 #
 #  Usage:
 #
-#      build_indexes.csh  [ NOPROD | NOPUB ]
+#      buildQSIndexes.csh  [ NOPROD | NOPUB ]
 #
 #      where
 #          NOPROD = optional flag to skip the production indexes
@@ -22,11 +22,7 @@
 #
 #      - See master.config.csh (mgiconfig product)
 #
-#  Inputs:
-#
-#      - MGD database backup files (from /lindon/sybase)
-#
-#      - Process control flags
+#  Inputs:  None
 #
 #  Outputs:
 #
@@ -56,10 +52,8 @@
 #      1) Source the configuration file to establish the environment.
 #      2) Check the arguments to the script to see if the production or
 #         public indexes should be skipped.
-#      3) Wait for the flag to signal that the MGD backup is available.
-#      4) Load the MGD database.
-#      5) If the production QS indexes need to be generated:
-#          1) Build the QS indexes for production (with private data).
+#      3) If the production QS indexes need to be generated:
+#          1) Build the QS indexes for production.
 #          2) Save the prior production log directory.
 #          3) Save the new production log directory.
 #          4) Save the prior production QS index tar file.
@@ -68,18 +62,17 @@
 #             searchtool server if it is different than the current server.
 #          7) Set the flag to signal that the QS index tar file is ready for
 #             the production load.
-#      6) If the public QS indexes need to be generated:
-#          1) Delete the private data from the MGD database.
-#          2) Build the QS indexes for public (without private data).
-#          3) Save the prior public log directory.
-#          4) Save the new public log directory.
-#          5) Save the prior public QS index tar file.
-#          6) Create a tar file of the new public QS indexes.
-#          7) Copy the public QS index tar file to the public/robot searchtool
+#      4) If the public QS indexes need to be generated:
+#          1) Build the QS indexes for public.
+#          2) Save the prior public log directory.
+#          3) Save the new public log directory.
+#          4) Save the prior public QS index tar file.
+#          5) Create a tar file of the new public QS indexes.
+#          6) Copy the public QS index tar file to the public/robot searchtool
 #             server if it is different than the current server.
-#          8) Set the flag to signal that the QS index tar file is ready for
+#          7) Set the flag to signal that the QS index tar file is ready for
 #             the public load.
-#          9) Set the flag to signal that the QS index tar file is ready for
+#          8) Set the flag to signal that the QS index tar file is ready for
 #             the robot load.
 #
 #  Notes:  None
@@ -89,8 +82,6 @@
 cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
-
-setenv MGD_BACKUP /lindon/sybase/mgd.backup
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
@@ -123,81 +114,34 @@ if ( ${DO_PROD_INDEXES} == 0 && ${DO_PUB_INDEXES} == 0 ) then
 endif
 
 #
-# Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "MGD Backup Ready" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP}`
-    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
-# Load MGD database from backup.
-#
-date | tee -a ${LOG}
-echo 'Load MGD database' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/load_db.csh ${MGDBE_DBSERVER} ${MGDBE_DBNAME} ${MGD_BACKUP}
-if ( $status != 0 ) then
-    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
 # Perform the production build steps, if applicable.
 #
 if ( ${DO_PROD_INDEXES} == 1 ) then
 
     #
-    # Build the QS indexes for production (with private data).
+    # Build the QS indexes for production
     #
-    date | tee -a ${LOG}
-    echo 'Build the QS indexes for production' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Build the QS indexes for production' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
-    ${SEARCHTOOL_INDEXER}/bin/makeIndexes
+    ${ST_INDEXER_PROD}/bin/makeIndexes >>& ${LOG}
 
     #
     # If there is anything in the exception log, it is considered a fatal error.
     #
     if ( ! -z ${SEARCHTOOL_LOGDIR}/exception.log ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
     #
     # Save the prior production log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior production log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior production log directory' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${ST_PROD_LOGDIR}.old
     if ( -d ${ST_PROD_LOGDIR} ) then
@@ -207,8 +151,8 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Save the new production log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the new production log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the new production log directory' >>& ${LOG}
     if ( -d ${SEARCHTOOL_LOGDIR} ) then
         mv ${SEARCHTOOL_LOGDIR} ${ST_PROD_LOGDIR}
     endif
@@ -216,8 +160,8 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Save the prior production QS index tar file.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior production QS index tar file.' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior production QS index tar file.' >>& ${LOG}
     rm -f ${ST_PROD_TARFILE}.old
     if ( -e ${ST_PROD_TARFILE} ) then
         mv ${ST_PROD_TARFILE} ${ST_PROD_TARFILE}.old
@@ -226,13 +170,13 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Create a tar file of the new production QS indexes.
     #
-    date | tee -a ${LOG}
-    echo 'Create a tar file of the new production QS indexes' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Create a tar file of the new production QS indexes' >>& ${LOG}
     cd ${SEARCHTOOL_BUILDDIR}
-    tar cvf ${ST_PROD_TARFILE} *
+    tar cvf ${ST_PROD_TARFILE} * >>& ${LOG}
     if ( $status != 0 ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
@@ -242,12 +186,12 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     # server than the one where this script generated them.
     #
     if ( ${ST_PROD_SERVER} != ${SERVER_NAME} ) then
-        date | tee -a ${LOG}
-        echo "Copy the production QS index tar file to ${ST_PROD_SERVER}" | tee -a ${LOG}
+        date >>& ${LOG}
+        echo "Copy the production QS index tar file to ${ST_PROD_SERVER}" >>& ${LOG}
         scp ${ST_PROD_TARFILE} ${ST_PROD_SERVER}:${SEARCHTOOL_DISTDIR}
         if ( $status != 0 ) then
-            echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-            date | tee -a ${LOG}
+            echo "${SCRIPT_NAME} failed" >>& ${LOG}
+            date >>& ${LOG}
             exit 1
         endif
     endif
@@ -255,8 +199,8 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     #
     # Set the "QS Index Tar File Ready" flag.
     #
-    date | tee -a ${LOG}
-    echo 'Set process control flag: QS Index Tar File Ready' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Set process control flag: QS Index Tar File Ready' >>& ${LOG}
     ${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
 
 endif # End of production QS index build
@@ -267,66 +211,29 @@ endif # End of production QS index build
 if ( ${DO_PUB_INDEXES} == 1 ) then
 
     #
-    # Create a temp file that will be used to capture errors that occur within
-    # the isql block.
+    # Build the QS indexes for public
     #
-    setenv TMP_FILE /tmp/${SCRIPT_NAME}.$$
-    rm -f ${TMP_FILE}
-    touch ${TMP_FILE}
-
-    #
-    # Delete private data from the MGD database.
-    #
-    date | tee -a ${LOG}
-    echo 'Delete private data from the MGD database' | tee -a ${LOG}
-cat - <<EOSQL | doisql.csh ${MGDBE_DBSERVER} ${MGDBE_DBNAME} $0 | tee -a ${TMP_FILE}
-
-exec MGI_deletePrivateData
-
-if @@error != 0 print "ERROR Detected"
-go
-
-checkpoint
-go
-
-EOSQL
-
-    #
-    # If there are any errors detected from within the isql block, terminate the
-    # script with a non-zero exit code.
-    #
-    if ( "`cat ${TMP_FILE} | grep -c '^ERROR'`" != "0" ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
-        rm -f ${TMP_FILE}
-        exit 1
-    endif
-    rm -f ${TMP_FILE}
-
-    #
-    # Build the QS indexes for public (without private data).
-    #
-    date | tee -a ${LOG}
-    echo 'Build the QS indexes for public' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Build the QS indexes for public' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${SEARCHTOOL_LOGDIR}
     rm -rf ${SEARCHTOOL_BUILDDIR}
-    ${SEARCHTOOL_INDEXER}/bin/makeIndexes
+    ${ST_INDEXER_PUB}/bin/makeIndexes >>& ${LOG}
 
     #
     # If there is anything in the exception log, it is considered a fatal error.
     #
     if ( ! -z ${SEARCHTOOL_LOGDIR}/exception.log ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
     #
     # Save the prior public log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior public log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior public log directory' >>& ${LOG}
     cd ${SEARCHTOOL_DATADIR}
     rm -rf ${ST_PUB_LOGDIR}.old
     if ( -d ${ST_PUB_LOGDIR} ) then
@@ -336,8 +243,8 @@ EOSQL
     #
     # Save the new public log directory.
     #
-    date | tee -a ${LOG}
-    echo 'Save the new public log directory' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the new public log directory' >>& ${LOG}
     if ( -d ${SEARCHTOOL_LOGDIR} ) then
         mv ${SEARCHTOOL_LOGDIR} ${ST_PUB_LOGDIR}
     endif
@@ -345,8 +252,8 @@ EOSQL
     #
     # Save the prior public QS index tar file.
     #
-    date | tee -a ${LOG}
-    echo 'Save the prior public QS index tar file.' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Save the prior public QS index tar file.' >>& ${LOG}
     rm -f ${ST_PUB_TARFILE}.old
     if ( -e ${ST_PUB_TARFILE} ) then
         mv ${ST_PUB_TARFILE} ${ST_PUB_TARFILE}.old
@@ -355,13 +262,13 @@ EOSQL
     #
     # Create a tar file of the new public QS indexes.
     #
-    date | tee -a ${LOG}
-    echo 'Create a tar file of the new public QS indexes' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Create a tar file of the new public QS indexes' >>& ${LOG}
     cd ${SEARCHTOOL_BUILDDIR}
-    tar cvf ${ST_PUB_TARFILE} *
+    tar cvf ${ST_PUB_TARFILE} * >>& ${LOG}
     if ( $status != 0 ) then
-        echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-        date | tee -a ${LOG}
+        echo "${SCRIPT_NAME} failed" >>& ${LOG}
+        date >>& ${LOG}
         exit 1
     endif
 
@@ -371,12 +278,12 @@ EOSQL
     # server than the one where this script generated them.
     #
     if ( ${ST_PUB_SERVER} != ${SERVER_NAME} ) then
-        date | tee -a ${LOG}
-        echo "Copy the public QS index tar file to ${ST_PUB_SERVER}" | tee -a ${LOG}
+        date >>& ${LOG}
+        echo "Copy the public QS index tar file to ${ST_PUB_SERVER}" >>& ${LOG}
         scp ${ST_PUB_TARFILE} ${ST_PUB_SERVER}:${SEARCHTOOL_DISTDIR}
         if ( $status != 0 ) then
-            echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-            date | tee -a ${LOG}
+            echo "${SCRIPT_NAME} failed" >>& ${LOG}
+            date >>& ${LOG}
             exit 1
         endif
     endif
@@ -384,19 +291,19 @@ EOSQL
     #
     # Set the "QS Index Tar File Ready" flag.
     #
-    date | tee -a ${LOG}
-    echo 'Set process control flag: QS Index Tar File Ready' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Set process control flag: QS Index Tar File Ready' >>& ${LOG}
     ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
 
     #
     # Set the "QS Index Tar File Ready" flag.
     #
-    date | tee -a ${LOG}
-    echo 'Set process control flag: QS Index Tar File Ready' | tee -a ${LOG}
+    date >>& ${LOG}
+    echo 'Set process control flag: QS Index Tar File Ready' >>& ${LOG}
     ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_QS_TAR_FILE} ${SCRIPT_NAME}
 
 endif # End of public QS index build
 
-echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
-date | tee -a ${LOG}
+echo "${SCRIPT_NAME} completed successfully" >>& ${LOG}
+date >>& ${LOG}
 exit 0

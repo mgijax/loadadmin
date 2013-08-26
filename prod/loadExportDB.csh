@@ -5,8 +5,8 @@
 #
 #  Purpose:
 #
-#      This script is a wrapper for loading the production database that is
-#      needed by the exporter.
+#      This script is a wrapper for loading the MGD and RADAR databases
+#      that are needed by the exporter.
 #
 #  Usage:
 #
@@ -20,7 +20,9 @@
 #
 #  Inputs:
 #
-#      - MGD database backup files (from /lindon/sybase)
+#      - MGD database backup files (from /extra1/sybase on lindon)
+#
+#      - RADAR database backup files (from /extra1/sybase on lindon)
 #
 #      - Process control flags
 #
@@ -45,17 +47,22 @@
 #      2) Reset all flags in the data prep namespace.
 #      3) Wait for the flag to signal that the MGD backup is available.
 #      4) Load the MGD export database.
-#      5) Set the flag to signal that the export database has been loaded.
+#      5) Load the RADAR export database.
+#      6) Set the flag to signal that the export database has been loaded.
 #
 #  Notes:  None
 #
+# HISTORY
+#    sc; tr11353
+#       06/04/2013 - no longer has option to remove private data
 ###########################################################################
 
 cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv MGD_BACKUP /lindon/sybase/mgd.backup
+setenv MGD_BACKUP /extra1/sybase/mgd.backup
+setenv RADAR_BACKUP /extra1/sybase/radar.backup
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
@@ -107,8 +114,20 @@ endif
 # Load MGD export database.
 #
 date | tee -a ${LOG}
-echo "Load MGD export database (${MGDEXP_DBSERVER}..${MGDEXP_DBNAME}) and delete private data" | tee -a ${LOG}
-${MGI_DBUTILS}/bin/load_db.csh ${MGDEXP_DBSERVER} ${MGDEXP_DBNAME} ${MGD_BACKUP} deleteprivate
+echo "Load MGD export database (${MGDEXP_DBSERVER}..${MGDEXP_DBNAME})" | tee -a ${LOG}
+${MGI_DBUTILS}/bin/load_db.csh ${MGDEXP_DBSERVER} ${MGDEXP_DBNAME} ${MGD_BACKUP}
+if ( $status != 0 ) then
+    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
+
+#
+# Load RADAR export database.
+#
+date | tee -a ${LOG}
+echo "Load RADAR export database (${RDREXP_DBSERVER}..${RDREXP_DBNAME})" | tee -a ${LOG}
+${MGI_DBUTILS}/bin/load_db.csh ${RDREXP_DBSERVER} ${RDREXP_DBNAME} ${RADAR_BACKUP}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}

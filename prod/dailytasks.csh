@@ -227,21 +227,16 @@ echo 'QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
 date | tee -a ${LOG}
-echo 'Daily Public Reports' | tee -a ${LOG}
-${PUBRPTS}/nightly_reports.csh
+echo 'Daily Sybase Public Reports' | tee -a ${LOG}
+${PUBRPTS}/run_daily_sybase.csh
 
 #
-# The weekly public reports need to run on Tuesday night so they are ready
-# for a Wednesday morning public release.
+# Run the weekly sybase public reports on Tuesday night.
 #
 if ( $weekday == 2 ) then
     date | tee -a ${LOG}
-    echo 'Weekly Public Reports' | tee -a ${LOG}
-    ${PUBRPTS}/weekly_reports.csh
-
-    date | tee -a ${LOG}
-    echo 'Set process control flag: Public Reports Ready' | tee -a ${LOG}
-    ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_PUB_RPT_READY} ${SCRIPT_NAME}
+    echo 'Weekly Sybase Public Reports' | tee -a ${LOG}
+    ${PUBRPTS}/run_weekly_sybase.csh
 endif
 
 #

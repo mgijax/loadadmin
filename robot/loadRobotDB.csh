@@ -60,7 +60,7 @@ cd `dirname $0` && source ./Configuration
 setenv SCRIPT_NAME `basename $0`
 
 setenv RADAR_BACKUP ${DB_BACKUP_DIR}/radar.postgres.dump
-setenv MGD_BACKUP ${DB_BACKUP_DIR}/mgd.postgres.dump
+setenv MGD_BACKUP ${DB_BACKUP_DIR}/mgd.noprivate.postgres.dump
 setenv SNP_BACKUP ${DB_BACKUP_DIR}/snp.postgres.dump
 setenv FE_BACKUP ${DB_BACKUP_DIR}/fe.postgres.dump
 

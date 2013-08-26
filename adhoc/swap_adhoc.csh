@@ -48,15 +48,15 @@ cd `dirname $0` && source ./adhoc.config
 # renamed, do not continue with the swap. This will happen if there are
 # users with open connections to the database.
 #
-echo "Rename ${PGMGD_ACTIVE_DB} to ${PGMGD_TEMP_DB}"
-psql -q -w -d ${PGMGD_CONNECT_DB} -U ${PGMGD_DBUSER} -c "alter database ${PGMGD_ACTIVE_DB} rename to ${PGMGD_TEMP_DB}"
+echo "Rename ${PG_ACTIVE_DB} to ${PG_TEMP_DB}"
+psql -q -w -d ${PG_CONNECT_DB} -U ${PG_DBUSER} -c "alter database ${PG_ACTIVE_DB} rename to ${PG_TEMP_DB}"
 if ( $status != 0 ) then
     exit 1
 endif
 
-echo "Rename ${PGMGD_INACTIVE_DB} to ${PGMGD_ACTIVE_DB}"
-psql -q -w -d ${PGMGD_CONNECT_DB} -U ${PGMGD_DBUSER} -c "alter database ${PGMGD_INACTIVE_DB} rename to ${PGMGD_ACTIVE_DB}"
-echo "Rename ${PGMGD_TEMP_DB} to ${PGMGD_INACTIVE_DB}"
-psql -q -w -d ${PGMGD_CONNECT_DB} -U ${PGMGD_DBUSER} -c "alter database ${PGMGD_TEMP_DB} rename to ${PGMGD_INACTIVE_DB}"
+echo "Rename ${PG_INACTIVE_DB} to ${PG_ACTIVE_DB}"
+psql -q -w -d ${PG_CONNECT_DB} -U ${PG_DBUSER} -c "alter database ${PG_INACTIVE_DB} rename to ${PG_ACTIVE_DB}"
+echo "Rename ${PG_TEMP_DB} to ${PG_INACTIVE_DB}"
+psql -q -w -d ${PG_CONNECT_DB} -U ${PG_DBUSER} -c "alter database ${PG_TEMP_DB} rename to ${PG_INACTIVE_DB}"
 
 exit 0
