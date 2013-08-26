@@ -1,3 +1,9 @@
+TAG: loadadmin-5-1-5-1
+DATE: 8/26/2013
+STAFF: dbm
+RELEASE:
+CHANGES: Merge tr11353 branch to the trunk for 5.15 release
+
 TAG: loadadmin-5-1-4-9
 DATE: 8/16/2013
 STAFF: dbm
@@ -40,17 +46,29 @@ CHANGES:
 1) prod/genReleaseData.csh: fixed a copy/paste error where bourne shells
    commands were used in a C-shell script
 
+TAG: loadadmin-tr11353-3
+TAG: loadadmin-tr11353-2
+TAG: loadadmin-tr11353-1
+DATE: 06/04/2013
+STAFF: sc
+CHANGES:
+1) buildQSIndexes.csh - no longer deletes private data - and removed
+   associated error checking and documentation 
+2) loadExportDB.csh - no longer deletes private data
+3) prod/dailytasks.csh - removed call to weekly public reports and 
+   associated process control
+
+TAG: loadadmin-tr11353-BP
+DATE: 06/04/2013
+STAFF: sc
+CHANGES: Infrastructure I project
+
 TAG: loadadmin-5-1-4-3
 DATE: 5/28/2013
 STAFF: dbm
 RELEASE:
 CHANGES:
 1) jboss/startFewi: use min/max memory config settings on startup
-
-TAG: loadadmin-tr11353-BP
-DATE: 06/04/2013
-STAFF: sc
-CHANGES: Infrastructure I project
 
 TAG: loadadmin-5-1-4-2
 DATE: 5/28/2013
