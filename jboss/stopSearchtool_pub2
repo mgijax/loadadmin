@@ -2,9 +2,6 @@
 
 cd `dirname $0` && source ./Configuration
 
-# setenv JAVA_HOME /usr/mgijava6
-# setenv JAVA ${JAVA_HOME}/bin/java
-
 # Try to shutdown jboss gracefully.
 ${JBOSS}/bin/jboss-cli.sh --connect --controller=localhost:19999 :shutdown
 
