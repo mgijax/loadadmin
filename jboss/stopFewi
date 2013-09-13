@@ -2,8 +2,6 @@
 
 cd `dirname $0` && source ./Configuration
 
-# setenv JAVA_HOME /usr/mgijava6
-# setenv JAVA ${JAVA_HOME}/bin/java
 setenv SERVER_NAME `uname -n`
 
 # Try to shutdown jboss gracefully.
@@ -13,8 +11,9 @@ ${JBOSS}/bin/jboss-cli.sh --connect --controller=localhost:9999 :shutdown
 sleep 10
 
 # See if the process is still running. If so, kill it.
-set PROCESS=`ps -aef | grep 'jboss/bin/standalone.sh' | grep 'fewi$' | awk '{print $2}'`
-if ( "${PROCESS}" != "" ) then
-    echo "Normal shutdown did not work. Kill process ${PROCESS}."
-    kill -9 ${PROCESS}
+set FEWI_PID=`ps -aef | grep 'jboss/bin/standalone.sh' | grep 'fewi$' | awk '{print $2}'`
+set FEWI_CHILD_PID=`ps -aef | grep 'Standalone' | grep " ${FEWI_PID} " | awk '{print $2}'`
+if ( "${FEWI_PID}" != "" ) then
+    echo "Normal shutdown did not work. Kill parent/child processes: ${FEWI_PID} ${FEWI_CHILD_PID}"
+    kill -9 ${FEWI_PID} ${FEWI_CHILD_PID}
 endif
