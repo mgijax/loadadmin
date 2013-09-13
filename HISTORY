@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-5-2
+DATE: 9/13/2013
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) stopFewi/stopFewiBatch: kill parent and child processes if the normal
+   shutdown fails
+
 TAG: loadadmin-5-1-5-1
 DATE: 8/26/2013
 STAFF: dbm
