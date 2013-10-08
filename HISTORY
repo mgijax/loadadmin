@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-5-3
+DATE: 10/8/2013
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) Use NS_DATA_LOADS namespace for the nightly loads and use NS_PROD_LOAD
+   for the weekly prod QS update.
+
 TAG: loadadmin-5-1-5-2
 DATE: 9/13/2013
 STAFF: dbm
