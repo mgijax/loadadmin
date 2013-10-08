@@ -57,7 +57,7 @@ env | sort >> ${LOG}
 
 date | tee -a ${LOG}
 echo 'Reset process control flags in production load namespace' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
 echo 'Create Pre-Sunday Database Backup' | tee -a ${LOG}
@@ -65,7 +65,7 @@ ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
 echo 'Generate Mapping Experiment Stats' | tee -a ${LOG}

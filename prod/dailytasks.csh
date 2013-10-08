@@ -75,9 +75,10 @@ set tomorrow=`/usr/local/bin/date -d tomorrow +%m/%d/%Y`
 date | tee -a ${LOG}
 echo 'Reset process control flags' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/resetFlags ${NS_DEV_LOAD} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
 
 if ( $weekday == 2 ) then
+    ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
     ${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
     ${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
 endif
@@ -95,7 +96,7 @@ ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" predai
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 #
 # Comment this out for time savings when running sequence load(s).
@@ -208,7 +209,7 @@ ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${DATABASES}"
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 
 #date | tee -a ${LOG}
 #echo 'Process GenBank Deletes' | tee -a ${LOG}

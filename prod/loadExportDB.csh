@@ -84,8 +84,8 @@ echo 'Wait for the "MGD Backup Ready" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_MGD_BACKUP}`
-    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_PROD_LOAD} ${FLAG_ABORT}`
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_MGD_BACKUP}`
+    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
         break
