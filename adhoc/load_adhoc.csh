@@ -22,7 +22,7 @@
 #
 #      - Postgres mgd schema backup (${MGD_BACKUP})
 #
-#        /export/upload/mgd.postgres.dump
+#        /export/upload/mgd.noprivate.postgres.dump
 #
 #      - Postgres snp schema backup (${SNP_BACKUP})
 #
