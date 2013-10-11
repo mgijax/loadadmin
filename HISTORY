@@ -1,3 +1,10 @@
+TAG: loadadmin-5-1-5-4
+DATE: 10/11/2013
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) adhoc/adhoc.config, adhoc/load_adhoc.csh: use dump without private data
+
 TAG: loadadmin-5-1-5-3
 DATE: 10/8/2013
 STAFF: dbm
