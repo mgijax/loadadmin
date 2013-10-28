@@ -54,7 +54,7 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 date | tee -a ${LOG}
-echo 'Reset process control flags in production load namespace' | tee -a ${LOG}
+echo 'Reset process control flags in data loads namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}

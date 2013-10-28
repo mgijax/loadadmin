@@ -68,11 +68,14 @@ env | sort >> ${LOG}
 set tomorrow=`/usr/local/bin/date -d tomorrow +%m/%d/%Y`
 
 date | tee -a ${LOG}
-echo 'Reset all process control flags' | tee -a ${LOG}
+echo 'Reset process control flags in dev load namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/resetFlags ${NS_DEV_LOAD} ${SCRIPT_NAME}
+echo 'Reset process control flags in data loads namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
 
-# run this as early as possible for JAX folks
+#
+# Generate the MGI marker feed as early as possible for JAX folks.
+#
 date | tee -a ${LOG}
 echo 'MGI Marker Feed' | tee -a ${LOG}
 ${PUBRPTS}/mgimarkerfeed/mgimarkerfeed_reports.csh
@@ -97,6 +100,7 @@ date | tee -a ${LOG}
 echo 'Create Reference Set' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/runReferenceSet.csh ${MGD_DBSERVER} ${MGD_DBNAME}
 
+
 date | tee -a ${LOG}
 echo 'Update Last Dump Date' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/updateLastDumpDate.csh ${MGD_DBSERVER} ${MGD_DBNAME} ${tomorrow}
@@ -115,12 +119,9 @@ echo 'Mammalian Phenotype Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MP.config
 
 date | tee -a ${LOG}
-echo 'QC Reports' | tee -a ${LOG}
+echo 'Nightly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
-#
-# run this last so that we are sure to pick up the new GO files that
-# are downloaded at 1:30AM
 #
 date | tee -a ${LOG}
 echo 'GO Load' | tee -a ${LOG}
