@@ -1,3 +1,15 @@
+TAG: loadadmin-5-1-5-6
+DATE: 10/28/2013
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) dailytasks.csh: adjust for Monday public release
+2) fridaytasks.csh: fix comments
+3) saturdaytasks.csh: fix comments
+4) sundaytasks.csh: fix comments
+5) loadExportDB.csh: process control changes to start data update and use
+   postdaily mgd backup for running on Tuesday morning
+
 TAG: loadadmin-5-1-5-5
 TAG: loadadmin-5-1-5-4
 DATE: 10/11/2013
