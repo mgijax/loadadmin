@@ -73,15 +73,10 @@ set weekday=`date '+%u'`
 set tomorrow=`/usr/local/bin/date -d tomorrow +%m/%d/%Y`
 
 date | tee -a ${LOG}
-echo 'Reset process control flags' | tee -a ${LOG}
+echo 'Reset process control flags in dev load namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/resetFlags ${NS_DEV_LOAD} ${SCRIPT_NAME}
+echo 'Reset process control flags in data loads namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
-
-if ( $weekday == 2 ) then
-    ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
-    ${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
-    ${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
-endif
 
 #
 # Generate the MGI marker feed as early as possible for JAX folks.
@@ -224,7 +219,11 @@ echo 'MCV Vocabulary Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/run_mcv_vocload.sh
 
 date | tee -a ${LOG}
-echo 'QC Reports' | tee -a ${LOG}
+echo 'GO Load' | tee -a ${LOG}
+${VOCLOAD}/runOBOIncLoad.sh GO.config
+
+date | tee -a ${LOG}
+echo 'Nightly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
 date | tee -a ${LOG}
@@ -232,21 +231,13 @@ echo 'Daily Sybase Public Reports' | tee -a ${LOG}
 ${PUBRPTS}/run_daily_sybase.csh
 
 #
-# Run the weekly sybase public reports on Tuesday night.
+# Run the weekly sybase public reports on Monday night.
 #
-if ( $weekday == 2 ) then
+if ( $weekday == 1 ) then
     date | tee -a ${LOG}
     echo 'Weekly Sybase Public Reports' | tee -a ${LOG}
     ${PUBRPTS}/run_weekly_sybase.csh
 endif
-
-#
-# Run the GO load last to allow time for the updated gene ontology OBO file
-# to be downloaded at 1:30 AM.
-#
-date | tee -a ${LOG}
-echo 'GO Load' | tee -a ${LOG}
-${VOCLOAD}/runOBOIncLoad.sh GO.config
 
 date | tee -a ${LOG}
 echo 'Move JFiles' | tee -a ${LOG}
