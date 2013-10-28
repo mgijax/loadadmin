@@ -44,7 +44,7 @@
 #      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Reset all flags in the data prep namespace.
+#      2) Reset all flags in the namespaces pertaining to the data update.
 #      3) Wait for the flag to signal that the MGD backup is available.
 #      4) Load the MGD export database.
 #      5) Load the RADAR export database.
@@ -52,16 +52,13 @@
 #
 #  Notes:  None
 #
-# HISTORY
-#    sc; tr11353
-#       06/04/2013 - no longer has option to remove private data
 ###########################################################################
 
 cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv MGD_BACKUP /extra1/sybase/mgd.backup
+setenv MGD_BACKUP /extra1/sybase/mgd.postdailybackup
 setenv RADAR_BACKUP /extra1/sybase/radar.backup
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
@@ -74,6 +71,12 @@ env | sort >> ${LOG}
 date | tee -a ${LOG}
 echo 'Reset process control flags in data prep namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_PREP} ${SCRIPT_NAME}
+echo 'Reset process control flags in production load namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
+echo 'Reset process control flags in public load namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
+echo 'Reset process control flags in robot load namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
 
 #
 # Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
