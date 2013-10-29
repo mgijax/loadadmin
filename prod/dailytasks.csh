@@ -260,6 +260,10 @@ date | tee -a ${LOG}
 echo 'Create Post-Daily Database Backup' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" postdaily
 
+date | tee -a ${LOG}
+echo 'Set process control flag: MGD PostBackup Ready' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_POSTBACKUP} ${SCRIPT_NAME}
+
 #
 # We want this report on Tuesday and Friday morning, so it is scheduled
 # to run Monday and Thursday night.
