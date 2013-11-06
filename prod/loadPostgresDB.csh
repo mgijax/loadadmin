@@ -20,9 +20,9 @@
 #
 #  Inputs:
 #
-#      - MGD schema dump - with private data (from /falas/dump)
+#      - MGD schema dump - with private data
 #
-#      - MGD schema dump - without private data (from /falas/dump)
+#      - MGD schema dump - without private data
 #
 #      - Process control flags
 #
@@ -59,8 +59,8 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv MGD_BACKUP /falas/dump/mgd.postgres.dump
-setenv MGD_NOPRIVATE_BACKUP /falas/dump/mgd.noprivate.postgres.dump
+setenv MGD_BACKUP ${DB_BACKUP_DIR}/mgd.postgres.dump
+setenv MGD_NOPRIVATE_BACKUP ${DB_BACKUP_DIR}/mgd.noprivate.postgres.dump
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
