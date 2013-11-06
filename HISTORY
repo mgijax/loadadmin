@@ -1,3 +1,10 @@
+TAG: loadadmin-5-1-5-8
+DATE: 11/6/2013
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) loadPostgresDB.csh: use DB_BACKUP_DIR to define path to backup files
+
 TAG: loadadmin-5-1-5-7
 DATE: 10/29/2013
 STAFF: dbm
