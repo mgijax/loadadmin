@@ -204,6 +204,10 @@ date | tee -a ${LOG}
 echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
 ${MRKCOORDLOAD}/bin/mrkcoordload.sh
 
+date | tee -a ${LOG}
+echo 'Run EMAP Load' | tee -a ${LOG}
+${EMAPLOAD}/bin/emapload.sh
+
 #
 # Wait for the "GT Blat Done" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
