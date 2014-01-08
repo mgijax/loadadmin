@@ -58,7 +58,7 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv MGD_BACKUP /extra1/sybase/mgd.backup
+setenv MGD_BACKUP /extra1/sybase/mgd.postdailybackup
 setenv RADAR_BACKUP /extra1/sybase/radar.backup
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
@@ -79,15 +79,15 @@ echo 'Reset process control flags in robot load namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
 
 #
-# Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
+# Wait for the "MGD PostBackup Ready" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
-echo 'Wait for the "MGD Backup Ready" flag to be set' | tee -a ${LOG}
+echo 'Wait for the "MGD PostBackup Ready" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_MGD_BACKUP}`
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_MGD_POSTBACKUP}`
     setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
