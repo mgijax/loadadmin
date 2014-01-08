@@ -1,3 +1,13 @@
+TAG: loadadmin-5-1-6-2
+DATE: 1/8/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) dailytasks.csh: restore postdaily back - there may be times when the
+                   mgd.backup is needed for a restore
+2) loadExportDB.csh: use mgd.postdailybackup again
+3) saturdaytasks.csh: added call to EMAP load
+
 TAG: loadadmin-5-1-6-1
 DATE: 12/31/2013
 STAFF: dbm
