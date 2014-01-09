@@ -56,7 +56,7 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv MGD_BACKUP /lindon/sybase/mgd.backup
+setenv MGD_BACKUP /lindon/sybase/mgd.postdailybackup
 setenv RADAR_BACKUP /lindon/sybase/radar.backup
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
@@ -67,15 +67,15 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 #
-# Wait for the "MGD Backup Ready" flag to be set. Stop waiting if the number
+# Wait for the "MGD PostBackup Ready" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
-echo 'Wait for the "MGD Backup Ready" flag to be set' | tee -a ${LOG}
+echo 'Wait for the "MGD PostBackup Ready" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_DEV}/getFlag ${NS_DEV_LOAD} ${FLAG_MGD_BACKUP}`
+    setenv READY `${PROC_CTRL_CMD_DEV}/getFlag ${NS_DEV_LOAD} ${FLAG_MGD_POSTBACKUP}`
     setenv ABORT `${PROC_CTRL_CMD_DEV}/getFlag ${NS_DEV_LOAD} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
