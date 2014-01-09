@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-6-3
+DATE: 1/9/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) fridaytasks.csh: create predaily and postdaily backups; remove prefriday
+2) loadDevDB.csh: use mgd.postdailybackup instead of mgd.backup
+
 TAG: loadadmin-5-1-6-2
 DATE: 1/8/2014
 STAFF: dbm
