@@ -24,12 +24,13 @@
 #  Outputs:
 #
 #      - Database backup files (in /extra1/sybase)
-#          - mgd.prefridaybackup1, mgd.prefridaybackup2
+#          - mgd.predailybackup1, mgd.predailybackup2
 #          - mgd.backup1, mgd.backup2
 #          - radar.backup1 radar.backup2
 #          - master.backup1, master.backup2
 #          - wts.backup1, wts.backup2
 #          - sybsystemprocs.backup1, sybsystemprocs.backup2
+#          - mgd.postdailybackup1, mgd.postdailybackup2
 #
 #      - Log file for the script (${LOG})
 #
@@ -81,8 +82,8 @@ echo 'MGI Marker Feed' | tee -a ${LOG}
 ${PUBRPTS}/mgimarkerfeed/mgimarkerfeed_reports.csh
 
 date | tee -a ${LOG}
-echo 'Create Pre-Friday Database Backup' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" prefriday
+echo 'Create Pre-Daily Database Backup' | tee -a ${LOG}
+${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" predaily
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
@@ -111,7 +112,6 @@ ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${DATABASES}"
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
@@ -131,12 +131,14 @@ date | tee -a ${LOG}
 echo 'Move JFiles' | tee -a ${LOG}
 ${JFILESCANNER}/moveJfiles.sh
 
-#
-# Uncomment this when an extra backup is needed.
-#
-#date | tee -a ${LOG}
-#echo 'Create Post-Friday Database Backup' | tee -a ${LOG}
-#${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" postfriday
+date | tee -a ${LOG}
+echo 'Create Post-Daily Database Backup' | tee -a ${LOG}
+${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" postdaily
+
+date | tee -a ${LOG}
+echo 'Set process control flag: MGD PostBackup Ready' | tee -a ${LOG}
+${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_POSTBACKUP} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_POSTBACKUP} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
