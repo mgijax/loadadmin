@@ -77,6 +77,8 @@ echo 'Reset process control flags in public load namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
 echo 'Reset process control flags in robot load namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
+echo 'Reset process control flags in adhoc load namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/resetFlags ${NS_ADHOC_LOAD} ${SCRIPT_NAME}
 
 #
 # Wait for the "MGD PostBackup Ready" flag to be set. Stop waiting if the number
