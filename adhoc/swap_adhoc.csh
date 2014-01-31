@@ -41,7 +41,7 @@
 #
 ###########################################################################
 
-cd `dirname $0` && source ./adhoc.config
+cd `dirname $0` && source ../Configuration
 
 #
 # Swap the active and inactive databases. If the active database cannot be

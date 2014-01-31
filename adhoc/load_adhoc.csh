@@ -16,7 +16,9 @@
 #
 #  Env Vars:
 #
-#      - See configuration file (adhoc.config)
+#      - See Configuration file (loadadmin product)
+#
+#      - See master.config.csh (mgiconfig product)
 #
 #  Inputs:
 #
@@ -28,9 +30,7 @@
 #
 #        /export/upload/snp.postgres.dump
 #
-#      - Backup-ready flag (${BACKUP_FLAG})
-#
-#        /export/upload/mgd.postgres.flag
+#      - Process control flags
 #
 #  Outputs:
 #
@@ -62,11 +62,18 @@
 #
 ###########################################################################
 
-cd `dirname $0` && source ./adhoc.config
+cd `dirname $0` && source ../Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv LOG `pwd`/${SCRIPT_NAME}.log
+setenv UPLOADDIR /export/upload
+setenv MGD_BACKUP ${UPLOADDIR}/mgd.postgres.dump
+setenv SNP_BACKUP ${UPLOADDIR}/snp.postgres.dump
+
+setenv SWAP_ATTEMPTS 24
+setenv PROCESSES 4
+
+setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
@@ -74,34 +81,39 @@ echo "$0" | tee -a ${LOG}
 env | sort | tee -a ${LOG}
 
 #
-# Wait for the Postgres backup file to be available.
-# 
+# Wait for the "Postgres Dump Ready" flag to be set. Stop waiting if the number
+# of retries expires or the abort flag is found.
+#
 date | tee -a ${LOG}
-echo 'Wait for the Postgres backup file to be available' | tee -a ${LOG}
+echo 'Wait for the "Postgres Dump Ready" flag to be set' | tee -a ${LOG}
 
-setenv RETRY ${RETRIES}
-while ( ${RETRY} > 0 )
-    if ( -e ${BACKUP_FLAG} ) then
+setenv RETRY ${PROC_CTRL_RETRIES}
+while (${RETRY} > 0)
+    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_ADHOC_LOAD} ${FLAG_PG_DUMP_READY}`
+    setenv ABORT `${PROC_CTRL_CMD_PUB}/getFlag ${NS_ADHOC_LOAD} ${FLAG_ABORT}`
+
+    if (${READY} == 1 || ${ABORT} == 1) then
         break
     else
-        sleep ${WAIT_TIME}
+        sleep ${PROC_CTRL_WAIT_TIME}
     endif
-    
+
     setenv RETRY `expr ${RETRY} - 1`
 end
 
-if ( ${RETRY} == 0 ) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG} 
-    exit 1 
-endif
-
 #
-# Remove the backup flag.
-# 
-date | tee -a ${LOG}
-echo "Remove the backup flag (${BACKUP_FLAG})" | tee -a ${LOG}
-rm -f ${BACKUP_FLAG}
+# Terminate the script if the number of retries expired or the abort flag
+# was found.
+#
+if (${RETRY} == 0) then
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+else if (${ABORT} == 1) then
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
 
 #
 # Drop/create the mgd schema in the inactive database.
@@ -178,7 +190,7 @@ while ( ${RETRY} > 0 )
         break
     else
         echo "Wait and retry ..." | tee -a ${LOG}
-        sleep ${WAIT_TIME}
+        sleep ${PROC_CTRL_WAIT_TIME}
     endif
 
     setenv RETRY `expr ${RETRY} - 1`
