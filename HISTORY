@@ -1,3 +1,14 @@
+TAG: loadadmin-5-1-6-4
+DATE: 1/31/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) adhoc/adhoc.config: removed
+2) adhoc/adhoc_load.csh: use process controller
+3) adhoc/swap_adhoc.csh: use Configuration file instead of adhoc.config
+4) prod/loadExportDB.csh: reset NS_ADHOC_LOAD namespace
+5) prod/runTask.csk: Added
+
 TAG: loadadmin-5-1-6-3
 DATE: 1/9/2014
 STAFF: dbm
