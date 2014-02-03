@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-6-5
+DATE: 2/3/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) prod/runTask.csk: SET_UPDATE_ACTIVE comes from mgiconfig - don't set.
+                     Specifically check for "yes" in order to proceed.
+
 TAG: loadadmin-5-1-6-4
 DATE: 1/31/2014
 STAFF: dbm
