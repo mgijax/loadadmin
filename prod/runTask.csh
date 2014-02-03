@@ -65,13 +65,11 @@
 
 cd `dirname $0` && source ./Configuration
 
-setenv SET_UPDATE_ACTIVE UpdateActive
-
 setenv UPDATE_ACTIVE `${PROC_CTRL_CMD_PUB}/getSetting ${SET_UPDATE_ACTIVE}`
-if ( "${UPDATE_ACTIVE}" != "yes" ) then
-    exit 0
-else
+if ( "${UPDATE_ACTIVE}" == "yes" ) then
     $*
+else
+    exit 0
 endif
 
 exit 0
