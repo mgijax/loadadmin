@@ -113,6 +113,10 @@ ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_hmgu.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_wtsi.config
 
 date | tee -a ${LOG}
+echo 'Allele Load' | tee -a ${LOG}
+${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
+
+date | tee -a ${LOG}
 echo 'Process cDNA Load Incrementals' | tee -a ${LOG}
 ${GBCDNALOAD}/bin/GBcDNALoad.sh
 
