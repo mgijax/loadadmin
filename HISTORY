@@ -1,3 +1,10 @@
+TAG: loadadmin-5-1-7-1
+DATE: 3/9/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) prod/saturdaytasks.csh: Added call to IKMC allele load
+
 TAG: loadadmin-5-1-6-5
 DATE: 2/3/2014
 STAFF: dbm
