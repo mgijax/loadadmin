@@ -172,16 +172,6 @@ date | tee -a ${LOG}
 echo 'Load Image Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/imgcache.csh
 
-date | tee -a ${LOG}
-echo 'Load Voc/Count Cache Table' | tee -a ${LOG}
-${MGICACHELOAD}/voccounts.csh
-date | tee -a ${LOG}
-echo 'Load Voc/Marker Cache Table' | tee -a ${LOG}
-${MGICACHELOAD}/vocmarker.csh
-date | tee -a ${LOG}
-echo 'Load Voc/Allele Cache Table' | tee -a ${LOG}
-${MGICACHELOAD}/vocallele.csh
-
 #
 # Comment this out for time savings when running sequence load(s).
 #
