@@ -1,8 +1,9 @@
-TAG: loadadmin-5-1-8-?
-DATE: 3/12/2014
+TAG: loadadmin-5-1-8-1
+DATE: 3/13/2014
 STAFF: lec
 RELEASE:
 CHANGES:
+TR11540
 1) prod/dailytasks.csh: removed calls to mgicacheload/voc*cache*csh
 2) prod/saturdaytasks.csh: removed calls to mgicacheload/voc*cache*csh
 3) prod/sundaytasks.csh: removed calls to mgicacheload/voc*cache*csh
