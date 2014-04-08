@@ -117,6 +117,10 @@ echo 'Allele Load' | tee -a ${LOG}
 ${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
 date | tee -a ${LOG}
+echo 'Update IMSR Germline' | tee -a ${LOG}
+${MGI_DBUTILS}/bin/updateIMSRgermline.csh
+
+date | tee -a ${LOG}
 echo 'Process cDNA Load Incrementals' | tee -a ${LOG}
 ${GBCDNALOAD}/bin/GBcDNALoad.sh
 
