@@ -1,3 +1,10 @@
+TAG: loadadmin-5-1-8-2
+DATE: 4/8/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) prod/saturdaytasks.csh: Added call to updateIMSRgermline.csh
+
 TAG: loadadmin-5-1-8-1
 DATE: 3/13/2014
 STAFF: lec
