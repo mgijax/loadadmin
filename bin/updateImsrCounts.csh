@@ -10,7 +10,17 @@
 #
 #  Usage:
 #
-#      updateImsrCounts.csh
+#      updateImsrCounts.csh dbserver dbname dbpasswordfile
+#
+#      where
+#
+#          dbserver = the name of the Postgres database server where the
+#                     counts need to be updated (e.g. mgi-pubfedb1)
+#
+#          dbname = the name of the database (e.g. fe)
+#
+#          dbpasswordfile = the path to the Postgres password file
+#              (e.g. /usr/local/mgi/live/dbutils/pgdbutilities/.pgpass_pub)
 #
 #  Env Vars:
 #
@@ -50,6 +60,17 @@
 ###########################################################################
 
 cd `dirname $0` && source ./Configuration
+
+if ( ${#argv} != 3) then
+    echo "Usage: $0 dbserver dbname dbpasswordfile"
+    exit 1
+endif
+
+setenv PG_FE_DBSERVER $1
+setenv PG_FE_DBNAME $2
+setenv PG_DBPASSWORDFILE $3
+
+setenv PG_FE_DBUSER mgd_dbo
 
 setenv SCRIPT_NAME `basename $0`
 
