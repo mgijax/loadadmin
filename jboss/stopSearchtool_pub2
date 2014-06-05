@@ -1,7 +1,0 @@
-#!/bin/tcsh -f
-
-cd `dirname $0` && source ./Configuration
-
-# Try to shutdown jboss gracefully.
-${JBOSS}/bin/jboss-cli.sh --connect --controller=localhost:19999 :shutdown
-

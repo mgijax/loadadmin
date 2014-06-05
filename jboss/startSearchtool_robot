@@ -1,9 +1,0 @@
-#!/bin/csh -f
-
-cd `dirname $0` && source ./Configuration
-
-setenv JAVA_HOME /usr/mgijava7
-setenv SERVER_NAME `uname -n`
-setenv JAVA_OPTS "-d64 -Xms6g -Xmx6g" 
-
-${JBOSS}/bin/standalone.sh -b=${SERVER_NAME} -Djboss.server.base.dir=${JBOSS}/searchtool_robot &
