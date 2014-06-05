@@ -118,6 +118,15 @@ if ( $weekday == 3 ) then
     ${SEQDELETER}/bin/seqdeleter.sh refseqdeleter.config
 endif
 
+#
+# run after data loads (which create new accids) and before cache loads
+# (which do NOT create accids, but query the accession table) and before
+# the database backup used to load other databases
+
+date | tee -a ${LOG}
+echo 'Update statistics on ACC_Accession' | tee -a ${LOG}
+${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Accession
+
 date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdummy.csh

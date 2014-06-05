@@ -322,6 +322,14 @@ echo 'Load Image Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/imgcache.csh
 
 #
+# run after data loads (which create new accids) and before
+# the database backup
+#
+date | tee -a ${LOG}
+echo 'Update statistics on ACC_Accession' | tee -a ${LOG}
+${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Accession
+
+#
 # Uncomment this when an extra backup is needed.
 #
 #date | tee -a ${LOG}

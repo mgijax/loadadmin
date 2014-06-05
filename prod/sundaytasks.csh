@@ -198,6 +198,15 @@ date | tee -a ${LOG}
 echo 'Generate DoTS/NIA/DFCI Association Files' | tee -a ${LOG}
 ${MGD_DBUTILS}/bin/generateGIAssoc.csh >& ${DOTS_NIA_DFCI_LOG} &
 
+#
+# run after data loads (which create new accids) and before 
+# the database backup 
+#
+date | tee -a ${LOG}
+echo 'Update statistics on ACC_Accession' | tee -a ${LOG}
+${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Accession
+
+
 date | tee -a ${LOG}
 echo 'Create Post-Sunday Database Backup' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" postsunday
