@@ -188,7 +188,7 @@ if ( ${DO_PROD_INDEXES} == 1 ) then
     if ( ${ST_PROD_SERVER} != ${SERVER_NAME} ) then
         date >>& ${LOG}
         echo "Copy the production QS index tar file to ${ST_PROD_SERVER}" >>& ${LOG}
-        scp ${ST_PROD_TARFILE} ${ST_PROD_SERVER}:${SEARCHTOOL_DISTDIR}
+        scp -q ${ST_PROD_TARFILE} ${ST_PROD_SERVER}:${SEARCHTOOL_DISTDIR}
         if ( $status != 0 ) then
             echo "${SCRIPT_NAME} failed" >>& ${LOG}
             date >>& ${LOG}
@@ -280,7 +280,7 @@ if ( ${DO_PUB_INDEXES} == 1 ) then
     if ( ${ST_PUB_SERVER} != ${SERVER_NAME} ) then
         date >>& ${LOG}
         echo "Copy the public QS index tar file to ${ST_PUB_SERVER}" >>& ${LOG}
-        scp ${ST_PUB_TARFILE} ${ST_PUB_SERVER}:${SEARCHTOOL_DISTDIR}
+        scp -q ${ST_PUB_TARFILE} ${ST_PUB_SERVER}:${SEARCHTOOL_DISTDIR}
         if ( $status != 0 ) then
             echo "${SCRIPT_NAME} failed" >>& ${LOG}
             date >>& ${LOG}
