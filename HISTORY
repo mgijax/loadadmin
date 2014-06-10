@@ -1,3 +1,10 @@
+TAG: loadadmin-5-1-8-6
+DATE: 6/10/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) prod/buildSQIndexes.csh: Added -q option to scp calls
+
 TAG: loadadmin-5-1-8-5
 TAG: loadadmin-5-1-8-4
 DATE: 6/5/2014
