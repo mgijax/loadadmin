@@ -1,3 +1,12 @@
+TAG: loadadmin-5-1-8-7
+DATE: 6/13/2014
+STAFF: dbm
+RELEASE:
+CHANGES:
+1) Configuration.default: Add JCONNECT to CLASSPATH if it is defined. This
+                          supports the refactoring of sybase settings from
+                          common.config to the server specific config files.
+
 TAG: loadadmin-5-1-8-6
 DATE: 6/10/2014
 STAFF: dbm
