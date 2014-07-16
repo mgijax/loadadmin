@@ -217,6 +217,10 @@ echo 'MCV Vocabulary Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/run_mcv_vocload.sh
 
 date | tee -a ${LOG}
+echo 'RV Load' | tee -a ${LOG}
+${RVLOAD}/bin/rvload.sh
+
+date | tee -a ${LOG}
 echo 'GO Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh GO.config
 
