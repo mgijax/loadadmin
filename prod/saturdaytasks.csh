@@ -106,6 +106,14 @@ echo 'MCV Annotation Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/mcvload.sh
 
 date | tee -a ${LOG}
+echo 'RV Load' | tee -a ${LOG}
+${RVLOAD}/bin/rvload.sh
+
+date | tee -a ${LOG}
+echo 'FeaR Load' | tee -a ${LOG}
+${FEARLOAD}/bin/fearload.sh
+
+date | tee -a ${LOG}
 echo 'Targeted Allele Loads' | tee -a ${LOG}
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_mbp.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
@@ -131,10 +139,6 @@ ${MGCLOAD}/bin/MGCLoad.sh
 date | tee -a ${LOG}
 echo 'Sanger MP Load' | tee -a ${LOG}
 ${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
-
-#date | tee -a ${LOG}
-#echo 'Europhenome MP Load' | tee -a ${LOG}
-#${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/europhenompload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
 echo 'Process SwissPROT/TrEMBL' | tee -a ${LOG}
@@ -340,13 +344,25 @@ date | tee -a ${LOG}
 echo 'Generate Frontend Info' | tee -a ${LOG}
 ${LOADADMIN}/prod/genFrontend.csh
 
-if ( -e ${MGI_LIVE}/ei.disable ) then
+#
+# After this script is run in production, both copies of the production EI
+# need to be enabled again (on lindon and bhmgiei01). Then the notification
+# email is sent out to everyone in MGI.
+#
+if ( "`uname -n`" == "lindon" ) then
     date | tee -a ${LOG}
     echo 'Enable the EI' | tee -a ${LOG}
-    cd ${MGI_LIVE}
-    mv ei.disable ei
+    if ( -e ${MGI_LIVE}/ei.disable ) then
+        cd ${MGI_LIVE}
+        mv ei.disable ei
+    endif
+    set str=`ssh -q mgiadmin@bhmgiei01 "cd ${MGI_LIVE}; ls | grep 'ei.disable'"`
+    if ( "$str" != "" ) then
+        ssh -q mgiadmin@bhmgiei01 "cd ${MGI_LIVE}; mv ei.disable ei"
+    endif
+
     set dayname=`date '+%A'`
-    echo "The nightly loads have completed and the production EI is now available." | mailx -s "Production EI is now available ($dayname)" ${EI_MAIL_LIST}
+    echo "The Saturday night load schedule has completed and the production EI is now available." | mailx -s "Production EI is now available ($dayname)" ${EI_MAIL_LIST}
 endif
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
