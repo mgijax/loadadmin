@@ -352,14 +352,7 @@ ${LOADADMIN}/prod/genFrontend.csh
 if ( "`uname -n`" == "lindon" ) then
     date | tee -a ${LOG}
     echo 'Enable the EI' | tee -a ${LOG}
-    if ( -e ${MGI_LIVE}/ei.disable ) then
-        cd ${MGI_LIVE}
-        mv ei.disable ei
-    endif
-    set str=`ssh -q mgiadmin@bhmgiei01 "cd ${MGI_LIVE}; ls | grep 'ei.disable'"`
-    if ( "$str" != "" ) then
-        ssh -q mgiadmin@bhmgiei01 "cd ${MGI_LIVE}; mv ei.disable ei"
-    endif
+    ${LOADADMIN}/prod/eiEnable.csh
 
     set dayname=`date '+%A'`
     echo "The Saturday night load schedule has completed and the production EI is now available." | mailx -s "Production EI is now available ($dayname)" ${EI_MAIL_LIST}
