@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-9-2
+DATE: 8/7/2014
+STAFF: dbm
+CHANGES:
+1) prod/eiDisable.csh, prod/eiEnable.csh: New
+2) public/restartAll.csh, public/swapPublic.csh: New
+3) prod/saturdaytasks.csh: Call new eiEnable.csh script
+
 TAG: loadadmin-5-1-9-1
 DATE: 7/16/2014
 STAFF: dbm
