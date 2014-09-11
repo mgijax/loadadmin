@@ -345,14 +345,14 @@ echo 'Generate Frontend Info' | tee -a ${LOG}
 ${LOADADMIN}/prod/genFrontend.csh
 
 #
-# After this script is run in production, both copies of the production EI
-# need to be enabled again (on lindon and bhmgiei01). Then the notification
-# email is sent out to everyone in MGI.
+# After this script is run in production, the production EI needs to be
+# enabled again (on bhmgiei01). Then the notification email is sent out
+# to everyone in MGI.
 #
 if ( "`uname -n`" == "lindon" ) then
     date | tee -a ${LOG}
     echo 'Enable the EI' | tee -a ${LOG}
-    ${LOADADMIN}/prod/eiEnable.csh
+    ssh -q mgiadmin@bhmgiei01 ${LOADADMIN}/prod/eiEnable.csh
 
     set dayname=`date '+%A'`
     echo "The Saturday night load schedule has completed and the production EI is now available." | mailx -s "Production EI is now available ($dayname)" ${EI_MAIL_LIST}
