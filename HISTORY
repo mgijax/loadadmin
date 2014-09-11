@@ -1,3 +1,11 @@
+TAG: loadadmin-5-1-9-3
+DATE: 9/11/2014
+STAFF: dbm
+CHANGES:
+1) prod/eiDisable.csh: Only disable EI link on current server
+2) prod/eiEnable.csh: Only enable EI link on current server
+3) prod/saturdaytasks.csh: Call eiEnable.csh script on bhmgiei01
+
 TAG: loadadmin-5-1-9-2
 DATE: 8/7/2014
 STAFF: dbm
