@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-0-1
+DATE: 9/18/2014
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Added calls to explinkload for 5.20 release
+
 TAG: loadadmin-5-1-9-3
 DATE: 9/11/2014
 STAFF: dbm
