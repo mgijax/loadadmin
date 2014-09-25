@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-0-2
+DATE: 9/25/2014
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Remove calls to explinkload (for now)
+
 TAG: loadadmin-5-2-0-1
 DATE: 9/18/2014
 STAFF: dbm
