@@ -147,11 +147,6 @@ date | tee -a ${LOG}
 echo 'Homology Load' | tee -a ${LOG}
 ${HOMOLOGYLOAD}/bin/homologyload.sh
 
-date | tee -a ${LOG}
-echo 'Expression Link Loads' | tee -a ${LOG}
-${EXPLINKLOAD}/bin/chicken-geisha.sh
-${EXPLINKLOAD}/bin/zebrafish-zfin.sh
-
 # run this after orthologyload. Note mrkhomology.csh is run by orthologyload.csh
 date | tee -a ${LOG}
 echo 'Load Marker/Label Cache Table' | tee -a ${LOG}
