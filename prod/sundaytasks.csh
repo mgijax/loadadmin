@@ -190,6 +190,10 @@ date | tee -a ${LOG}
 echo 'Weekly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcweekly_reports.csh
 
+date | tee -a ${LOG}
+echo 'Sunday QC Reports' | tee -a ${LOG}
+${QCRPTS}/qcsunday_reports.csh
+
 # this generates the input files for the association load which runs
 # Tuesday AM (mondaytasks.csh). It takes about 4 hours, so run in background
 # Must run Mouse EntrezGene Load, SwissProt Load and wkly qc reports first
