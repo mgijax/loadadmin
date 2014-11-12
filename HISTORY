@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-0-3
+DATE: 11/12/2014
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Added call to qcsunday_reports.csh (TR11837)
+
 TAG: loadadmin-5-2-0-2
 DATE: 9/25/2014
 STAFF: dbm
