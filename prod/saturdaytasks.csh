@@ -260,6 +260,10 @@ echo 'Run Gene Trap Load' | tee -a ${LOG}
 ${GENETRAPLOAD}/bin/genetrapload.sh
 
 date | tee -a ${LOG}
+echo 'Run Rollup Load' | tee -a ${LOG}
+${ROLLUPLOAD}/bin/rollupload.sh
+
+date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdummy.csh
 
@@ -353,6 +357,7 @@ if ( "`uname -n`" == "lindon" ) then
     date | tee -a ${LOG}
     echo 'Enable the EI' | tee -a ${LOG}
     ssh -q mgiadmin@bhmgiei01 ${LOADADMIN}/prod/eiEnable.csh
+    ${LOADADMIN}/prod/eiEnable.csh
 
     set dayname=`date '+%A'`
     echo "The Saturday night load schedule has completed and the production EI is now available." | mailx -s "Production EI is now available ($dayname)" ${EI_MAIL_LIST}
