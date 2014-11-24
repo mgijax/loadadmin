@@ -1,3 +1,10 @@
+TAG: loadadmin-5-2-1-1
+DATE: 11/24/2014
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Added call rollupload for 5.21 release
+2) prod/saturdaytasks.csh: Call eiEnable.csh script on currrent server
+
 TAG: loadadmin-5-2-0-3
 DATE: 11/12/2014
 STAFF: dbm
