@@ -3,8 +3,10 @@
 #pwi product runs on bheidev01 and bhmgiei01
 #
 PWI_HOME=/usr/local/mgi/live/pwi
+MGI_CONFIG=/usr/local/mgi/live/mgiconfig
 PWI_ADMIN=${PWI_HOME}/admin
 
+source ${MGI_CONFIG}/Configuration
 source ${PWI_HOME}/bin/activate
 source ${PWI_HOME}/Configuration
 
