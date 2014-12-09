@@ -6,7 +6,7 @@ PWI_HOME=/usr/local/mgi/live/pwi
 MGI_CONFIG=/usr/local/mgi/live/mgiconfig
 PWI_ADMIN=${PWI_HOME}/admin
 
-source ${MGI_CONFIG}/Configuration
+source ${MGI_CONFIG}/master.config.sh
 source ${PWI_HOME}/bin/activate
 source ${PWI_HOME}/Configuration
 
