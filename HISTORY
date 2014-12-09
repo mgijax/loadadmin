@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-1-2
+DATE: 12/09/2014
+STAFF: lnh
+CHANGES:
+pwi: Added restartPwi and stopPwi to loadadmin/bin
+
 TAG: loadadmin-5-2-1-1
 DATE: 11/24/2014
 STAFF: dbm
