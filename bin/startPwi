@@ -14,3 +14,5 @@ cd ${PWI_ADMIN}
 
 echo "Starting the pwi server"
 ./startserver.sh
+
+echo "pwi server started "
