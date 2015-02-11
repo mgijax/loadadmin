@@ -216,6 +216,11 @@ date | tee -a ${LOG}
 echo 'MCV Vocabulary Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/run_mcv_vocload.sh
 
+# Moved from saturdayTasks to dailyTasks
+date | tee -a ${LOG}
+echo 'Run EMAP Load' | tee -a ${LOG}
+${EMAPLOAD}/bin/emapload.sh
+
 date | tee -a ${LOG}
 echo 'RV Load' | tee -a ${LOG}
 ${RVLOAD}/bin/rvload.sh
