@@ -127,7 +127,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Generate weekly public reports" | tee -a ${LOG}
-${PUBRPTS}/run_weekly_postgres.csh >>& ${LOG}
+${PUBRPTS}/run_weekly.csh >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
