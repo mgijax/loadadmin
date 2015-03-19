@@ -1,10 +1,19 @@
+TAG: loadadmin-5-2-1-7
+DATE: 03/19/2015
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: call run_daily.csh instead of run_daily_sybase.csh;
+                        remove call to run_weekly_sybase.csh
+2) prod/runPostgresApps.csh: call run_weekly.csh instead of
+                             run_weekly_postgres.csh
+
 TAG: loadadmin-5-2-1-6
 DATE: 02/11/2015
 STAFF: lnh
 CHANGES:
 1) prod/saturdaytasks.csh: removed EMAP load
 2) prod/dailytasks.csh: Added EMAP load
-2) prod/fridaytasks.csh: Added EMAP load
+3) prod/fridaytasks.csh: Added EMAP load
 
 TAG: loadadmin-5-2-1-5
 TAG: loadadmin-5-2-1-4
