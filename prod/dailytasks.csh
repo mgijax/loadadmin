@@ -234,17 +234,8 @@ echo 'Nightly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
 date | tee -a ${LOG}
-echo 'Daily Sybase Public Reports' | tee -a ${LOG}
-${PUBRPTS}/run_daily_sybase.csh
-
-#
-# Run the weekly sybase public reports on Monday night.
-#
-if ( $weekday == 1 ) then
-    date | tee -a ${LOG}
-    echo 'Weekly Sybase Public Reports' | tee -a ${LOG}
-    ${PUBRPTS}/run_weekly_sybase.csh
-endif
+echo 'Daily Public Reports' | tee -a ${LOG}
+${PUBRPTS}/run_daily.csh
 
 date | tee -a ${LOG}
 echo 'Move JFiles' | tee -a ${LOG}
