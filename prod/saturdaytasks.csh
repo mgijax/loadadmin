@@ -141,6 +141,10 @@ echo 'Sanger MP Load' | tee -a ${LOG}
 ${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
+echo 'IMPC MP Load' | tee -a ${LOG}
+${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
+
+date | tee -a ${LOG}
 echo 'Process SwissPROT/TrEMBL' | tee -a ${LOG}
 ${SPSEQLOAD}/bin/spseqload.sh spseqload.config
 ${SPSEQLOAD}/bin/spseqload.sh trseqload.config
