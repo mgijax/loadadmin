@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-1-8
+DATE: 04/06/2015
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Added call to IMPC MP Load
+
 TAG: loadadmin-5-2-1-7
 DATE: 03/19/2015
 STAFF: dbm
