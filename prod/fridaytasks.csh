@@ -118,7 +118,6 @@ date | tee -a ${LOG}
 echo 'Mammalian Phenotype Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MP.config
 
-# Moved from saturdayTasks to dailyTasks
 date | tee -a ${LOG}
 echo 'Run EMAP Load' | tee -a ${LOG}
 ${EMAPLOAD}/bin/emapload.sh
