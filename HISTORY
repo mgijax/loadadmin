@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-1-10
+DATE: 04/09/2015
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Removed call to generate dfci/dots/nia assoc files
+
 TAG: loadadmin-5-2-1-9
 DATE: 04/09/2015
 STAFF: dbm
