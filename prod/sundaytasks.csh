@@ -194,14 +194,6 @@ date | tee -a ${LOG}
 echo 'Sunday QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcsunday_reports.csh
 
-# this generates the input files for the association load which runs
-# Tuesday AM (mondaytasks.csh). It takes about 4 hours, so run in background
-# Must run Mouse EntrezGene Load, SwissProt Load and wkly qc reports first
-# the association loads runs Monday night via mondaytasks.csh
-date | tee -a ${LOG}
-echo 'Generate DoTS/NIA/DFCI Association Files' | tee -a ${LOG}
-${MGD_DBUTILS}/bin/generateGIAssoc.csh >& ${DOTS_NIA_DFCI_LOG} &
-
 #
 # run after data loads (which create new accids) and before 
 # the database backup 
@@ -209,7 +201,6 @@ ${MGD_DBUTILS}/bin/generateGIAssoc.csh >& ${DOTS_NIA_DFCI_LOG} &
 date | tee -a ${LOG}
 echo 'Update statistics on ACC_Accession' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Accession
-
 
 date | tee -a ${LOG}
 echo 'Create Post-Sunday Database Backup' | tee -a ${LOG}
