@@ -216,7 +216,6 @@ date | tee -a ${LOG}
 echo 'MCV Vocabulary Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/run_mcv_vocload.sh
 
-# Moved from saturdayTasks to dailyTasks
 date | tee -a ${LOG}
 echo 'Run EMAP Load' | tee -a ${LOG}
 ${EMAPLOAD}/bin/emapload.sh
@@ -242,12 +241,12 @@ echo 'Move JFiles' | tee -a ${LOG}
 ${JFILESCANNER}/moveJfiles.sh
 
 #
-# Run the Monday tasks only on Monday night.
+# Only load the GO Text on Monday.
 #
 if ( $weekday == 1 ) then
     date | tee -a ${LOG}
-    echo 'Start Monday Tasks' | tee -a ${LOG}
-    ${LOADADMIN}/prod/mondaytasks.csh ${MGD_DBSERVER} ${MGD_DBNAME}
+    echo 'Load GO Text' | tee -a ${LOG}
+    ${NOTELOAD}/mginoteload.csh ${NOTELOAD}/gotext.config
 endif
 
 date | tee -a ${LOG}
