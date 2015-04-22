@@ -1,3 +1,10 @@
+TAG: loadadmin-5-2-1-11
+DATE: 04/22/2015
+STAFF: lnh
+CHANGES:
+1) prod/sundaytasks.csh: Changed 'GO/Refgenome' to 'GO/PAINT'
+2) prod/runOneGatherer.csh: New script to run one femover/gatherer
+
 TAG: loadadmin-5-2-1-10
 DATE: 04/09/2015
 STAFF: dbm
