@@ -173,7 +173,7 @@ echo 'GO/Rat Load' | tee -a ${LOG}
 ${GORATLOAD}/bin/gorat.sh
 
 date | tee -a ${LOG}
-echo 'GO/RefGenome Load' | tee -a ${LOG}
+echo 'GO/PAINT Load' | tee -a ${LOG}
 ${GOREFGENLOAD}/bin/gorefgen.sh
 
 date | tee -a ${LOG}
