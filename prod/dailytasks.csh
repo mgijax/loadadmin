@@ -268,10 +268,6 @@ if ( $weekday == 1 || $weekday == 4 ) then
     ${DLA_UTILS}/loadQueueReport.sh
 endif
 
-date | tee -a ${LOG}
-echo 'Generate Frontend Info' | tee -a ${LOG}
-${LOADADMIN}/prod/genFrontend.csh
-
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
 exit 0
