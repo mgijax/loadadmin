@@ -40,13 +40,10 @@ setenv ADMIN_URL3       "http://www.informatics.jax.org/javawi2/servlet/WIFetch?
 #
 # Search tool settings
 #
-setenv ST_PROD_LOGDIR ${SEARCHTOOL_DATADIR}/logs_prod
 setenv ST_PUB_LOGDIR ${SEARCHTOOL_DATADIR}/logs_pub
 
-setenv ST_PROD_TARFILE ${SEARCHTOOL_DISTDIR}/indexes_prod.tar
 setenv ST_PUB_TARFILE ${SEARCHTOOL_DISTDIR}/indexes_pub.tar
 
-setenv ST_PROD_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_prod
 setenv ST_PUB1_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_pub1
 setenv ST_PUB2_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_pub2
 setenv ST_ROBOT_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_robot
@@ -54,5 +51,5 @@ setenv ST_ROBOT_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_robot
 #
 # IMSR settings (for counts)
 #
-setenv IMSR_COUNT_URL "http://lindon.informatics.jax.org:18080/imsr/fetch?page=imsrReport&report=mgiCounts"
+setenv IMSR_COUNT_URL "http://emnet.informatics.jax.org:48080/imsrwi/imsrwi/report/mgiCounts.txt"
 setenv IMSR_COUNT_TIMEOUT 600
