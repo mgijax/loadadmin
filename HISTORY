@@ -1,3 +1,19 @@
+TAG: loadadmin-5-2-1-12
+DATE: 04/30/2015
+STAFF: dbm
+CHANGES: retiring prod WI and stopping 5 loads
+1) Configuration.defaults: Removed prod searchtool settings
+2) jboss/*Searchtool_prod: Removed script
+3) prod/dailytasks.csh: Removed call to genFrontend.csh
+4) prod/saturdaytasks.csh: Removed call to genFrontend.csh, emageload,
+                           machipload, mgcload and mousefuncload
+5) prod/sundaytasks.csh: Removed call to genFrontend.csh and unigeneload
+6) prod/genFrontend.csh: Removed script
+7) prod/buildQSIndexes.csh: Removed references to prod QS generation
+8) prod/loadPostgresDB.csh: Removed prod database load
+9) prod/loadProdQS.csh: Removed script
+10) prod/runPostgresApps.csh: Removed references to prod QS indexes
+
 TAG: loadadmin-5-2-1-11
 DATE: 04/22/2015
 STAFF: lnh
