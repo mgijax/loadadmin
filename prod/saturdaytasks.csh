@@ -66,10 +66,6 @@ echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo 'EMAGE Load' | tee -a ${LOG}
-${EMAGELOAD}/bin/emageload.sh
-
-date | tee -a ${LOG}
 echo 'GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 
@@ -80,14 +76,6 @@ ${GENSATLOAD}/bin/gensatload.sh
 date | tee -a ${LOG}
 echo 'Array Express Load' | tee -a ${LOG}
 ${ARRAYEXPLOAD}/bin/arrayexpload.sh
-
-date | tee -a ${LOG}
-echo 'Microarray Chip Loads' | tee -a ${LOG}
-${MACHIPLOAD}/bin/machiploadall.sh
-
-date | tee -a ${LOG}
-echo 'FuncBase Load' | tee -a ${LOG}
-${MOUSEFUNCLOAD}/bin/mousefuncload.sh
 
 date | tee -a ${LOG}
 echo 'MouseCyc Load' | tee -a ${LOG}
@@ -131,10 +119,6 @@ ${MGI_DBUTILS}/bin/updateIMSRgermline.csh
 date | tee -a ${LOG}
 echo 'Process cDNA Load Incrementals' | tee -a ${LOG}
 ${GBCDNALOAD}/bin/GBcDNALoad.sh
-
-date | tee -a ${LOG}
-echo 'Process MGC Associations' | tee -a ${LOG}
-${MGCLOAD}/bin/MGCLoad.sh
 
 date | tee -a ${LOG}
 echo 'Sanger MP Load' | tee -a ${LOG}
@@ -343,10 +327,6 @@ ${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Access
 #date | tee -a ${LOG}
 #echo 'Create Post-Saturday Database Backup' | tee -a ${LOG}
 #${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" postsaturday
-
-date | tee -a ${LOG}
-echo 'Generate Frontend Info' | tee -a ${LOG}
-${LOADADMIN}/prod/genFrontend.csh
 
 #
 # After this script is run in production, the production EI needs to be
