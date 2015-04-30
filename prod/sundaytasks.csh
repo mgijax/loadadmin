@@ -80,10 +80,6 @@ echo 'Mouse EntrezGene Load' | tee -a ${LOG}
 ${EGLOAD}/bin/egload.sh
 
 date | tee -a ${LOG}
-echo 'UniGene Load' | tee -a ${LOG}
-${UNIGENELOAD}/unigeneLoad.sh
-
-date | tee -a ${LOG}
 echo 'UniProt Load' | tee -a ${LOG}
 ${UNIPROTLOAD}/bin/uniprotload.sh
 
@@ -205,10 +201,6 @@ ${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Access
 date | tee -a ${LOG}
 echo 'Create Post-Sunday Database Backup' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" postsunday
-
-date | tee -a ${LOG}
-echo 'Generate Frontend Info' | tee -a ${LOG}
-${LOADADMIN}/prod/genFrontend.csh
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
