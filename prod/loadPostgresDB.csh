@@ -5,8 +5,8 @@
 #
 #  Purpose:
 #
-#      This script is a wrapper for loading the prod/pub Postgres databases
-#      that are needed by the weekly data generation processes.
+#      This script is a wrapper for loading the pub Postgres database
+#      that is needed by the weekly data generation processes.
 #
 #  Usage:
 #
@@ -19,8 +19,6 @@
 #      - See master.config.csh (mgiconfig product)
 #
 #  Inputs:
-#
-#      - MGD schema dump - with private data
 #
 #      - MGD schema dump - without private data
 #
@@ -44,12 +42,10 @@
 #      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Wait for the flag to signal that the Postgres dumps are available.
-#      3) Load the MGD schema in the prod database from the MGD dump with
+#      2) Wait for the flag to signal that the Postgres dump is available.
+#      3) Load the MGD schema in the pub database from the MGD dump without
 #         private data.
-#      4) Load the MGD schema in the pub database from the MGD dump without
-#         private data.
-#      5) Set the flag to signal that the Postgres databases have been loaded.
+#      4) Set the flag to signal that the Postgres database has been loaded.
 #
 #  Notes:  None
 #
@@ -59,7 +55,6 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv MGD_BACKUP ${DB_BACKUP_DIR}/mgd.postgres.dump
 setenv MGD_NOPRIVATE_BACKUP ${DB_BACKUP_DIR}/mgd.noprivate.postgres.dump
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
@@ -100,18 +95,6 @@ if (${RETRY} == 0) then
     exit 1
 else if (${ABORT} == 1) then
     echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
-# Load prod database.
-#
-date | tee -a ${LOG}
-echo "Load prod database (${PG_PROD_DBSERVER}.${PG_PROD_DBNAME}.mgd)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_PROD_DBSERVER} ${PG_PROD_DBNAME} mgd ${MGD_BACKUP} >> ${LOG}
-if ( $status != 0 ) then
-    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
     exit 1
 endif
