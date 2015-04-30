@@ -6,8 +6,7 @@
 #  Purpose:
 #
 #      This script is a wrapper around the steps that need to be run
-#      against the Postgres databases for the weekly production/public
-#      update.
+#      against the Postgres database for the weekly public update.
 #
 #  Usage:
 #
@@ -41,9 +40,9 @@
 #      This script will perform the following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Wait for the flag to signal that the Postgres databases have
+#      2) Wait for the flag to signal that the Postgres database has
 #         been loaded.
-#      3) Call the script that builds the production/public QS indexes.
+#      3) Call the script that builds the public QS indexes.
 #      4) Call the script that reloads biomart.
 #      5) Call the script that generates the weekly public reports.
 #      6) Set the flag to signal that the public reports are ready.
@@ -99,10 +98,10 @@ else if (${ABORT} == 1) then
 endif
 
 #
-# Build the production/public QS indexes.
+# Build the public QS indexes.
 #
 date | tee -a ${LOG}
-echo "Build the production/public QS indexes" | tee -a ${LOG}
+echo "Build the public QS indexes" | tee -a ${LOG}
 ${LOADADMIN}/prod/buildQSIndexes.csh >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
