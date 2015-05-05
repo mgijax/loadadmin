@@ -117,10 +117,6 @@ echo 'Update IMSR Germline' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/updateIMSRgermline.csh
 
 date | tee -a ${LOG}
-echo 'Process cDNA Load Incrementals' | tee -a ${LOG}
-${GBCDNALOAD}/bin/GBcDNALoad.sh
-
-date | tee -a ${LOG}
 echo 'Sanger MP Load' | tee -a ${LOG}
 ${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
 
