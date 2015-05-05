@@ -140,8 +140,13 @@ echo 'NextProt Load' | tee -a ${LOG}
 ${NEXTPROTLOAD}/bin/nextprotload.sh
 
 date | tee -a ${LOG}
-echo 'Homology Load' | tee -a ${LOG}
-${HOMOLOGYLOAD}/bin/homologyload.sh
+echo 'Homology Loads' | tee -a ${LOG}
+${HOMOLOGYLOAD}/bin/homologyload.sh homologeneload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh hgncload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh hybridload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh zfinload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh geishaload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh xenbaseload.config
 
 # run this after orthologyload. Note mrkhomology.csh is run by orthologyload.csh
 date | tee -a ${LOG}
