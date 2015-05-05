@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-2-1
+DATE: 05/05/2015
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Add new homology loads for 5.22 release
+
 TAG: loadadmin-5-2-1-12
 DATE: 04/30/2015
 STAFF: dbm
