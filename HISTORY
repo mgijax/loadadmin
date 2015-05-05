@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-2-2
+DATE: 05/05/2015
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Removed gbcdnaload - retired
+
 TAG: loadadmin-5-2-2-1
 DATE: 05/05/2015
 STAFF: dbm
