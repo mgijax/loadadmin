@@ -138,45 +138,6 @@ echo 'Process GenBank Incrementals' | tee -a ${LOG}
 ${GBSEQLOAD}/bin/gbseqload.sh
 
 date | tee -a ${LOG}
-echo 'Set process control flag: GB Seqload Done' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_GBSEQLOAD} ${SCRIPT_NAME}
-
-#
-# Wait for the "GT Filter Done" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "GT Filter Done" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_GTFILTER}`
-    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-date | tee -a ${LOG}
 echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh ensembl
 
@@ -199,45 +160,6 @@ ${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
 date | tee -a ${LOG}
 echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
 ${MRKCOORDLOAD}/bin/mrkcoordload.sh
-
-#
-# Wait for the "GT Blat Done" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "GT Blat Done" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_GTBLAT}`
-    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_LOADS} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-date | tee -a ${LOG}
-echo 'Run Gene Trap Load' | tee -a ${LOG}
-${GENETRAPLOAD}/bin/genetrapload.sh
 
 date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
@@ -278,6 +200,10 @@ ${MRKCACHELOAD}/mrkprobe.csh
 date | tee -a ${LOG}
 echo 'Load Marker/MCV Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkmcv.csh
+
+date | tee -a ${LOG}
+echo 'Run ALO/Marker Load' | tee -a ${LOG}
+${ALOMRKLOAD}/bin/alomrkload.sh
 
 # removed this call for Build 38 release as we don't yet have
 # data to update cM for Build 38
