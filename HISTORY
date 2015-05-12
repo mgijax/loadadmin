@@ -1,3 +1,10 @@
+TAG: loadadmin-5-2-2-3
+DATE: 05/12/2015
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Remove genetrapload and process control around it;
+                           Add call to ALO/Marker load
+
 TAG: loadadmin-5-2-2-2
 DATE: 05/05/2015
 STAFF: dbm
