@@ -1,3 +1,9 @@
+TAG: loadadmin-5-2-2-4
+DATE: 05/13/2015
+STAFF: dbm
+CHANGES:
+1) prod/loadExportDB.csh: Removed reset for NS_PROD_LOAD - no longer used
+
 TAG: loadadmin-5-2-2-3
 DATE: 05/12/2015
 STAFF: dbm
