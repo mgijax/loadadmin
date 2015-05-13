@@ -105,15 +105,15 @@ if ( "${PUB_NUM}" != "${SERVER_NUM}" ) then
 endif
 
 #
-# Wait for the "Postgres Dump Ready" flag to be set. Stop waiting if the number
+# Wait for the "Fe Dump Ready" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
-echo 'Wait for the "Postgres Dump Ready" flag to be set' | tee -a ${LOG}
+echo 'Wait for the "Fe Dump Ready" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY}`
+    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_FE_DUMP_READY}`
     setenv ABORT `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
