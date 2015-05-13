@@ -1,3 +1,10 @@
+TAG: loadadmin-5-2-2-5
+DATE: 05/13/2015
+STAFF: lnh
+CHANGES:
+1) prod/genReleaseData.csh: Added FLAG_FE_DUMP_READY flag
+2) public/loadPublicDB.csh: Replaced FLAG_PG_DUMP_READY with FLAG_FE_DUMP_READY flag  
+ 
 TAG: loadadmin-5-2-2-4
 DATE: 05/13/2015
 STAFF: dbm
