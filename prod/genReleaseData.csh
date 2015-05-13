@@ -241,6 +241,10 @@ echo 'Set process control flag: Postgres Dump Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
+echo 'Set process control flag: Fe Dump Ready' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
 
 #
 # Build the inactive public Solr indexes.
