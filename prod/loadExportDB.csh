@@ -71,8 +71,6 @@ env | sort >> ${LOG}
 date | tee -a ${LOG}
 echo 'Reset process control flags in data prep namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_PREP} ${SCRIPT_NAME}
-echo 'Reset process control flags in production load namespace' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/resetFlags ${NS_PROD_LOAD} ${SCRIPT_NAME}
 echo 'Reset process control flags in public load namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
 echo 'Reset process control flags in robot load namespace' | tee -a ${LOG}
