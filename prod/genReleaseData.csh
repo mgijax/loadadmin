@@ -115,9 +115,9 @@ date | tee -a ${LOG}
 echo 'Clear process control flag: Postgres Dump Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DATA_PREP} ${FLAG_EXPORT_DONE} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/clearFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_ROBOT}/clearFlag ${NS_ROBOT_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PUB}/clearFlag ${NS_ADHOC_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_PUB}/clearFlag ${NS_PUB_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
+${PROC_CTRL_CMD_ROBOT}/clearFlag ${NS_ROBOT_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
 
 #
 # Export Sybase to Postgres.
@@ -209,6 +209,9 @@ if ( $status != 0 ) then
     exit 1
 endif
 
+date | tee -a ${LOG}
+echo 'Set process control flag: Postgres Dump Ready' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 #
 # Build the frontend schema.
 #
@@ -237,12 +240,7 @@ endif
 # Set the "Postgres Dump Ready" flag.
 #
 date | tee -a ${LOG}
-echo 'Set process control flag: Postgres Dump Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
 echo 'Set process control flag: Fe Dump Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
 
