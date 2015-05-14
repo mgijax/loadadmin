@@ -105,7 +105,7 @@ if ( "${BOT_NUM}" != "${SERVER_NUM}" ) then
 endif
 
 #
-# Wait for the "Postgres Dump Ready" flag to be set. Stop waiting if the number
+# Wait for the "FE Dump Ready" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
