@@ -1,3 +1,10 @@
+TAG: loadadmin-5-2-2-7
+DATE: 05/15/2015
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: Removed hardcoded path to date command
+2) prod/fridaytasks.csh: Removed hardcoded path to date command
+
 TAG: loadadmin-5-2-2-6
 DATE: 05/14/2015
 STAFF: lnh
