@@ -65,12 +65,7 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 set weekday=`date '+%u'`
-
-#
-# Use the GNU version of the date command to get tomorrow's date. This will
-# be used to update the last dump date in the MGD database.
-#
-set tomorrow=`/usr/local/bin/date -d tomorrow +%m/%d/%Y`
+set tomorrow=`date -d tomorrow +%m/%d/%Y`
 
 date | tee -a ${LOG}
 echo 'Reset process control flags in dev load namespace' | tee -a ${LOG}
