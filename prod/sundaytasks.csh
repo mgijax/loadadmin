@@ -68,10 +68,6 @@ echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo 'Generate Mapping Experiment Stats' | tee -a ${LOG}
-${MGD_DBUTILS}/bin/runstatistics
-
-date | tee -a ${LOG}
 echo 'EntrezGene Data Provider Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadFiles.csh
 
