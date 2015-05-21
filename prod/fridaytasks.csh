@@ -94,11 +94,6 @@ ${MGI_DBUTILS}/bin/updateStatisticsAll.csh ${MGD_DBSERVER} ${MGD_DBNAME} ${MGD_D
 #${MGI_DBUTILS}/bin/mgi_check_db.csh ${MGD_DBSERVER} ${MGD_DBNAME}
 
 date | tee -a ${LOG}
-echo 'Create Reference Set' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/runReferenceSet.csh ${MGD_DBSERVER} ${MGD_DBNAME}
-
-
-date | tee -a ${LOG}
 echo 'Update Last Dump Date' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/updateLastDumpDate.csh ${MGD_DBSERVER} ${MGD_DBNAME} ${tomorrow}
 
@@ -122,7 +117,6 @@ date | tee -a ${LOG}
 echo 'Nightly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
-#
 date | tee -a ${LOG}
 echo 'GO Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh GO.config
