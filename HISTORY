@@ -1,3 +1,11 @@
+TAG: loadadmin-5-2-2-8
+DATE: 05/21/2015
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: Removed call to risummaryload and runReferenceSet
+2) prod/fridaytasks.csh: Removed call to runReferenceSet
+3) prod/sundaytasks.csh: Removed call to runstatistics (map experiments)
+
 TAG: loadadmin-5-2-2-7
 DATE: 05/15/2015
 STAFF: dbm
