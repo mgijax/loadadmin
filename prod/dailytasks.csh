@@ -88,17 +88,6 @@ date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
-#
-# Comment this out for time savings when running sequence load(s).
-#
-#date | tee -a ${LOG}
-#echo 'Load RI Summary Tables' | tee -a ${LOG}
-#${RISUMMARYLOAD}/risummary.sh
-
-date | tee -a ${LOG}
-echo 'Create Reference Set' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/runReferenceSet.csh ${MGD_DBSERVER} ${MGD_DBNAME}
-
 #date | tee -a ${LOG}
 #echo 'Process GenBank Deletes' | tee -a ${LOG}
 #${SEQDELETER}/bin/seqdeleter.sh gbseqdeleter.config
