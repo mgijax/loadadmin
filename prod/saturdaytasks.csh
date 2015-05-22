@@ -189,9 +189,6 @@ date | tee -a ${LOG}
 echo 'Load Marker/Reference Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkref.csh
 date | tee -a ${LOG}
-echo 'Load Marker/Homology Cache Table' | tee -a ${LOG}
-${MRKCACHELOAD}/mrkhomology.csh
-date | tee -a ${LOG}
 echo 'Load Marker/Location Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklocation.csh
 date | tee -a ${LOG}
@@ -231,9 +228,6 @@ ${ALLCACHELOAD}/allelecrecache.csh
 date | tee -a ${LOG}
 echo 'Load Bib Citation Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/bibcitation.csh
-date | tee -a ${LOG}
-echo 'Load Image Cache Table' | tee -a ${LOG}
-${MGICACHELOAD}/imgcache.csh
 
 #
 # run after data loads (which create new accids) and before

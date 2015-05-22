@@ -106,7 +106,6 @@ endif
 # run after data loads (which create new accids) and before cache loads
 # (which do NOT create accids, but query the accession table) and before
 # the database backup used to load other databases
-
 date | tee -a ${LOG}
 echo 'Update statistics on ACC_Accession' | tee -a ${LOG}
 ${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Accession
@@ -131,9 +130,6 @@ ${MRKCACHELOAD}/mrklabel.csh
 date | tee -a ${LOG}
 echo 'Load Marker/Reference Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkref.csh
-date | tee -a ${LOG}
-echo 'Load Marker/Homology Cache Table' | tee -a ${LOG}
-${MRKCACHELOAD}/mrkhomology.csh
 date | tee -a ${LOG}
 echo 'Load Marker/Location Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklocation.csh
@@ -161,13 +157,6 @@ date | tee -a ${LOG}
 echo 'Load Allele/CRE Cache Table' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecrecache.csh
 
-date | tee -a ${LOG}
-echo 'Load Image Cache Table' | tee -a ${LOG}
-${MGICACHELOAD}/imgcache.csh
-
-#
-# Comment this out for time savings when running sequence load(s).
-#
 date | tee -a ${LOG}
 echo 'Re-set AD Topological Sort' | tee -a ${LOG}
 ${TOPOSORTLOAD}/toposort.csh
