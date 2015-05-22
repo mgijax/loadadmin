@@ -50,8 +50,6 @@ setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
-setenv DOTS_NIA_DFCI_LOG ${DATALOADSOUTPUT}/mgi/mgddbutilities/logs/dots_nia_dfci.stdouterr.log
-
 echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
@@ -144,7 +142,6 @@ ${HOMOLOGYLOAD}/bin/homologyload.sh zfinload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh geishaload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh xenbaseload.config
 
-# run this after orthologyload. Note mrkhomology.csh is run by orthologyload.csh
 date | tee -a ${LOG}
 echo 'Load Marker/Label Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklabel.csh
@@ -181,8 +178,6 @@ date | tee -a ${LOG}
 echo 'GO/CFP Load' | tee -a ${LOG}
 ${GOCFPLOAD}/bin/gocfp.sh
 
-# this must run before the generateGIAAssoc.csh script
-# which depends on GIA_???.py reports
 date | tee -a ${LOG}
 echo 'Weekly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcweekly_reports.csh
