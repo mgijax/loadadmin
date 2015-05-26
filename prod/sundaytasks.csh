@@ -122,10 +122,6 @@ echo 'Load Sequence/Probe Cache Table' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqprobe.csh
 
 date | tee -a ${LOG}
-echo 'Load Sequence/Description Cache Table' | tee -a ${LOG}
-${SEQCACHELOAD}/seqdescription.csh
-
-date | tee -a ${LOG}
 echo 'Load Marker/Probe Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkprobe.csh
 
