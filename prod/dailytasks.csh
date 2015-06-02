@@ -100,6 +100,9 @@ if ( $weekday == 3 ) then
     date | tee -a ${LOG}
     echo 'Process RefSeq Deletes' | tee -a ${LOG}
     ${SEQDELETER}/bin/seqdeleter.sh refseqdeleter.config
+    date | tee -a ${LOG}
+    echo 'Process GenBank Deletes' | tee -a ${LOG}
+    ${SEQDELETER}/bin/seqdeleter.sh gbseqdeleter.config
 endif
 
 #
