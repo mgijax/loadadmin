@@ -53,3 +53,37 @@ setenv ST_ROBOT_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_robot
 #
 setenv IMSR_COUNT_URL "http://emnet.informatics.jax.org:48080/imsrwi/imsrwi/report/mgiCounts.txt"
 setenv IMSR_COUNT_TIMEOUT 600
+
+########################################
+# Exporter sybase settings
+# for weekly data generation and builds
+########################################
+#
+#Weekly data generation setting
+#
+setenv MGD_BACKUP /extra1/sybase/mgd.postdailybackup
+setenv RADAR_BACKUP /extra1/sybase/radar.backup
+setenv MGDEXP_DBSERVER PROD1_MGI
+setenv MGDEXP_DBNAME mgd_be
+setenv RDREXP_DBSERVER PROD1_MGI
+setenv RDREXP_DBNAME radar_be
+
+#
+#Release build setting
+#
+setenv REL_MGD_BACKUP /backups/release/mgd.postmigration.backup
+setenv REL_RADAR_BACKUP /backups/release/radar.postmigration.backup
+setenv REL_MGDEXP_DBSERVER PROD1_MGI
+setenv REL_MGDEXP_DBNAME mgd_be
+setenv REL_RDREXP_DBSERVER PROD1_MGI
+setenv REL_RDREXP_DBNAME radar_be
+
+#
+# Alpha/Beta build setting
+#
+setenv BUILD_MGD_BACKUP /backups/build/mgd.postmigration.backup
+setenv BUILD_RADAR_BACKUP /backups/build/radar.postmigration.backup
+setenv BUILD_MGDEXP_DBSERVER DEV2_MGI
+setenv BUILD_MGDEXP_DBNAME mgd_build
+setenv BUILD_RDREXP_DBSERVER DEV2_MGI
+setenv BUILD_RDREXP_DBNAME radar_build
