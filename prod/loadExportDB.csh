@@ -52,56 +52,20 @@
 #
 #  Notes:  None
 #
-#  Usage: 
-#       1) ./loadExportDB.csh   (the default,without arguments)
-#       2) ./loadExportDB.csh BUILD  (to load DEV2_MGI.*_build databases)
-#       3) ./loadExportDB.csh REL  (to load PROD1_MGI.*_be databases)
-#
 ###########################################################################
 
 cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-#
-# This section sets sybase database server and database name
-# to use for the exporter. It also sets the backups to use.
-# By default, it uses the settings for weekly data generation
-#
-# This allows to use the same script for different tasks 
-# (weekly update, production build, or alpha build) 
-# 
-if ( $# > 0 ) then
-    echo "Usage: $0 $1"
-    if("$1" == "BUILD") then
-        setenv MGD_BACKUP ${BUILD_MGD_BACKUP}
-        setenv RADAR_BACKUP ${BUILD_RADAR_BACKUP} 
-        setenv MGDEXP_DBSERVER ${BUILD_MGDEXP_DBSERVER}
-        setenv MGDEXP_DBNAME ${BUILD_MGDEXP_DBNAME}
-        setenv RDREXP_DBSERVER ${BUILD_RDREXP_DBSERVER}
-        setenv RDREXP_DBNAME ${BUILD_RDREXP_DBNAME}
-     else
-        setenv MGD_BACKUP ${REL_MGD_BACKUP}
-        setenv RADAR_BACKUP ${REL_RADAR_BACKUP}
-        setenv MGDEXP_DBSERVER ${REL_MGDEXP_DBSERVER}
-        setenv MGDEXP_DBNAME ${REL_MGDEXP_DBNAME}
-        setenv RDREXP_DBSERVER ${REL_RDREXP_DBSERVER}
-        setenv RDREXP_DBNAME ${REL_RDREXP_DBNAME}
-     endif
-endif
+setenv MGD_BACKUP /extra1/sybase/mgd.postdailybackup
+setenv RADAR_BACKUP /extra1/sybase/radar.backup
+
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
 
 echo "$0" >> ${LOG}
-date | tee -a ${LOG}
-echo "MGD backups used: ${MGD_BACKUP}" | tee -a ${LOG}
-echo "Radar backups used: ${RADAR_BACKUP}" | tee -a ${LOG}
-echo "MGD Sybase server used: ${MGDEXP_DBSERVER}" | tee -a ${LOG}
-echo "MGD Database used: ${MGDEXP_DBNAME}" | tee -a ${LOG}
-echo "Radar Sybase server used: ${RDREXP_DBSERVER}" | tee -a ${LOG}
-echo "Radar Database used: ${RDREXP_DBNAME}" | tee -a ${LOG}
-echo ""
 env | sort >> ${LOG}
 
 date | tee -a ${LOG}
