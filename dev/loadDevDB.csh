@@ -20,17 +20,15 @@
 #
 #  Inputs:
 #
-#      - MGD database backup files (from /lindon/sybase)
-#
-#      - RADAR database backup files (from /lindon/sybase)
+#      - Database backups
+#          - mgd.postdaily.dump
+#          - radar.dump
 #
 #      - Process control flags
 #
 #  Outputs:
 #
 #      - Log file for the script (${LOG})
-#
-#      - Process control flags
 #
 #  Exit Codes:
 #
@@ -56,8 +54,8 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv MGD_BACKUP /lindon/sybase/mgd.postdailybackup
-setenv RADAR_BACKUP /lindon/sybase/radar.backup
+setenv MGD_BACKUP /bhmgidb01/dump/mgd.postdaily.dump
+setenv RADAR_BACKUP /bhmgidb01/dump/radar.dump
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
@@ -105,8 +103,8 @@ endif
 # Load MGD and RADAR databases from the production backups.
 #
 date | tee -a ${LOG}
-echo "Load MGD database (DEV_MGI..mgd)" | tee -a ${LOG}
-${MGI_DBUTILS}/bin/load_db.csh DEV_MGI mgd ${MGD_BACKUP}
+echo "Load MGD database" | tee -a ${LOG}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${MGD_BACKUP}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -114,8 +112,8 @@ if ( $status != 0 ) then
 endif
 
 date | tee -a ${LOG}
-echo "Load RADAR database (DEV_MGI..radar)" | tee -a ${LOG}
-${MGI_DBUTILS}/bin/load_db.csh DEV_MGI radar ${RADAR_BACKUP}
+echo "Load RADAR database" | tee -a ${LOG}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${RADAR_BACKUP}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
