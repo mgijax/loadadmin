@@ -17,20 +17,16 @@
 #
 #      - See master.config.csh (mgiconfig product)
 #
-#  Inputs:
-#
-#      - Process control flags
+#  Inputs:  None
 #
 #  Outputs:
 #
-#      - Database backup files (in /extra1/sybase)
-#          - mgd.predailybackup1, mgd.predailybackup2
-#          - mgd.backup1, mgd.backup2
-#          - radar.backup1 radar.backup2
-#          - master.backup1, master.backup2
-#          - wts.backup1, wts.backup2
-#          - sybsystemprocs.backup1, sybsystemprocs.backup2
-#          - mgd.postdailybackup1, mgd.postdailybackup2
+#      - Database backups
+#          - mgd.predaily.dump
+#          - mgd.dump
+#          - radar.dump
+#          - wts.dump
+#          - mgd.postdaily.dump
 #
 #      - Log file for the script (${LOG})
 #
@@ -52,8 +48,6 @@
 cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
-
-setenv DATABASES "master sybsystemprocs ${MGD_DBNAME} ${WTS_DBNAME} ${RADAR_DBNAME}"
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
@@ -79,27 +73,21 @@ ${PUBRPTS}/mgimarkerfeed/mgimarkerfeed_reports.csh
 
 date | tee -a ${LOG}
 echo 'Create Pre-Daily Database Backup' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" predaily
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.predaily.dump
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo 'Update Statistics' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/updateStatisticsAll.csh ${MGD_DBSERVER} ${MGD_DBNAME} ${MGD_DBSCHEMADIR}
-
-#date | tee -a ${LOG}
-#echo 'Start DBCC Checker' | tee -a ${LOG}
-#${MGI_DBUTILS}/bin/mgi_check_db.csh ${MGD_DBSERVER} ${MGD_DBNAME}
-
-date | tee -a ${LOG}
 echo 'Update Last Dump Date' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/updateLastDumpDate.csh ${MGD_DBSERVER} ${MGD_DBNAME} ${tomorrow}
+${PG_DBUTILS}/bin/updateLastDumpDate.csh ${PG_DBSERVER} ${PG_DBNAME} ${tomorrow}
 
 date | tee -a ${LOG}
-echo 'Create Database Backup' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${DATABASES}"
+echo 'Create Database Backups' | tee -a ${LOG}
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} wts ${DB_BACKUP_DIR}/wts.dump
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
@@ -127,7 +115,7 @@ ${JFILESCANNER}/moveJfiles.sh
 
 date | tee -a ${LOG}
 echo 'Create Post-Daily Database Backup' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME}" postdaily
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postdaily.dump
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PostBackup Ready' | tee -a ${LOG}

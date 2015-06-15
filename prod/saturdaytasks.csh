@@ -21,11 +21,13 @@
 #
 #  Outputs:
 #
-#      - Database backup files (in /extra1/sybase)
-#          - mgd.presaturdaybackup1, mgd.presaturdaybackup2
-#          - radar.presaturdaybackup1, radar.presaturdaybackup2
+#      - Database backups
+#          - mgd.presaturday.dump
+#          - radar.presaturday.dump
 #
 #      - Log file for the script (${LOG})
+#
+#      - Process control flags
 #
 #  Exit Codes:
 #
@@ -58,8 +60,9 @@ echo 'Reset process control flags in data loads namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo 'Create Pre-Saturday Database Backup' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" presaturday
+echo 'Create Pre-Saturday Database Backups' | tee -a ${LOG}
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.presaturday.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presaturday.dump
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
@@ -114,7 +117,7 @@ ${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
 date | tee -a ${LOG}
 echo 'Update IMSR Germline' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/updateIMSRgermline.csh
+${PG_DBUTILS}/bin/updateIMSRgermline.csh
 
 date | tee -a ${LOG}
 echo 'Sanger MP Load' | tee -a ${LOG}
@@ -172,9 +175,11 @@ ${SEQCACHELOAD}/seqdummy.csh
 date | tee -a ${LOG}
 echo 'Load Sequence/Coordinate Cache Table' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqcoord.csh
+
 date | tee -a ${LOG}
 echo 'Load Sequence/Marker Cache Table' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqmarker.csh
+
 date | tee -a ${LOG}
 echo 'Load Sequence/Probe Cache Table' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqprobe.csh
@@ -182,15 +187,19 @@ ${SEQCACHELOAD}/seqprobe.csh
 date | tee -a ${LOG}
 echo 'Load Marker/Label Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklabel.csh
+
 date | tee -a ${LOG}
 echo 'Load Marker/Reference Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkref.csh
+
 date | tee -a ${LOG}
 echo 'Load Marker/Location Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklocation.csh
+
 date | tee -a ${LOG}
 echo 'Load Marker/Probe Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkprobe.csh
+
 date | tee -a ${LOG}
 echo 'Load Marker/MCV Cache Table' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkmcv.csh
@@ -208,16 +217,20 @@ ${ALOMRKLOAD}/bin/alomrkload.sh
 date | tee -a ${LOG}
 echo 'Load Allele/Label Cache Table' | tee -a ${LOG}
 ${ALLCACHELOAD}/alllabel.csh
+
 date | tee -a ${LOG}
 echo 'Load Allele/Combination Cache Table' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecombination.csh
+
+# the OMIM cache depends on the allele combination note 3
 date | tee -a ${LOG}
 echo 'Load Marker/OMIM Cache Table' | tee -a ${LOG}
-# the OMIM cache depends on the allele combination note 3
 ${MRKCACHELOAD}/mrkomim.csh
+
 date | tee -a ${LOG}
 echo 'Load Allele/Strain Cache Table' | tee -a ${LOG}
 ${ALLCACHELOAD}/allstrain.csh
+
 date | tee -a ${LOG}
 echo 'Load Allele/CRE Cache Table' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecrecache.csh
@@ -225,21 +238,6 @@ ${ALLCACHELOAD}/allelecrecache.csh
 date | tee -a ${LOG}
 echo 'Load Bib Citation Cache Table' | tee -a ${LOG}
 ${MGICACHELOAD}/bibcitation.csh
-
-#
-# run after data loads (which create new accids) and before
-# the database backup
-#
-date | tee -a ${LOG}
-echo 'Update statistics on ACC_Accession' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Accession
-
-#
-# Uncomment this when an extra backup is needed.
-#
-#date | tee -a ${LOG}
-#echo 'Create Post-Saturday Database Backup' | tee -a ${LOG}
-#${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" postsaturday
 
 #
 # After this script is run in production, the production EI needs to be

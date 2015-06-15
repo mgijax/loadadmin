@@ -21,13 +21,15 @@
 #
 #  Outputs:
 #
-#      - Database backup files (in /extra1/sybase)
-#          - mgd.presundaybackup1, mgd.presundaybackup2
-#          - mgd.postsundaybackup1, mgd.postsundaybackup2
-#          - radar.presundaybackup1, radar.presundaybackup2
-#          - radar.postsundaybackup1, radar.postsundaybackup2
+#      - Database backups
+#          - mgd.presunday.dump
+#          - radar.presunday.dump
+#          - mgd.postsunday.dump
+#          - radar.postsunday.dump
 #
 #      - Log file for the script (${LOG})
+#
+#      - Process control flags
 #
 #  Exit Codes:
 #
@@ -58,8 +60,9 @@ echo 'Reset process control flags in data loads namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo 'Create Pre-Sunday Database Backup' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" presunday
+echo 'Create Pre-Sunday Database Backups' | tee -a ${LOG}
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.presunday.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presunday.dump
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
@@ -107,7 +110,7 @@ ${MAPVIEWLOAD}/bin/mapviewload.sh false
 
 date | tee -a ${LOG}
 echo 'Delete Dummy Sequences' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/runDeleteObsoleteDummy.csh ${MGD_DBSERVER} ${MGD_DBNAME}
+${PG_DBUTILS}/bin/runDeleteObsoleteDummy.csh ${PG_DBSERVER} ${PG_DBNAME}
 
 date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
@@ -182,17 +185,10 @@ date | tee -a ${LOG}
 echo 'Sunday QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcsunday_reports.csh
 
-#
-# run after data loads (which create new accids) and before 
-# the database backup 
-#
 date | tee -a ${LOG}
-echo 'Update statistics on ACC_Accession' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/updateStatistics.csh ${MGD_DBSERVER} ${MGD_DBNAME} ACC_Accession
-
-date | tee -a ${LOG}
-echo 'Create Post-Sunday Database Backup' | tee -a ${LOG}
-${MGI_DBUTILS}/bin/mgi_backup_to_disk.csh ${MGD_DBSERVER} "${MGD_DBNAME} ${RADAR_DBNAME}" postsunday
+echo 'Create Post-Sunday Database Backups' | tee -a ${LOG}
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postsunday.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postsunday.dump
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
