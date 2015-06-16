@@ -78,10 +78,6 @@ echo 'Array Express Load' | tee -a ${LOG}
 ${ARRAYEXPLOAD}/bin/arrayexpload.sh
 
 date | tee -a ${LOG}
-echo 'MouseCyc Load' | tee -a ${LOG}
-${MOUSECYCLOAD}/mousecycload.sh
-
-date | tee -a ${LOG}
 echo 'Protein Ontology Load' | tee -a ${LOG}
 ${PROLOAD}/bin/proload.sh
 
