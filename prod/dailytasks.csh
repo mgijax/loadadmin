@@ -196,10 +196,6 @@ date | tee -a ${LOG}
 echo 'Daily Public Reports' | tee -a ${LOG}
 ${PUBRPTS}/run_daily.csh
 
-date | tee -a ${LOG}
-echo 'Move JFiles' | tee -a ${LOG}
-${JFILESCANNER}/moveJfiles.sh
-
 #
 # Only load the GO Text on Monday.
 #

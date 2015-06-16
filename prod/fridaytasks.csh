@@ -110,10 +110,6 @@ echo 'GO Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh GO.config
 
 date | tee -a ${LOG}
-echo 'Move JFiles' | tee -a ${LOG}
-${JFILESCANNER}/moveJfiles.sh
-
-date | tee -a ${LOG}
 echo 'Create Post-Daily Database Backup' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postdaily.dump
 
