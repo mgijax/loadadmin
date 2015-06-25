@@ -188,14 +188,6 @@ date | tee -a ${LOG}
 echo 'GO Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh GO.config
 
-date | tee -a ${LOG}
-echo 'Nightly QC Reports' | tee -a ${LOG}
-${QCRPTS}/qcnightly_reports.csh
-
-date | tee -a ${LOG}
-echo 'Daily Public Reports' | tee -a ${LOG}
-${PUBRPTS}/run_daily.csh
-
 #
 # Only load the GO Text on Monday.
 #
@@ -204,6 +196,18 @@ if ( $weekday == 1 ) then
     echo 'Load GO Text' | tee -a ${LOG}
     ${NOTELOAD}/mginoteload.csh ${NOTELOAD}/gotext.config
 endif
+
+date | tee -a ${LOG}
+echo 'Load GXD Expression Cache Table' | tee -a ${LOG}
+${MGICACHELOAD}/gxdexpression.csh
+
+date | tee -a ${LOG}
+echo 'Nightly QC Reports' | tee -a ${LOG}
+${QCRPTS}/qcnightly_reports.csh
+
+date | tee -a ${LOG}
+echo 'Daily Public Reports' | tee -a ${LOG}
+${PUBRPTS}/run_daily.csh
 
 date | tee -a ${LOG}
 echo 'Create Post-Daily Database Backup' | tee -a ${LOG}

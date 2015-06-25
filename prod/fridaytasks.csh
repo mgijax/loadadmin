@@ -102,12 +102,16 @@ echo 'Run EMAP Load' | tee -a ${LOG}
 ${EMAPLOAD}/bin/emapload.sh
 
 date | tee -a ${LOG}
-echo 'Nightly QC Reports' | tee -a ${LOG}
-${QCRPTS}/qcnightly_reports.csh
-
-date | tee -a ${LOG}
 echo 'GO Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh GO.config
+
+date | tee -a ${LOG}
+echo 'Load GXD Expression Cache Table' | tee -a ${LOG}
+${MGICACHELOAD}/gxdexpression.csh
+
+date | tee -a ${LOG}
+echo 'Nightly QC Reports' | tee -a ${LOG}
+${QCRPTS}/qcnightly_reports.csh
 
 date | tee -a ${LOG}
 echo 'Create Post-Daily Database Backup' | tee -a ${LOG}
