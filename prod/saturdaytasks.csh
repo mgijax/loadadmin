@@ -69,46 +69,46 @@ echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo 'GEO Load' | tee -a ${LOG}
+echo 'Run GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 
 date | tee -a ${LOG}
-echo 'GENSAT Load' | tee -a ${LOG}
+echo 'Run GENSAT Load' | tee -a ${LOG}
 ${GENSATLOAD}/bin/gensatload.sh
 
 date | tee -a ${LOG}
-echo 'Array Express Load' | tee -a ${LOG}
+echo 'Run Array Express Load' | tee -a ${LOG}
 ${ARRAYEXPLOAD}/bin/arrayexpload.sh
 
 date | tee -a ${LOG}
-echo 'Protein Ontology Load' | tee -a ${LOG}
+echo 'Run Protein Ontology Load' | tee -a ${LOG}
 ${PROLOAD}/bin/proload.sh
 
 date | tee -a ${LOG}
-echo 'MCV Vocabulary Load' | tee -a ${LOG}
+echo 'Run MCV Vocabulary Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/run_mcv_vocload.sh
 
 date | tee -a ${LOG}
-echo 'MCV Annotation Load' | tee -a ${LOG}
+echo 'Run MCV Annotation Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/mcvload.sh
 
 date | tee -a ${LOG}
-echo 'RV Load' | tee -a ${LOG}
+echo 'Run RV Load' | tee -a ${LOG}
 ${RVLOAD}/bin/rvload.sh
 
 date | tee -a ${LOG}
-echo 'FeaR Load' | tee -a ${LOG}
+echo 'Run FeaR Load' | tee -a ${LOG}
 ${FEARLOAD}/bin/fearload.sh
 
 date | tee -a ${LOG}
-echo 'Targeted Allele Loads' | tee -a ${LOG}
+echo 'Run Targeted Allele Loads' | tee -a ${LOG}
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_mbp.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_hmgu.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_wtsi.config
 
 date | tee -a ${LOG}
-echo 'Allele Load' | tee -a ${LOG}
+echo 'Run Allele Load' | tee -a ${LOG}
 ${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
 date | tee -a ${LOG}
@@ -116,24 +116,27 @@ echo 'Update IMSR Germline' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateIMSRgermline.csh
 
 date | tee -a ${LOG}
-echo 'Sanger MP Load' | tee -a ${LOG}
+echo 'Run Sanger MP Load' | tee -a ${LOG}
 ${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
-echo 'IMPC MP Load' | tee -a ${LOG}
+echo 'Run IMPC MP Load' | tee -a ${LOG}
 ${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
-echo 'Process SwissPROT/TrEMBL' | tee -a ${LOG}
+echo 'Run SwissPROT Sequence Load' | tee -a ${LOG}
 ${SPSEQLOAD}/bin/spseqload.sh spseqload.config
+
+date | tee -a ${LOG}
+echo 'Run TrEMBL Sequence Load' | tee -a ${LOG}
 ${SPSEQLOAD}/bin/spseqload.sh trseqload.config
 
 date | tee -a ${LOG}
-echo 'Process RefSeq Incrementals' | tee -a ${LOG}
+echo 'Run RefSeq Sequence Load' | tee -a ${LOG}
 ${REFSEQLOAD}/bin/refseqload.sh
 
 date | tee -a ${LOG}
-echo 'Process GenBank Incrementals' | tee -a ${LOG}
+echo 'Run GenBank Sequence Load' | tee -a ${LOG}
 ${GBSEQLOAD}/bin/gbseqload.sh
 
 date | tee -a ${LOG}
@@ -169,35 +172,35 @@ echo 'Create Dummy Sequences' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdummy.csh
 
 date | tee -a ${LOG}
-echo 'Load Sequence/Coordinate Cache Table' | tee -a ${LOG}
+echo 'Run Sequence/Coordinate Cache Load' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqcoord.csh
 
 date | tee -a ${LOG}
-echo 'Load Sequence/Marker Cache Table' | tee -a ${LOG}
+echo 'Run Sequence/Marker Cache Load' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqmarker.csh
 
 date | tee -a ${LOG}
-echo 'Load Sequence/Probe Cache Table' | tee -a ${LOG}
+echo 'Run Sequence/Probe Cache Load' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqprobe.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Label Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Label Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklabel.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Reference Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Reference Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkref.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Location Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Location Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklocation.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Probe Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Probe Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkprobe.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/MCV Cache Table' | tee -a ${LOG}
+echo 'Run Marker/MCV Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkmcv.csh
 
 date | tee -a ${LOG}
@@ -207,32 +210,32 @@ ${ALOMRKLOAD}/bin/alomrkload.sh
 # removed this call for Build 38 release as we don't yet have
 # data to update cM for Build 38
 #date | tee -a ${LOG}
-#echo 'Load Genetic Map Tables' | tee -a ${LOG}
+#echo 'Run Genetic Map Load' | tee -a ${LOG}
 #${GENMAPLOAD}/bin/genmapload.sh
 
 date | tee -a ${LOG}
-echo 'Load Allele/Label Cache Table' | tee -a ${LOG}
+echo 'Run Allele/Label Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/alllabel.csh
 
 date | tee -a ${LOG}
-echo 'Load Allele/Combination Cache Table' | tee -a ${LOG}
+echo 'Run Allele/Combination Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecombination.csh
 
 # the OMIM cache depends on the allele combination note 3
 date | tee -a ${LOG}
-echo 'Load Marker/OMIM Cache Table' | tee -a ${LOG}
+echo 'Run Marker/OMIM Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkomim.csh
 
 date | tee -a ${LOG}
-echo 'Load Allele/Strain Cache Table' | tee -a ${LOG}
+echo 'Run Allele/Strain Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allstrain.csh
 
 date | tee -a ${LOG}
-echo 'Load Allele/CRE Cache Table' | tee -a ${LOG}
+echo 'Run Allele/CRE Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecrecache.csh
 
 date | tee -a ${LOG}
-echo 'Load Bib Citation Cache Table' | tee -a ${LOG}
+echo 'Run Bib Citation Cache Load' | tee -a ${LOG}
 ${MGICACHELOAD}/bibcitation.csh
 
 #

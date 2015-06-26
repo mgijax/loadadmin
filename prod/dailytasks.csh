@@ -69,7 +69,7 @@ ${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
 # Generate the MGI marker feed as early as possible for JAX folks.
 #
 date | tee -a ${LOG}
-echo 'MGI Marker Feed' | tee -a ${LOG}
+echo 'Generate MGI Marker Feed Reports' | tee -a ${LOG}
 ${PUBRPTS}/mgimarkerfeed/mgimarkerfeed_reports.csh
 
 date | tee -a ${LOG}
@@ -86,10 +86,10 @@ ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NA
 #
 if ( $weekday == 3 ) then
     date | tee -a ${LOG}
-    echo 'Process RefSeq Deletes' | tee -a ${LOG}
+    echo 'Run RefSeq Sequence Deleter' | tee -a ${LOG}
     ${SEQDELETER}/bin/seqdeleter.sh refseqdeleter.config
     date | tee -a ${LOG}
-    echo 'Process GenBank Deletes' | tee -a ${LOG}
+    echo 'Run GenBank Sequence Deleter' | tee -a ${LOG}
     ${SEQDELETER}/bin/seqdeleter.sh gbseqdeleter.config
 endif
 
@@ -98,52 +98,52 @@ echo 'Create Dummy Sequences' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdummy.csh
 
 date | tee -a ${LOG}
-echo 'Load Sequence/Marker Cache Table' | tee -a ${LOG}
+echo 'Run Sequence/Marker Cache Load' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqmarker.csh
 
 date | tee -a ${LOG}
-echo 'Load Sequence/Probe Cache Table' | tee -a ${LOG}
+echo 'Run Sequence/Probe Cache Load' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqprobe.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Label Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Label Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklabel.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Reference Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Reference Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkref.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Location Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Location Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklocation.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/Probe Cache Table' | tee -a ${LOG}
+echo 'Run Marker/Probe Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkprobe.csh
 
 date | tee -a ${LOG}
-echo 'Load Marker/MCV Cache Table' | tee -a ${LOG}
+echo 'Run Marker/MCV Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkmcv.csh
 
 date | tee -a ${LOG}
-echo 'Load Allele/Label Cache Table' | tee -a ${LOG}
+echo 'Run Allele/Label Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/alllabel.csh
 
 date | tee -a ${LOG}
-echo 'Load Allele/Combination Cache Table' | tee -a ${LOG}
+echo 'Run Allele/Combination Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecombination.csh
 
 # the OMIM cache depends on the allele combination note 3
 date | tee -a ${LOG}
-echo 'Load Marker/OMIM Cache Table' | tee -a ${LOG}
+echo 'Run Marker/OMIM Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkomim.csh
 
 date | tee -a ${LOG}
-echo 'Load Allele/Strain Cache Table' | tee -a ${LOG}
+echo 'Run Allele/Strain Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allstrain.csh
 
 date | tee -a ${LOG}
-echo 'Load Allele/CRE Cache Table' | tee -a ${LOG}
+echo 'Run Allele/CRE Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecrecache.csh
 
 date | tee -a ${LOG}
@@ -169,11 +169,11 @@ echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo 'Mammalian Phenotype Load' | tee -a ${LOG}
+echo 'Run Mammalian Phenotype Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MP.config
 
 date | tee -a ${LOG}
-echo 'MCV Vocabulary Load' | tee -a ${LOG}
+echo 'Run MCV Vocabulary Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/run_mcv_vocload.sh
 
 date | tee -a ${LOG}
@@ -181,11 +181,11 @@ echo 'Run EMAP Load' | tee -a ${LOG}
 ${EMAPLOAD}/bin/emapload.sh
 
 date | tee -a ${LOG}
-echo 'RV Load' | tee -a ${LOG}
+echo 'Run RV Load' | tee -a ${LOG}
 ${RVLOAD}/bin/rvload.sh
 
 date | tee -a ${LOG}
-echo 'GO Load' | tee -a ${LOG}
+echo 'Run GO Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh GO.config
 
 #
@@ -193,20 +193,20 @@ ${VOCLOAD}/runOBOIncLoad.sh GO.config
 #
 if ( $weekday == 1 ) then
     date | tee -a ${LOG}
-    echo 'Load GO Text' | tee -a ${LOG}
+    echo 'Run GO Text Load' | tee -a ${LOG}
     ${NOTELOAD}/mginoteload.csh ${NOTELOAD}/gotext.config
 endif
 
 date | tee -a ${LOG}
-echo 'Load GXD Expression Cache Table' | tee -a ${LOG}
+echo 'Run GXD Expression Cache Load' | tee -a ${LOG}
 ${MGICACHELOAD}/gxdexpression.csh
 
 date | tee -a ${LOG}
-echo 'Nightly QC Reports' | tee -a ${LOG}
+echo 'Generate Nightly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
 date | tee -a ${LOG}
-echo 'Daily Public Reports' | tee -a ${LOG}
+echo 'Generate Daily Public Reports' | tee -a ${LOG}
 ${PUBRPTS}/run_daily.csh
 
 date | tee -a ${LOG}
