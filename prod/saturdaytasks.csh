@@ -243,7 +243,7 @@ ${MGICACHELOAD}/bibcitation.csh
 # enabled again (on bhmgiei01). Then the notification email is sent out
 # to everyone in MGI.
 #
-if ( "`uname -n`" == "lindon" ) then
+if ( "`uname -n`" == "bhmgiapp01" ) then
     date | tee -a ${LOG}
     echo 'Enable the EI' | tee -a ${LOG}
     ssh -q mgiadmin@bhmgiei01 ${LOADADMIN}/prod/eiEnable.csh
