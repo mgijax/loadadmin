@@ -163,7 +163,7 @@ gen_webshare
 #
 date | tee -a ${LOG}
 echo 'Restart the robot QS JBoss instance' | tee -a ${LOG}
-${LOADADMIN}/jboss/restartSearchtool_robot
+${LOADADMIN}/jboss/restartSearchtool_robot >& /dev/null
 sleep 60
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
