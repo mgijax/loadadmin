@@ -125,9 +125,9 @@ gen_webshare
 date | tee -a ${LOG}
 echo 'Restart the public QS JBoss instance' | tee -a ${LOG}
 if ( "${SETTING}" == "pub1" ) then
-    ${LOADADMIN}/jboss/restartSearchtool_pub1
+    ${LOADADMIN}/jboss/restartSearchtool_pub1 >& /dev/null
 else
-    ${LOADADMIN}/jboss/restartSearchtool_pub2
+    ${LOADADMIN}/jboss/restartSearchtool_pub2 >& /dev/null
 endif
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
