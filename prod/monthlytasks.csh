@@ -48,7 +48,7 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 date | tee -a ${LOG}
-echo 'QC Reports' | tee -a ${LOG}
+echo 'Generate Monthly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcmonthly_reports.csh
 set returnStatus=$status
 if ( $returnStatus ) then

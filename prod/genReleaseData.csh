@@ -41,20 +41,25 @@
 #
 #      1) Source the configuration file to establish the environment.
 #      2) Determine which public and robot instances are inactive.
-#      3) Export the radar and mgd databases from Sybase to Postgres.
-#      4) Set the flag to signal that the export is done.
-#      5) Wait for the flag to signal that the snp database is ready.
-#      6) Create a dump of the SNP schema.
-#      7) Delete private data from the MGD schema.
-#      8) Create a dump of the MGD schema (with no private data).
-#      9) Build the frontend schema.
-#      10) Create a dump of the frontend schema.
+#      3) Reset process control namespaces.
+#      4) Load databases used for public data generation.
+#      5) Set the flag to signal that the public data generation databases
+#         have been loaded.
+#      6) Copy the production RADAR backup to the directory where the other
+#         backups will get picked up.
+#      7) Wait for the flag to signal that the snp database is ready.
+#      8) Dump the SNP schema.
+#      9) Delete private data from the MGD schema.
+#      10) Dump the MGD schema (with no private data).
 #      11) Set the flag to signal that the Postgres dumps are ready.
-#      12) Build the inactive public Solr indexes.
-#      13) Set the flag to signal that the inactive public Solr indexes
+#      12) Build the frontend schema.
+#      13) Dump the frontend schema.
+#      14) Set the flag to signal that the FE dump is ready.
+#      15) Build the inactive public Solr indexes.
+#      16) Set the flag to signal that the inactive public Solr indexes
 #          have been loaded.
-#      14) Build the inactive robot Solr indexes.
-#      15) Set the flag to signal that the inactive robot Solr indexes
+#      17) Build the inactive robot Solr indexes.
+#      18) Set the flag to signal that the inactive robot Solr indexes
 #          have been loaded.
 #
 #  Notes:  None
@@ -65,6 +70,8 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
+setenv MGD_BACKUP ${DB_BACKUP_DIR}/mgd.postdaily.dump
+setenv RADAR_BACKUP ${DB_BACKUP_DIR}/radar.dump
 setenv SNP_BACKUP /export/dump/snp.postgres.dump
 setenv MGD_NOPRIVATE_BACKUP /export/dump/mgd.noprivate.postgres.dump
 setenv FE_BACKUP /export/dump/fe.postgres.dump
@@ -109,34 +116,39 @@ else
 endif
 
 #
-# Clear the "Postgres Dump Ready" flag.
+# Reset process control namespaces.
 #
 date | tee -a ${LOG}
-echo 'Clear process control flag: Postgres Dump Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PROD}/clearFlag ${NS_DATA_PREP} ${FLAG_EXPORT_DONE} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/clearFlag ${NS_ADHOC_LOAD} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PUB}/clearFlag ${NS_PUB_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_ROBOT}/clearFlag ${NS_ROBOT_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
+echo 'Reset process control flags in data prep namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_PREP} ${SCRIPT_NAME}
+echo 'Reset process control flags in public load namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/resetFlags ${NS_PUB_LOAD} ${SCRIPT_NAME}
+echo 'Reset process control flags in robot load namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_ROBOT}/resetFlags ${NS_ROBOT_LOAD} ${SCRIPT_NAME}
+echo 'Reset process control flags in adhoc load namespace' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/resetFlags ${NS_ADHOC_LOAD} ${SCRIPT_NAME}
 
 #
-# Export Sybase to Postgres.
+# Load databases for public data generation.
 #
 date | tee -a ${LOG}
-echo "Export Sybase to Postgres" | tee -a ${LOG}
-${EXPORTER}/bin/export_wrapper.sh >>& ${LOG}
-if ( $status != 0 ) then
-    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
+echo 'Load databases for public data generation' | tee -a ${LOG}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${MGD_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${RADAR_BACKUP}
 
 #
-# Set the "Export Done" flag.
+# Set the "Gen DB Loaded" flag.
 #
 date | tee -a ${LOG}
-echo 'Set process control flag: Export Done' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_EXPORT_DONE} ${SCRIPT_NAME}
+echo 'Set process control flag: Gen DB Loaded' | tee -a ${LOG}
+${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_GEN_DB_LOADED} ${SCRIPT_NAME}
+
+#
+# Copy RADAR backup to backup directory.
+#
+date | tee -a ${LOG}
+echo 'Copy RADAR backup to backup directory' | tee -a ${LOG}
+cp -p ${RADAR_BACKUP} /export/dump
 
 #
 # Wait for the "SNP Loaded" flag to be set. Stop waiting if the number
@@ -209,9 +221,13 @@ if ( $status != 0 ) then
     exit 1
 endif
 
+#
+# Set the "Postgres Dump Ready" flag.
+#
 date | tee -a ${LOG}
 echo 'Set process control flag: Postgres Dump Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
+
 #
 # Build the frontend schema.
 #
@@ -237,10 +253,10 @@ if ( $status != 0 ) then
 endif
 
 #
-# Set the "Postgres Dump Ready" flag.
+# Set the "FE Dump Ready" flag.
 #
 date | tee -a ${LOG}
-echo 'Set process control flag: Fe Dump Ready' | tee -a ${LOG}
+echo 'Set process control flag: FE Dump Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_NAME}
 
