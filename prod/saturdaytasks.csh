@@ -107,21 +107,21 @@ ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_hmgu.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_wtsi.config
 
-date | tee -a ${LOG}
-echo 'Run Allele Load' | tee -a ${LOG}
-${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
+#date | tee -a ${LOG}
+#echo 'Run Allele Load' | tee -a ${LOG}
+#${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
 date | tee -a ${LOG}
 echo 'Update IMSR Germline' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateIMSRgermline.csh
 
-date | tee -a ${LOG}
-echo 'Run Sanger MP Load' | tee -a ${LOG}
-${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
+#date | tee -a ${LOG}
+#echo 'Run Sanger MP Load' | tee -a ${LOG}
+#${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
 
-date | tee -a ${LOG}
-echo 'Run IMPC MP Load' | tee -a ${LOG}
-${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
+#date | tee -a ${LOG}
+#echo 'Run IMPC MP Load' | tee -a ${LOG}
+#${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
 echo 'Run SwissPROT Sequence Load' | tee -a ${LOG}
