@@ -168,8 +168,8 @@ endif
 #
 date | tee -a ${LOG}
 echo 'Load databases for public data generation' | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${MGD_BACKUP}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${RADAR_BACKUP}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${MGD_BACKUP} >>& ${LOG}
+${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${RADAR_BACKUP} >>& ${LOG}
 
 #
 # Set the "Gen DB Loaded" flag.
