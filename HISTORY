@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-0-5
+DATE: 8/13/2015
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Remove EI enable step and email notification
+
 TAG: loadadmin-6-0-0-4
 TAG: loadadmin-6-0-0-3
 TAG: loadadmin-6-0-0-2
