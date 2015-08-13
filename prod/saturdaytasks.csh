@@ -46,8 +46,6 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv EI_MAIL_LIST mgi
-
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
 touch ${LOG}
@@ -237,20 +235,6 @@ ${ALLCACHELOAD}/allelecrecache.csh
 date | tee -a ${LOG}
 echo 'Run Bib Citation Cache Load' | tee -a ${LOG}
 ${MGICACHELOAD}/bibcitation.csh
-
-#
-# After this script is run in production, the production EI needs to be
-# enabled again (on bhmgiei01). Then the notification email is sent out
-# to everyone in MGI.
-#
-if ( "`uname -n`" == "bhmgiapp01" ) then
-    date | tee -a ${LOG}
-    echo 'Enable the EI' | tee -a ${LOG}
-    ssh -q mgiadmin@bhmgiei01 ${LOADADMIN}/prod/eiEnable.csh
-
-    set dayname=`date '+%A'`
-    echo "The Saturday night load schedule has completed and the production EI is now available." | mailx -s "Production EI is now available ($dayname)" ${EI_MAIL_LIST}
-endif
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
