@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-0-6
+DATE: 8/17/2015
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: Remove loadQueueReport.csh because the files aren't
+                        mirrored until Friday
+
 TAG: loadadmin-6-0-0-5
 DATE: 8/13/2015
 STAFF: dbm
