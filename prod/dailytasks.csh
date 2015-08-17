@@ -218,16 +218,6 @@ echo 'Set process control flag: MGD PostBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_POSTBACKUP} ${SCRIPT_NAME}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_POSTBACKUP} ${SCRIPT_NAME}
 
-#
-# We want this report on Tuesday and Friday morning, so it is scheduled
-# to run Monday and Thursday night.
-#
-if ( $weekday == 1 || $weekday == 4 ) then
-    date | tee -a ${LOG}
-    echo 'Run Load Queue Report' | tee -a ${LOG}
-    ${DLA_UTILS}/loadQueueReport.sh
-endif
-
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
 exit 0
