@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-0-7
+DATE: 8/24/2015
+STAFF: dbm
+CHANGES:
+1) prod/copyMySQLDump.csh: New - moved over from exporter product
+2) prod/copyPostgresDump.csh: New - moved over from exporter product
+
 TAG: loadadmin-6-0-0-6
 DATE: 8/17/2015
 STAFF: dbm
