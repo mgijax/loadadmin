@@ -42,24 +42,22 @@
 #      1) Source the configuration file to establish the environment.
 #      2) Determine which public and robot instances are inactive.
 #      3) Reset process control namespaces.
-#      4) Copy the production RADAR backup to the directory where the other
-#         backups will get picked up.
-#      5) Load databases used for public data generation.
-#      6) Set the flag to signal that the public data generation databases
+#      4) Load the database used for public data generation.
+#      5) Set the flag to signal that the public data generation databases
 #         have been loaded.
-#      7) Wait for the flag to signal that the snp database is ready.
-#      8) Dump the SNP schema.
-#      9) Delete private data from the MGD schema.
-#      10) Dump the MGD schema (with no private data).
-#      11) Set the flag to signal that the Postgres dumps are ready.
-#      12) Build the frontend schema.
-#      13) Dump the frontend schema.
-#      14) Set the flag to signal that the FE dump is ready.
-#      15) Build the inactive public Solr indexes.
-#      16) Set the flag to signal that the inactive public Solr indexes
+#      6) Wait for the flag to signal that the snp database is ready.
+#      7) Dump the SNP schema.
+#      8) Delete private data from the MGD schema.
+#      9) Dump the MGD schema (with no private data).
+#      10) Set the flag to signal that the Postgres dumps are ready.
+#      11) Build the frontend schema.
+#      12) Dump the frontend schema.
+#      13) Set the flag to signal that the FE dump is ready.
+#      14) Build the inactive public Solr indexes.
+#      15) Set the flag to signal that the inactive public Solr indexes
 #          have been loaded.
-#      17) Build the inactive robot Solr indexes.
-#      18) Set the flag to signal that the inactive robot Solr indexes
+#      16) Build the inactive robot Solr indexes.
+#      17) Set the flag to signal that the inactive robot Solr indexes
 #          have been loaded.
 #
 #  Notes:  None
@@ -71,9 +69,7 @@ cd `dirname $0` && source ./Configuration
 setenv SCRIPT_NAME `basename $0`
 
 setenv PROD_MGD_BACKUP ${DB_BACKUP_DIR}/mgd.postdaily.dump
-setenv PROD_RADAR_BACKUP ${DB_BACKUP_DIR}/radar.dump
 
-setenv RADAR_BACKUP /export/dump/radar.postgres.dump
 setenv SNP_BACKUP /export/dump/snp.postgres.dump
 setenv MGD_NOPRIVATE_BACKUP /export/dump/mgd.noprivate.postgres.dump
 setenv FE_BACKUP /export/dump/fe.postgres.dump
@@ -131,13 +127,6 @@ echo 'Reset process control flags in adhoc load namespace' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PUB}/resetFlags ${NS_ADHOC_LOAD} ${SCRIPT_NAME}
 
 #
-# Copy production RADAR backup to backup directory.
-#
-date | tee -a ${LOG}
-echo 'Copy production RADAR backup to backup directory' | tee -a ${LOG}
-cp -p ${PROD_RADAR_BACKUP} ${RADAR_BACKUP}
-
-#
 # Wait for the "MGD PostBackup Ready" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
@@ -173,12 +162,11 @@ else if (${ABORT} == 1) then
 endif
 
 #
-# Load databases for public data generation.
+# Load the database for public data generation.
 #
 date | tee -a ${LOG}
-echo 'Load databases for public data generation' | tee -a ${LOG}
+echo 'Load the database for public data generation' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${PROD_MGD_BACKUP} >>& ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${PROD_RADAR_BACKUP} >>& ${LOG}
 
 #
 # Set the "Gen DB Loaded" flag.
