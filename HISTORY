@@ -1,3 +1,12 @@
+TAG: loadadmin-6-0-0-8
+DATE: 9/10/2015
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Added cell ontology load
+2) prod/genReleaseData.csh: Remove code dealing with radar
+3) public/loadPublicDB.csh: Remove code to load radar and grant txt perms
+4) robot/loadRobotDB.csh: Remove code to load radar and grant txt perms
+
 TAG: loadadmin-6-0-0-7
 DATE: 8/24/2015
 STAFF: dbm
