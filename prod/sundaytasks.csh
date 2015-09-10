@@ -89,6 +89,10 @@ echo 'Run Adult Mouse Anatomy Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MA.config
 
 date | tee -a ${LOG}
+echo 'Run Cell Ontology Load' | tee -a ${LOG}
+${VOCLOAD}/runOBOFullLoad.sh CL.config
+
+date | tee -a ${LOG}
 echo 'Run CCDS Load' | tee -a ${LOG}
 ${CCDSLOAD}/bin/ccdsload.sh
 
