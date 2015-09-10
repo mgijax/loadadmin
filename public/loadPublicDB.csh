@@ -44,12 +44,10 @@
 #      2) Determine if this script is being run on the database server
 #         that is currently inactive. Exit if this server is active.
 #      3) Wait for the flag to signal that the Postgres backups are available.
-#      4) Load the radar schema.
-#      5) Load the mgd schema.
-#      6) Grant modify permission on the text search tables.
-#      7) Load the snp schema.
-#      8) Load the fe schema.
-#      9) Set the flag to signal that the databases have been loaded.
+#      4) Load the mgd schema.
+#      5) Load the snp schema.
+#      6) Load the fe schema.
+#      7) Set the flag to signal that the databases have been loaded.
 #
 #  Notes:  None
 #
@@ -59,7 +57,6 @@ cd `dirname $0` && source ./Configuration
 
 setenv SCRIPT_NAME `basename $0`
 
-setenv RADAR_BACKUP ${DB_BACKUP_DIR}/radar.postgres.dump
 setenv MGD_BACKUP ${DB_BACKUP_DIR}/mgd.noprivate.postgres.dump
 setenv SNP_BACKUP ${DB_BACKUP_DIR}/snp.postgres.dump
 setenv FE_BACKUP ${DB_BACKUP_DIR}/fe.postgres.dump
@@ -140,35 +137,11 @@ else if (${ABORT} == 1) then
 endif
 
 #
-# Load the radar schema.
-#
-date | tee -a ${LOG}
-echo "Load radar schema (${PG_DBSERVER}.${PG_DBNAME}.radar)" | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${RADAR_BACKUP} >> ${LOG}
-if ( $status != 0 ) then
-    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
 # Load the mgd schema.
 #
 date | tee -a ${LOG}
 echo "Load mgd schema (${PG_DBSERVER}.${PG_DBNAME}.mgd)" | tee -a ${LOG}
 ${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${MGD_BACKUP} >> ${LOG}
-if ( $status != 0 ) then
-    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
-# Grant modify permission on the text search tables.
-#
-date | tee -a ${LOG}
-echo "Grant modify permission on the text search tables." | tee -a ${LOG}
-${PG_DBUTILS}/bin/grantTxtPerms.csh ${PG_DBSERVER} ${PG_DBNAME} >> ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
