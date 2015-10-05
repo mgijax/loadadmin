@@ -96,6 +96,10 @@ endif
 date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdummy.csh
+#
+# Run Nomen/Mapping on-demand load
+echo ' Run Nomen/Mapping on-demand load' | tee -a ${LOG}
+${NOMENLOAD}/bin/nomenload.sh ${NOMENLOAD}/nomenload.config
 
 date | tee -a ${LOG}
 echo 'Run Sequence/Marker Cache Load' | tee -a ${LOG}
