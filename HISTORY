@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-0-9
+DATE: 10/5/2015
+STAFF: lnh
+CHANGES:
+1) prod/dailytasks.csh: added Nomen/Mapping on-demand load - TR TR12116
+
 TAG: loadadmin-6-0-0-8
 DATE: 9/10/2015
 STAFF: dbm
