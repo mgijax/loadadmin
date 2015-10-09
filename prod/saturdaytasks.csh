@@ -99,6 +99,14 @@ echo 'Run FeaR Load' | tee -a ${LOG}
 ${FEARLOAD}/bin/fearload.sh
 
 date | tee -a ${LOG}
+echo 'Run EMAP Slim Load' | tee -a ${LOG}
+${VOCABBREVLOAD}/bin/vaload.sh emapslimload.config
+
+date | tee -a ${LOG}
+echo 'Run GO Slim Load' | tee -a ${LOG}
+${VOCABBREVLOAD}/bin/vaload.sh goslimload.config
+
+date | tee -a ${LOG}
 echo 'Run Targeted Allele Loads' | tee -a ${LOG}
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_mbp.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
