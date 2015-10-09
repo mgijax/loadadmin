@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-1-1
+DATE: 10/9/2015
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: added calls for vocabbrevload (EMAP and GO slim)
+
 TAG: loadadmin-6-0-0-10
 TAG: loadadmin-6-0-0-9
 DATE: 10/5/2015
