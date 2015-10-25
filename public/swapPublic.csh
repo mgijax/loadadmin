@@ -145,14 +145,6 @@ gen_stats
 gen_includes
 
 #
-# Run scripts on buckland.
-#
-echo "****"
-echo "**** buckland: Run gen_webshare ****"
-echo "****"
-ssh mgiadmin@buckland "cd ${MGI_LIVE}/mgiconfig/bin; gen_webshare"
-
-#
 # Run scripts on the active Fewi that is now active.
 #
 echo "****"
