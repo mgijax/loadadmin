@@ -1,3 +1,12 @@
+TAG: loadadmin-6-0-1-2
+DATE: 10/25/2015
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Uncomment call to makeIKMC.sh
+2) public/updateMouseBLAST.csh: Remove script (retiring mouseBlast)
+3) public/publicRelease.csh: Remove wait for mouseBlast update
+4) prod/runPostgresApps.csh: Removed call to reloadBiomart.csh
+
 TAG: loadadmin-6-0-1-1
 DATE: 10/9/2015
 STAFF: dbm
