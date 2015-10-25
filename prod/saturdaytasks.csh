@@ -113,9 +113,9 @@ ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_hmgu.config
 ${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_wtsi.config
 
-#date | tee -a ${LOG}
-#echo 'Run Allele Load' | tee -a ${LOG}
-#${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
+date | tee -a ${LOG}
+echo 'Run Allele Load' | tee -a ${LOG}
+${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
 date | tee -a ${LOG}
 echo 'Update IMSR Germline' | tee -a ${LOG}
