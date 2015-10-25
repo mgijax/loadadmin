@@ -43,9 +43,8 @@
 #      2) Wait for the flag to signal that the Postgres database has
 #         been loaded.
 #      3) Call the script that builds the public QS indexes.
-#      4) Call the script that reloads biomart.
-#      5) Call the script that generates the weekly public reports.
-#      6) Set the flag to signal that the public reports are ready.
+#      4) Call the script that generates the weekly public reports.
+#      5) Set the flag to signal that the public reports are ready.
 #
 #  Notes:  None
 #
@@ -103,18 +102,6 @@ endif
 date | tee -a ${LOG}
 echo "Build the public QS indexes" | tee -a ${LOG}
 ${LOADADMIN}/prod/buildQSIndexes.csh >>& ${LOG}
-if ( $status != 0 ) then
-    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
-# Reload Biomart.
-#
-date | tee -a ${LOG}
-echo "Reload Biomart" | tee -a ${LOG}
-${BIOMARTLOAD}/bin/reloadBiomart.csh >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
