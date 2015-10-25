@@ -57,9 +57,7 @@
 #      14) Refresh MGI Home.
 #      15) Set the flag to signal that the WIs have been swapped.
 #      16) Toggle the inactive public setting.
-#      17) Wait for the flag to signal that the MouseBLAST WI has been
-#          updated.
-#      18) Send email notification that the public release is done.
+#      17) Send email notification that the public release is done.
 #
 #  Notes:  None
 #
@@ -268,41 +266,6 @@ ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_WI_SWAPPED} ${SCRIPT_NAME}
 date | tee -a ${LOG}
 echo "Set inactive public setting: ${NEW_PUB}" | tee -a ${LOG}
 ${PROC_CTRL_CMD_PUB}/setSetting ${SET_INACTIVE_PUB} ${NEW_PUB} ${SCRIPT_NAME}
-
-#
-# Wait for the "MouseBLAST Updated" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "MouseBLAST Updated" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_MBLAST_UPDATED}`
-    setenv ABORT `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
 
 date | tee -a ${LOG}
 echo "Send notification that the public load has completed" | tee -a ${LOG}
