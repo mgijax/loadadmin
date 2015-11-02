@@ -98,6 +98,10 @@ echo 'Run Nomen/Mapping load' | tee -a ${LOG}
 ${NOMENLOAD}/bin/nomenload.sh ${NOMENLOAD}/nomenload.config
 
 date | tee -a ${LOG}
+echo 'Run Rollup Load' | tee -a ${LOG}
+${ROLLUPLOAD}/bin/rollupload.sh
+
+date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdummy.csh
 
