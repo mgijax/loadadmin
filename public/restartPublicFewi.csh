@@ -44,7 +44,9 @@
 #         that is currently inactive. Exit if this server is active.
 #      3) Wait for the flag to signal that webshare has been swapped.
 #      4) Regenerate templates and GlobalConfig from webshare.
-#      5) Restart the public Fewi JBoss instance.
+#      5) Reinstall and deploy the Fewi.
+#      6) Restart the public Fewi JBoss instance.
+#      7) Set the flag to signal that the Fewi has been restarted.
 #
 #  Notes:  None
 #
@@ -139,12 +141,14 @@ cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
 #
-# Reinstall Fewi to pull in GlobalConfig.
+# Reinstall and deploy the Fewi.
 #
 date | tee -a ${LOG}
-echo 'Reinstall Fewi to pull in GlobalConfig' | tee -a ${LOG}
+echo 'Reinstall and deploy the Fewi' | tee -a ${LOG}
 cd ${MGI_LIVE}/fewi
 ./Install
+cd ${JBOSS}/fewi/deployments
+cp fewi.war ${JBOSS}/fewiBatch/deployments
 
 #
 # Restart the public Fewi JBoss instance.
@@ -159,6 +163,13 @@ ${LOADADMIN}/jboss/restartFewi >& /dev/null
 date | tee -a ${LOG}
 echo 'Restart the public Fewi Batch JBoss instance' | tee -a ${LOG}
 ${LOADADMIN}/jboss/restartFewiBatch >& /dev/null
+
+#
+# Set the "Fewi Restarted" flag.
+#
+date | tee -a ${LOG}
+echo 'Set process control flag: Fewi Restarted' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_FEWI_RESTARTED} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
