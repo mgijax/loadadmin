@@ -54,10 +54,11 @@
 #      11) Run gen_includes on the inactive Python WI.
 #      12) Swap the links for the Python WI.
 #      13) Run cleanup on the inactive Python WI (the old instance).
-#      14) Refresh MGI Home.
-#      15) Set the flag to signal that the WIs have been swapped.
+#      14) Update MGI Home.
+#      15) Wait for the flags to signal that the public Fewi and QS have
+#          been restarted.
 #      16) Toggle the inactive public setting.
-#      17) Send email notification that the public release is done.
+#      17) Send email notification that the public update has completed.
 #
 #  Notes:  None
 #
@@ -254,11 +255,40 @@ gen_stats
 gen_includes
 
 #
-# Set the "WI Swapped" flag.
+# Wait for the "Fewi Restarted" and "QS Restarted" flags to be set.
+# Stop waiting if the number of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
-echo 'Set process control flag: WI Swapped' | tee -a ${LOG}
-${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_WI_SWAPPED} ${SCRIPT_NAME}
+echo 'Wait for the flags to send out notification' | tee -a ${LOG}
+
+setenv RETRY ${PROC_CTRL_RETRIES}
+while (${RETRY} > 0)
+    setenv READY1 `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_FEWI_RESTARTED}`
+    setenv READY2 `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_QS_RESTARTED}`
+    setenv ABORT `${PROC_CTRL_CMD_PUB}/getFlag ${NS_PUB_LOAD} ${FLAG_ABORT}`
+
+    if ((${READY1} == 1 && ${READY2} == 1) || ${ABORT} == 1) then
+        break
+    else
+        sleep ${PROC_CTRL_WAIT_TIME}
+    endif
+
+    setenv RETRY `expr ${RETRY} - 1`
+end
+
+#
+# Terminate the script if the number of retries expired or the abort flag
+# was found.
+#
+if (${RETRY} == 0) then
+    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+else if (${ABORT} == 1) then
+    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
 
 #
 # Toggle the "Inactive Public" setting.
@@ -268,9 +298,8 @@ echo "Set inactive public setting: ${NEW_PUB}" | tee -a ${LOG}
 ${PROC_CTRL_CMD_PUB}/setSetting ${SET_INACTIVE_PUB} ${NEW_PUB} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
-echo "Send notification that the public load has completed" | tee -a ${LOG}
-set dayname=`date '+%A'`
-echo "This is an automated email. The public load has completed." | mailx -s "The public load has completed for $dayname" ${NOTIFY_LIST}
+echo "Send notification that the public update has completed" | tee -a ${LOG}
+echo "This is an automated email. The public update has completed." | mailx -s "The public update has completed" ${NOTIFY_LIST}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
