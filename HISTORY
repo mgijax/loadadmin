@@ -1,3 +1,14 @@
+TAG: loadadmin-6-0-1-5
+DATE: 11/10/2015
+STAFF: dbm
+CHANGES:
+1) public/publicRelease.csh: Removed "WI Swapped" flag and check Fewi/QS swap
+                             before sending notification
+2) public/restartPublicFewi.csh: Set "Fewi Restarted" flag
+3) public/restartPublicQS.csh: Set "QS Restarted" flag
+4) robot/robotRelease.csh: Removed "WI Swapped" flag
+5) robot/restartRobotFewi.csh: Fixed comments
+
 TAG: loadadmin-6-0-1-4
 DATE: 11/2/2015
 STAFF: dbm
