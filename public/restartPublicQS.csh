@@ -43,6 +43,7 @@
 #      3) Wait for the flag to signal that webshare has been swapped.
 #      4) Regenerate templates and GlobalConfig from webshare.
 #      5) Restart the public QS JBoss instance.
+#      6) Set the flag to signal that the QS has been restarted.
 #
 #  Notes:  None
 #
@@ -129,6 +130,13 @@ if ( "${SETTING}" == "pub1" ) then
 else
     ${LOADADMIN}/jboss/restartSearchtool_pub2 >& /dev/null
 endif
+
+#
+# Set the "QS Restarted" flag.
+#
+date | tee -a ${LOG}
+echo 'Set process control flag: QS Restarted' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_QS_RESTARTED} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
