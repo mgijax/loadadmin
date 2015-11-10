@@ -53,8 +53,7 @@
 #      11) Run gen_includes on the inactive Python WI.
 #      12) Swap the links for the Python WI.
 #      13) Run cleanup on the inactive Python WI (the old instance).
-#      14) Set the flag to signal that the WIs have been swapped.
-#      15) Toggle the inactive robot setting.
+#      14) Toggle the inactive robot setting.
 #
 #  Notes:  None
 #
@@ -235,13 +234,6 @@ mv saveold wicurrent
 date | tee -a ${LOG}
 echo 'Run cleanup on the inactive Python WI' | tee -a ${LOG}
 ${MGI_LIVE}/wiinactive/admin/cleanup tmp
-
-#
-# Set the "WI Swapped" flag.
-#
-date | tee -a ${LOG}
-echo 'Set process control flag: WI Swapped' | tee -a ${LOG}
-${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_WI_SWAPPED} ${SCRIPT_NAME}
 
 #
 # Toggle the "Inactive Robot" setting.
