@@ -44,7 +44,8 @@
 #         that is currently inactive. Exit if this server is active.
 #      3) Wait for the flag to signal that webshare has been swapped.
 #      4) Regenerate templates and GlobalConfig from webshare.
-#      5) Restart the robot Fewi JBoss instance.
+#      5) Reinstall and deploy the Fewi.
+#      6) Restart the robot Fewi JBoss instance.
 #
 #  Notes:  None
 #
@@ -139,10 +140,10 @@ cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
 #
-# Reinstall Fewi to pull in GlobalConfig.
+# Reinstall and deploy the Fewi.
 #
 date | tee -a ${LOG}
-echo 'Reinstall Fewi to pull in GlobalConfig' | tee -a ${LOG}
+echo 'Reinstall and deploy the Fewi' | tee -a ${LOG}
 cd ${MGI_LIVE}/fewi
 ./Install
 
