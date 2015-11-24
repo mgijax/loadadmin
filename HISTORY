@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-1-6
+DATE: 11/24/2015
+STAFF: dbm
+CHANGES:
+1) bin/startPwi,stopPwi,restartPwi: Updated to work with pwi changes
+
 TAG: loadadmin-6-0-1-5
 DATE: 11/10/2015
 STAFF: dbm
