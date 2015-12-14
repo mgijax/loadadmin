@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-2-1
+DATE: 12/14/2015
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Remove Sanger MP load; turn on IMPC MP load
+
 TAG: loadadmin-6-0-1-6
 DATE: 11/24/2015
 STAFF: dbm
