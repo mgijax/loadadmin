@@ -206,6 +206,14 @@ if ( $weekday == 1 ) then
 endif
 
 date | tee -a ${LOG}
+echo 'Run Go Annotation Extension Display Load' | tee -a ${LOG}
+${MGICACHELOAD}/go_annot_extensions_display_load.csh
+
+date | tee -a ${LOG}
+echo 'Run Go Isoform Display Load' | tee -a ${LOG}
+${MGICACHELOAD}/go_isoforms_display_load.csh
+
+date | tee -a ${LOG}
 echo 'Run GXD Expression Cache Load' | tee -a ${LOG}
 ${MGICACHELOAD}/gxdexpression.csh
 
