@@ -121,13 +121,9 @@ date | tee -a ${LOG}
 echo 'Update IMSR Germline' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateIMSRgermline.csh
 
-#date | tee -a ${LOG}
-#echo 'Run Sanger MP Load' | tee -a ${LOG}
-#${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/sangermpload.config ${HTMPLOAD}/annotload.config
-
-#date | tee -a ${LOG}
-#echo 'Run IMPC MP Load' | tee -a ${LOG}
-#${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
+date | tee -a ${LOG}
+echo 'Run IMPC MP Load' | tee -a ${LOG}
+${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
 echo 'Run SwissPROT Sequence Load' | tee -a ${LOG}
