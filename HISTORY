@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-2-2
+DATE: 12/14/2015
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh, prod/sundaytasks.csh: Add GO Annot Ext Display load
+                        and GO Isoform Display load
+
 TAG: loadadmin-6-0-2-1
 DATE: 12/14/2015
 STAFF: dbm
