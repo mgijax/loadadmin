@@ -298,13 +298,6 @@ if ( $status != 0 ) then
 endif
 
 #
-# Set the "Frontend Solr Indexes Loaded" flag.
-#
-date | tee -a ${LOG}
-echo 'Set process control flag: Frontend Solr Indexes Loaded' | tee -a ${LOG}
-${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_FEIDX_LOADED} ${SCRIPT_NAME}
-
-#
 # Build the inactive robot Solr indexes.
 #
 date | tee -a ${LOG}
@@ -317,11 +310,40 @@ if ( $status != 0 ) then
 endif
 
 #
+# Build the inactive public/robot SNP Solr indexes.
+#
+date | tee -a ${LOG}
+echo "Build the inactive public/robot SNP Solr indexes" | tee -a ${LOG}
+if ( "${INACTIVE_PUB}" == "pub1") then
+    setenv PUB_URL ${PUB_SOLR1}
+else
+    setenv PUB_URL ${PUB_SOLR2}
+endif
+if ( "${INACTIVE_BOT}" == "bot1") then
+    setenv BOT_URL ${BOT_SOLR1}
+else
+    setenv BOT_URL ${BOT_SOLR2}
+endif
+${SNPINDEXER}/bin/buildSolrIndex ${PUB_URL} ${BOT_URL}
+if ( $status != 0 ) then
+    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
+
+#
 # Set the "Frontend Solr Indexes Loaded" flag.
 #
 date | tee -a ${LOG}
 echo 'Set process control flag: Frontend Solr Indexes Loaded' | tee -a ${LOG}
 ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_FEIDX_LOADED} ${SCRIPT_NAME}
+
+#
+# Set the "Frontend Solr Indexes Loaded" flag.
+#
+date | tee -a ${LOG}
+echo 'Set process control flag: Frontend Solr Indexes Loaded' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_FEIDX_LOADED} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
