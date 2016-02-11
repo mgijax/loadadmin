@@ -18,26 +18,6 @@ setenv HOST `uname -n`
 setenv LOGSDIR ${DATALOADSOUTPUT}/mgi/loadadmin/logs
 
 #
-# Java Stuff
-#
-setenv CATALINA_HOME	${TOMCAT}
-if ( ${?JAVA_HOME} != 0 ) then
-    setenv CLASSPATH	.:${MGI_LIVE}/javawi2/WEB-INF/classes/properties:${MGI_LIVE}/lib/java/core.jar:${MGI_LIVE}/lib/java/webapp.jar:${MGI_LIVE}/lib/java/dbsmgd_ro.jar:/usr/java/jre/lib/rt.jar:${TOMCAT}/tomcat/common/lib/servlet.jar:${JAVA_HOME}/lib:/usr/local/lib/fileupload.jar:/usr/local/pg-jdbc4/postgresql-9.1-901.jdbc4.jar
-endif
-if ( ${?JCONNECT} != 0 ) then
-    setenv CLASSPATH	${CLASSPATH}:${JCONNECT}
-endif
-if ( ${?JAVAWI_NAME} != 0 ) then
-    setenv CATALINA_OPTS	"-DMGISRV=${JAVAWI_NAME} -Xms512m -Xmx1024m"
-endif
-setenv CATALINA_BASE	${MGI_LIVE}/tomcat
-setenv TOMCATBIN	${TOMCAT}/bin
-
-setenv ADMIN_URL1       "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=admin&op=clearObjectCache"
-setenv ADMIN_URL2       "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=admin&op=reloadConf"
-setenv ADMIN_URL3       "http://www.informatics.jax.org/javawi2/servlet/WIFetch?page=admin&op=gc"
-
-#
 # Search tool settings
 #
 setenv ST_PUB_LOGDIR ${SEARCHTOOL_DATADIR}/logs_pub
