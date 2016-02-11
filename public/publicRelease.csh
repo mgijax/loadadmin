@@ -49,16 +49,14 @@
 #      6) Swap the webshare GlobalConfig links.
 #      7) Regenerate templates and GlobalConfig from webshare.
 #      8) Set the flag to signal that webshare has been swapped.
-#      9) Restart tomcat.
-#      10) Swap Java WI cache directory links and clean out the old one.
-#      11) Run gen_includes on the inactive Python WI.
-#      12) Swap the links for the Python WI.
-#      13) Run cleanup on the inactive Python WI (the old instance).
-#      14) Update MGI Home.
-#      15) Wait for the flags to signal that the public Fewi and QS have
+#      9) Run gen_includes on the inactive Python WI.
+#      10) Swap the links for the Python WI.
+#      11) Run cleanup on the inactive Python WI (the old instance).
+#      12) Update MGI Home.
+#      13) Wait for the flags to signal that the public Fewi and QS have
 #          been restarted.
-#      16) Toggle the inactive public setting.
-#      17) Send email notification that the public update has completed.
+#      14) Toggle the inactive public setting.
+#      15) Send email notification that the public update has completed.
 #
 #  Notes:  None
 #
@@ -201,24 +199,6 @@ gen_webshare
 date | tee -a ${LOG}
 echo 'Set process control flag: Webshare Swapped' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_WEBSHR_SWAPPED} ${SCRIPT_NAME}
-
-#
-# Restart tomcat
-#
-date | tee -a ${LOG}
-echo 'Restart tomcat' | tee -a ${LOG}
-${LOADADMIN}/bin/restartTomcat
-
-#
-# Swap Java WI cache directory links and clean out the old one.
-#
-date | tee -a ${LOG}
-echo 'Swap Java WI cache directory links and clean out the old one' | tee -a ${LOG}
-cd ${MGI_LIVE}
-mv javawi2.cache.old saveold
-mv javawi2.cache javawi2.cache.old
-mv saveold javawi2.cache
-rm -rf ${MGI_LIVE}/javawi2.cache.old/*
 
 #
 # Run gen_includes on the inactive Python WI.

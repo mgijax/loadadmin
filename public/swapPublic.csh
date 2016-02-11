@@ -105,20 +105,6 @@ cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
 echo "****"
-echo "**** gondor: Restart tomcat ****"
-echo "****"
-${MGI_LIVE}/loadadmin/bin/restartTomcat
-
-echo "****"
-echo "**** gondor: Swap Java WI cache ****"
-echo "****"
-cd ${MGI_LIVE}
-mv javawi2.cache.old saveold
-mv javawi2.cache javawi2.cache.old
-mv saveold javawi2.cache
-rm -rf /usr/local/mgi/live/javawi2.cache.old/*
-
-echo "****"
 echo "**** gondor: Update Python WI ****"
 echo "****"
 cd ${MGI_LIVE}/wiinactive/admin

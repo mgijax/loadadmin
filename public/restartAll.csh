@@ -89,11 +89,6 @@ echo "****"
 cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
-echo "****"
-echo "**** gondor: Restart tomcat ****"
-echo "****"
-${MGI_LIVE}/loadadmin/bin/restartTomcat
-
 #
 # Run scripts on the active Fewi.
 #
