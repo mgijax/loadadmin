@@ -40,4 +40,4 @@ end
 #
 # Lock down permissions so only mgiadmin can use these scripts
 #
-chmod 700 bin/startTomcat bin/stopTomcat bin/restartTomcat bin/updateImsr*
+chmod 700 bin/updateImsr*
