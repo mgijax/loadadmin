@@ -166,7 +166,7 @@ endif
 #
 date | tee -a ${LOG}
 echo 'Load the database for public data generation' | tee -a ${LOG}
-${PG_DBUTILS}/bin/loadDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${PROD_MGD_BACKUP} >>& ${LOG}
+${PG_DBUTILS}/bin/loadDB.csh -a ${PG_DBSERVER} ${PG_DBNAME} mgd ${PROD_MGD_BACKUP} >>& ${LOG}
 
 #
 # Set the "Gen DB Loaded" flag.
@@ -206,6 +206,18 @@ if (${RETRY} == 0) then
     exit 1
 else if (${ABORT} == 1) then
     echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
+
+#
+# Analyze the database.
+#
+date | tee -a ${LOG}
+echo "Analyze the database" | tee -a ${LOG}
+${PG_DBUTILS}/bin/analyzeDB.csh ${PG_DBSERVER} ${PG_DBNAME} >>& ${LOG}
+if ( $status != 0 ) then
+    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
     exit 1
 endif
