@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-3-3
+DATE: 2/25/2016
+STAFF: dbm
+CHANGES:
+1) prod/genReleaseData.csh: Run analyze on database after snpcacheload runs
+
 TAG: loadadmin-6-0-3-2
 DATE: 2/19/2016
 STAFF: dbm
