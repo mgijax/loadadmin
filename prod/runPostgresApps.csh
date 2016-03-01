@@ -62,15 +62,15 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 #
-# Wait for the "Postgres DB Loaded" flag to be set. Stop waiting if the number
+# Wait for the "Postgres Dump Ready" flag to be set. Stop waiting if the number
 # of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
-echo 'Wait for the "Postgres DB Loaded" flag to be set' | tee -a ${LOG}
+echo 'Wait for the "Postgres Dump Ready" flag to be set' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_PG_DB_LOADED}`
+    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY}`
     setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_ABORT}`
 
     if (${READY} == 1 || ${ABORT} == 1) then
