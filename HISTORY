@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-3-4
+DATE: 3/1/2016
+STAFF: dbm
+CHANGES:
+1) prod/loadPostgresDB.csh: Removed for retirement of bhmgidb02 and mgi-proddb1
+2) prod/runPostgresApps.csh: Change FLAG_PG_DB_LOADED to FLAG_PG_DUMP_READY
+
 TAG: loadadmin-6-0-3-3
 DATE: 2/25/2016
 STAFF: dbm
