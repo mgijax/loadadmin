@@ -43,21 +43,24 @@
 #      2) Determine which public and robot instances are inactive.
 #      3) Reset process control namespaces.
 #      4) Load the database used for public data generation.
-#      5) Set the flag to signal that the public data generation databases
-#         have been loaded.
-#      6) Wait for the flag to signal that the snp database is ready.
+#      5) Run the snp/marker cache load.
+#      6) Analyze the database.
 #      7) Dump the SNP schema.
 #      8) Delete private data from the MGD schema.
 #      9) Dump the MGD schema (with no private data).
 #      10) Set the flag to signal that the Postgres dumps are ready.
-#      11) Build the frontend schema.
-#      12) Dump the frontend schema.
-#      13) Set the flag to signal that the FE dump is ready.
-#      14) Build the inactive public Solr indexes.
-#      15) Set the flag to signal that the inactive public Solr indexes
+#      11) Build the QS indexes.
+#      12) Generate weekly public reports.
+#      13) Set the flag to signal that the public reports are ready.
+#      14) Build the frontend schema.
+#      15) Dump the frontend schema.
+#      16) Set the flag to signal that the FE dump is ready.
+#      17) Build the inactive public Solr indexes.
+#      18) Build the inactive robot Solr indexes.
+#      19) Build the inactive public and robot SNP Solr indexes.
+#      20) Set the flag to signal that the inactive public Solr indexes
 #          have been loaded.
-#      16) Build the inactive robot Solr indexes.
-#      17) Set the flag to signal that the inactive robot Solr indexes
+#      21) Set the flag to signal that the inactive robot Solr indexes
 #          have been loaded.
 #
 #  Notes:  None
@@ -169,46 +172,11 @@ echo 'Load the database for public data generation' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/loadDB.csh -a ${PG_DBSERVER} ${PG_DBNAME} mgd ${PROD_MGD_BACKUP} >>& ${LOG}
 
 #
-# Set the "Gen DB Loaded" flag.
+# Run the snp/marker cache load.
 #
 date | tee -a ${LOG}
-echo 'Set process control flag: Gen DB Loaded' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_GEN_DB_LOADED} ${SCRIPT_NAME}
-
-#
-# Wait for the "SNP Loaded" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "SNP Loaded" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_SNP_LOADED}`
-    setenv ABORT `${PROC_CTRL_CMD_PROD}/getFlag ${NS_DATA_PREP} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
+echo 'Run the snp/marker cache load' | tee -a ${LOG}
+${SNPCACHELOAD}/snpmarker.sh >>& ${LOG}
 
 #
 # Analyze the database.
@@ -264,6 +232,37 @@ endif
 date | tee -a ${LOG}
 echo 'Set process control flag: Postgres Dump Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_PREP} ${FLAG_PG_DUMP_READY} ${SCRIPT_NAME}
+
+#
+# Build the public QS indexes.
+#
+date | tee -a ${LOG}
+echo "Build the public QS indexes" | tee -a ${LOG}
+${LOADADMIN}/prod/buildQSIndexes.csh >>& ${LOG}
+if ( $status != 0 ) then
+    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
+
+#
+# Generate weekly public reports.
+#
+date | tee -a ${LOG}
+echo "Generate weekly public reports" | tee -a ${LOG}
+${PUBRPTS}/run_weekly.csh >>& ${LOG}
+if ( $status != 0 ) then
+    echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
+    date | tee -a ${LOG}
+    exit 1
+endif
+
+#
+# Set the "Public Reports Ready" flag.
+#
+date | tee -a ${LOG}
+echo 'Set process control flag: Public Reports Ready' | tee -a ${LOG}
+${PROC_CTRL_CMD_PUB}/setFlag ${NS_PUB_LOAD} ${FLAG_PUB_RPT_READY} ${SCRIPT_NAME}
 
 #
 # Build the frontend schema.
