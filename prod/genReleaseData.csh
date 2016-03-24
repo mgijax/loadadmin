@@ -301,7 +301,7 @@ ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_FE_DUMP_READY} ${SCRIPT_N
 #
 date | tee -a ${LOG}
 echo "Build the inactive public Solr indexes" | tee -a ${LOG}
-${FEINDEXER}/bin/configureAndBuildAll ${INACTIVE_PUB}
+${FEINDEXER}/bin/configureAndBuildAll ${INACTIVE_PUB} >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -313,7 +313,7 @@ endif
 #
 date | tee -a ${LOG}
 echo "Build the inactive robot Solr indexes" | tee -a ${LOG}
-${FEINDEXER}/bin/configureAndBuildAll ${INACTIVE_BOT}
+${FEINDEXER}/bin/configureAndBuildAll ${INACTIVE_BOT} >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -335,7 +335,7 @@ if ( "${INACTIVE_BOT}" == "bot1") then
 else
     setenv BOT_URL ${BOT_SOLR2}
 endif
-${SNPINDEXER}/bin/buildSolrIndex ${PUB_URL} ${BOT_URL}
+${SNPINDEXER}/bin/buildSolrIndex ${PUB_URL} ${BOT_URL} >>& ${LOG}
 if ( $status != 0 ) then
     echo "${SCRIPT_NAME} failed" | tee -a ${LOG}
     date | tee -a ${LOG}
