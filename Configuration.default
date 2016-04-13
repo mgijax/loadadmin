@@ -31,5 +31,5 @@ setenv ST_ROBOT_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_robot
 #
 # IMSR settings (for counts)
 #
-setenv IMSR_COUNT_URL "http://emnet.informatics.jax.org:48080/imsrwi/imsrwi/report/mgiCounts.txt"
+setenv IMSR_COUNT_URL "http://www.findmice.org/report/mgiCounts.txt"
 setenv IMSR_COUNT_TIMEOUT 600
