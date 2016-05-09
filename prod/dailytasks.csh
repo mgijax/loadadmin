@@ -155,10 +155,6 @@ echo 'Run Allele/CRE Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecrecache.csh
 
 date | tee -a ${LOG}
-echo 'Re-set AD Topological Sort' | tee -a ${LOG}
-${TOPOSORTLOAD}/toposort.csh
-
-date | tee -a ${LOG}
 echo 'Update Last Dump Date' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateLastDumpDate.csh ${PG_DBSERVER} ${PG_DBNAME} ${tomorrow}
 
@@ -186,7 +182,7 @@ ${MCVLOAD}/bin/run_mcv_vocload.sh
 
 date | tee -a ${LOG}
 echo 'Run EMAP Load' | tee -a ${LOG}
-${EMAPLOAD}/bin/emapload.sh
+${VOCLOAD}/emap/emapload.sh
 
 date | tee -a ${LOG}
 echo 'Run RV Load' | tee -a ${LOG}
