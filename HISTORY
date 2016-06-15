@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-4-2
+DATE: 4/13/2016
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Replace 5 go loads with call to new goload product
+
 TAG: loadadmin-6-0-4-1
 DATE: 5/9/2016
 STAFF: dbm
