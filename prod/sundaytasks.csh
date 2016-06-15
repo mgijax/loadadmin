@@ -166,24 +166,8 @@ echo 'Run Marker/OMIM Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkomim.csh
 
 date | tee -a ${LOG}
-echo 'Run GOA Load' | tee -a ${LOG}
-${GOALOAD}/bin/goa.csh
-
-date | tee -a ${LOG}
-echo 'Run GO/Rat Load' | tee -a ${LOG}
-${GORATLOAD}/bin/gorat.sh
-
-date | tee -a ${LOG}
-echo 'Run GO/PAINT Load' | tee -a ${LOG}
-${GOREFGENLOAD}/bin/gorefgen.sh
-
-date | tee -a ${LOG}
-echo 'Run GOA/Human Load' | tee -a ${LOG}
-${GOAHUMANLOAD}/bin/goahuman.sh
-
-date | tee -a ${LOG}
-echo 'Run GO/CFP Load' | tee -a ${LOG}
-${GOCFPLOAD}/bin/gocfp.sh
+echo 'Run GO Loads' | tee -a ${LOG}
+${GOLOAD}/go.sh
 
 date | tee -a ${LOG}
 echo 'Run Go Annotation Extension Display Load' | tee -a ${LOG}
