@@ -7,8 +7,8 @@
 #
 #      This script will swap over to the inactive robot WI instance and
 #      restart all the components on the various servers. It is intended
-#      to be run from arnor and uses ssh calls to run scripts on other
-#      servers.
+#      to be run from bhmgirob01lp and uses ssh calls to run scripts on
+#      other servers.
 #
 #  Usage:
 #
@@ -37,7 +37,7 @@
 #
 #      1) Source the configuration file to establish the environment.
 #      2) Prompts for confirmation before proceeding.
-#      3) Make sure the script is being run on arnor.
+#      3) Make sure the script is being run on bhmgirob01lp.
 #      4) Determines which WI instance is inactive so it can identify the
 #         correct Fewi server.
 #      5) Runs scripts on the appropriate servers to swap/restart everything.
@@ -58,10 +58,10 @@ if ( "$answer" != "yes" ) then
 endif
 
 #
-# Make sure the script is being run on arnor.
+# Make sure the script is being run on bhmgirob01lp.
 #
-if ( "`uname -n`" != "arnor" ) then
-    echo "This script needs to be run on arnor"
+if ( "`uname -n`" != "bhmgirob01lp" ) then
+    echo "This script needs to be run on bhmgirob01lp"
     exit 1
 endif
 
@@ -86,10 +86,10 @@ echo "**** Swap to ${NEW_INSTANCE} ****"
 echo "****"
 
 #
-# Run scripts on arnor.
+# Run scripts on bhmgirob01lp.
 #
 echo "****"
-echo "**** arnor: Swap GlobalConfig ****"
+echo "**** bhmgirob01lp: Swap GlobalConfig ****"
 echo "****"
 cd ${MGI_LIVE}/webshare/config
 mv GlobalConfig.old saveold
@@ -97,19 +97,19 @@ mv GlobalConfig GlobalConfig.old
 mv saveold GlobalConfig
 
 echo "****"
-echo "**** arnor: Run gen_webshare ****"
+echo "**** bhmgirob01lp: Run gen_webshare ****"
 echo "****"
 cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
 
 echo "****"
-echo "**** arnor: Update Python WI ****"
+echo "**** bhmgirob01lp: Update Python WI ****"
 echo "****"
 cd ${MGI_LIVE}/wiinactive/admin
 gen_includes
 
 echo "****"
-echo "**** arnor: Swap Python WI ****"
+echo "**** bhmgirob01lp: Swap Python WI ****"
 echo "****"
 cd ${MGI_LIVE}
 mv wiinactive saveold
@@ -117,7 +117,7 @@ mv wicurrent wiinactive
 mv saveold wicurrent
 
 echo "****"
-echo "**** arnor: Clean inactive Python WI ****"
+echo "**** bhmgirob01lp: Clean inactive Python WI ****"
 echo "****"
 ${MGI_LIVE}/wiinactive/admin/cleanup tmp
 
