@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-4-3
+DATE: 6/30/2016
+STAFF: dbm
+CHANGES:
+1) public/swapPublic.csh: Change gondor to bhmgipub01lp
+2) public/restartAll.csh: Change gondor to bhmgipub01lp
+3) robot/swapRobot.csh: Change arnor to bhmgirob01lp
+
 TAG: loadadmin-6-0-4-2
 DATE: 4/13/2016
 STAFF: dbm
