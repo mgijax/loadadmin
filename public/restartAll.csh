@@ -6,8 +6,8 @@
 #  Purpose:
 #
 #      This script will restart all the components of the active public WI
-#      instance. It is intended to be run from gondor and uses ssh calls to
-#      run scripts on other servers.
+#      instance. It is intended to be run from bhmgipub01lp and uses ssh
+#      calls to run scripts on other servers.
 #
 #  Usage:
 #
@@ -36,7 +36,7 @@
 #
 #      1) Source the configuration file to establish the environment.
 #      2) Prompts for confirmation before proceeding.
-#      3) Make sure the script is being run on gondor.
+#      3) Make sure the script is being run on bhmgipub01lp.
 #      4) Determines which WI instance is active so it can identify the
 #         correct Fewi server and QS restart script.
 #      5) Runs scripts on the appropriate servers to restart everything.
@@ -57,10 +57,10 @@ if ( "$answer" != "yes" ) then
 endif
 
 #
-# Make sure the script is being run on gondor.
+# Make sure the script is being run on bhmgipub01lp.
 #
-if ( "`uname -n`" != "gondor" ) then
-    echo "This script needs to be run on gondor"
+if ( "`uname -n`" != "bhmgipub01lp" ) then
+    echo "This script needs to be run on bhmgipub01lp"
     exit 1
 endif
 
@@ -81,10 +81,10 @@ else
 endif
 
 #
-# Run scripts on gondor.
+# Run scripts on bhmgipub01lp.
 #
 echo "****"
-echo "**** gondor: Run gen_webshare ****"
+echo "**** bhmgipub01lp: Run gen_webshare ****"
 echo "****"
 cd ${MGI_LIVE}/mgiconfig/bin
 gen_webshare
