@@ -1,3 +1,13 @@
+TAG: loadadmin-6-0-6-1
+DATE: 8/31/2016
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: Removed calls to go_annot_extensions_display_load.csh
+                        and go_isoforms_display_load.csh; Added call to
+                        godaily.sh
+1) prod/sundaytasks.csh: Removed calls to go_annot_extensions_display_load.csh
+                         and go_isoforms_display_load.csh
+
 TAG: loadadmin-6-0-5-1
 DATE: 7/5/2016
 STAFF: dbm
