@@ -182,14 +182,6 @@ echo 'Run GO Loads' | tee -a ${LOG}
 ${GOLOAD}/go.sh
 
 date | tee -a ${LOG}
-echo 'Run Go Annotation Extension Display Load' | tee -a ${LOG}
-${MGICACHELOAD}/go_annot_extensions_display_load.csh
-
-date | tee -a ${LOG}
-echo 'Run Go Isoform Display Load' | tee -a ${LOG}
-${MGICACHELOAD}/go_isoforms_display_load.csh
-
-date | tee -a ${LOG}
 echo 'Generate Weekly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcweekly_reports.csh
 
