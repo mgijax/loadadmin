@@ -104,17 +104,17 @@ date | tee -a ${LOG}
 echo 'Run OMIM Load' | tee -a ${LOG}
 ${VOCLOAD}/runSimpleIncLoadNoArchive.sh OMIM.config
 
-date | tee -a ${LOG}
-echo 'Run HPO Vocab Load' | tee -a ${LOG}
-${VOCLOAD}/runOBOIncLoad.sh HPO.config
+#date | tee -a ${LOG}
+#echo 'Run HPO Vocab Load' | tee -a ${LOG}
+#${VOCLOAD}/runOBOIncLoad.sh HPO.config
 
-date | tee -a ${LOG}
-echo 'Run OMIM/HPO Annotation Load' | tee -a ${LOG}
-${OMIMHPOLOAD}/bin/omim_hpoload.sh
+#date | tee -a ${LOG}
+#echo 'Run OMIM/HPO Annotation Load' | tee -a ${LOG}
+#${OMIMHPOLOAD}/bin/omim_hpoload.sh
 
-date | tee -a ${LOG}
-echo 'Run MP/HPO Relationship Load' | tee -a ${LOG}
-${MPHPOLOAD}/bin/mp_hpoload.sh
+#date | tee -a ${LOG}
+#echo 'Run MP/HPO Relationship Load' | tee -a ${LOG}
+#${MPHPOLOAD}/bin/mp_hpoload.sh
 
 date | tee -a ${LOG}
 echo 'Run Non-Mouse EntrezGene Load' | tee -a ${LOG}
@@ -155,7 +155,7 @@ ${NEXTPROTLOAD}/bin/nextprotload.sh
 date | tee -a ${LOG}
 echo 'Run Homology Loads' | tee -a ${LOG}
 ${HOMOLOGYLOAD}/bin/homologyload.sh homologeneload.config
-#${HOMOLOGYLOAD}/bin/homologyload.sh hgncload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh hgncload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh hybridload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh zfinload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh geishaload.config
