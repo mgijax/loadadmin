@@ -67,6 +67,10 @@ echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
+echo 'Perform special character cleanup' | tee -a ${LOG}
+${PG_DBUTILS}/bin/cleanSpecChar.csh
+
+date | tee -a ${LOG}
 echo 'Run GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 

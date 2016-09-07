@@ -80,6 +80,10 @@ date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
 ${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
+date | tee -a ${LOG}
+echo 'Perform special character cleanup' | tee -a ${LOG}
+${PG_DBUTILS}/bin/cleanSpecChar.csh
+
 #
 # Run prior to cache loads because deleted sequences aren't selected as
 # representative for markers. Only runs on Wednesday night.
