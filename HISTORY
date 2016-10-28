@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-6-4
+DATE: 10/28/2016
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: Added call to gxdhtload
+
 TAG: loadadmin-6-0-6-3
 DATE: 9/7/2016
 STAFF: dbm
