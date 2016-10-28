@@ -130,6 +130,10 @@ echo 'Run IMPC MP Load' | tee -a ${LOG}
 ${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
+echo 'Run GXD HT Load' | tee -a ${LOG}
+${GXDHTLOAD}/bin/gxdhtload.sh
+
+date | tee -a ${LOG}
 echo 'Run SwissPROT Sequence Load' | tee -a ${LOG}
 ${SPSEQLOAD}/bin/spseqload.sh spseqload.config
 
