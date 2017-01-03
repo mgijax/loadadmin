@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-7-1
+DATE: 1/3/2017
+STAFF: dbm
+CHANGES:
+1) public/restartAll.csh: Change emnet to bhmgiap03lp
+2) public/swapPublic.csh: Change emnet to bhmgiap03lp
+3) robot/swapRobot.csh: Change emnet to bhmgiap03lp
+
 TAG: loadadmin-6-0-6-4
 DATE: 10/28/2016
 STAFF: dbm
