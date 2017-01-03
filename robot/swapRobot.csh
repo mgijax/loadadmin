@@ -135,17 +135,17 @@ echo "****"
 ssh -q mgiadmin@${FEWI} "${LOADADMIN}/jboss/restartFewi >& /dev/null"
 
 #
-# Run scripts on emnet.
+# Run scripts on bhmgiap03lp.
 #
 echo "****"
-echo "**** emnet: Run gen_webshare ****"
+echo "**** bhmgiap03lp: Run gen_webshare ****"
 echo "****"
-ssh mgiadmin@emnet "cd ${MGI_LIVE}/mgiconfig/bin; gen_webshare"
+ssh mgiadmin@bhmgiap03lp "cd ${MGI_LIVE}/mgiconfig/bin; gen_webshare"
 
 echo "****"
-echo "**** emnet: Restart Searchtool ****"
+echo "**** bhmgiap03lp: Restart Searchtool ****"
 echo "****"
-ssh mgiadmin@emnet "${LOADADMIN}/jboss/restartSearchtool_robot >& /dev/null"
+ssh mgiadmin@bhmgiap03lp "${LOADADMIN}/jboss/restartSearchtool_robot >& /dev/null"
 
 echo "************************************************************"
 echo "REMEMBER to toggle the InactiveRobot process control setting"

@@ -108,16 +108,16 @@ echo "****"
 ssh -q mgiadmin@${FEWI} "${LOADADMIN}/jboss/restartFewiBatch >& /dev/null"
 
 #
-# Run scripts on emnet.
+# Run scripts on bhmgiap03lp.
 #
 echo "****"
-echo "**** emnet: Run gen_webshare ****"
+echo "**** bhmgiap03lp: Run gen_webshare ****"
 echo "****"
-ssh mgiadmin@emnet "cd ${MGI_LIVE}/mgiconfig/bin; gen_webshare"
+ssh mgiadmin@bhmgiap03lp "cd ${MGI_LIVE}/mgiconfig/bin; gen_webshare"
 
 echo "****"
-echo "**** emnet: Restart Searchtool ****"
+echo "**** bhmgiap03lp: Restart Searchtool ****"
 echo "****"
-ssh mgiadmin@emnet "${LOADADMIN}/jboss/${QS_SCRIPT} >& /dev/null"
+ssh mgiadmin@bhmgiap03lp "${LOADADMIN}/jboss/${QS_SCRIPT} >& /dev/null"
 
 exit 0
