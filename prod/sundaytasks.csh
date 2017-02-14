@@ -120,6 +120,10 @@ date | tee -a ${LOG}
 echo 'Run MP/HPO Relationship Load' | tee -a ${LOG}
 ${MPHPOLOAD}/bin/mp_hpoload.sh
 
+#date | tee -a ${LOG}
+#echo 'Run Disease Ontology (DO) Load' | tee -a ${LOG}
+#${DOLOAD}/bin/do.sh
+
 date | tee -a ${LOG}
 echo 'Run Non-Mouse EntrezGene Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadAll.csh
