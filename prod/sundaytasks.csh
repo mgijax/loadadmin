@@ -132,9 +132,9 @@ date | tee -a ${LOG}
 echo 'Run Mapview Load (skip marker/location cache)' | tee -a ${LOG}
 ${MAPVIEWLOAD}/bin/mapviewload.sh false
 
-#date | tee -a ${LOG}
-#echo 'Run Disease Ontology (DO) Load' | tee -a ${LOG}
-#${DOLOAD}/bin/do.sh
+date | tee -a ${LOG}
+echo 'Run Disease Ontology (DO) Load' | tee -a ${LOG}
+${DOLOAD}/bin/do.sh
 
 date | tee -a ${LOG}
 echo 'Delete Dummy Sequences' | tee -a ${LOG}
