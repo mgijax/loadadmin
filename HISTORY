@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-8-1
+DATE: 2/21/2017
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Added doload
+
 TAG: loadadmin-6-0-7-3
 DATE: 1/31/2017
 STAFF: dbm
