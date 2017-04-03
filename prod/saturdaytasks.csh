@@ -126,7 +126,11 @@ echo 'Update IMSR Germline' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateIMSRgermline.csh
 
 date | tee -a ${LOG}
-echo 'Run IMPC MP Load' | tee -a ${LOG}
+echo 'Run DMDD HTMP Load' | tee -a ${LOG}
+${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/dmddmpload.config ${HTMPLOAD}/annotload.config
+
+date | tee -a ${LOG}
+echo 'Run IMPC HTMP Load' | tee -a ${LOG}
 ${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
 
 date | tee -a ${LOG}
