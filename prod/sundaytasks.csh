@@ -100,13 +100,13 @@ date | tee -a ${LOG}
 echo 'Run CCDS Load' | tee -a ${LOG}
 ${CCDSLOAD}/bin/ccdsload.sh
 
-#
-# OMIM vocabulary load needs to run before the Human EntrezGene load
-# so that the lastest OMIM vocabulary is in MGI
-#
 date | tee -a ${LOG}
 echo 'Run OMIM Load' | tee -a ${LOG}
 ${VOCLOAD}/runSimpleIncLoadNoArchive.sh OMIM.config
+
+date | tee -a ${LOG}
+echo 'Run Disease Ontology Load' | tee -a ${LOG}
+${VOCLOAD}/runOBOIncLoadNoArchive.sh DO.config
 
 date | tee -a ${LOG}
 echo 'Run HPO Vocab Load' | tee -a ${LOG}
@@ -131,10 +131,6 @@ ${GENESUMMARYLOAD}/bin/genesummaryload.sh
 date | tee -a ${LOG}
 echo 'Run Mapview Load (skip marker/location cache)' | tee -a ${LOG}
 ${MAPVIEWLOAD}/bin/mapviewload.sh false
-
-date | tee -a ${LOG}
-echo 'Run Disease Ontology (DO) Load' | tee -a ${LOG}
-${DOLOAD}/bin/do.sh
 
 date | tee -a ${LOG}
 echo 'Delete Dummy Sequences' | tee -a ${LOG}
@@ -182,8 +178,8 @@ echo 'Run Marker/Location Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrklocation.csh
 
 date | tee -a ${LOG}
-echo 'Run Marker/OMIM Cache Load' | tee -a ${LOG}
-${MRKCACHELOAD}/mrkomim.csh
+echo 'Run Marker/DO Cache Load' | tee -a ${LOG}
+${MRKCACHELOAD}/mrkdo.csh
 
 date | tee -a ${LOG}
 echo 'Run GO Loads' | tee -a ${LOG}

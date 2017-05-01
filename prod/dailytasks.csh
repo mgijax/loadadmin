@@ -145,10 +145,9 @@ date | tee -a ${LOG}
 echo 'Run Allele/Combination Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecombination.csh
 
-# the OMIM cache depends on the allele combination note 3
 date | tee -a ${LOG}
-echo 'Run Marker/OMIM Cache Load' | tee -a ${LOG}
-${MRKCACHELOAD}/mrkomim.csh
+echo 'Run Marker/DO Cache Load' | tee -a ${LOG}
+${MRKCACHELOAD}/mrkdo.csh
 
 date | tee -a ${LOG}
 echo 'Run Allele/Strain Cache Load' | tee -a ${LOG}

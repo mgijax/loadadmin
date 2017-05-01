@@ -78,9 +78,9 @@ date | tee -a ${LOG}
 echo 'Run GENSAT Load' | tee -a ${LOG}
 ${GENSATLOAD}/bin/gensatload.sh
 
-date | tee -a ${LOG}
-echo 'Run Array Express Load' | tee -a ${LOG}
-${ARRAYEXPLOAD}/bin/arrayexpload.sh
+#date | tee -a ${LOG}
+#echo 'Run Array Express Load' | tee -a ${LOG}
+#${ARRAYEXPLOAD}/bin/arrayexpload.sh
 
 date | tee -a ${LOG}
 echo 'Run Protein Ontology Load' | tee -a ${LOG}
@@ -126,12 +126,8 @@ echo 'Update IMSR Germline' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateIMSRgermline.csh
 
 date | tee -a ${LOG}
-echo 'Run DMDD HTMP Load' | tee -a ${LOG}
-${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/dmddmpload.config ${HTMPLOAD}/annotload.config
-
-date | tee -a ${LOG}
-echo 'Run IMPC HTMP Load' | tee -a ${LOG}
-${HTMPLOAD}/bin/htmpload.sh ${HTMPLOAD}/impcmpload.config ${HTMPLOAD}/annotload.config
+echo 'Run MP Annotation Loads' | tee -a ${LOG}
+${HTMPLOAD}/bin/runMpLoads.sh
 
 date | tee -a ${LOG}
 echo 'Run GXD HT Load' | tee -a ${LOG}
@@ -221,8 +217,6 @@ date | tee -a ${LOG}
 echo 'Run ALO/Marker Load' | tee -a ${LOG}
 ${ALOMRKLOAD}/bin/alomrkload.sh
 
-# removed this call for Build 38 release as we don't yet have
-# data to update cM for Build 38
 #date | tee -a ${LOG}
 #echo 'Run Genetic Map Load' | tee -a ${LOG}
 #${GENMAPLOAD}/bin/genmapload.sh
@@ -235,10 +229,9 @@ date | tee -a ${LOG}
 echo 'Run Allele/Combination Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecombination.csh
 
-# the OMIM cache depends on the allele combination note 3
 date | tee -a ${LOG}
-echo 'Run Marker/OMIM Cache Load' | tee -a ${LOG}
-${MRKCACHELOAD}/mrkomim.csh
+echo 'Run Marker/DO Cache Load' | tee -a ${LOG}
+${MRKCACHELOAD}/mrkdo.csh
 
 date | tee -a ${LOG}
 echo 'Run Allele/Strain Cache Load' | tee -a ${LOG}
