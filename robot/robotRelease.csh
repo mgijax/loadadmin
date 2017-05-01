@@ -40,18 +40,12 @@
 #
 #      1) Source the configuration file to establish the environment.
 #      2) Determine whether "bot1" or "bot2" is currently inactive.
-#      3) Wait for the flag to signal that the inactive databases have been
-#         loaded.
-#      4) Run the dbdepends script on the inactive Python WI.
-#      5) Wait for the flag to signal that the inactive robot frontend Solr
-#         indexes have been loaded.
-#      6) Swap the webshare GlobalConfig links.
-#      7) Regenerate templates and GlobalConfig from webshare.
-#      8) Set the flag to signal that webshare has been swapped.
-#      9) Run gen_includes on the inactive Python WI.
-#      10) Swap the links for the Python WI.
-#      11) Run cleanup on the inactive Python WI (the old instance).
-#      12) Toggle the inactive robot setting.
+#      4) Wait for the flag to signal that the inactive databases have been
+#         loaded and the inactive robot frontend Solr indexes have been loaded.
+#      5) Swap the webshare GlobalConfig links.
+#      6) Regenerate templates and GlobalConfig from webshare.
+#      7) Set the flag to signal that webshare has been swapped.
+#      8) Toggle the inactive robot setting.
 #
 #  Notes:  None
 #
@@ -78,9 +72,9 @@ echo 'Determine if bot1 or bot2 is currently inactive' | tee -a ${LOG}
 
 setenv SETTING `${PROC_CTRL_CMD_ROBOT}/getSetting ${SET_INACTIVE_BOT}`
 if ( "${SETTING}" == "bot1" ) then
-    setenv NEW_BOT bot2
+    setenv NEW_INACTIVE_BOT bot2
 else if ( "${SETTING}" == "bot2" ) then
-    setenv NEW_BOT bot1
+    setenv NEW_INACTIVE_BOT bot1
 else
     echo 'Cannot determine whether bot1 or bot2 is inactive' | tee -a ${LOG}
     date | tee -a ${LOG}
@@ -88,61 +82,21 @@ else
 endif
 echo "Inactive Robot: ${SETTING}" | tee -a ${LOG}
 
-#
-# Wait for the "DB Loaded" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "DB Loaded" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_ROBOT}/getFlag ${NS_ROBOT_LOAD} ${FLAG_DB_LOADED}`
-    setenv ABORT `${PROC_CTRL_CMD_ROBOT}/getFlag ${NS_ROBOT_LOAD} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
 
 #
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-    echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-else if (${ABORT} == 1) then
-    echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-    date | tee -a ${LOG}
-    exit 1
-endif
-
-#
-# Run dbdepends script on the inactive Python WI.
-#
-date | tee -a ${LOG}
-echo 'Run dbdepends script on the inactive Python WI' | tee -a ${LOG}
-${MGI_LIVE}/wiinactive/admin/dbdepends
-
-#
-# Wait for the "Frontend Solr Indexes Loaded" flag to be set. Stop waiting if
-# the number of retries expires or the abort flag is found.
+# Wait for the "DB Loaded" and "Frontend Solr Indexes Loaded" flags to be set.
+# Stop waiting if the number of retries expires or the abort flag is found.
 #
 date | tee -a ${LOG}
 echo 'Wait for the flags to start release' | tee -a ${LOG}
 
 setenv RETRY ${PROC_CTRL_RETRIES}
 while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_ROBOT}/getFlag ${NS_ROBOT_LOAD} ${FLAG_FEIDX_LOADED}`
+    setenv READY1 `${PROC_CTRL_CMD_ROBOT}/getFlag ${NS_ROBOT_LOAD} ${FLAG_DB_LOADED}`
+    setenv READY2 `${PROC_CTRL_CMD_ROBOT}/getFlag ${NS_ROBOT_LOAD} ${FLAG_FEIDX_LOADED}`
     setenv ABORT `${PROC_CTRL_CMD_ROBOT}/getFlag ${NS_ROBOT_LOAD} ${FLAG_ABORT}`
 
-    if (${READY} == 1 || ${ABORT} == 1) then
+    if ((${READY1} == 1 && ${READY2} == 1) || ${ABORT} == 1) then
         break
     else
         sleep ${PROC_CTRL_WAIT_TIME}
@@ -191,36 +145,11 @@ echo 'Set process control flag: Webshare Swapped' | tee -a ${LOG}
 ${PROC_CTRL_CMD_ROBOT}/setFlag ${NS_ROBOT_LOAD} ${FLAG_WEBSHR_SWAPPED} ${SCRIPT_NAME}
 
 #
-# Run gen_includes on the inactive Python WI.
-#
-date | tee -a ${LOG}
-echo 'Run gen_includes on the inactive Python WI' | tee -a ${LOG}
-cd ${MGI_LIVE}/wiinactive/admin
-gen_includes
-
-#
-# Swap the links for the Python WI.
-#
-date | tee -a ${LOG}
-echo 'Swap the links for the Python WI' | tee -a ${LOG}
-cd ${MGI_LIVE}
-mv wiinactive saveold
-mv wicurrent wiinactive
-mv saveold wicurrent
-
-#
-# Run cleanup on the inactive Python WI (the old instance).
-#
-date | tee -a ${LOG}
-echo 'Run cleanup on the inactive Python WI' | tee -a ${LOG}
-${MGI_LIVE}/wiinactive/admin/cleanup tmp
-
-#
 # Toggle the "Inactive Robot" setting.
 #
 date | tee -a ${LOG}
-echo "Set inactive robot setting: ${NEW_BOT}" | tee -a ${LOG}
-${PROC_CTRL_CMD_ROBOT}/setSetting ${SET_INACTIVE_BOT} ${NEW_BOT} ${SCRIPT_NAME}
+echo "Set inactive robot setting: ${NEW_INACTIVE_BOT}" | tee -a ${LOG}
+${PROC_CTRL_CMD_ROBOT}/setSetting ${SET_INACTIVE_BOT} ${NEW_INACTIVE_BOT} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
