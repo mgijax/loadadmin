@@ -1,3 +1,13 @@
+TAG: loadadmin-6-0-10-1
+DATE: 5/1/2017
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: Load schedule changes for 6.10
+2) prod/saturdaytasks.csh: Load schedule changes for 6.10
+3) prod/sundaytasks.csh: Load schedule changes for 6.10
+4) public/publicRelease.csh: Retire python WI
+5) robot/robotRelease.csh: Retire python WI
+
 TAG: loadadmin-6-0-9-1
 DATE: 4/3/2017
 STAFF: dbm
