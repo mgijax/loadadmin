@@ -22,7 +22,7 @@
 #
 #      - Database backups
 #          - mgd.postdaily.dump
-#          - radar.dump
+#          - radar.postdaily.dump
 #
 #      - Process control flags
 #
@@ -55,7 +55,7 @@ cd `dirname $0` && source ./Configuration
 setenv SCRIPT_NAME `basename $0`
 
 setenv MGD_BACKUP /bhmgidb01/dump/mgd.postdaily.dump
-setenv RADAR_BACKUP /bhmgidb01/dump/radar.dump
+setenv RADAR_BACKUP /bhmgidb01/dump/radar.postdaily.dump
 
 setenv LOG ${LOGSDIR}/${SCRIPT_NAME}.log
 rm -f ${LOG}
