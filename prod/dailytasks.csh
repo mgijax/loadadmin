@@ -23,10 +23,10 @@
 #
 #      - Database backups
 #          - mgd.predaily.dump
-#          - mgd.dump
-#          - radar.dump
+#          - radar.predaily.dump
 #          - wts.dump
 #          - mgd.postdaily.dump
+#          - radar.postdaily.dump
 #
 #      - Log file for the script (${LOG})
 #
@@ -73,8 +73,10 @@ echo 'Generate MGI Marker Feed Reports' | tee -a ${LOG}
 ${PUBRPTS}/mgimarkerfeed/mgimarkerfeed_reports.csh
 
 date | tee -a ${LOG}
-echo 'Create Pre-Daily Database Backup' | tee -a ${LOG}
+echo 'Create Pre-Daily Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.predaily.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.predaily.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} wts ${DB_BACKUP_DIR}/wts.dump
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
@@ -166,16 +168,6 @@ echo 'Add New Measurements' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/measurements/addMeasurements.csh
 
 date | tee -a ${LOG}
-echo 'Create Database Backups' | tee -a ${LOG}
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} wts ${DB_BACKUP_DIR}/wts.dump
-
-date | tee -a ${LOG}
-echo 'Set process control flag: MGD Backup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_BACKUP} ${SCRIPT_NAME}
-
-date | tee -a ${LOG}
 echo 'Run Mammalian Phenotype Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MP.config
 
@@ -221,8 +213,9 @@ echo 'Generate Daily Public Reports' | tee -a ${LOG}
 ${PUBRPTS}/run_daily.csh
 
 date | tee -a ${LOG}
-echo 'Create Post-Daily Database Backup' | tee -a ${LOG}
+echo 'Create Post-Daily Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postdaily.dump
+${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postdaily.dump
 
 date | tee -a ${LOG}
 echo 'Set process control flag: MGD PostBackup Ready' | tee -a ${LOG}
