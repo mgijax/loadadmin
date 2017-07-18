@@ -24,8 +24,6 @@
 #          - mgd.postdaily.dump
 #          - radar.postdaily.dump
 #
-#      - Process control flags
-#
 #  Outputs:
 #
 #      - Log file for the script (${LOG})
@@ -42,9 +40,8 @@
 #      This script will perform following steps:
 #
 #      1) Source the configuration file to establish the environment.
-#      2) Wait for the flag to signal that the MGD backup is available.
-#      3) Load the MGD database.
-#      4) Load the RADAR database.
+#      2) Load the MGD database.
+#      3) Load the RADAR database.
 #
 #  Notes:  None
 #
@@ -63,41 +60,6 @@ touch ${LOG}
 
 echo "$0" >> ${LOG}
 env | sort >> ${LOG}
-
-#
-# Wait for the "MGD PostBackup Ready" flag to be set. Stop waiting if the number
-# of retries expires or the abort flag is found.
-#
-date | tee -a ${LOG}
-echo 'Wait for the "MGD PostBackup Ready" flag to be set' | tee -a ${LOG}
-
-setenv RETRY ${PROC_CTRL_RETRIES}
-while (${RETRY} > 0)
-    setenv READY `${PROC_CTRL_CMD_DEV}/getFlag ${NS_DEV_LOAD} ${FLAG_MGD_POSTBACKUP}`
-    setenv ABORT `${PROC_CTRL_CMD_DEV}/getFlag ${NS_DEV_LOAD} ${FLAG_ABORT}`
-
-    if (${READY} == 1 || ${ABORT} == 1) then
-        break
-    else
-        sleep ${PROC_CTRL_WAIT_TIME}
-    endif
-
-    setenv RETRY `expr ${RETRY} - 1`
-end
-
-#
-# Terminate the script if the number of retries expired or the abort flag
-# was found.
-#
-if (${RETRY} == 0) then
-   echo "${SCRIPT_NAME} timed out" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
-else if (${ABORT} == 1) then
-   echo "${SCRIPT_NAME} aborted by process controller" | tee -a ${LOG}
-   date | tee -a ${LOG}
-   exit 1
-endif
 
 #
 # Load MGD and RADAR databases from the production backups.
