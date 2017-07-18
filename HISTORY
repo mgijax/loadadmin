@@ -1,3 +1,21 @@
+TAG: loadadmin-6-0-10-3
+DATE: 7/18/2017
+STAFF: dbm
+CHANGES:
+1) dev/loadDevDB.csh: remove process control
+2) prod/dailytasks.csh: remove process control
+3) prod/saturdaytasks.csh: remove process control
+4) prod/sundaytasks.csh: remove process control
+5) prod/buildQSIndexes.csh: remove script
+6) prod/copyMySQLDump.csh: remove script
+7) prod/copyPostgresDump.csh: remove script
+8) prod/genReleaseData.csh: remove script
+9) prod/runTask.csh: remove process script
+10) adhoc/*: remove subdirectory and all scripts
+11) public/*: remove subdirectory and all scripts
+12) robot/*: remove subdirectory and all scripts
+13) Install: remove obsolete directories
+
 TAG: loadadmin-6-0-10-2
 DATE: 6/6/2017
 STAFF: dbm
