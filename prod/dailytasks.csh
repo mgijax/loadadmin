@@ -30,8 +30,6 @@
 #
 #      - Log file for the script (${LOG})
 #
-#      - Process control flags
-#
 #  Exit Codes:
 #
 #      0:  Successful completion
@@ -59,12 +57,6 @@ env | sort >> ${LOG}
 set weekday=`date '+%u'`
 set tomorrow=`date -d tomorrow +%m/%d/%Y`
 
-date | tee -a ${LOG}
-echo 'Reset process control flags in dev load namespace' | tee -a ${LOG}
-${PROC_CTRL_CMD_DEV}/resetFlags ${NS_DEV_LOAD} ${SCRIPT_NAME}
-echo 'Reset process control flags in data loads namespace' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
-
 #
 # Generate the MGI marker feed as early as possible for JAX folks.
 #
@@ -77,10 +69,6 @@ echo 'Create Pre-Daily Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.predaily.dump
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.predaily.dump
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} wts ${DB_BACKUP_DIR}/wts.dump
-
-date | tee -a ${LOG}
-echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
 echo 'Perform special character cleanup' | tee -a ${LOG}
@@ -216,11 +204,6 @@ date | tee -a ${LOG}
 echo 'Create Post-Daily Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postdaily.dump
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postdaily.dump
-
-date | tee -a ${LOG}
-echo 'Set process control flag: MGD PostBackup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_DEV}/setFlag ${NS_DEV_LOAD} ${FLAG_MGD_POSTBACKUP} ${SCRIPT_NAME}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_POSTBACKUP} ${SCRIPT_NAME}
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}

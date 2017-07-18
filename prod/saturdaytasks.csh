@@ -27,8 +27,6 @@
 #
 #      - Log file for the script (${LOG})
 #
-#      - Process control flags
-#
 #  Exit Codes:
 #
 #      0:  Successful completion
@@ -54,17 +52,9 @@ echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
 date | tee -a ${LOG}
-echo 'Reset process control flags in data loads namespace' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/resetFlags ${NS_DATA_LOADS} ${SCRIPT_NAME}
-
-date | tee -a ${LOG}
 echo 'Create Pre-Saturday Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.presaturday.dump
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presaturday.dump
-
-date | tee -a ${LOG}
-echo 'Set process control flag: MGD PreBackup Ready' | tee -a ${LOG}
-${PROC_CTRL_CMD_PROD}/setFlag ${NS_DATA_LOADS} ${FLAG_MGD_PREBACKUP} ${SCRIPT_NAME}
 
 date | tee -a ${LOG}
 echo 'Perform special character cleanup' | tee -a ${LOG}
