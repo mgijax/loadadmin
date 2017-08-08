@@ -1,0 +1,49 @@
+#!/bin/csh -f
+#
+#  eiDisable
+###########################################################################
+#
+#  Purpose:
+#
+#      This script will disable the EI by renaming the symbolic link.
+#
+#  Usage:
+#
+#      eiDisable
+#
+#  Env Vars:
+#
+#      - See Configuration file (loadadmin product)
+#
+#      - See master.config.csh (mgiconfig product)
+#
+#  Inputs:  None
+#
+#  Outputs:  None
+#
+#  Exit Codes:
+#
+#      0:  Successful completion
+#      1:  Fatal error occurred
+#
+#  Assumes:  Nothing
+#
+#  Implementation:
+#
+#      This script will perform the following steps:
+#
+#      1) Source the configuration file to establish the environment.
+#      2) If the "ei" link exists, rename it to "ei.disable".
+#
+#  Notes:  None
+#
+###########################################################################
+
+cd `dirname $0` && source ./Configuration
+
+if ( -e ${MGI_LIVE}/ei ) then
+    cd ${MGI_LIVE}
+    mv ei ei.disable
+endif
+
+exit 0
