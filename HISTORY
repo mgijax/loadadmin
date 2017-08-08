@@ -1,3 +1,12 @@
+TAG: loadadmin-6-0-10-4
+DATE: 8/8/2017
+STAFF: dbm
+CHANGES:
+1) dev/loadDevDB.csh: retired script
+2) prod/eiEnable.csh: moved to bin directory and drop ".csh" suffix
+3) prod/eiDisable.csh: moved to bin directory and drop ".csh" suffix
+4) Install: remove dev directory
+
 TAG: loadadmin-6-0-10-3
 DATE: 7/18/2017
 STAFF: dbm
