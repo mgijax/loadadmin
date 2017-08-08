@@ -13,7 +13,7 @@ cd `dirname $0` && source ./Configuration
 # NOTE: The adhoc directory is excluded because it has its own configuration
 #       file and the adhoc load does not use mgiconfig.
 #
-foreach i (bin dev jboss prod)
+foreach i (bin jboss prod)
     cd $i
     rm -f Configuration
     ln -s ../Configuration .
@@ -32,7 +32,7 @@ endif
 #
 chmod 754 Configuration Install
 
-foreach i (bin dev jboss prod)
+foreach i (bin jboss prod)
     chmod -fR 754 $i
     chgrp -fR progs $i
 end
