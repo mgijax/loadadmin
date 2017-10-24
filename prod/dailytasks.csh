@@ -91,6 +91,20 @@ date | tee -a ${LOG}
 echo 'Run Nomen/Mapping load' | tee -a ${LOG}
 ${NOMENLOAD}/bin/nomenload.sh ${NOMENLOAD}/nomenload.config
 
+if ( $weekday == 1 ) then
+    date | tee -a ${LOG}
+    echo 'Run PDF Download' | tee -a ${LOG}
+    ${PDFDOWNLOAD}/download_plos.sh
+
+    date | tee -a ${LOG}
+    echo 'Identify Missing Paper' | tee -a ${LOG}
+    ${PDFDOWNLOAD}/identify_missed_papers_plos.sh
+endif
+
+date | tee -a ${LOG}
+echo 'Run Lit Triage Load' | tee -a ${LOG}
+${LITTRIAGELOAD}/bin/littriageload.sh
+
 date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
 ${ROLLUPLOAD}/bin/rollupload.sh
@@ -191,6 +205,10 @@ ${GOLOAD}/godaily.sh
 date | tee -a ${LOG}
 echo 'Run GXD Expression Cache Load' | tee -a ${LOG}
 ${MGICACHELOAD}/gxdexpression.csh
+
+date | tee -a ${LOG}
+echo 'Update Reference Workflow Status' | tee -a ${LOG}
+${PG_DBUTILS}/sp/run_BIB_updateWFStatus.csh
 
 date | tee -a ${LOG}
 echo 'Generate Nightly QC Reports' | tee -a ${LOG}

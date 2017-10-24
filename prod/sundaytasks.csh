@@ -67,6 +67,10 @@ echo 'Run EntrezGene Data Provider Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadFiles.csh
 
 date | tee -a ${LOG}
+echo 'Run Pubmed To Gene Load' | tee -a ${LOG}
+${PUBMED2GENELOAD}/bin/pubmed2geneload.sh
+
+date | tee -a ${LOG}
 echo 'Run Mouse EntrezGene Load' | tee -a ${LOG}
 ${EGLOAD}/bin/egload.sh
 
@@ -174,6 +178,10 @@ ${MRKCACHELOAD}/mrkdo.csh
 date | tee -a ${LOG}
 echo 'Run GO Loads' | tee -a ${LOG}
 ${GOLOAD}/go.sh
+
+date | tee -a ${LOG}
+echo 'Update Reference Workflow Status' | tee -a ${LOG}
+${PG_DBUTILS}/sp/run_BIB_updateWFStatus.csh
 
 date | tee -a ${LOG}
 echo 'Generate Weekly QC Reports' | tee -a ${LOG}
