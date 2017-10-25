@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd `dirname $0`
+
+./stopApi
+sleep 10
+./startApi

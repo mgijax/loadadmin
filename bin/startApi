@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "${MGICONFIG}" = "" ]
+then
+    MGICONFIG=/usr/local/mgi/live/mgiconfig
+    export MGICONFIG
+fi
+
+source ${MGICONFIG}/master.config.sh
+
+API_HOME=${MGI_LIVE}/mgd_java_api
+
+cd ${API_HOME}
+
+. ./Configuration
+
+echo "Clean up temp files"
+find /tmp -maxdepth 1 -name "*.jar" -exec rm -f {} \;
+
+echo "Starting Java API"
+rm -f ${LOG_FILE}
+./startApi.sh > ${LOG_FILE}
