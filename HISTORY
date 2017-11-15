@@ -1,11 +1,17 @@
+TAG: loadadmin-6-0-11-2
+DATE: 11/15/2017
+STAFF: dbm
+CHANGES:
+1) bin/stopApi: Save log file after stopping API
+
 TAG: loadadmin-6-0-11-1
 DATE: 10/25/2017
 STAFF: dbm
 CHANGES:
 1) bin/*Api: New scripts
 2) prod/dailytasks.csh: New 6.11 load schedule
-2) prod/saturdaytasks.csh: New 6.11 load schedule
-2) prod/sundaytasks.csh: New 6.11 load schedule
+3) prod/saturdaytasks.csh: New 6.11 load schedule
+4) prod/sundaytasks.csh: New 6.11 load schedule
 
 TAG: loadadmin-6-0-10-4
 DATE: 8/8/2017
