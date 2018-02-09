@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-11-3
+DATE: 2/9/2018
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: disable TAL loads
+2) prod/sundaytasks.csh: disable genesummary load
+
 TAG: loadadmin-6-0-11-2
 DATE: 11/15/2017
 STAFF: dbm
