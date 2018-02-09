@@ -118,9 +118,9 @@ date | tee -a ${LOG}
 echo 'Run Non-Mouse EntrezGene Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadAll.csh
 
-date | tee -a ${LOG}
-echo 'Run Gene Summary Load' | tee -a ${LOG}
-${GENESUMMARYLOAD}/bin/genesummaryload.sh
+#date | tee -a ${LOG}
+#echo 'Run Gene Summary Load' | tee -a ${LOG}
+#${GENESUMMARYLOAD}/bin/genesummaryload.sh
 
 date | tee -a ${LOG}
 echo 'Run Mapview Load (skip marker/location cache)' | tee -a ${LOG}
