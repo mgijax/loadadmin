@@ -1,0 +1,45 @@
+#!/usr/local/bin/python
+#
+# Name: downloadStatistics.py
+# Purpose: to download the current data statistics from the fewi and write them
+#   as files under /mgi/all/statistics/
+
+import os
+import time
+import urllib2
+import sys
+
+USAGE = '''Usage: %s
+    Downloads the current data statistics from the public fewi and writes
+    them to a file under /mgi/all/statistics.
+''' % sys.argv[0]
+
+topDir = '/mgi/all/statistics/'
+url = 'http://www.informatics.jax.org/home/statistics_report.txt'
+
+def bailout(s):
+    # show the USAGE message, give error message 's', and exit with an error code
+    sys.stderr.write(USAGE)
+    sys.stderr.write('Error: %s\n' % s)
+    sys.exit(-1)
+    
+def getPage():
+    fp = urllib2.urlopen(url)
+    page = fp.read()
+    fp.close()
+    return page
+
+def main():
+    today = time.strftime('%Y-%m-%d')
+    yearDir = os.path.join(topDir, today[:4])
+    if not os.path.isdir(yearDir):
+        os.mkdir(yearDir)
+        
+    page = getPage()
+    fp = open(os.path.join(yearDir, today) + '.txt', 'w')
+    fp.write(page)
+    fp.close()
+    return
+
+if __name__ == '__main__':
+    main()
