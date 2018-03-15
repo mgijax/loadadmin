@@ -120,6 +120,10 @@ echo 'Run MP Annotation Loads' | tee -a ${LOG}
 ${HTMPLOAD}/bin/runMpLoads.sh
 
 date | tee -a ${LOG}
+echo 'Run MP EMAPA Load' | tee -a ${LOG}
+${MPEMAPALOAD}/bin/mp_emapaload.sh
+
+date | tee -a ${LOG}
 echo 'Run GXD HT Load' | tee -a ${LOG}
 ${GXDHTLOAD}/bin/gxdhtload.sh
 
