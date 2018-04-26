@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-12-2
+DATE: 4/26/2018
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: removed call to vega GM load
+
 TAG: loadadmin-6-0-12-1
 DATE: 2/15/2018
 STAFF: dbm
