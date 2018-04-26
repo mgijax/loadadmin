@@ -151,10 +151,6 @@ date | tee -a ${LOG}
 echo 'Run NCBI Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh ncbi
 
-date | tee -a ${LOG}
-echo 'Run VEGA Gene Model/Association Load' | tee -a ${LOG}
-${GENEMODELLOAD}/bin/genemodelload.sh vega
-
 #
 # This is to update biotypes weekly since NCBI gene model load above
 # rarely runs.
