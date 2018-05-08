@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-12-3
+DATE: 5/8/2018
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: enable TAL loads
+
 TAG: loadadmin-6-0-12-2
 DATE: 4/26/2018
 STAFF: dbm
