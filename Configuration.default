@@ -18,17 +18,6 @@ setenv HOST `uname -n`
 setenv LOGSDIR ${DATALOADSOUTPUT}/mgi/loadadmin/logs
 
 #
-# Search tool settings
-#
-setenv ST_PUB_LOGDIR ${SEARCHTOOL_DATADIR}/logs_pub
-
-setenv ST_PUB_TARFILE ${SEARCHTOOL_DISTDIR}/indexes_pub.tar
-
-setenv ST_PUB1_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_pub1
-setenv ST_PUB2_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_pub2
-setenv ST_ROBOT_INDEXES ${SEARCHTOOL_DATADIR}/searchtool_robot
-
-#
 # IMSR settings (for counts)
 #
 setenv IMSR_COUNT_URL "http://www.findmice.org/report/mgiCounts.txt"
