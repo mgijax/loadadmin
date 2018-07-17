@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-12-5
+DATE: 7/17/2018
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: replace vocabbrevload with slimtermload
+2) prod/sundaytasks.csh: disable mapviewload
+
 TAG: loadadmin-6-0-12-4
 DATE: 6/13/2018
 STAFF: dbm
