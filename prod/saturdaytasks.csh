@@ -94,11 +94,15 @@ ${FEARLOAD}/bin/fearload.sh
 
 date | tee -a ${LOG}
 echo 'Run EMAP Slim Load' | tee -a ${LOG}
-${VOCABBREVLOAD}/bin/vaload.sh emapslimload.config
+${SLIMTERMLOAD}/bin/slimtermload.sh emapslimload.config
 
 date | tee -a ${LOG}
 echo 'Run GO Slim Load' | tee -a ${LOG}
-${VOCABBREVLOAD}/bin/vaload.sh goslimload.config
+${SLIMTERMLOAD}/bin/slimtermload.sh goslimload.config
+
+date | tee -a ${LOG}
+echo 'Run MP Slim Load' | tee -a ${LOG}
+${SLIMTERMLOAD}/bin/slimtermload.sh mpslimload.config
 
 date | tee -a ${LOG}
 echo 'Run Targeted Allele Loads' | tee -a ${LOG}
