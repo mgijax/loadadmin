@@ -122,9 +122,9 @@ ${ENTREZGENELOAD}/loadAll.csh
 #echo 'Run Gene Summary Load' | tee -a ${LOG}
 #${GENESUMMARYLOAD}/bin/genesummaryload.sh
 
-date | tee -a ${LOG}
-echo 'Run Mapview Load (skip marker/location cache)' | tee -a ${LOG}
-${MAPVIEWLOAD}/bin/mapviewload.sh false
+#date | tee -a ${LOG}
+#echo 'Run Mapview Load (skip marker/location cache)' | tee -a ${LOG}
+#${MAPVIEWLOAD}/bin/mapviewload.sh false
 
 date | tee -a ${LOG}
 echo 'Delete Dummy Sequences' | tee -a ${LOG}
