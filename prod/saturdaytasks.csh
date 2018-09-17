@@ -164,6 +164,10 @@ echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
 
 date | tee -a ${LOG}
+echo 'Run Strain Gene Model Load' | tee -a ${LOG}
+${STRAINGENEMODELLOAD}/bin/straingenemodelload.sh
+
+date | tee -a ${LOG}
 echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
 ${MRKCOORDLOAD}/bin/mrkcoordload.sh
 
