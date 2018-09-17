@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-13-1
+DATE: 9/27/2018
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: added call to straingenemodelload
+
 TAG: loadadmin-6-0-12-5
 DATE: 7/17/2018
 STAFF: dbm
