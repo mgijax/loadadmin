@@ -166,10 +166,6 @@ echo 'Update Last Dump Date' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateLastDumpDate.csh ${PG_DBSERVER} ${PG_DBNAME} ${tomorrow}
 
 date | tee -a ${LOG}
-echo 'Add New Measurements' | tee -a ${LOG}
-${PG_DBUTILS}/bin/measurements/addMeasurements.csh
-
-date | tee -a ${LOG}
 echo 'Run Mammalian Phenotype Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MP.config
 
