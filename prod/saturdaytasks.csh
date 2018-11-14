@@ -155,6 +155,10 @@ date | tee -a ${LOG}
 echo 'Run NCBI Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh ncbi
 
+date | tee -a ${LOG}
+echo 'Run EMAL Load' | tee -a ${LOG}
+${EMALLOAD}/bin/emalload.sh  ${EMALLOAD}/impc.config
+
 #
 # This is to update biotypes weekly since NCBI gene model load above
 # rarely runs.
