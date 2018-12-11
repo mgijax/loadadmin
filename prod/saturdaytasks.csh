@@ -77,14 +77,6 @@ echo 'Run Protein Ontology Load' | tee -a ${LOG}
 ${PROLOAD}/bin/proload.sh
 
 date | tee -a ${LOG}
-echo 'Run MCV Vocabulary Load' | tee -a ${LOG}
-${MCVLOAD}/bin/run_mcv_vocload.sh
-
-date | tee -a ${LOG}
-echo 'Run MCV Annotation Load' | tee -a ${LOG}
-${MCVLOAD}/bin/mcvload.sh
-
-date | tee -a ${LOG}
 echo 'Run RV Load' | tee -a ${LOG}
 ${RVLOAD}/bin/rvload.sh
 
@@ -172,10 +164,6 @@ echo 'Run Strain Gene Model Load' | tee -a ${LOG}
 ${STRAINGENEMODELLOAD}/bin/straingenemodelload.sh
 
 date | tee -a ${LOG}
-echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
-${MRKCOORDLOAD}/bin/mrkcoordload.sh
-
-date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
 ${ROLLUPLOAD}/bin/rollupload.sh
 
@@ -210,10 +198,6 @@ ${MRKCACHELOAD}/mrklocation.csh
 date | tee -a ${LOG}
 echo 'Run Marker/Probe Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkprobe.csh
-
-date | tee -a ${LOG}
-echo 'Run Marker/MCV Cache Load' | tee -a ${LOG}
-${MRKCACHELOAD}/mrkmcv.csh
 
 date | tee -a ${LOG}
 echo 'Run ALO/Marker Load' | tee -a ${LOG}

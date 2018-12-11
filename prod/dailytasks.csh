@@ -82,6 +82,7 @@ if ( $weekday == 3 ) then
     date | tee -a ${LOG}
     echo 'Run RefSeq Sequence Deleter' | tee -a ${LOG}
     ${SEQDELETER}/bin/seqdeleter.sh refseqdeleter.config
+
     date | tee -a ${LOG}
     echo 'Run GenBank Sequence Deleter' | tee -a ${LOG}
     ${SEQDELETER}/bin/seqdeleter.sh gbseqdeleter.config
@@ -104,6 +105,20 @@ endif
 date | tee -a ${LOG}
 echo 'Run Lit Triage Load' | tee -a ${LOG}
 ${LITTRIAGELOAD}/bin/littriageload.sh
+
+if ( $weekday == 5 ) then
+    date | tee -a ${LOG}
+    echo 'Run MCV Vocabulary Load' | tee -a ${LOG}
+    ${MCVLOAD}/bin/run_mcv_vocload.sh
+
+    date | tee -a ${LOG}
+    echo 'Run MCV Annotation Load' | tee -a ${LOG}
+    ${MCVLOAD}/bin/mcvload.sh
+
+    date | tee -a ${LOG}
+    echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
+    ${MRKCOORDLOAD}/bin/mrkcoordload.sh
+endif
 
 date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
@@ -168,10 +183,6 @@ ${PG_DBUTILS}/bin/updateLastDumpDate.csh ${PG_DBSERVER} ${PG_DBNAME} ${tomorrow}
 date | tee -a ${LOG}
 echo 'Run Mammalian Phenotype Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MP.config
-
-date | tee -a ${LOG}
-echo 'Run MCV Vocabulary Load' | tee -a ${LOG}
-${MCVLOAD}/bin/run_mcv_vocload.sh
 
 date | tee -a ${LOG}
 echo 'Run EMAP Load' | tee -a ${LOG}
