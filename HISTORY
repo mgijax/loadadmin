@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-13-5
+DATE: 12/11/2018
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: move MCV and marker coord loads from Saturday
+2) prod/saturdaytasks.csh: move MCV and marker coord loads to Friday
+
 TAG: loadadmin-6-0-13-4
 TAG: loadadmin-6-0-13-3
 DATE: 11/14/2018
