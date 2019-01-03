@@ -64,9 +64,9 @@ date | tee -a ${LOG}
 echo 'Run GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 
-date | tee -a ${LOG}
-echo 'Run GENSAT Load' | tee -a ${LOG}
-${GENSATLOAD}/bin/gensatload.sh
+#date | tee -a ${LOG}
+#echo 'Run GENSAT Load' | tee -a ${LOG}
+#${GENSATLOAD}/bin/gensatload.sh
 
 #date | tee -a ${LOG}
 #echo 'Run Array Express Load' | tee -a ${LOG}
