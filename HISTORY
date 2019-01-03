@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-13-6
+DATE: 1/3/2019
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: disabled gensatload (per Connie) -- the input file
+                           hasn't changed in years
+
 TAG: loadadmin-6-0-13-5
 DATE: 12/11/2018
 STAFF: dbm
