@@ -103,6 +103,10 @@ echo 'Run Disease Ontology Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoadNoArchive.sh DO.config
 
 date | tee -a ${LOG}
+echo 'Run Sequence Ontology Vocab Load' | tee -a ${LOG}
+${VOCLOAD}/runOBOIncLoad.sh SO.config
+
+date | tee -a ${LOG}
 echo 'Run HPO Vocab Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh HPO.config
 
