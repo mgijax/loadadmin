@@ -95,7 +95,7 @@ ${NOMENLOAD}/bin/nomenload.sh ${NOMENLOAD}/nomenload.config
 if ( $weekday == 1 ) then
     date | tee -a ${LOG}
     echo 'Run PDF Download' | tee -a ${LOG}
-    ${PDFDOWNLOAD}/download_plos.sh
+    ${PDFDOWNLOAD}/download_papers.sh
 
     date | tee -a ${LOG}
     echo 'Identify Missing Paper' | tee -a ${LOG}
