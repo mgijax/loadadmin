@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-14-2
+DATE: 5/7/2019
+STAFF: dbm
+CHANGES:
+1) prod/monthlytasks.csh: added pixidDeleteObsolete.csh
+
 TAG: loadadmin-6-0-14-1
 DATE: 5/7/2019
 STAFF: dbm
