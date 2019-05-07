@@ -57,6 +57,10 @@ else
     echo 'QC Reports: SUCCESSFUL' | tee -a ${LOG}
 endif
 
+date | tee -a ${LOG}
+echo 'Remove Obsolete PixelDB JPGs' | tee -a ${LOG}
+${PG_DBUTILS}/bin/pixidDeleteObsolete.csh
+
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
 exit 0
