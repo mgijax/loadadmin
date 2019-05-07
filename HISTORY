@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-14-1
+DATE: 5/7/2019
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: change download_plos.sh to download_papers.sh
+
 TAG: loadadmin-6-0-13-7
 DATE: 1/14/2019
 STAFF: dbm
