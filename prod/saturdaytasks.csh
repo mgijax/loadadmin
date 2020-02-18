@@ -164,6 +164,10 @@ echo 'Run Strain Gene Model Load' | tee -a ${LOG}
 ${STRAINGENEMODELLOAD}/bin/straingenemodelload.sh
 
 date | tee -a ${LOG}
+echo 'Run RNA Sequence Load' | tee -a ${LOG}
+${RNASEQLOAD}/bin/rnaseqload.sh
+
+date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
 ${ROLLUPLOAD}/bin/rollupload.sh
 
