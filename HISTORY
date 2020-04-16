@@ -1,3 +1,4 @@
+TAG: loadadmin-6-0-15-3
 TAG: loadadmin-6-0-15-2
 DATE: 4/16/2020
 STAFF: dbm
@@ -5,6 +6,7 @@ CHANGES:
 1) Configuration.default: remove IMSR_COUNT_URL and IMSR_COUNT_TIMEOUT
 2) bin/updateImsrCounts.csh: retired
 3) bin/updateImsrCounts.py: retired
+4) Install: remove IMSR count setup
 
 TAG: loadadmin-6-0-15-1
 DATE: 2/18/2020
