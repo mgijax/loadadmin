@@ -36,8 +36,3 @@ foreach i (bin jboss prod)
     chmod -fR 754 $i
     chgrp -fR progs $i
 end
-
-#
-# Lock down permissions so only mgiadmin can use these scripts
-#
-chmod 700 bin/updateImsr*
