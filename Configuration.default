@@ -16,9 +16,3 @@ setenv HOST `uname -n`
 # Logs directory
 #
 setenv LOGSDIR ${DATALOADSOUTPUT}/mgi/loadadmin/logs
-
-#
-# IMSR settings (for counts)
-#
-setenv IMSR_COUNT_URL "http://www.findmice.org/report/mgiCounts.txt"
-setenv IMSR_COUNT_TIMEOUT 600
