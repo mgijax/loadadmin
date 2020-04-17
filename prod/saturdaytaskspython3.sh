@@ -135,6 +135,15 @@ scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/SEQ_Source_Asso
 scp bhmgiapp01:/data/loads/ensembl/ensembl_protein_seqseqassocload/output/SEQ_Sequence_Assoc.bcp /data/loads/ensembl/ensembl_protein_seqseqassocload/output/SEQ_Sequence_Assoc.bcp.prod
 scp bhmgiapp01:/data/loads/ensembl/ensembl_transcript_seqseqassocload/output/SEQ_Sequence_Assoc.bcp /data/loads/ensembl/ensembl_transcript_seqseqassocload/output/SEQ_Sequence_Assoc.bcp.prod
 
+# alomrkload
+cd /data/loads/mgi/alomrkload/input
+scp bhmgiapp01:/data/loads/mgi/alomrkload/input/fjoin.out fjoin.out.prod
+scp bhmgiapp01:/data/loads/mgi/alomrkload/input/markers.gff markers.gff.prod
+scp bhmgiapp01:/data/loads/mgi/alomrkload/input/sequences.gff sequences.gff.prod
+cd /data/loads/mgi/alomrkload/output
+scp bhmgiapp01:/data/loads/mgi/alomrkload/output/MGI_Note.bcp MGI_Note.bcp.prod
+scp bhmgiapp01:/data/loads/mgi/alomrkload/output/MGI_NoteChunk.bcp MGI_NoteChunk.bcp.prod
+
 ## end
 cd /usr/local/mgi/scrum-dog/loadadmin/prod
 
