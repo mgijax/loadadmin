@@ -95,8 +95,45 @@ scp bhmgiapp01:/data/loads/mp_emapaload/output/MGI_Relationship.bcp MGI_Relation
 cd /data/loads/mp_emapaload/reports
 scp bhmgiapp01:/data/loads/mp_emapaload/reports/MP_EMAPA.rpt.new MP_EMAPA.rpt.new.prod
 
+# assemblyseqload/ensemblseqload/seqseqassocload
 
-
+scp bhmgiapp01:/data/loads/assembly/ensemblseqload/reports/chrcheck.rpt /data/loads/assembly/ensemblseqload/reports/chrcheck.rpt.prod
+scp bhmgiapp01:/data/loads/mgi/genemodelload/input/ensembl_transcripts.gz /data/loads/mgi/genemodelload/input/ensembl_transcripts.gz
+scp bhmgiapp01:/data/loads/mgi/genemodelload/input/ensembl_ncrna.gz /data/loads/mgi/genemodelload/input/ensembl_ncrna.gz
+scp bhmgiapp01:/data/loads/mgi/genemodelload/input/ensembl_proteins.gz /data/loads/mgi/genemodelload/input
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/reports/AssocDiscrepancy.rpt /data/loads/ensembl/ensembl_transcriptassocload/reports/AssocDiscrepancy.rpt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/reports/TargetDiscrepancy.rpt /data/loads/ensembl/ensembl_transcriptassocload/reports/TargetDiscrepancy.rpt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/ensembl_transcript_mkrassoc.txt /data/loads/ensembl/ensembl_transcriptseqload/output/ensembl_transcript_mkrassoc.txt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/output/ACC_Accession.bcp /data/loads/ensembl/ensembl_transcriptassocload/output/ACC_Accession.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/output/ACC_AccessionReference.bcp /data/loads/ensembl/ensembl_transcriptassocload/output/ACC_AccessionReference.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/output/MGI_Association.bcp /data/loads/ensembl/ensembl_transcriptassocload/output/MGI_Association.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/output/PRB_Reference.bcp /data/loads/ensembl/ensembl_transcriptassocload/output/PRB_Reference.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/output/QC_AssocLoad_Assoc_Discrep.bcp /data/loads/ensembl/ensembl_transcriptassocload/output/QC_AssocLoad_Assoc_Discrep.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptassocload/output/QC_AssocLoad_Target_Discrep.bcp /data/loads/ensembl/ensembl_transcriptassocload/output/QC_AssocLoad_Target_Discrep.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/ACC_Accession.bcp /data/loads/ensembl/ensembl_transcriptseqload/output/ACC_Accession.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/ensembl_transcript_mkrassoc.txt /data/loads/ensembl/ensembl_transcriptseqload/output/ensembl_transcript_mkrassoc.txt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/ensembl_transcript_seqseqassoc.txt /data/loads/ensembl/ensembl_transcriptseqload/output/ensembl_transcript_seqseqassoc.txt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/MGI_Reference_Assoc.bcp /data/loads/ensembl/ensembl_transcriptseqload/output/MGI_Reference_Assoc.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/SEQ_Sequence.bcp /data/loads/ensembl/ensembl_transcriptseqload/output/SEQ_Sequence.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/SEQ_Sequence_Raw.bcp /data/loads/ensembl/ensembl_transcriptseqload/output/SEQ_Sequence_Raw.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcriptseqload/output/SEQ_Source_Assoc.bcp /data/loads/ensembl/ensembl_transcriptseqload/output/SEQ_Source_Assoc.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/output/ACC_Accession.bcp /data/loads/ensembl/ensembl_proteinassocload/output/ACC_Accession.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/output/ACC_AccessionReference.bcp /data/loads/ensembl/ensembl_proteinassocload/output/ACC_AccessionReference.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/output/MGI_Association.bcp /data/loads/ensembl/ensembl_proteinassocload/output/MGI_Association.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/output/PRB_Reference.bcp /data/loads/ensembl/ensembl_proteinassocload/output/PRB_Reference.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/output/QC_AssocLoad_Assoc_Discrep.bcp /data/loads/ensembl/ensembl_proteinassocload/output/QC_AssocLoad_Assoc_Discrep.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/output/QC_AssocLoad_Target_Discrep.bcp /data/loads/ensembl/ensembl_proteinassocload/output/QC_AssocLoad_Target_Discrep.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/reports/AssocDiscrepancy.rpt /data/loads/ensembl/ensembl_proteinassocload/reports/AssocDiscrepancy.rpt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinassocload/reports/TargetDiscrepancy.rpt /data/loads/ensembl/ensembl_proteinassocload/reports/TargetDiscrepancy.rpt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/ACC_Accession.bcp /data/loads/ensembl/ensembl_proteinseqload/output/ACC_Accession.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/ensembl_protein_mkrassoc.txt /data/loads/ensembl/ensembl_proteinseqload/output/ensembl_protein_mkrassoc.txt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/ensembl_protein_seqseqassoc.txt /data/loads/ensembl/ensembl_proteinseqload/output/ensembl_protein_seqseqassoc.txt.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/MGI_Reference_Assoc.bcp /data/loads/ensembl/ensembl_proteinseqload/output/MGI_Reference_Assoc.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/SEQ_Sequence.bcp /data/loads/ensembl/ensembl_proteinseqload/output/SEQ_Sequence.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/SEQ_Sequence_Raw.bcp /data/loads/ensembl/ensembl_proteinseqload/output/SEQ_Sequence_Raw.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output/SEQ_Source_Assoc.bcp /data/loads/ensembl/ensembl_proteinseqload/output/SEQ_Source_Assoc.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_protein_seqseqassocload/output/SEQ_Sequence_Assoc.bcp /data/loads/ensembl/ensembl_protein_seqseqassocload/output/SEQ_Sequence_Assoc.bcp.prod
+scp bhmgiapp01:/data/loads/ensembl/ensembl_transcript_seqseqassocload/output/SEQ_Sequence_Assoc.bcp /data/loads/ensembl/ensembl_transcript_seqseqassocload/output/SEQ_Sequence_Assoc.bcp.prod
 
 ## end
 cd /usr/local/mgi/scrum-dog/loadadmin/prod
