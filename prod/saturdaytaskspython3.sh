@@ -54,3 +54,50 @@ scp bhmgiapp01:/data/genemodels/pending//associations/ensembl/ensembl_missing_gm
 scp bhmgiapp01:/data/genemodels/pending//associations/ensembl/ensembl_reportsWithDiscrepancies.rpt ensembl_reportsWithDiscrepancies.rpt.prod
 scp bhmgiapp01:/data/genemodels/pending//associations/ensembl/ensembl_sec_marker.rpt ensembl_sec_marker.rpt.prod
 
+# alleleload
+cd /data/downloads/www.mousephenotype.org
+#scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mgi_modification_allele_report.tsv .
+scp bhmgiapp14ld:/data/downloads/mgi_modification_allele_report_rmb.tsv www.mousephenotype.org/mgi_modification_allele_report.tsv
+cd /data/loads/mgi/alleleload/ikmc/input
+scp bhmgiapp01:/data/loads/mgi/alleleload/ikmc/input/mgi_modification_allele_report.tsv mgi_modification_allele_report.tsv.prod
+
+# emalload
+cd /data/downloads/www.mousephenotype.org
+scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mgi_crispr_allele_report.tsv .
+
+cd /data/loads/mgi/emalload/impc/input
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/input/crispr_file.txt crispr_file.txt.prod
+cd /data/loads/mgi/emalload/impc/output.prod
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/ACC_Accession.bcp .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/ALL_Allele.bcp .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/ALL_Allele_Mutation.bcp .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/allele_file.txt .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/cid_noteload.txt .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/MGI_Note.bcp .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/MGI_NoteChunk.bcp .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/MGI_Reference_Assoc.bcp .
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/output/VOC_Annot.bcp .
+cd /data/loads/mgi/emalload/impc/reports
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/reports/emalload_qc.rpt emalload_qc.rpt.prod
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/reports/MGI_impc_crispr_allele.rpt MGI_impc_crispr_allele.rpt.prod
+scp bhmgiapp01:/data/loads/mgi/emalload/impc/reports/sanity.rpt sanity.rpt.prod
+
+# mp_emapaload
+scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
+scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMP/mp.owl /data/loads/mgi/vocload/runTimeMP
+scp bhmgiapp01:/data/loads/mgi/vocload/emap/input/EMAPA.obo /data/loads/mgi/vocload/emap/input
+cd /data/loads/mp_emapaload/input
+scp bhmgiapp01:/data/loads/mp_emapaload/input/emapa.txt emapa.txt.prod
+scp bhmgiapp01:/data/loads/mp_emapaload/input/mpToUberon.txt mpToUberon.txt.prod
+scp bhmgiapp01:/data/loads/mp_emapaload/input/uberonToEmapa.txt uberonToEmapa.txt.prod
+cd /data/loads/mp_emapaload/output
+scp bhmgiapp01:/data/loads/mp_emapaload/output/MGI_Relationship.bcp MGI_Relationship.bcp.prod
+cd /data/loads/mp_emapaload/reports
+scp bhmgiapp01:/data/loads/mp_emapaload/reports/MP_EMAPA.rpt.new MP_EMAPA.rpt.new.prod
+
+
+
+
+## end
+cd /usr/local/mgi/scrum-dog/loadadmin/prod
+
