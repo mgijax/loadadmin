@@ -57,7 +57,7 @@ scp bhmgiapp01:/data/genemodels/pending//associations/ensembl/ensembl_sec_marker
 # alleleload
 cd /data/downloads/www.mousephenotype.org
 #scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mgi_modification_allele_report.tsv .
-scp bhmgiapp14ld:/data/downloads/mgi_modification_allele_report_rmb.tsv www.mousephenotype.org/mgi_modification_allele_report.tsv
+scp bhmgiapp14ld:/data/downloads/www.mousephenotype.org/mgi_modification_allele_report_rmb.tsv mgi_modification_allele_report.tsv
 cd /data/loads/mgi/alleleload/ikmc/input
 scp bhmgiapp01:/data/loads/mgi/alleleload/ikmc/input/mgi_modification_allele_report.tsv mgi_modification_allele_report.tsv.prod
 
