@@ -1,12 +1,10 @@
-#!/usr/local/bin/python
-#
 # Name: downloadStatistics
 # Purpose: to download the current data statistics from the fewi and write them
 #   as files under /mgi/all/statistics/
 
 import os
 import time
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import sys
 
 USAGE = '''Usage: %s
@@ -18,8 +16,8 @@ topDir = '/mgi/all/statistics/'
 url = 'http://www.informatics.jax.org/home/statistics_report.txt'
 
 def getPage():
-    fp = urllib2.urlopen(url)
-    page = fp.read()
+    fp = urllib.request.urlopen(url)
+    page = fp.read().decode("utf8")
     fp.close()
     return page
 
