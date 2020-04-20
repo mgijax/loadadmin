@@ -19,6 +19,7 @@ rm -rf /data/loads/mgi/slimtermload/goslimload/input/lastrun
 rm -rf /data/loads/mgi/slimtermload/mpslimload/input/lastrun
 rm -rf /data/loads/pro/proload/input/lastrun
 rm -rf /data/loads/mgi/rvload/input/lastrun
+rm -rf /data/loads/swissprot/spseqload/input/lastrun
 
 # cache loads (just mrkcoord cache)
 
