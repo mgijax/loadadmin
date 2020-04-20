@@ -14,6 +14,7 @@ rsync -avz bhmgiapp01:/data/loads/mgi/htmpload/impcmpload/output /data/loads/mgi
 # remove lastrun
 rm -rf /data/loads/mgi/fearload/input/lastrun
 rm -rf /data/loads/mgi/htmpload/impcmpload/input/lastrun
+rm -rf /data/loads/mgi/slimtermload/emapslimload/input/lastrun
 
 # cache loads (just mrkcoord cache)
 
