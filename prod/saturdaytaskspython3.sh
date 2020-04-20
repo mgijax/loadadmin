@@ -144,6 +144,29 @@ cd /data/loads/mgi/alomrkload/output
 scp bhmgiapp01:/data/loads/mgi/alomrkload/output/MGI_Note.bcp MGI_Note.bcp.prod
 scp bhmgiapp01:/data/loads/mgi/alomrkload/output/MGI_NoteChunk.bcp MGI_NoteChunk.bcp.prod
 
+# targetedalleleload
+
+cd /data/downloads/www.mousephenotype.org
+scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mgi_es_cell_allele_report.tsv .
+scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mgi_es_cell_allele_report.tsv .
+scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mgi_es_cell_allele_report.tsv .
+scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mgi_es_cell_allele_report.tsv .
+
+cd /data/loads/targetedallele/input
+scp bhmgiapp01:/data/loads/targetedallele/input/mgi_es_cell_allele_report.tsv mgi_es_cell_allele_report.tsv.prod
+
+cd /data/loads/targetedallele
+scp bhmgiapp01:/data/loads/targetedallele/duplicatedAllele.rpt duplicatedAllele.rpt.prod
+
+cd /data/loads/targetedallele/csd_load_mbp/reports
+scp bhmgiapp01:/data/loads/targetedallele/csd_load_wtsi/reports/AbandonedAllele.rpt AbandonedAllele.rpt.prod
+cd /data/loads/targetedallele/csd_load_wtsi/reports
+scp bhmgiapp01:/data/loads/targetedallele/csd_load_wtsi/reports/AbandonedAllele.rpt AbandonedAllele.rpt.prod
+cd /data/loads/targetedallele/eucomm_load_hmgu/reports
+scp bhmgiapp01:/data/loads/targetedallele/eucomm_load_hmgu/reports/AbandonedAllele.rpt AbandonedAllele.rpt.prod
+cd /data/loads/targetedallele/eucomm_load_wtsi/reports
+scp bhmgiapp01:/data/loads//targetedallele/eucomm_load_wtsi/reports/AbandonedAllele.rpt AbandonedAllele.rpt.prod
+
 ## end
 cd /usr/local/mgi/scrum-dog/loadadmin/prod
 
