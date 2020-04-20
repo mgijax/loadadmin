@@ -12,8 +12,8 @@ scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mp2_load_phenotyping_colon
 rsync -avz bhmgiapp01:/data/loads/mgi/htmpload/impcmpload/output /data/loads/mgi/htmpload/impcmpload/output.prod
 
 # remove lastrun
-rm /data/loads/mgi/fearload/input/lastrun
-rm /data/loads/mgi/htmpload/impcmpload/input/lastrun
+rm -rf /data/loads/mgi/fearload/input/lastrun
+rm -rf /data/loads/mgi/htmpload/impcmpload/input/lastrun
 
 # cache loads (just mrkcoord cache)
 
