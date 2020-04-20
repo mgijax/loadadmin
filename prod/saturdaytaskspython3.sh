@@ -185,6 +185,34 @@ scp bhmgiapp01:/data/loads/targetedallele/eucomm_load_hmgu/reports/AbandonedAlle
 cd /data/loads/targetedallele/eucomm_load_wtsi/reports
 scp bhmgiapp01:/data/loads//targetedallele/eucomm_load_wtsi/reports/AbandonedAllele.rpt AbandonedAllele.rpt.prod
 
+# proload
+
+scp bhmgiapp01:/data/downloads/proconsortium.org/download/more/mgi/PRO_mgi.txt /data/downloads/proconsortium.org/download/more/mgi/
+cd /data/loads/pro/proload/input
+scp bhmgiapp01:/data/loads/pro/proload/input/proannot.txt proannot.txt.prod
+scp bhmgiapp01:/data/loads/pro/proload/input/proassoc.txt proassoc.txt.prod
+scp bhmgiapp01:/data/loads/pro/proload/input/provoc.txt provoc.txt.prod
+mkdir /data/loads/pro/proload/output.prod
+cd /data/loads/pro/proload/output.prod
+scp bhmgiapp01:/data/loads/pro/proload/output/discrepancy.html .
+scp bhmgiapp01:/data/loads/pro/proload/output/accAccession.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/ACC_Accession.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/ACC_AccessionReference.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/MGI_Association.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/PRB_Reference.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/proannot.txt.MGI_Note.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/proannot.txt.MGI_NoteChunk.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/proannot.txt.VOC_Annot.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/proannot.txt.VOC_Evidence.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/proannot.txt.VOC_Evidence_Property.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/QC_AssocLoad_Assoc_Discrep.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/QC_AssocLoad_Target_Discrep.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/termNote.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/termNoteChunk.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/termSynonym.bcp .
+scp bhmgiapp01:/data/loads/pro/proload/output/termTerm.bcp .
+
+
 ## end
 cd /usr/local/mgi/scrum-dog/loadadmin/prod
 
