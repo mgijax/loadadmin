@@ -17,6 +17,8 @@ rm -rf /data/loads/mgi/htmpload/impcmpload/input/lastrun
 rm -rf /data/loads/mgi/slimtermload/emapslimload/input/lastrun
 rm -rf /data/loads/mgi/slimtermload/goslimload/input/lastrun
 rm -rf /data/loads/mgi/slimtermload/mpslimload/input/lastrun
+rm -rf /data/loads/pro/proload/input/lastrun
+rm -rf /data/loads/mgi/rvload/input/lastrun
 
 # cache loads (just mrkcoord cache)
 
@@ -25,6 +27,9 @@ rm -rf /data/loads/mgi/slimtermload/mpslimload/input/lastrun
 # qc reports
 
 # Lori
+
+# strainmarkerload
+scp bhmgiapp01:/export/gondor/ftp/pub/mgigff3/MGI.gff3.gz /data/loads/mgi/strainmarkerload/input
 
 # slimtermload
 cd /data/loads/mgi/slimtermload/emapslimload/input
