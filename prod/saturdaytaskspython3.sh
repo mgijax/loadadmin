@@ -15,6 +15,8 @@ rsync -avz bhmgiapp01:/data/loads/mgi/htmpload/impcmpload/output /data/loads/mgi
 rm -rf /data/loads/mgi/fearload/input/lastrun
 rm -rf /data/loads/mgi/htmpload/impcmpload/input/lastrun
 rm -rf /data/loads/mgi/slimtermload/emapslimload/input/lastrun
+rm -rf /data/loads/mgi/slimtermload/goslimload/input/lastrun
+rm -rf /data/loads/mgi/slimtermload/mpslimload/input/lastrun
 
 # cache loads (just mrkcoord cache)
 
@@ -23,6 +25,14 @@ rm -rf /data/loads/mgi/slimtermload/emapslimload/input/lastrun
 # qc reports
 
 # Lori
+
+# slimtermload
+cd /data/loads/mgi/slimtermload/emapslimload/input
+scp bhmgiapp01:/data/loads/mgi/slimtermload/emapslimload/input/emapslimload.txt .
+cd /data/loads/mgi/slimtermload/goslimload/input
+scp bhmgiapp01:/data/loads/mgi/slimtermload/goslimload/input/goslimload.txt .
+cd /data/loads/mgi/slimtermload/mpslimload/input
+scp bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/input/mpslimload.txt .
 
 # geoload
 cd /data/loads/geo/geoload/input
