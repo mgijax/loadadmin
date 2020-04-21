@@ -75,7 +75,7 @@ scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/The-Sequence-Ontology/S
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeSO/discrepancy.html discrepancy.html.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeSO/Termfile Termfile.prod
 
-cd /data/loads/mgi/vocload/runTimeHO
+cd /data/loads/mgi/vocload/runTimeHPO
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/discrepancy.html discrepancy.html.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/Termfile Termfile.prod
