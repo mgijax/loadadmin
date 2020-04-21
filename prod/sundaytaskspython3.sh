@@ -24,6 +24,7 @@ scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gaf.gz 
 
 # vocload
 cd /data/loads/mgi/vocload/runTimeMA
+scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/adult_mouse_anatomy.obo .
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/dagClosure.bcp dagClosure.bcp.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/dagDiscrepancy.html dagDiscrepancy.html.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/dagEdge.bcp dagEdge.bcp.prod
