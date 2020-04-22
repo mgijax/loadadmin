@@ -10,10 +10,30 @@ scp bhmgiapp01:/data/downloads/www.ebi.ac.uk/impc.json /data/downloads/www.ebi.a
 scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mp2_load_phenotyping_colonies_report.tsv  /data/downloads/www.mousephenotype.org/mp2_load_phenotyping_colonies_report.tsv
 
 rsync -avz bhmgiapp01:/data/loads/mgi/htmpload/impcmpload/output /data/loads/mgi/htmpload/impcmpload/output.prod
+rsync -avz bhmgiapp01:/data/loads/mgi/htmpload/impcmpload/logs /data/loads/mgi/htmpload/impcmpload/logs.prod
+
+# strainmarkerload
+rsync -avz bhmgiapp01:/data/downloads/ftp.ensembl.org/pub/release-92/gff3 /data/downloads/ftp.ensembl.org/pub/release-92/
+# mgigff3 file is copied by the load
+
+rsync -avz  bhmgiapp01:/data/loads/mgi/strainmarkerload/input /data/loads/mgi/strainmarkerload/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/strainmarkerload/output /data/loads/mgi/strainmarkerload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/strainmarkerload/logs /data/loads/mgi/strainmarkerload/logs.prod
+
+# straingenemodelload
+# input is database and mgigff - see strainmarkerload above
+rsync -avz  bhmgiapp01:/data/loads/mgi/straingenemodelload/input /data/loads/mgi/straingenemodelload/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/straingenemodelload/output /data/loads/mgi/straingenemodelload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/straingenemodelload/logs /data/loads/mgi/straingenemodelload/logs.prod
+
+rsync -avz  bhmgiapp01:/data/loads/assembly/b6seqload/output /data/loads/assembly/b6seqload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/assembly/b6seqload/logs /data/loads/assembly/b6seqload/logs.prod
+
 
 # remove lastrun
 rm -rf /data/loads/mgi/fearload/input/lastrun
 rm -rf /data/loads/mgi/htmpload/impcmpload/input/lastrun
+rm -rf /data/loads/mgi/strainmarkerload/output/lastrun
 rm -rf /data/loads/mgi/slimtermload/emapslimload/input/lastrun
 rm -rf /data/loads/mgi/slimtermload/goslimload/input/lastrun
 rm -rf /data/loads/mgi/slimtermload/mpslimload/input/lastrun
