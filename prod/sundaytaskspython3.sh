@@ -86,3 +86,8 @@ scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dagEdge.bcp dagEdge.bcp.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dag.hpo dag.hpo.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dagNode.bcp dagNode.bcp.prod
 
+# egload
+
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/logs /data/loads/entrezgene/egload/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/output /data/loads/entrezgene/egload/output.prod
+
