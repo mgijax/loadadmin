@@ -22,6 +22,14 @@ scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/download
 scp bhmgiapp01:/data/downloads/go_gene_assoc/gene_association.rgd.gz /data/downloads/go_gene_assoc
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gaf.gz /data/downloads/snapshot.geneontology.org/annotations
 
+rsync -avz  bhmgiapp01:/data/loads/go/goahuman /data/loads/go/goahuman.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gocfp /data/loads/go/gocfp.prod
+rsync -avz  bhmgiapp01:/data/loads/go/goamouse /data/loads/go/goamouse.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gomousenoctua /data/loads/go/gomousenoctua.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gorat /data/loads/go/gorat.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gorefgen /data/loads/go/gorefgen.prod
+rm -rf /data/loads/go/*/*/archive/*
+
 # vocload
 cd /data/loads/mgi/vocload/runTimeMA
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/adult_mouse_anatomy.obo .
