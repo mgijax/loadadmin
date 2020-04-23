@@ -96,6 +96,12 @@ scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dagNode.bcp dagNode.bcp.prod
 
 # egload
 
+scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene_info /data/loads/entrezgene/entrezgeneload/input
+scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene2accession /data/loads/entrezgene/entrezgeneload/input
+scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene2pubmed /data/loads/entrezgene/entrezgeneload/input
+scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene2refseq /data/loads/entrezgene/entrezgeneload/input
+scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene_history /data/loads/entrezgene/entrezgeneload/input
+
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/logs /data/loads/entrezgene/egload/logs.prod
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/output /data/loads/entrezgene/egload/output.prod
 
