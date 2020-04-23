@@ -233,21 +233,8 @@ scp bhmgiapp01:/data/loads//targetedallele/eucomm_load_wtsi/reports/AbandonedAll
 
 # gxdhtload
 scp bhmgiapp01:/data/downloads/www.ebi.ac.uk/arrayexpress.json /data/downloads/www.ebi.ac.uk
-cd /data/loads/mgi/gxdhtload/input
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.uid.xml geo.uid.xml.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.1 geo.xml.1.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.2 geo.xml.2.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.3 geo.xml.3.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.4 geo.xml.4.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.5 geo.xml.5.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.6 geo.xml.6.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.7 geo.xml.7.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/input/geo.xml.8 geo.xml.8.prod
-cd /data/loads/mgi/gxdhtload/output
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/output/ACC_Accession.bcp ACC_Accession.bcp.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/output/GXD_HTExperiment.bcp GXD_HTExperiment.bcp.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/output/GXD_HTExperimentVariable.bcp GXD_HTExperimentVariable.bcp.prod
-scp bhmgiapp01:/data/loads/mgi/gxdhtload/output/MGI_Property.bcp MGI_Property.bcp.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/input /data/loads/lec/mgi/gxdhtload/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/output /data/loads/lec/mgi/gxdhtload/output.prod
 
 ## end
 cd /usr/local/mgi/scrum-dog/loadadmin/prod
