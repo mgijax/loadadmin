@@ -12,6 +12,9 @@ scp bhmgiapp01:/data/downloads/www.mousephenotype.org/mp2_load_phenotyping_colon
 rsync -avz bhmgiapp01:/data/loads/mgi/htmpload/impcmpload/output /data/loads/mgi/htmpload/impcmpload/output.prod
 rsync -avz bhmgiapp01:/data/loads/mgi/htmpload/impcmpload/logs /data/loads/mgi/htmpload/impcmpload/logs.prod
 
+# rnaseqload
+rsync -avz bhmgiapp01:/data/loads/mgi/rnaseqload/raw_input /data/loads/mgi/rnaseqload
+
 # strainmarkerload
 rsync -avz bhmgiapp01:/data/downloads/ftp.ensembl.org/pub/release-92/gff3 /data/downloads/ftp.ensembl.org/pub/release-92/
 # mgigff3 file is copied by the load
