@@ -94,14 +94,21 @@ scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dagEdge.bcp dagEdge.bcp.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dag.hpo dag.hpo.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dagNode.bcp dagNode.bcp.prod
 
-# egload
+# entrezgeneload/egload
 
-scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene_info /data/loads/entrezgene/entrezgeneload/input
-scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene2accession /data/loads/entrezgene/entrezgeneload/input
-scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene2pubmed /data/loads/entrezgene/entrezgeneload/input
-scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene2refseq /data/loads/entrezgene/entrezgeneload/input
-scp bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input/gene_history /data/loads/entrezgene/entrezgeneload/input
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene2accession.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene2pubmed.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene2refseq.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene_history.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene_info.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/mim2gene_medgen /data/downloads/ftp.ncbi.nih.gov/gene/DATA
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/homologene.data /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/RELEASE_NUMBER /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
 
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/logs /data/loads/entrezgene/egload/logs.prod
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/output /data/loads/entrezgene/egload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/logs /data/loads/lec/entrezgene/entrezgeneload/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/output /data/loads/lec/entrezgene/entrezgeneload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/reports /data/loads/lec/entrezgene/entrezgeneload/reports.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/logs /data/loads/lec/entrezgene/egload/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/output /data/loads/lec/entrezgene/egload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/reports /data/loads/lec/entrezgene/egload/reports.prod
 
