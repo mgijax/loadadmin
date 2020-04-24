@@ -105,10 +105,10 @@ scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/mim2gene_medgen /data/
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/homologene.data /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/RELEASE_NUMBER /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
 
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/logs /data/loads/lec/entrezgene/entrezgeneload/logs.prod
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/output /data/loads/lec/entrezgene/entrezgeneload/output.prod
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/reports /data/loads/lec/entrezgene/entrezgeneload/reports.prod
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/logs /data/loads/lec/entrezgene/egload/logs.prod
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/output /data/loads/lec/entrezgene/egload/output.prod
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/reports /data/loads/lec/entrezgene/egload/reports.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/logs /data/loads/entrezgene/entrezgeneload/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/output /data/loads/entrezgene/entrezgeneload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/reports /data/loads/entrezgene/entrezgeneload/reports.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/logs /data/loads/entrezgene/egload/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/output /data/loads/entrezgene/egload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/reports /data/loads/entrezgene/egload/reports.prod
 
