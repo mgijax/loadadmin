@@ -120,9 +120,9 @@ scp bhmgiapp01:/data/downloads/go_translation/uniprotkb_kw2go /data/downloads/go
 scp bhmgiapp01:/data/downloads/go_translation/uniprotkb_sl2go /data/downloads/go_translation
 scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/interpro/names.dat /data/downloads/ftp.ebi.ac.uk/pub/databases/interpro
 
-rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/logs /data/loads/lec/uniprot/uniprotload/logs.prod
-rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/output /data/loads/lec/uniprot/uniprotload/output.prod
-rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/reports /data/loads/lec/uniprot/uniprotload/reports.prod
-rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/uniprotload_override /data/loads/lec/uniprot/uniprotload/uniprotload_override.prod
-cp /data/loads/lec/uniprot/uniprotload/uniprotload_override.prod/uniprotload_override/input/override.txt /data/loads/lec/uniprot/uniprotload/uniprotload_override/input
+rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/logs /data/loads/uniprot/uniprotload/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/output /data/loads/uniprot/uniprotload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/reports /data/loads/uniprot/uniprotload/reports.prod
+rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/uniprotload_override /data/loads/uniprot/uniprotload/uniprotload_override.prod
+cp /data/loads/uniprot/uniprotload/uniprotload_override.prod/uniprotload_override/input/override.txt /data/loads/uniprot/uniprotload/uniprotload_override/input
 
