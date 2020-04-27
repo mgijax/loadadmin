@@ -19,8 +19,8 @@ scp bhmgiapp01:/data/downloads/go_noctua/noctua_mgi.gpad.gz /data/downloads/go_n
 scp bhmgiapp01:/data/downloads/go_noctua/noctua_pr.gpad.gz /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master/gaf-eco-mapping-derived.txt /data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
-scp bhmgiapp01:/data/downloads/go_gene_assoc/gene_association.rgd.gz /data/downloads/go_gene_assoc
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gaf.gz /data/downloads/snapshot.geneontology.org/annotations
+scp bhmgiapp01:/data/downloads/current.geneontology.org/annotations/rgd.gaf.gz /data/downloads/current.geneontology.org/annotations
 
 rsync -avz  bhmgiapp01:/data/loads/go/goahuman /data/loads/go/goahuman.prod
 rsync -avz  bhmgiapp01:/data/loads/go/gocfp /data/loads/go/gocfp.prod
