@@ -126,3 +126,13 @@ rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/reports /data/loads/unipr
 rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/uniprotload_override /data/loads/uniprot/uniprotload/uniprotload_override.prod
 cp /data/loads/uniprot/uniprotload/uniprotload_override.prod/uniprotload_override/input/override.txt /data/loads/uniprot/uniprotload/uniprotload_override/input
 
+# omim_hpoload
+scp bhmgiapp01:/data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current/phenotype.hpoa /data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology/doid-merged.obo /data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology
+scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
+
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/logs /data/loads/lec/omim_hpo/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/input /data/loads/lec/omim_hpo/input.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/output /data/loads/lec/omim_hpo/output.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/reports /data/loads/lec/omim_hpo/reports.prod
+
