@@ -236,8 +236,9 @@ scp bhmgiapp01:/data/loads//targetedallele/eucomm_load_wtsi/reports/AbandonedAll
 
 # gxdhtload
 scp bhmgiapp01:/data/downloads/www.ebi.ac.uk/arrayexpress.json /data/downloads/www.ebi.ac.uk
-rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/input /data/loads/mgi/gxdhtload/input.prod
-rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/output /data/loads/mgi/gxdhtload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/input /data/loads/lec/mgi/gxdhtload/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/output /data/loads/lec/mgi/gxdhtload/output.prod
+rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/reports /data/loads/lec/mgi/gxdhtload/reports.prod
 
 ## end
 cd /usr/local/mgi/scrum-dog/loadadmin/prod
