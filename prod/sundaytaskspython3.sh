@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Sharon
+
+# pubmed2geneload
+scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp /data/loads/pubmed2geneload/output
+
+# homologyload
+
 # Lori
 
 # goload
