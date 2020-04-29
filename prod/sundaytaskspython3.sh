@@ -81,6 +81,7 @@ rm -rf /data/loads/go/*/*/archive/*
 
 # vocload
 cd /data/loads/mgi/vocload/runTimeMA
+rm -rf /data/loads/mgi/vocload/runTimeMA/adult_mouse_anatomy.obo
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/adult_mouse_anatomy.obo .
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/dagClosure.bcp dagClosure.bcp.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/dagDiscrepancy.html dagDiscrepancy.html.prod
