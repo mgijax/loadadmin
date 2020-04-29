@@ -10,11 +10,21 @@ scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp /data/
 scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/orthology.txt /data/downloads/geisha.arizona.edu/geisha/orthology.txt
 scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/expression.txt /data/downloads/geisha.arizona.edu/geisha/expression.txt
 
+scp bhmgiapp01:/data/loads/homology/geishaload/output/MRK_Cluster.bcp /data/loads/homology/geishaload/output/
+scp bhmgiapp01:/data/loads/homology/geishaload/output/MRK_ClusterMember.bcp /data/loads/homology/geishaload/output/
+
 # hgnc
 scp bhmgiapp01:/data/downloads/www.genenames.org/hgnc.tsv /data/downloads/www.genenames.org/hgnc.tsv
 
-# homologene and homology
+scp bhmgiapp01:/data/loads/homology/hgncload/output/MRK_Cluster.bcp /data/loads/homology/hgncload/output/
+scp bhmgiapp01:/data/loads/homology/hgncload/output/MRK_ClusterMember.bcp /data/loads/homology/hgncload/output/
+
+# homologene
 scp bhmgiapp01:/data/downloads/homologene/homologene.data /data/downloads/homologene/homologene.data
+
+scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_Cluster.bcp /data/loads/homology/homologeneload/output/
+scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_ClusterMember.bcp /data/loads/homology/homologeneload/output/
+
 
 # hybrid - no file all from db
 
@@ -24,10 +34,16 @@ scp bhmgiapp01:/data/downloads/ftp.xenbase.org/XenbaseGenepageToGeneIdMapping.tx
 scp bhmgiapp01:/data/downloads/ftp.xenbase.org/XenbaseGeneMouseOrthologMapping.txt /data/downloads/ftp.xenbase.org/XenbaseGeneMouseOrthologMapping.txt
 scp bhmgiapp01:/data/downloads/ftp.xenbase.org/GeneExpression_tropicalis.txt /data/downloads/ftp.xenbase.org/GeneExpression_tropicalis.txt
 
+scp bhmgiapp01:/data/loads/homology/xenbaseload/output/MRK_Cluster.bcp /data/loads/homology/xenbaseload/output/
+scp bhmgiapp01:/data/loads/homology/xenbaseload/output/MRK_ClusterMember.bcp /data/loads/homology/xenbaseload/output/
+
 # zfin
 scp bhmgiapp01:/data/downloads/zfin.org/downloads/gene.txt /data/downloads/zfin.org/downloads/gene.txt
 scp bhmgiapp01:/data/downloads/zfin.org/downloads/mouse_orthos.txt /data/downloads/zfin.org/downloads/mouse_orthos.txt
 scp bhmgiapp01:/data/downloads/zfin.org/downloads/xpat_fish.txt /data/downloads/zfin.org/downloads/xpat_fish.txt
+
+scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_Cluster.bcp /data/loads/homology/zfinload/output/
+scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_ClusterMember.bcp /data/loads/homology/zfinload/output/
 
 #
 # Lori
