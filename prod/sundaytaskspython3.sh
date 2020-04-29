@@ -3,16 +3,18 @@
 # Sharon
 
 # pubmed2geneload
-scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp /data/loads/pubmed2geneload/output
+scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp /data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp.prod
+scp bhmgiapp01:/data/loads/pubmed2geneload/logs/pubmed2geneload.cur.log /data/loads/pubmed2geneload/logs/pubmed2geneload.cur.log.prod
 
 # homologyload
 scp bhmgiapp01:/data/downloads/homologene/RELEASE_NUMBER /data/downloads/homologene/
+
 # geisha
 scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/orthology.txt /data/downloads/geisha.arizona.edu/geisha/orthology.txt
 scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/expression.txt /data/downloads/geisha.arizona.edu/geisha/expression.txt
 
-scp bhmgiapp01:/data/loads/homology/geishaload/output/MRK_Cluster.bcp /data/loads/homology/geishaload/output/
-scp bhmgiapp01:/data/loads/homology/geishaload/output/MRK_ClusterMember.bcp /data/loads/homology/geishaload/output/
+scp bhmgiapp01:/data/loads/homology/geishaload/output/MRK_Cluster.bcp /data/loads/homology/geishaload/output/MRK_Cluster.bcp.prod
+scp bhmgiapp01:/data/loads/homology/geishaload/output/MRK_ClusterMember.bcp /data/loads/homology/geishaload/output/MRK_ClusterMember.bcp.prod
 
 # hgnc
 scp bhmgiapp01:/data/downloads/www.genenames.org/hgnc.tsv /data/downloads/www.genenames.org/hgnc.tsv
@@ -23,8 +25,8 @@ scp bhmgiapp01:/data/loads/homology/hgncload/output/MRK_ClusterMember.bcp /data/
 # homologene
 scp bhmgiapp01:/data/downloads/homologene/homologene.data /data/downloads/homologene/homologene.data
 
-scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_Cluster.bcp /data/loads/homology/homologeneload/output/
-scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_ClusterMember.bcp /data/loads/homology/homologeneload/output/
+scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_Cluster.bcp /data/loads/homology/homologeneload/output/MRK_Cluster.bcp.prod
+scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_ClusterMember.bcp /data/loads/homology/homologeneload/output/MRK_ClusterMember.bcp.prod
 
 
 # hybrid - no file all from db
@@ -35,16 +37,16 @@ scp bhmgiapp01:/data/downloads/ftp.xenbase.org/XenbaseGenepageToGeneIdMapping.tx
 scp bhmgiapp01:/data/downloads/ftp.xenbase.org/XenbaseGeneMouseOrthologMapping.txt /data/downloads/ftp.xenbase.org/XenbaseGeneMouseOrthologMapping.txt
 scp bhmgiapp01:/data/downloads/ftp.xenbase.org/GeneExpression_tropicalis.txt /data/downloads/ftp.xenbase.org/GeneExpression_tropicalis.txt
 
-scp bhmgiapp01:/data/loads/homology/xenbaseload/output/MRK_Cluster.bcp /data/loads/homology/xenbaseload/output/
-scp bhmgiapp01:/data/loads/homology/xenbaseload/output/MRK_ClusterMember.bcp /data/loads/homology/xenbaseload/output/
+scp bhmgiapp01:/data/loads/homology/xenbaseload/output/MRK_Cluster.bcp /data/loads/homology/xenbaseload/output/MRK_Cluster.bcp.prod
+scp bhmgiapp01:/data/loads/homology/xenbaseload/output/MRK_ClusterMember.bcp /data/loads/homology/xenbaseload/output/MRK_ClusterMember.bcp.prod
 
 # zfin
 scp bhmgiapp01:/data/downloads/zfin.org/downloads/gene.txt /data/downloads/zfin.org/downloads/gene.txt
 scp bhmgiapp01:/data/downloads/zfin.org/downloads/mouse_orthos.txt /data/downloads/zfin.org/downloads/mouse_orthos.txt
 scp bhmgiapp01:/data/downloads/zfin.org/downloads/xpat_fish.txt /data/downloads/zfin.org/downloads/xpat_fish.txt
 
-scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_Cluster.bcp /data/loads/homology/zfinload/output/
-scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_ClusterMember.bcp /data/loads/homology/zfinload/output/
+scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_Cluster.bcp /data/loads/homology/zfinload/output/MRK_Cluster.bcp.prod
+scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_ClusterMember.bcp /data/loads/homology/zfinload/output/MRK_ClusterMember.bcp.prod
 
 #
 # Lori
