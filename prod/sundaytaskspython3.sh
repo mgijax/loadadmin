@@ -180,8 +180,17 @@ scp bhmgiapp01:/data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.cu
 scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology/doid-merged.obo /data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
 
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/logs /data/loads/lec/omim_hpo/logs.prod
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/input /data/loads/lec/omim_hpo/input.prod
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/output /data/loads/lec/omim_hpo/output.prod
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/reports /data/loads/lec/omim_hpo/reports.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/logs /data/loads/omim_hpo/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/input /data/loads/omim_hpo/input.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/output /data/loads/omim_hpo/output.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/reports /data/loads/omim_hpo/reports.prod
+
+# mp_hpoload
+scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
+scp bhmgiapp01:/data/loads/mp_hpo/input/mp_hpo.txt /data/loads/mp_hpo/input
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/input /data/loads/mp_hpo/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/logs /data/loads/mp_hpo/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/input /data/loads/mp_hpo/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/output /data/loads/mp_hpo/output.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/reports /data/loads/mp_hpo/reports.prod
 
