@@ -84,6 +84,7 @@ rm -rf /data/loads/go/*/*/archive/*
 
 # vocload
 cd /data/loads/mgi/vocload/runTimeMA
+rm -rf /data/loads/mgi/vocload/runTimeMA/adult_mouse_anatomy.obo
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/adult_mouse_anatomy.obo .
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/dagClosure.bcp dagClosure.bcp.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMA/dagDiscrepancy.html dagDiscrepancy.html.prod
@@ -147,7 +148,6 @@ scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dag.hpo dag.hpo.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeHPO/dagNode.bcp dagNode.bcp.prod
 
 # entrezgeneload/egload
-
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene2accession.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene2pubmed.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene2refseq.gz /data/downloads/ftp.ncbi.nih.gov/gene/DATA
@@ -156,7 +156,6 @@ scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene_info.gz /data/dow
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/mim2gene_medgen /data/downloads/ftp.ncbi.nih.gov/gene/DATA
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/homologene.data /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/RELEASE_NUMBER /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
-
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/logs /data/loads/entrezgene/entrezgeneload/logs.prod
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/output /data/loads/entrezgene/entrezgeneload/output.prod
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/reports /data/loads/entrezgene/entrezgeneload/reports.prod
@@ -171,7 +170,6 @@ scp bhmgiapp01:/data/downloads/go_translation/interpro2go /data/downloads/go_tra
 scp bhmgiapp01:/data/downloads/go_translation/uniprotkb_kw2go /data/downloads/go_translation
 scp bhmgiapp01:/data/downloads/go_translation/uniprotkb_sl2go /data/downloads/go_translation
 scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/interpro/names.dat /data/downloads/ftp.ebi.ac.uk/pub/databases/interpro
-
 rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/logs /data/loads/uniprot/uniprotload/logs.prod
 rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/output /data/loads/uniprot/uniprotload/output.prod
 rsync -avz  bhmgiapp01:/data/loads/uniprot/uniprotload/reports /data/loads/uniprot/uniprotload/reports.prod
@@ -182,9 +180,17 @@ cp /data/loads/uniprot/uniprotload/uniprotload_override.prod/uniprotload_overrid
 scp bhmgiapp01:/data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current/phenotype.hpoa /data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current
 scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology/doid-merged.obo /data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/logs /data/loads/omim_hpo/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/input /data/loads/omim_hpo/input.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/output /data/loads/omim_hpo/output.prod
+rsync -avz  bhmgiapp01:/data/loads/omim_hpo/reports /data/loads/omim_hpo/reports.prod
 
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/logs /data/loads/lec/omim_hpo/logs.prod
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/input /data/loads/lec/omim_hpo/input.prod
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/output /data/loads/lec/omim_hpo/output.prod
-rsync -avz  bhmgiapp01:/data/loads/omim_hpo/reports /data/loads/lec/omim_hpo/reports.prod
-
+# mp_hpoload
+scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
+scp bhmgiapp01:/data/loads/mp_hpo/input/mp_hpo.txt /data/loads/mp_hpo/input
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/input /data/loads/mp_hpo/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/logs /data/loads/mp_hpo/logs.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/input /data/loads/mp_hpo/input.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/output /data/loads/mp_hpo/output.prod
+rsync -avz  bhmgiapp01:/data/loads/mp_hpo/reports /data/loads/mp_hpo/reports.prod
+rm -rf /data/loads/mp_hpo/input/lastrun
