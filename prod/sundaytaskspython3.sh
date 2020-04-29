@@ -189,4 +189,4 @@ rsync -avz  bhmgiapp01:/data/loads/mp_hpo/logs /data/loads/mp_hpo/logs.prod
 rsync -avz  bhmgiapp01:/data/loads/mp_hpo/input /data/loads/mp_hpo/input.prod
 rsync -avz  bhmgiapp01:/data/loads/mp_hpo/output /data/loads/mp_hpo/output.prod
 rsync -avz  bhmgiapp01:/data/loads/mp_hpo/reports /data/loads/mp_hpo/reports.prod
-
+rm -rf /data/loads/mp_hpo/input/lastrun
