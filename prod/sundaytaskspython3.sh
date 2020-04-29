@@ -6,6 +6,7 @@
 scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp /data/loads/pubmed2geneload/output
 
 # homologyload
+scp bhmgiapp01:/data/downloads/homologene/RELEASE_NUMBER /data/downloads/homologene/
 # geisha
 scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/orthology.txt /data/downloads/geisha.arizona.edu/geisha/orthology.txt
 scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/expression.txt /data/downloads/geisha.arizona.edu/geisha/expression.txt
