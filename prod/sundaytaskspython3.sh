@@ -6,7 +6,30 @@
 scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp /data/loads/pubmed2geneload/output
 
 # homologyload
+# geisha
+scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/orthology.txt /data/downloads/geisha.arizona.edu/geisha/orthology.txt
+scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/expression.txt /data/downloads/geisha.arizona.edu/geisha/expression.txt
 
+# hgnc
+scp bhmgiapp01:/data/downloads/www.genenames.org/hgnc.tsv /data/downloads/www.genenames.org/hgnc.tsv
+
+# homologene and homology
+scp bhmgiapp01:/data/downloads/homologene/homologene.data /data/downloads/homologene/homologene.data
+
+# hybrid - no file all from db
+
+# xenbase
+scp bhmgiapp01:/data/downloads/ftp.xenbase.org/GenePageTropicalisEntrezGeneUnigeneMapping.txt /data/downloads/ftp.xenbase.org/GenePageTropicalisEntrezGeneUnigeneMapping.txt
+scp bhmgiapp01:/data/downloads/ftp.xenbase.org/XenbaseGenepageToGeneIdMapping.txt /data/downloads/ftp.xenbase.org/XenbaseGenepageToGeneIdMapping.txt
+scp bhmgiapp01:/data/downloads/ftp.xenbase.org/XenbaseGeneMouseOrthologMapping.txt /data/downloads/ftp.xenbase.org/XenbaseGeneMouseOrthologMapping.txt
+scp bhmgiapp01:/data/downloads/ftp.xenbase.org/GeneExpression_tropicalis.txt /data/downloads/ftp.xenbase.org/GeneExpression_tropicalis.txt
+
+# zfin
+scp bhmgiapp01:/data/downloads/zfin.org/downloads/gene.txt /data/downloads/zfin.org/downloads/gene.txt
+scp bhmgiapp01:/data/downloads/zfin.org/downloads/mouse_orthos.txt /data/downloads/zfin.org/downloads/mouse_orthos.txt
+scp bhmgiapp01:/data/downloads/zfin.org/downloads/xpat_fish.txt /data/downloads/zfin.org/downloads/xpat_fish.txt
+
+#
 # Lori
 
 # goload
