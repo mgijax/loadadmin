@@ -60,7 +60,7 @@ scp bhmgiapp01:/export/gondor/ftp/pub/mgigff3/MGI.gff3.gz /data/loads/mgi/strain
 cd /data/loads/mgi/slimtermload/emapslimload/input
 scp bhmgiapp01:/data/loads/mgi/slimtermload/emapslimload/input/emapslimload.txt .
 cd /data/loads/mgi/slimtermload/goslimload/input
-scp bhmgiapp01:/data/loads/mgi/slimtermload/goslimload/input/goslimload.txt .
+#scp bhmgiapp01:/data/loads/mgi/slimtermload/goslimload/input/goslimload.txt .
 cd /data/loads/mgi/slimtermload/mpslimload/input
 scp bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/input/mpslimload.txt .
 
