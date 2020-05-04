@@ -74,13 +74,18 @@ scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/download
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gaf.gz /data/downloads/snapshot.geneontology.org/annotations
 scp bhmgiapp01:/data/downloads/current.geneontology.org/annotations/rgd.gaf.gz /data/downloads/current.geneontology.org/annotations
 
-rsync -avz  bhmgiapp01:/data/loads/go/goahuman /data/loads/go/goahuman.prod
-rsync -avz  bhmgiapp01:/data/loads/go/gocfp /data/loads/go/gocfp.prod
-rsync -avz  bhmgiapp01:/data/loads/go/goamouse /data/loads/go/goamouse.prod
-rsync -avz  bhmgiapp01:/data/loads/go/gomousenoctua /data/loads/go/gomousenoctua.prod
-rsync -avz  bhmgiapp01:/data/loads/go/gorat /data/loads/go/gorat.prod
-rsync -avz  bhmgiapp01:/data/loads/go/gorefgen /data/loads/go/gorefgen.prod
-rm -rf /data/loads/go/*/*/archive/*
+rsync -avz  bhmgiapp01:/data/loads/go/goahuman/input /data/loads/go/goahuman.prod
+rsync -avz  bhmgiapp01:/data/loads/go/goahuman/output /data/loads/go/goahuman.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gocfp/input /data/loads/go/gocfp.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gocfp/output /data/loads/go/gocfp.prod
+rsync -avz  bhmgiapp01:/data/loads/go/goamouse/input /data/loads/go/goamouse.prod
+rsync -avz  bhmgiapp01:/data/loads/go/goamouse/output /data/loads/go/goamouse.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gomousenoctua/input /data/loads/go/gomousenoctua.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gomousenoctua/output /data/loads/go/gomousenoctua.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gorat/input /data/loads/go/gorat.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gorat/output /data/loads/go/gorat.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gorefgen/input /data/loads/go/gorefgen.prod
+rsync -avz  bhmgiapp01:/data/loads/go/gorefgen/output /data/loads/go/gorefgen.prod
 
 # vocload
 cd /data/loads/mgi/vocload/runTimeMA
