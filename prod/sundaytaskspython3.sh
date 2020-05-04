@@ -28,11 +28,10 @@ scp bhmgiapp01:/data/downloads/homologene/homologene.data /data/downloads/homolo
 scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_Cluster.bcp /data/loads/homology/homologeneload/output/MRK_Cluster.bcp.prod
 scp bhmgiapp01:/data/loads/homology/homologeneload/output/MRK_ClusterMember.bcp /data/loads/homology/homologeneload/output/MRK_ClusterMember.bcp.prod
 
-
 # hybrid - no input file, all from db
-scp bhmgiapp01:/data/loads/homology/hybridload/output/MRK_Cluster.bcp /data/loads/sc/homology/hybridload/output/MRK_Cluster.bcp.prod
-scp bhmgiapp01:/data/loads/homology/hybridload/output/MRK_ClusterMember.bcp /data/loads/sc/homology/hybridload/output/MRK_ClusterMember.bcp.prod
-scp bhmgiapp01:/data/loads/homology/hybridload/output/MGI_Property.bcp /data/loads/sc/homology/hybridload/output/MGI_Property.bcp.prod
+scp bhmgiapp01:/data/loads/homology/hybridload/output/MRK_Cluster.bcp /data/loads/homology/hybridload/output/MRK_Cluster.bcp.prod
+scp bhmgiapp01:/data/loads/homology/hybridload/output/MRK_ClusterMember.bcp /data/loads/homology/hybridload/output/MRK_ClusterMember.bcp.prod
+scp bhmgiapp01:/data/loads/homology/hybridload/output/MGI_Property.bcp /data/loads/homology/hybridload/output/MGI_Property.bcp.prod
 
 # xenbase
 scp bhmgiapp01:/data/downloads/ftp.xenbase.org/GenePageTropicalisEntrezGeneUnigeneMapping.txt /data/downloads/ftp.xenbase.org/GenePageTropicalisEntrezGeneUnigeneMapping.txt
