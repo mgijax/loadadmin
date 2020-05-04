@@ -162,7 +162,6 @@ scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/homologen
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/RELEASE_NUMBER /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/logs /data/loads/entrezgene/entrezgeneload/logs.prod
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/output /data/loads/entrezgene/entrezgeneload/output.prod
-rsync -avz  bhmgiapp01:/data/loads/entrezgene/entrezgeneload/reports /data/loads/entrezgene/entrezgeneload/reports.prod
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/logs /data/loads/entrezgene/egload/logs.prod
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/output /data/loads/entrezgene/egload/output.prod
 rsync -avz  bhmgiapp01:/data/loads/entrezgene/egload/reports /data/loads/entrezgene/egload/reports.prod
