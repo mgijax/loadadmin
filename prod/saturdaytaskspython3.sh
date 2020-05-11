@@ -78,6 +78,7 @@ cd /data/loads/pro/proload/input
 scp bhmgiapp01:/data/loads/pro/proload/input/proannot.txt proannot.txt.prod
 scp bhmgiapp01:/data/loads/pro/proload/input/proassoc.txt proassoc.txt.prod
 scp bhmgiapp01:/data/loads/pro/proload/input/provoc.txt provoc.txt.prod
+rm -rf /data/loads/pro/proload/output.prod
 mkdir /data/loads/pro/proload/output.prod
 cd /data/loads/pro/proload/output.prod
 scp bhmgiapp01:/data/loads/pro/proload/output/discrepancy.html .
