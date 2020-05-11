@@ -63,7 +63,7 @@ scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_ClusterMember.bcp /data/
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/mgi-prediction.gaf /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/noctua_mgi.gpad.gz /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/noctua_pr.gpad.gz /data/downloads/go_noctua
-scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downloads/purl.obolibrary.org/obo/pr
+#scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downloads/purl.obolibrary.org/obo/pr
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
 scp bhmgiapp01:/data/downloads/goa/HUMAN/goa_human.gaf.gz /data/downloads/goa/HUMAN
 scp bhmgiapp01:/data/downloads/goa/HUMAN/goa_human_isoform.gaf.gz /data/downloads/goa/HUMAN
@@ -117,14 +117,13 @@ scp bhmgiapp01:/data/loads/mgi/vocload/runTimeCL/validationLog.txt validationLog
 
 cd /data/loads/mgi/vocload/OMIM
 scp bhmgiapp01:/data/downloads/data.omim.org/omim.txt.gz /data/downloads/data.omim.org
-scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.exclude .
+#scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.exclude .
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.special .
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.synonym .
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.translation .
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/discrepancy.html discrepancy.html.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.tab OMIM.tab.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/termSynonym.bcp termSynonym.bcp.prod
-scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIMtermcheck.2020-04-19.rpt OMIMtermcheck.2020-04-19.rpt
 ln -s /data/loads/mgi/vocload/OMIM/OMIMtermcheck.2020-04-19.rpt OMIMtermcheck.current.rpt
 
 cd /data/loads/mgi/vocload/runTimeDO
