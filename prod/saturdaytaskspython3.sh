@@ -128,6 +128,7 @@ cd /data/downloads/www.mousephenotype.org
 scp bhmgiapp14ld:/data/downloads/www.mousephenotype.org/mgi_modification_allele_report_rmb.tsv mgi_modification_allele_report.tsv
 cd /data/loads/mgi/alleleload/ikmc/input
 scp bhmgiapp01:/data/loads/mgi/alleleload/ikmc/input/mgi_modification_allele_report.tsv mgi_modification_allele_report.tsv.prod
+rsync -avz bhmgiapp01:/data/loads/mgi/alleleload/ikmc/output /data/loads/mgi/alleleload/ikmc/output.prod
 
 # emalload
 cd /data/downloads/www.mousephenotype.org
@@ -240,6 +241,10 @@ scp bhmgiapp01:/data/downloads/www.ebi.ac.uk/arrayexpress.json /data/downloads/w
 rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/input /data/loads/mgi/gxdhtload/input.prod
 rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/output /data/loads/mgi/gxdhtload/output.prod
 rsync -avz  bhmgiapp01:/data/loads/mgi/gxdhtload/reports /data/loads/mgi/gxdhtload/reports.prod
+
+# rollupload
+rsync -avz  bhmgiapp01:/data/loads/rollupload/input /data/loads/rollupload/input.prod
+rsync -avz  bhmgiapp01:/data/loads/rollupload/output /data/loads/rollupload/output.prod
 
 ## end
 cd /usr/local/mgi/scrum-dog/loadadmin/prod
