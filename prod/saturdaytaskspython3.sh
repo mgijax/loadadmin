@@ -146,6 +146,3 @@ rsync -avz bhmgiapp01:/data/loads/ensembl/ensembl_proteinseqload/output /data/lo
 rsync -avz bhmgiapp01:/data/loads/ensembl/ensembl_protein_seqseqassocload/output /data/loads/ensembl/ensembl_protein_seqseqassocload/output.prod
 rsync -avz bhmgiapp01:/data/loads/ensembl/ensembl_transcript_seqseqassocload/output /data/loads/ensembl/ensembl_transcript_seqseqassocload/output.prod
 
-## end
-cd /usr/local/mgi/scrum-dog/loadadmin/prod
-
