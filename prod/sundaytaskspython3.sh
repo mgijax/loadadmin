@@ -166,3 +166,14 @@ scp bhmgiapp01:/data/downloads/ftp.pir.georgetown.edu/databases/iproclass/more_x
 rsync -avz bhmgiapp01:/data/loads/pirsf/pirsfload/output ${DATALOADSOUTPUT}/pirsf/pirsfload/output.prod
 rsync -avz bhmgiapp01:/data/loads/pirsf/pirsfload/reports ${DATALOADSOUTPUT}/pirsf/pirsfload/reports.prod
 
+# ccdsload
+scp bhmgiapp01:/data/downloads/ccds_mus/CCDS.current.txt /data/downloads/ccds_mus
+rsync -avz bhmgiapp01:/data/loads/ccds/ccdsload/input ${DATALOADSOUTPUT}/ccds/ccdsload/input.prod
+rsync -avz bhmgiapp01:/data/loads/ccds/ccdsload/output ${DATALOADSOUTPUT}/ccds/ccdsload/output.prod
+rsync -avz bhmgiapp01:/data/loads/ccds/ccdsload/reports ${DATALOADSOUTPUT}/ccds/ccdsload/reports.prod
+
+# seqcacheload
+rsync -avz bhmgiapp01:/data/loads/mgi/seqcacheload/output ${DATALOADSOUTPUT}/mgi/seqcacheload/output.prod
+
+# mrkcacheload
+rsync -avz bhmgiapp01:/data/loads/mgi/mrkcacheload/output ${DATALOADSOUTPUT}/mgi/mrkcacheload/output.prod
