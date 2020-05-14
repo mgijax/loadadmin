@@ -8,6 +8,10 @@ fi
 
 . ${MGICONFIG}/master.config.sh
 
+# remove lastrun
+rm -rf ${DATALOADSOUTPUT}/mp_hpo/input/lastrun
+rm -rf ${DATALOADSOUTPUT}/nextprot/nextprotload/input/lastrun
+
 # pubmed2geneload
 scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp ${DATALOADSOUTPUT}/pubmed2geneload/output/MGI_Reference_Assoc.bcp.prod
 scp bhmgiapp01:/data/loads/pubmed2geneload/logs/pubmed2geneload.cur.log ${DATALOADSOUTPUT}/pubmed2geneload/logs/pubmed2geneload.cur.log.prod
@@ -69,8 +73,6 @@ scp bhmgiapp01:/data/downloads/goa/MOUSE/goa_mouse.gaf.gz /data/downloads/goa/MO
 scp bhmgiapp01:/data/downloads/goa/MOUSE/goa_mouse_isoform.gaf.gz /data/downloads/goa/MOUSE
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/mgi-prediction.gaf /data/downloads/snapshot.geneontology.org/products/annotations
-scp bhmgiapp01:/data/downloads/go_noctua/noctua_mgi.gpad.gz /data/downloads/go_noctua
-scp bhmgiapp01:/data/downloads/go_noctua/noctua_pr.gpad.gz /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master/gaf-eco-mapping-derived.txt /data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gaf.gz /data/downloads/snapshot.geneontology.org/annotations
@@ -142,25 +144,6 @@ rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/reports ${DATALOADSOUTPUT}
 rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/uniprotload_override ${DATALOADSOUTPUT}/uniprot/uniprotload/uniprotload_override.prod
 cp /data/loads/uniprot/uniprotload/uniprotload_override.prod/uniprotload_override/input/override.txt ${DATALOADSOUTPUT}/uniprot/uniprotload/uniprotload_override/input
 
-# omim_hpoload
-scp bhmgiapp01:/data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current/phenotype.hpoa /data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology/doid-merged.obo /data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology
-scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
-rsync -avz bhmgiapp01:/data/loads/omim_hpo/logs ${DATALOADSOUTPUT}/omim_hpo/logs.prod
-rsync -avz bhmgiapp01:/data/loads/omim_hpo/input ${DATALOADSOUTPUT}/omim_hpo/input.prod
-rsync -avz bhmgiapp01:/data/loads/omim_hpo/output ${DATALOADSOUTPUT}/omim_hpo/output.prod
-rsync -avz bhmgiapp01:/data/loads/omim_hpo/reports ${DATALOADSOUTPUT}/omim_hpo/reports.prod
-
-# mp_hpoload
-scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
-scp bhmgiapp01:/data/loads/mp_hpo/input/mp_hpo.txt ${DATALOADSOUTPUT}/mp_hpo/input
-rsync -avz bhmgiapp01:/data/loads/mp_hpo/input ${DATALOADSOUTPUT}/mp_hpo/input.prod
-rsync -avz bhmgiapp01:/data/loads/mp_hpo/logs ${DATALOADSOUTPUT}/mp_hpo/logs.prod
-rsync -avz bhmgiapp01:/data/loads/mp_hpo/input ${DATALOADSOUTPUT}/mp_hpo/input.prod
-rsync -avz bhmgiapp01:/data/loads/mp_hpo/output ${DATALOADSOUTPUT}/mp_hpo/output.prod
-rsync -avz bhmgiapp01:/data/loads/mp_hpo/reports ${DATALOADSOUTPUT}/mp_hpo/reports.prod
-rm -rf ${DATALOADSOUTPUT}/mp_hpo/input/lastrun
-
 # pirsfload
 scp bhmgiapp01:/data/downloads/ftp.pir.georgetown.edu/databases/iproclass/more_xml_files/m_musculus.xml.gz /data/downloads/ftp.pir.georgetown.edu/databases/iproclass/more_xml_files
 rsync -avz bhmgiapp01:/data/loads/pirsf/pirsfload/output ${DATALOADSOUTPUT}/pirsf/pirsfload/output.prod
@@ -179,5 +162,25 @@ rsync -avz bhmgiapp01:/data/loads/mgi/seqcacheload/output ${DATALOADSOUTPUT}/mgi
 rsync -avz bhmgiapp01:/data/loads/mgi/mrkcacheload/output ${DATALOADSOUTPUT}/mgi/mrkcacheload/output.prod
 
 # nextprotload
-rsync -avz bhmgiapp01:/data/loads/nextprot/nextproload/output ${DATALOADSOUTPUT}/nextprot/nextprotload/output.prod
+scp bhmgiapp01:/data/downloads/ftp.nextprot.org/pub/current_release/mapping/nextprot_geneid.txt /data/downloads/ftp.nextprot.org/pub/current_release/mapping
+rsync -avz bhmgiapp01:/data/loads/nextprot/nextprotload/input ${DATALOADSOUTPUT}/nextprot/nextprotload/input.prod
+rsync -avz bhmgiapp01:/data/loads/nextprot/nextprotload/output ${DATALOADSOUTPUT}/nextprot/nextprotload/output.prod
+
+# omim_hpoload
+scp bhmgiapp01:/data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current/phenotype.hpoa /data/downloads/compbio.charite.de/jenkins/job/hpo.annotations.current/lastSuccessfulBuild/artifact/current
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology/doid-merged.obo /data/downloads/raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/master/src/ontology
+scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
+rsync -avz bhmgiapp01:/data/loads/omim_hpo/logs ${DATALOADSOUTPUT}/omim_hpo/logs.prod
+rsync -avz bhmgiapp01:/data/loads/omim_hpo/input ${DATALOADSOUTPUT}/omim_hpo/input.prod
+rsync -avz bhmgiapp01:/data/loads/omim_hpo/output ${DATALOADSOUTPUT}/omim_hpo/output.prod
+rsync -avz bhmgiapp01:/data/loads/omim_hpo/reports ${DATALOADSOUTPUT}/omim_hpo/reports.prod
+
+# mp_hpoload
+scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp.obo /data/downloads/purl.obolibrary.org/obo
+scp bhmgiapp01:/data/loads/mp_hpo/input/mp_hpo.txt ${DATALOADSOUTPUT}/mp_hpo/input
+rsync -avz bhmgiapp01:/data/loads/mp_hpo/input ${DATALOADSOUTPUT}/mp_hpo/input.prod
+rsync -avz bhmgiapp01:/data/loads/mp_hpo/logs ${DATALOADSOUTPUT}/mp_hpo/logs.prod
+rsync -avz bhmgiapp01:/data/loads/mp_hpo/input ${DATALOADSOUTPUT}/mp_hpo/input.prod
+rsync -avz bhmgiapp01:/data/loads/mp_hpo/output ${DATALOADSOUTPUT}/mp_hpo/output.prod
+rsync -avz bhmgiapp01:/data/loads/mp_hpo/reports ${DATALOADSOUTPUT}/mp_hpo/reports.prod
 

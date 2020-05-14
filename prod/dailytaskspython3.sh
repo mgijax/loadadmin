@@ -14,6 +14,7 @@ rm -rf ${DATALOADSOUTPUT}/mgi/mcvload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/mrkcoordload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/rvload/input/lastrun
 
+# goload
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/mgi-prediction.gaf /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/noctua_mgi.gpad.gz /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/noctua_pr.gpad.gz /data/downloads/go_noctua
