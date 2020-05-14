@@ -13,6 +13,7 @@ rm -rf ${DATALOADSOUTPUT}/mgi/nomenload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/mcvload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/mrkcoordload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/rvload/input/lastrun
+rm -rf ${DATALOADSOUTPUT}/mgi/emalload/impc/input/lastrun
 
 # goload
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/mgi-prediction.gaf /data/downloads/go_noctua
