@@ -160,3 +160,9 @@ rsync -avz bhmgiapp01:/data/loads/mp_hpo/input ${DATALOADSOUTPUT}/mp_hpo/input.p
 rsync -avz bhmgiapp01:/data/loads/mp_hpo/output ${DATALOADSOUTPUT}/mp_hpo/output.prod
 rsync -avz bhmgiapp01:/data/loads/mp_hpo/reports ${DATALOADSOUTPUT}/mp_hpo/reports.prod
 rm -rf ${DATALOADSOUTPUT}/mp_hpo/input/lastrun
+
+# pirsfload
+scp bhmgiapp01:/data/downloads/ftp.pir.georgetown.edu/databases/iproclass/more_xml_files/m_musculus.xml.gz /data/downloads/ftp.pir.georgetown.edu/databases/iproclass/more_xml_files
+rsync -avz bhmgiapp01:/data/loads/pirsf/pirsfload/output ${DATALOADSOUTPUT}/pirsf/pirsfload/output.prod
+rsync -avz bhmgiapp01:/data/loads/pirsf/pirsfload/reports ${DATALOADSOUTPUT}/pirsf/pirsfload/reports.prod
+
