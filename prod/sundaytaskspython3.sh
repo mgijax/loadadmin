@@ -177,3 +177,7 @@ rsync -avz bhmgiapp01:/data/loads/mgi/seqcacheload/output ${DATALOADSOUTPUT}/mgi
 
 # mrkcacheload
 rsync -avz bhmgiapp01:/data/loads/mgi/mrkcacheload/output ${DATALOADSOUTPUT}/mgi/mrkcacheload/output.prod
+
+# nextprotload
+rsync -avz bhmgiapp01:/data/loads/nextprot/nextproload/output ${DATALOADSOUTPUT}/nextprot/nextprotload/output.prod
+
