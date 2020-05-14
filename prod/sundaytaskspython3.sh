@@ -122,6 +122,7 @@ scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/gene_info.gz /data/dow
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/mim2gene_medgen /data/downloads/ftp.ncbi.nih.gov/gene/DATA
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/homologene.data /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current/RELEASE_NUMBER /data/downloads/ftp.ncbi.nih.gov/pub/HomoloGene/current
+rsync -avz bhmgiapp01:/data/loads/entrezgene/entrezgeneload/input ${DATALOADSOUTPUT}/entrezgene/entrezgeneload/input.prod
 rsync -avz bhmgiapp01:/data/loads/entrezgene/entrezgeneload/logs ${DATALOADSOUTPUT}/entrezgene/entrezgeneload/logs.prod
 rsync -avz bhmgiapp01:/data/loads/entrezgene/entrezgeneload/output ${DATALOADSOUTPUT}/entrezgene/entrezgeneload/output.prod
 rsync -avz bhmgiapp01:/data/loads/entrezgene/egload/logs ${DATALOADSOUTPUT}/entrezgene/egload/logs.prod
