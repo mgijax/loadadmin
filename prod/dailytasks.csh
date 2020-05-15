@@ -57,6 +57,14 @@ env | sort >> ${LOG}
 set weekday=`date '+%u'`
 set tomorrow=`date -d tomorrow +%m/%d/%Y`
 
+date | tee -a ${LOG}
+echo 'Make sure the database is available before starting' | tee -a ${LOG}
+${PG_DBUTILS}/bin/testConnection.csh ${PG_DBSERVER} ${PG_DBNAME}
+if ( $status != 0 ) then
+    echo "Cannot connect to database ${PG_DBSERVER}.${PG_DBNAME}. Abort load schedule." | tee -a ${LOG}
+    exit 1
+endif
+
 #
 # Generate the MGI marker feed as early as possible for JAX folks.
 #
