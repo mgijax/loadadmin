@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-15-4
+DATE: 5/15/2020
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: added call pgdbutilities/bin/testConnection.csh
+2) prod/saturdaytasks.csh: added call pgdbutilities/bin/testConnection.csh
+3) prod/sundaytasks.csh: added call pgdbutilities/bin/testConnection.csh
+
 TAG: loadadmin-6-0-15-3
 TAG: loadadmin-6-0-15-2
 DATE: 4/16/2020
