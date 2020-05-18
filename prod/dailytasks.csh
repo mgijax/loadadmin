@@ -72,6 +72,17 @@ date | tee -a ${LOG}
 echo 'Generate MGI Marker Feed Reports' | tee -a ${LOG}
 ${PUBRPTS}/mgimarkerfeed/mgimarkerfeed_reports.csh
 
+if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
+    date | tee -a ${LOG}
+    echo 'Save a copy of the prior database backups' | tee -a ${LOG}
+    if ( -f ${DB_BACKUP_DIR}/mgd.predaily.dump ) then
+        cp -p ${DB_BACKUP_DIR}/mgd.predaily.dump ${DB_BACKUP_DIR}/save
+    endif
+    if ( -f ${DB_BACKUP_DIR}/radar.predaily.dump ) then
+        cp -p ${DB_BACKUP_DIR}/radar.predaily.dump ${DB_BACKUP_DIR}/save
+    endif
+endif
+
 date | tee -a ${LOG}
 echo 'Create Pre-Daily Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.predaily.dump
