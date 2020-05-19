@@ -24,6 +24,7 @@ scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downl
 scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse.gaf.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
 scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse.gpi.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
 scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse_isoform.gaf.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master/gaf-eco-mapping-derived.txt /data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master
 scp bhmgiapp01:/data/reports/reports_db/output/mgi.gpa ${PUBREPORTDIR}/output/mgi.gpa.prod
 scp bhmgiapp01:/data/reports/reports_db/output/mgi.gpi ${PUBREPORTDIR}/output/mgi.gpi.prod
 scp bhmgiapp01:/data/reports/reports_db/output/gene_association.mgi ${PUBREPORTDIR}/output/gene_association.mgi.prod
