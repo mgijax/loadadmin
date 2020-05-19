@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-15-5
+DATE: 5/18/2020
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: save prior predaily backups
+2) prod/saturdaytasks.csh: save prior presaturday backups
+3) prod/sundaytasks.csh: save prior presunday backups
+
 TAG: loadadmin-6-0-15-4
 DATE: 5/15/2020
 STAFF: dbm

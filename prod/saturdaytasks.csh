@@ -59,6 +59,17 @@ if ( $status != 0 ) then
     exit 1
 endif
 
+if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
+    date | tee -a ${LOG}
+    echo 'Save a copy of the prior database backups' | tee -a ${LOG}
+    if ( -f ${DB_BACKUP_DIR}/mgd.presaturday.dump ) then
+        cp -p ${DB_BACKUP_DIR}/mgd.presaturday.dump ${DB_BACKUP_DIR}/save
+    endif
+    if ( -f ${DB_BACKUP_DIR}/radar.presaturday.dump ) then
+        cp -p ${DB_BACKUP_DIR}/radar.presaturday.dump ${DB_BACKUP_DIR}/save
+    endif
+endif
+
 date | tee -a ${LOG}
 echo 'Create Pre-Saturday Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.presaturday.dump
