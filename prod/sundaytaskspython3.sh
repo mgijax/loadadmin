@@ -142,7 +142,7 @@ rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/logs ${DATALOADSOUTPUT}/un
 rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/output ${DATALOADSOUTPUT}/uniprot/uniprotload/output.prod
 rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/reports ${DATALOADSOUTPUT}/uniprot/uniprotload/reports.prod
 rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/uniprotload_override ${DATALOADSOUTPUT}/uniprot/uniprotload/uniprotload_override.prod
-cp /data/loads/uniprot/uniprotload/uniprotload_override.prod/uniprotload_override/input/override.txt ${DATALOADSOUTPUT}/uniprot/uniprotload/uniprotload_override/input
+cp /data/loads/uniprot/uniprotload/uniprotload_override/input/override.txt ${DATALOADSOUTPUT}/uniprot/uniprotload/uniprotload_override/input
 
 # pirsfload
 scp bhmgiapp01:/data/downloads/ftp.pir.georgetown.edu/databases/iproclass/more_xml_files/m_musculus.xml.gz /data/downloads/ftp.pir.georgetown.edu/databases/iproclass/more_xml_files
