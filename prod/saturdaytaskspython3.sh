@@ -20,6 +20,15 @@ rm -rf ${DATALOADSOUTPUT}/mgi/rvload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/swissprot/spseqload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/swissprot/trseqload/input/lastrun
 
+# refseqload preprocessed input file
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/refseq_gbpreprocessor/output/RefSeq.602.001.gz /data/downloads/ftp.ncbi.nih.gov/refseq_gbpreprocessor/output
+
+# gbseqload preprocessed input file
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/genbank_gbpreprocessor/output/GenBank.608.001.gz /data/downloads/ftp.ncbi.nih.gov/genbank_gbpreprocessor/output
+
+# spseqload/trseqload input file
+scp bhmgiapp01:/data/downloads/uniprot/uniprotmus.dat /data/downloads/uniprot/
+
 # geoload
 rsync -avz bhmgiapp01:/data/loads/geo/geoload/input ${DATALOADSOUTPUT}/geo/geoload/input.prod
 rsync -avz bhmgiapp01:/data/loads/geo/geoload/output ${DATALOADSOUTPUT}/geo/geoload/output.prod

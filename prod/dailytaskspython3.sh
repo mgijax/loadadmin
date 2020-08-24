@@ -15,6 +15,12 @@ rm -rf ${DATALOADSOUTPUT}/mgi/mrkcoordload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/rvload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/emalload/impc/input/lastrun
 
+# refseq seqdeleter
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/refseq/refseq_deletes/suppressed_* /data/downloads/ftp.ncbi.nih.gov/refseq/refseq_deletes
+
+# gb seqdeleter
+scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/genbank/gb_deletes/gbdel.txt.gz /data/downloads/ftp.ncbi.nih.gov/genbank/gb_deletes
+
 # goload
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/mgi-prediction.gaf /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/noctua_mgi.gpad.gz /data/downloads/go_noctua
