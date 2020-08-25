@@ -19,7 +19,7 @@ rm -rf ${DATALOADSOUTPUT}/pro/proload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/rvload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/swissprot/spseqload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/swissprot/trseqload/input/lastrun
-
+rm -rf ${DATALOADSOUTPUT}/mgi/qtlarchiveload/input/lastrun
 # refseqload preprocessed input file
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/refseq_gbpreprocessor/output/RefSeq.602.001.gz /data/downloads/ftp.ncbi.nih.gov/refseq_gbpreprocessor/output
 
