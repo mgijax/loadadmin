@@ -12,7 +12,13 @@ API_HOME=${MGI_LIVE}/mgd_java_api
 
 cd ${API_HOME}
 
-. ./Configuration
+if [ -f ./Configuration ]
+then
+    . ./Configuration
+else
+    echo "Configuration file is missing in mgd_java_api"
+    exit 1
+fi
 
 echo "Stopping Java API"
 ./stopApi.sh
