@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-16-3
+DATE: 8/27/2020
+STAFF: dbm
+CHANGES:
+1) bin/startApi: check for missing config file in mgd_java_api
+2) bin/stopApi: check for missing config file in mgd_java_api
+
 TAG: loadadmin-6-0-16-2
 TAG: loadadmin-6-0-16-1
 DATE: 8/24/2020
