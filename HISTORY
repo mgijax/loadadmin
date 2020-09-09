@@ -1,3 +1,12 @@
+TAG: loadadmin-6-0-16-5
+DATE: 9/9/2020
+STAFF: dbm
+CHANGES:
+1) jboss/startFewi: use wildfly directory instead of jboss
+2) jboss/startFewiBatch: use wildfly directory instead of jboss
+3) jboss/stopFewi: use wildfly directory instead of jboss
+4) jboss/stopFewiBatch: use wildfly directory instead of jboss
+
 TAG: loadadmin-6-0-16-4
 DATE: 8/27/2020
 STAFF: dbm
