@@ -5,4 +5,4 @@ cd `dirname $0` && source ./Configuration
 setenv SERVER_NAME `uname -n`
 setenv JAVA_OPTS "-d64 -Xms4g -Xmx4g -XX:MaxPermSize=1g -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -XX:+UseConcMarkSweepGC -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled "
 
-${JBOSS}/bin/standalone.sh -b=${SERVER_NAME} -Djboss.server.base.dir=${JBOSS}/fewiBatch &
+${WILDFLY}/bin/standalone.sh -b=${SERVER_NAME} -bmanagement=${SERVER_NAME} -Djboss.server.base.dir=${WILDFLY}/fewiBatch &
