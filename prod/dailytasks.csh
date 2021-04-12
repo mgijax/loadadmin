@@ -221,7 +221,7 @@ ${VOCLOAD}/runOBOIncLoad.sh GO.config
 if ( $weekday == 1 ) then
     date | tee -a ${LOG}
     echo 'Run GO Text Load' | tee -a ${LOG}
-    ${NOTELOAD}/mginoteload.csh ${NOTELOAD}/gotext.config
+    ${GOTEXTLOAD}/bin/gotextload.sh
 endif
 
 date | tee -a ${LOG}
