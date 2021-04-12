@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-16-6
+DATE: 4/12/2021
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: added call to gotextload.sh
+
 TAG: loadadmin-6-0-16-5
 DATE: 9/9/2020
 STAFF: dbm
