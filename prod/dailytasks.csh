@@ -111,6 +111,10 @@ date | tee -a ${LOG}
 echo 'Run Nomen/Mapping load' | tee -a ${LOG}
 ${NOMENLOAD}/bin/nomenload.sh ${NOMENLOAD}/nomenload.config
 
+date | tee -a ${LOG}
+echo 'Run Nomen/Batch Rename load' | tee -a ${LOG}
+${NOMENLOAD}/bin/batchrename.sh ${NOMENLOAD}/nomenload.config
+
 if ( $weekday == 1 ) then
     date | tee -a ${LOG}
     echo 'Run PDF Download' | tee -a ${LOG}
