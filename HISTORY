@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-16-7
+DATE: 4/14/2021
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: added call to batchrename.sh
+
 TAG: loadadmin-6-0-16-6
 DATE: 4/12/2021
 STAFF: dbm
