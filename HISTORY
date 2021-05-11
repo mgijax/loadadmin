@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-17-1
+DATE: 5/11/2021
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: added call to problemseqsetload.sh
+
 TAG: loadadmin-6-0-16-7
 DATE: 4/14/2021
 STAFF: dbm
