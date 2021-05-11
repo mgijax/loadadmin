@@ -179,9 +179,8 @@ ${NEXTPROTLOAD}/bin/nextprotload.sh
 
 date | tee -a ${LOG}
 echo 'Run Homology Loads' | tee -a ${LOG}
-${HOMOLOGYLOAD}/bin/homologyload.sh homologeneload.config
-${HOMOLOGYLOAD}/bin/homologyload.sh hgncload.config
-${HOMOLOGYLOAD}/bin/homologyload.sh hybridload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh alliance_directload.config
+${HOMOLOGYLOAD}/bin/homologyload.sh alliance_clusteredload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh zfinload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh geishaload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh xenbaseload.config
