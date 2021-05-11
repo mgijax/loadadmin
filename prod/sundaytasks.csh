@@ -90,6 +90,10 @@ echo 'Run Pubmed To Gene Load' | tee -a ${LOG}
 ${PUBMED2GENELOAD}/bin/pubmed2geneload.sh
 
 date | tee -a ${LOG}
+echo 'Run Problem Alignment Sequence Set Load' | tee -a ${LOG}
+${PROBLEMSEQSETLOAD}/bin/problemseqsetload.sh
+
+date | tee -a ${LOG}
 echo 'Run Mouse EntrezGene Load' | tee -a ${LOG}
 ${EGLOAD}/bin/egload.sh
 
