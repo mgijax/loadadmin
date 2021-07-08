@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-17-4
+DATE: 7/8/2021
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: remove call to cleanSpecChar.csh
+2) prod/saturdaytasks.csh: remove call to cleanSpecChar.csh
+3) prod/sundaytasks.csh: remove call to cleanSpecChar.csh
+
 TAG: loadadmin-6-0-17-3
 DATE: 5/21/2021
 STAFF: dbm
