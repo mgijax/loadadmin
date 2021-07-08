@@ -89,10 +89,6 @@ ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mg
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.predaily.dump
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} wts ${DB_BACKUP_DIR}/wts.dump
 
-date | tee -a ${LOG}
-echo 'Perform special character cleanup' | tee -a ${LOG}
-${PG_DBUTILS}/bin/cleanSpecChar.csh
-
 #
 # Run prior to cache loads because deleted sequences aren't selected as
 # representative for markers. Only runs on Wednesday night.

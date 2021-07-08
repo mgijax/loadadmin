@@ -76,10 +76,6 @@ ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mg
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presaturday.dump
 
 date | tee -a ${LOG}
-echo 'Perform special character cleanup' | tee -a ${LOG}
-${PG_DBUTILS}/bin/cleanSpecChar.csh
-
-date | tee -a ${LOG}
 echo 'Run GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 
