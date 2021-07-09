@@ -24,7 +24,6 @@
 #      - Database backups
 #          - mgd.predaily.dump
 #          - radar.predaily.dump
-#          - wts.dump
 #          - mgd.postdaily.dump
 #          - radar.postdaily.dump
 #
@@ -87,7 +86,6 @@ date | tee -a ${LOG}
 echo 'Create Pre-Daily Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.predaily.dump
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.predaily.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} wts ${DB_BACKUP_DIR}/wts.dump
 
 #
 # Run prior to cache loads because deleted sequences aren't selected as
