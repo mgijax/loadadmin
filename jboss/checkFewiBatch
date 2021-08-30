@@ -1,0 +1,10 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+setenv COUNT `ps -fu mgiadmin | grep 'wildfly/fewiBatch$' | grep -v grep | wc -l`
+
+if ( ${COUNT} == 0 ) then
+    echo "Fewi batch is not running and it is being restarted"
+    ./startFewiBatch >& /dev/null
+endif

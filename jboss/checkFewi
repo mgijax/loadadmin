@@ -1,0 +1,10 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+setenv COUNT `ps -fu mgiadmin | grep 'wildfly/fewi$' | grep -v grep | wc -l`
+
+if ( ${COUNT} == 0 ) then
+    echo "Fewi is not running and it is being restarted"
+    ./startFewi >& /dev/null
+endif
