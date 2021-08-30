@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-17-6
+DATE: 8/30/2021
+STAFF: dbm
+CHANGES:
+1) jboss/checkFewi: New
+2) jboss/checkFewiBatch: New
+
 TAG: loadadmin-6-0-17-5
 DATE: 7/9/2021
 STAFF: dbm
