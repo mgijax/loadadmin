@@ -109,16 +109,6 @@ date | tee -a ${LOG}
 echo 'Run Nomen/Batch Rename load' | tee -a ${LOG}
 ${NOMENLOAD}/bin/batchrename.sh ${NOMENLOAD}/nomenload.config
 
-if ( $weekday == 1 ) then
-    date | tee -a ${LOG}
-    echo 'Run PDF Download' | tee -a ${LOG}
-    ${PDFDOWNLOAD}/download_papers.sh
-
-    date | tee -a ${LOG}
-    echo 'Identify Missing Paper' | tee -a ${LOG}
-    ${PDFDOWNLOAD}/identify_missed_papers_plos.sh
-endif
-
 date | tee -a ${LOG}
 echo 'Run Lit Triage Load' | tee -a ${LOG}
 ${LITTRIAGELOAD}/bin/littriageload.sh
