@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-17-8
+DATE: 10/26/2021
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: remove calls to PDF download and missing papers report 
+
 TAG: loadadmin-6-0-17-7
 DATE: 9/13/2021
 STAFF: dbm
