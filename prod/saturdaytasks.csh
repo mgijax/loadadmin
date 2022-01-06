@@ -191,6 +191,10 @@ echo 'Run QTL Archive Load' | tee -a ${LOG}
 ${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
 
 date | tee -a ${LOG}
+echo 'Run PubMed Review' | tee -a ${LOG}
+${LITTRIAGELOAD}/bin/processPubMedReview.sh
+
+date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
 ${SEQCACHELOAD}/seqdummy.csh
 
