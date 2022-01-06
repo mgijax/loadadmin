@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-17-9
+DATE: 1/6/2022
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: add call to processPubMedReview.sh
+
 TAG: loadadmin-6-0-17-8
 DATE: 10/26/2021
 STAFF: dbm
