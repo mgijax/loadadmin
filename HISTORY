@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-18-1
+DATE: 1/11/2022
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: change cell ontology to incremental
+2) prod/sundaytasks.csh: change gxdhtload.sh to geo_htload.sh
+3) Remove searchtool start/stop/restart scripts
+
 TAG: loadadmin-6-0-17-9
 DATE: 1/6/2022
 STAFF: dbm
