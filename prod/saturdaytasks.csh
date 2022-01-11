@@ -136,7 +136,7 @@ ${MPEMAPALOAD}/bin/mp_emapaload.sh
 
 date | tee -a ${LOG}
 echo 'Run GXD HT Load' | tee -a ${LOG}
-${GXDHTLOAD}/bin/gxdhtload.sh
+${GXDHTLOAD}/bin/geo_htload.sh
 
 date | tee -a ${LOG}
 echo 'Run SwissPROT Sequence Load' | tee -a ${LOG}
