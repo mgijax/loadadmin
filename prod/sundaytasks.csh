@@ -107,7 +107,7 @@ ${VOCLOAD}/runOBOIncLoad.sh MA.config
 
 date | tee -a ${LOG}
 echo 'Run Cell Ontology Load' | tee -a ${LOG}
-${VOCLOAD}/runOBOFullLoad.sh CL.config
+${VOCLOAD}/runOBOIncLoad.sh CL.config
 
 date | tee -a ${LOG}
 echo 'Run CCDS Load' | tee -a ${LOG}
