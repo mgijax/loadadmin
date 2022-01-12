@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-18-2
+DATE: 1/12/2022
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: disable targetedalleleload and emalload
+
 TAG: loadadmin-6-0-18-1
 DATE: 1/11/2022
 STAFF: dbm
