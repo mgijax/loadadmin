@@ -113,19 +113,17 @@ date | tee -a ${LOG}
 echo 'Run Lit Triage Load' | tee -a ${LOG}
 ${LITTRIAGELOAD}/bin/littriageload.sh
 
-if ( $weekday == 5 ) then
-    date | tee -a ${LOG}
-    echo 'Run MCV Vocabulary Load' | tee -a ${LOG}
-    ${MCVLOAD}/bin/run_mcv_vocload.sh
+date | tee -a ${LOG}
+echo 'Run MCV Vocabulary Load' | tee -a ${LOG}
+${MCVLOAD}/bin/run_mcv_vocload.sh
 
-    date | tee -a ${LOG}
-    echo 'Run MCV Annotation Load' | tee -a ${LOG}
-    ${MCVLOAD}/bin/mcvload.sh
+date | tee -a ${LOG}
+echo 'Run MCV Annotation Load' | tee -a ${LOG}
+${MCVLOAD}/bin/mcvload.sh
 
-    date | tee -a ${LOG}
-    echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
-    ${MRKCOORDLOAD}/bin/mrkcoordload.sh
-endif
+date | tee -a ${LOG}
+echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
+${MRKCOORDLOAD}/bin/mrkcoordload.sh
 
 date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
