@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-18-4
+DATE: 4/5/2022
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: changed MCV loads and marker/coordinate load to
+                        run daily instead of only on Friday
+
 TAG: loadadmin-6-0-18-3
 DATE: 2/16/2022
 STAFF: dbm
