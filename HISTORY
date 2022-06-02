@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-20-1
+DATE: 6/2/2022
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: add call to curatoralleleload.sh
+
 TAG: loadadmin-6-0-18-4
 DATE: 4/5/2022
 STAFF: dbm
