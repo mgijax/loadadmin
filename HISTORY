@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-21-1
+DATE: 7/19/2022
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: add call to tssgeneload.sh
+
 TAG: loadadmin-6-0-20-1
 DATE: 6/2/2022
 STAFF: dbm
