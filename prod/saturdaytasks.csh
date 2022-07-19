@@ -175,6 +175,10 @@ ${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
 #${EMALLOAD}/bin/emalload.sh  ${EMALLOAD}/impc.config
 
 date | tee -a ${LOG}
+echo 'Run TSS Gene Load' | tee -a ${LOG}
+${TSSGENELOAD}/bin/tssgeneload.sh
+
+date | tee -a ${LOG}
 echo 'Run Curator Allele Load' | tee -a ${LOG}
 ${CURATORALLELELOAD}/bin/curatoralleleload.sh
 
