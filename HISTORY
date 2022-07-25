@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-21-2
+DATE: 7/25/2022
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: add call to qtlcandidateload.sh and
+                           qtlinteractionload.sh
+
 TAG: loadadmin-6-0-21-1
 DATE: 7/19/2022
 STAFF: dbm
