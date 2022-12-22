@@ -159,6 +159,10 @@ echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh ensembl
 
 date | tee -a ${LOG}
+echo 'Run Ensembl Regulatory Gene Model/Association Load' | tee -a ${LOG}
+${GENEMODELLOAD}/bin/genemodelload.sh ensemblreg
+
+date | tee -a ${LOG}
 echo 'Run NCBI Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh ncbi
 
