@@ -135,6 +135,10 @@ echo 'Run MP EMAPA Load' | tee -a ${LOG}
 ${MPEMAPALOAD}/bin/mp_emapaload.sh
 
 date | tee -a ${LOG}
+echo 'Run MP HP Mapping Load' | tee -a ${LOG}
+${MPHPMAPPINGLOAD}/bin/mp_hpmappingload.sh
+
+date | tee -a ${LOG}
 echo 'Run GXD HT Load' | tee -a ${LOG}
 ${GXDHTLOAD}/bin/geo_htload.sh
 
@@ -174,9 +178,9 @@ date | tee -a ${LOG}
 echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
 
-#date | tee -a ${LOG}
-#echo 'Run EMAL Load' | tee -a ${LOG}
-#${EMALLOAD}/bin/emalload.sh  ${EMALLOAD}/impc.config
+date | tee -a ${LOG}
+echo 'Run EMAL Load' | tee -a ${LOG}
+${EMALLOAD}/bin/emalload.sh  ${EMALLOAD}/impc.config
 
 date | tee -a ${LOG}
 echo 'Run TSS Gene Load' | tee -a ${LOG}
