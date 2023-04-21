@@ -107,12 +107,12 @@ date | tee -a ${LOG}
 echo 'Run MP Slim Load' | tee -a ${LOG}
 ${SLIMTERMLOAD}/bin/slimtermload.sh mpslimload.config
 
-#date | tee -a ${LOG}
-#echo 'Run Targeted Allele Loads' | tee -a ${LOG}
-#${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_mbp.config
-#${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
-#${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_hmgu.config
-#${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_wtsi.config
+date | tee -a ${LOG}
+echo 'Run Targeted Allele Loads' | tee -a ${LOG}
+${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_mbp.config
+${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_csd_wtsi.config
+${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_hmgu.config
+${TARGETEDALLELELOAD}/bin/targetedalleleload.sh tal_eucomm_wtsi.config
 
 date | tee -a ${LOG}
 echo 'Run Allele Load' | tee -a ${LOG}
