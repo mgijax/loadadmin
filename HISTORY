@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-7
+DATE: 04/26/2023
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: added partnerofload.sh
+
 TAG: loadadmin-6-0-22-6
 DATE: 04/21/2023
 STAFF: dbm
