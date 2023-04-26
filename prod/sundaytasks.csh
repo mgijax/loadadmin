@@ -90,6 +90,10 @@ echo 'Run Problem Alignment Sequence Set Load' | tee -a ${LOG}
 ${PROBLEMSEQSETLOAD}/bin/problemseqsetload.sh
 
 date | tee -a ${LOG}
+echo 'Run PARtner Of Relationship Load' | tee -a ${LOG}
+${PARTNEROFLOAD}/bin/partnerofload.sh
+
+date | tee -a ${LOG}
 echo 'Run Mouse EntrezGene Load' | tee -a ${LOG}
 ${EGLOAD}/bin/egload.sh
 
