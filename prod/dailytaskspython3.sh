@@ -27,8 +27,8 @@ scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/refseq/refseq_deletes/suppressed
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/genbank/gb_deletes/gbdel.txt.gz /data/downloads/ftp.ncbi.nih.gov/genbank/gb_deletes
 
 # goload
-scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/mgi-prediction.gaf /data/downloads/go_noctua
-scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/annotations/mgi.gaf.gz /data/downloads/go_noctua
+scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/upstream_and_raw_data/mgi-prediction.gaf /data/downloads/go_noctua
+scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/upstream_and_raw_data/mgi.gaf.gz /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downloads/purl.obolibrary.org/obo/pr
 scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse.gaf.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
