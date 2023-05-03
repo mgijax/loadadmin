@@ -31,6 +31,7 @@ scp bhmgiapp01:/data/downloads/geisha.arizona.edu/geisha/expression.txt /data/do
 
 # alliance clustered and direct
 scp bhmgiapp01:/data/downloads/fms.alliancegenome.org/download/ORTHOLOGY-ALLIANCE_COMBINED.tsv.gz /data/downloads/fms.alliancegenome.org/download/
+scp bhmgiapp01:/data/downloads/fms.alliancegenome.org/download/DISEASE-ALLIANCE_HUMAN.tsv.gz /data/downloads/fms.alliancegenome.org/download/
 
 # xenbase
 scp bhmgiapp01:/data/downloads/ftp.xenbase.org/GenePageTropicalisEntrezGeneUnigeneMapping.txt /data/downloads/ftp.xenbase.org/GenePageTropicalisEntrezGeneUnigeneMapping.txt
