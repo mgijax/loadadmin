@@ -145,10 +145,6 @@ date | tee -a ${LOG}
 echo 'Run Non-Mouse EntrezGene Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadAll.csh
 
-#date | tee -a ${LOG}
-#echo 'Run Mapview Load (skip marker/location cache)' | tee -a ${LOG}
-#${MAPVIEWLOAD}/bin/mapviewload.sh false
-
 date | tee -a ${LOG}
 echo 'Delete Dummy Sequences' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/runDeleteObsoleteDummy.csh ${PG_DBSERVER} ${PG_DBNAME}
