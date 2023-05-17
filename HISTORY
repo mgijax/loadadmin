@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-8
+DATE: 05/17/2023
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: retired mapviewload
+
 TAG: loadadmin-6-0-22-7
 DATE: 04/26/2023
 STAFF: dbm
