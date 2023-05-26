@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-9
+DATE: 5/26/2023
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: add call to curatorstrainload.sh
+
 TAG: loadadmin-6-0-22-8
 DATE: 05/17/2023
 STAFF: dbm
