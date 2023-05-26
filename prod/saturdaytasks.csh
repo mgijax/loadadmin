@@ -187,6 +187,10 @@ echo 'Run Curator Allele Load' | tee -a ${LOG}
 ${CURATORALLELELOAD}/bin/curatoralleleload.sh
 
 date | tee -a ${LOG}
+echo 'Run Curator Strain Load' | tee -a ${LOG}
+${CURATORSTRAINLOAD}/bin/curatorstrainload.sh
+
+date | tee -a ${LOG}
 echo 'Run QTL Candidate Load' | tee -a ${LOG}
 ${QTLCANDIDATELOAD}/bin/qtlcandidateload.sh
 
