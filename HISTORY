@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-10
+DATE: 8/1/2023
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: use new TAL wrapper script
+
 TAG: loadadmin-6-0-22-9
 DATE: 5/26/2023
 STAFF: dbm
