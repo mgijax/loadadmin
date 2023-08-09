@@ -146,6 +146,10 @@ echo 'Run Non-Mouse EntrezGene Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadAll.csh
 
 date | tee -a ${LOG}
+echo 'Run Human Coordinate Load' | tee -a ${LOG}
+${HUMANCOORDLOAD}/bin/humancoordload.sh
+
+date | tee -a ${LOG}
 echo 'Delete Dummy Sequences' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/runDeleteObsoleteDummy.csh ${PG_DBSERVER} ${PG_DBNAME}
 
