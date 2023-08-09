@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-11
+DATE: 8/9/2023
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: add call to humancoordload.sh
+
 TAG: loadadmin-6-0-22-10
 DATE: 8/1/2023
 STAFF: dbm
