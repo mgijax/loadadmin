@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-12
+DATE: 9/11/2023
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: add call to curatorbulkindexload.sh
+
 TAG: loadadmin-6-0-22-11
 DATE: 8/9/2023
 STAFF: dbm
