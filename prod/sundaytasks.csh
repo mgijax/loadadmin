@@ -78,10 +78,6 @@ ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mg
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presunday.dump
 
 date | tee -a ${LOG}
-echo 'Run EntrezGene Data Provider Load' | tee -a ${LOG}
-${ENTREZGENELOAD}/loadFiles.csh
-
-date | tee -a ${LOG}
 echo 'Run Pubmed To Gene Load' | tee -a ${LOG}
 ${PUBMED2GENELOAD}/bin/pubmed2geneload.sh
 
