@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-22-13
+DATE: 10/2/2023
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks.csh: Remove call to entrezgeneload/loadFiles.csh because it
+                         was taking too long to run Sunday night. It will now
+                         run from Jenkins during the day on Sunday.
+
 TAG: loadadmin-6-0-22-12
 DATE: 9/11/2023
 STAFF: dbm
