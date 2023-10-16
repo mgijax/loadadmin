@@ -132,7 +132,7 @@ scp bhmgiapp01:/data/downloads/www.gentar.org/mgi_crispr_current /data/downloads
 #rsync -avz bhmgiapp01:/data/loads/mgi/emalload/impc/reports ${DATALOADSOUTPUT}/mgi/emalload/impc/reports.prod
 
 # curatoralleleload
-scp bhmgiapp01:/data/loads/mgi/curatoralleleload/input/curatoralleleload.txt
+scp bhmgiapp01:/data/loads/mgi/curatoralleleload/input/curatoralleleload.txt /data/loads/mgi/curatoralleleload/input
 #rsync -avz bhmgiapp01:/data/loads/mgi/curatoralleleload/input/ ${DATALOADSOUTPUT}/mgi/curatoralleleload/input.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/curatoralleleload/output/ ${DATALOADSOUTPUT}/mgi/curatoralleleload/output.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/curatoralleleload/reports/ ${DATALOADSOUTPUT}/mgi/curatoralleleload/reports.prod
