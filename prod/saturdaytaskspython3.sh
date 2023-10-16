@@ -100,12 +100,12 @@ scp bhmgiapp01:/data/loads/mgi/vocload/emap/input/EMAPA.obo ${DATALOADSOUTPUT}/m
 #rsync -avz bhmgiapp01:/data/loads/mp_emapaload/reports ${DATALOADSOUTPUT}/mp_emapaload/reports.prod
 
 # mp_hpmappingload
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_eye_impc.sssom.tsv 
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_hwt_impc.sssom.tsv 
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_mgi_all.sssom.tsv 
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_owt_impc.sssom.tsv 
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_pat_impc.sssom.tsv 
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_xry_impc.sssom.tsv
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_eye_impc.sssom.tsv /data/loads/mp_hpmappingload/input
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_hwt_impc.sssom.tsv /data/loads/mp_hpmappingload/input
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_mgi_all.sssom.tsv /data/loads/mp_hpmappingload/input
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_owt_impc.sssom.tsv /data/loads/mp_hpmappingload/input
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_pat_impc.sssom.tsv /data/loads/mp_hpmappingload/input
+scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_xry_impc.sssom.tsv /data/loads/mp_hpmappingload/input
 
 # gxdhtload
 scp bhmgiapp01:/data/downloads/www.ebi.ac.uk/arrayexpress.json /data/downloads/www.ebi.ac.uk

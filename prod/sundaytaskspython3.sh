@@ -49,7 +49,6 @@ scp bhmgiapp01:/data/downloads/zfin.org/downloads/xpat_fish.txt /data/downloads/
 #scp bhmgiapp01:/data/loads/homology/zfinload/output/MRK_ClusterMember.bcp ${DATALOADSOUTPUT}/homology/zfinload/output/MRK_ClusterMember.bcp.prod
 
 # goload
-scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/upstream_and_raw_data/mgi-prediction.gaf /data/downloads/go_noctua
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downloads/purl.obolibrary.org/obo/pr
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
 scp bhmgiapp01:/data/downloads/goa/HUMAN/goa_human.gaf.gz /data/downloads/goa/HUMAN
