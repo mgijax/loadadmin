@@ -1,0 +1,32 @@
+#!/bin/sh
+
+rm -f /data/loads/arrayexpress/arrayexpload/input/lastrun
+rm -f /data/loads/go/lastrun
+rm -f /data/loads/mgi/curatoralleleload/input/lastrun
+rm -f /data/loads/mgi/curatorbulkindexload/input/lastrun
+rm -f /data/loads/mgi/curatorstrainload/input/lastruncreate
+rm -f /data/loads/mgi/curatorstrainload/input/lastrunupdate
+rm -f /data/loads/mgi/emalload/impc/input/lastrun
+rm -f /data/loads/mgi/fearload/input/lastrun
+rm -f /data/loads/mgi/htmpload/impcmpload/input/lastrun
+rm -f /data/loads/mgi/htmpload/impclaczload.alz/input/lastrun
+rm -f /data/loads/mgi/htmpload/impclaczload/input/lastrun
+rm -f /data/loads/mgi/mcvload/input/lastrun
+rm -f /data/loads/mgi/mrkcoordload/input/lastrun
+rm -f /data/loads/mgi/nomenload/input/lastrun
+rm -f /data/loads/mgi/partnerofload/input/lastrun
+rm -f /data/loads/mgi/problemseqsetload/input/lastrun
+rm -f /data/loads/mgi/qtlarchiveload/input/lastrun
+rm -f /data/loads/mgi/qtlinteractionload/input/lastrun
+rm -f /data/loads/mgi/rvload/input/lastrun
+rm -f /data/loads/mgi/slimtermload/emapslimload/input/lastrun
+rm -f /data/loads/mgi/slimtermload/goslimload/input/lastrun
+rm -f /data/loads/mgi/slimtermload/mpslimload/input/lastrun
+rm -f /data/loads/mgi/strainmarkerload/output/lastrun
+rm -f /data/loads/mgi/uniprotmusfilter/input/lastrun
+rm -f /data/loads/mgi/vocload/emap/input/lastrun
+rm -f /data/loads/mp_hpo/input/lastrun
+rm -f /data/loads/nextprot/nextprotload/input/lastrun
+rm -f /data/loads/pro/proload/input/lastrun
+rm -f /data/loads/swissprot/spseqload/input/lastrun
+rm -f /data/loads/swissprot/trseqload/input/lastrun
