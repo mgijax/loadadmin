@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-22-16
+DATE: 10/19/2023
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: retire TAL
+2) prod/saturdaytaskspython3.sh: retire TAL
+
 TAG: loadadmin-6-0-22-15
 DATE: 10/18/2023
 STAFF: dbm
