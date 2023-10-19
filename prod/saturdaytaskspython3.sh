@@ -66,20 +66,6 @@ scp bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/input/mpslimload.txt ${DA
 #rsync -avz bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/input ${DATALOADSOUTPUT}/mgi/slimtermload/mpslimload/input.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/output ${DATALOADSOUTPUT}/mgi/slimtermload/mpslimload/output.prod
 
-# targetedalleleload
-scp bhmgiapp01:/data/downloads/www.gentar.org/mgi_es_cell_current /data/downloads/www.gentar.org
-
-#scp bhmgiapp01:/data/loads/targetedallele/duplicatedAllele.rpt ${DATALOADSOUTPUT}/targetedallele/duplicatedAllele.rpt.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/input ${DATALOADSOUTPUT}/targetedallele/input.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/csd_load_mbp/output ${DATALOADSOUTPUT}/targetedallele/csd_load_mbp/output.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/csd_load_mbp/reports ${DATALOADSOUTPUT}/targetedallele/csd_load_mbp/reports.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/csd_load_wtsi/output ${DATALOADSOUTPUT}/targetedallele/csd_load_wtsi/output.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/csd_load_wtsi/reports ${DATALOADSOUTPUT}/targetedallele/csd_load_wtsi/reports.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/eucomm_load_hmgu/output ${DATALOADSOUTPUT}/targetedallele/eucomm_load_hmgu/output.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/eucomm_load_hmgu/reports ${DATALOADSOUTPUT}/targetedallele/eucomm_load_hmgu/reports.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/eucomm_load_wtsi/output ${DATALOADSOUTPUT}/targetedallele/eucomm_load_wtsi/output.prod
-#rsync -avz bhmgiapp01:/data/loads/targetedallele/eucomm_load_wtsi/reports ${DATALOADSOUTPUT}/targetedallele/eucomm_load_wtsi/reports.prod
-
 # alleleload
 scp bhmgiapp01:/data/downloads/www.gentar.org/mgi_modification_current /data/downloads/www.gentar.org
 #rsync -avz bhmgiapp01:/data/loads/mgi/alleleload/ikmc/input ${DATALOADSOUTPUT}/mgi/alleleload/ikmc/input.prod

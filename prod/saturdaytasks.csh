@@ -108,10 +108,6 @@ echo 'Run MP Slim Load' | tee -a ${LOG}
 ${SLIMTERMLOAD}/bin/slimtermload.sh mpslimload.config
 
 date | tee -a ${LOG}
-echo 'Run Targeted Allele Loads' | tee -a ${LOG}
-${TARGETEDALLELELOAD}/bin/run_targetedalleleloads.sh
-
-date | tee -a ${LOG}
 echo 'Run Allele Load' | tee -a ${LOG}
 ${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
