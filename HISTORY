@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-17
+DATE: 10/24/2023
+STAFF: dbm
+CHANGES:
+1) prod/removeLastrunFiles.sh: use ${DATALOADSOUTPUT} in each path
+
 TAG: loadadmin-6-0-22-16
 DATE: 10/19/2023
 STAFF: dbm
