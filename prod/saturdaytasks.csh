@@ -251,10 +251,6 @@ date | tee -a ${LOG}
 echo 'Run ALO/Marker Load' | tee -a ${LOG}
 ${ALOMRKLOAD}/bin/alomrkload.sh
 
-#date | tee -a ${LOG}
-#echo 'Run Genetic Map Load' | tee -a ${LOG}
-#${GENMAPLOAD}/bin/genmapload.sh
-
 date | tee -a ${LOG}
 echo 'Run Allele/Label Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/alllabel.csh
