@@ -1,3 +1,13 @@
+TAG: loadadmin-6-0-22-19
+DATE: 11/30/2023
+STAFF: dbm
+CHANGES:
+1) prod/saturdaytasks.csh: changed to sundaytasks1.csh
+2) prod/sundaytasks.csh: changed to sundaytasks2.csh
+3) prod/dailytaskspython3.sh: changed to dailytasks_filesetup.sh
+4) prod/saturdaytaskspython3.sh: changed to sundaytasks1_filesetup.sh
+5) prod/sundaytaskspython3.sh: changed to sundaytasks2_filesetup.sh
+
 TAG: loadadmin-6-0-22-18
 DATE: 11/14/2023
 STAFF: dbm
