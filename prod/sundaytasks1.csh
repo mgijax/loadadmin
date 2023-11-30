@@ -80,10 +80,6 @@ echo 'Run GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 
 date | tee -a ${LOG}
-echo 'Run Array Express Load' | tee -a ${LOG}
-${ARRAYEXPLOAD}/bin/arrayexpload.sh
-
-date | tee -a ${LOG}
 echo 'Run Protein Ontology Load' | tee -a ${LOG}
 ${PROLOAD}/bin/proload.sh
 
