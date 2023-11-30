@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-22-20
+DATE: 11/30/2023
+STAFF: dbm
+CHANGES:
+1) prod/sundaytasks1.csh: retire arrayexpload
+
 TAG: loadadmin-6-0-22-19
 DATE: 11/30/2023
 STAFF: dbm
