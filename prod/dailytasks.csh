@@ -215,6 +215,18 @@ echo 'Run Daily GO Loads' | tee -a ${LOG}
 ${GOLOAD}/godaily.sh
 
 date | tee -a ${LOG}
+echo 'Run Curator Allele Load' | tee -a ${LOG}
+${CURATORALLELELOAD}/bin/curatoralleleload.sh
+
+date | tee -a ${LOG}
+echo 'Run Curator Bulk Index Load' | tee -a ${LOG}
+${CURATORBULKINDEXLOAD}/bin/curatorbulkindexload.sh
+
+date | tee -a ${LOG}
+echo 'Run Curator Strain Load' | tee -a ${LOG}
+${CURATORSTRAINLOAD}/bin/curatorstrainload.sh
+
+date | tee -a ${LOG}
 echo 'Run GXD Expression Cache Load' | tee -a ${LOG}
 ${MGICACHELOAD}/gxdexpression.csh
 
