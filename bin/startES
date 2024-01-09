@@ -1,0 +1,12 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+setenv ES_JAVA_HOME ${JAVA_HOME}
+setenv ES_JAVA_OPTS "-Dstartup=${ES_HOME}/bin/elasticsearch"
+
+if (${?ES_MEM_MIN} && ${?ES_MEM_MAX}) then
+    setenv ES_JAVA_OPTS "${ES_JAVA_OPTS} -Xms${ES_MEM_MIN} -Xmx${ES_MEM_MAX}"
+endif
+
+${ES_HOME}/bin/elasticsearch &
