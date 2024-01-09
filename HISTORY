@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-23-1
+DATE: 1/9/2024
+STAFF: dbm
+CHANGES:
+1) prod/dailytasks.csh: added curator loads that also run on Sunday
+2) bin/startES, bin/stopES, bin/restartES: New
+
 TAG: loadadmin-6-0-22-20
 DATE: 11/30/2023
 STAFF: dbm
