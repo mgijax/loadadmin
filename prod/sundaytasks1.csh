@@ -76,6 +76,10 @@ ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mg
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presunday.dump
 
 date | tee -a ${LOG}
+echo 'Run HPO Vocab Load' | tee -a ${LOG}
+${VOCLOAD}/runOBOIncLoad.sh HPO.config
+
+date | tee -a ${LOG}
 echo 'Run GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 
