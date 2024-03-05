@@ -86,7 +86,7 @@ scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/cl/cl-basic.obo /data/dow
 #OMIM
 scp bhmgiapp01:/data/downloads/data.omim.org/omim.txt.gz /data/downloads/data.omim.org
 #rsync -avz bhmgiapp01:/data/loads/mgi/vocload/OMIM ${DATALOADSOUTPUT}/mgi/vocload/OMIM.prod
-#scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.exclude ${DATALOADSOUTPUT}/mgi/vocload/OMIM
+scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.exclude ${DATALOADSOUTPUT}/mgi/vocload/OMIM
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.special ${DATALOADSOUTPUT}/mgi/vocload/OMIM
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.synonym ${DATALOADSOUTPUT}/mgi/vocload/OMIM
 scp bhmgiapp01:/data/loads/mgi/vocload/OMIM/OMIM.translation ${DATALOADSOUTPUT}/mgi/vocload/OMIM
