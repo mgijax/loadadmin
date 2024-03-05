@@ -126,10 +126,6 @@ echo 'Run Sequence Ontology Vocab Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh SO.config
 
 date | tee -a ${LOG}
-echo 'Run HPO Vocab Load' | tee -a ${LOG}
-${VOCLOAD}/runOBOIncLoad.sh HPO.config
-
-date | tee -a ${LOG}
 echo 'Run OMIM/HPO Annotation Load' | tee -a ${LOG}
 ${OMIMHPOLOAD}/bin/omim_hpoload.sh
 
