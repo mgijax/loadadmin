@@ -210,9 +210,9 @@ if ( $weekday == 1 ) then
     ${GOTEXTLOAD}/bin/gotextload.sh
 endif
 
-date | tee -a ${LOG}
-echo 'Run Daily GO Loads' | tee -a ${LOG}
-${GOLOAD}/godaily.sh
+#date | tee -a ${LOG}
+#echo 'Run GO Load' | tee -a ${LOG}
+#${GOLOAD}/bin/goload.sh
 
 date | tee -a ${LOG}
 echo 'Run Curator Allele Load' | tee -a ${LOG}

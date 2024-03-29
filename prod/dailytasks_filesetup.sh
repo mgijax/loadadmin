@@ -27,20 +27,10 @@ scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/refseq/refseq_deletes/suppressed
 scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/genbank/gb_deletes/gbdel.txt.gz /data/downloads/ftp.ncbi.nih.gov/genbank/gb_deletes
 
 # goload
-scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/upstream_and_raw_data/mgi-prediction.gaf /data/downloads/go_noctua
-scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gaf.gz /data/downloads/snapshot.geneontology.org/annotations
-scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downloads/purl.obolibrary.org/obo/pr
-scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse.gaf.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
+scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
+scp bhmgiapp01:/data/downloads/current.geneontology.org/annotations/mgi.gpad.gz /data/downloads/current.geneontology.org/annotations
 scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse.gpi.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
-scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse_isoform.gaf.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master/gaf-eco-mapping-derived.txt /data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master
-#scp bhmgiapp01:/data/reports/reports_db/output/mgi.gpa ${PUBREPORTDIR}/output/mgi.gpa.prod
-#scp bhmgiapp01:/data/reports/reports_db/output/mgi.gpi ${PUBREPORTDIR}/output/mgi.gpi.prod
-#scp bhmgiapp01:/data/reports/reports_db/output/gene_association.mgi ${PUBREPORTDIR}/output/gene_association.mgi.prod
-#scp bhmgiapp01:/data/reports/reports_db/output/gene_association_pro.mgi ${PUBREPORTDIR}/output/gene_association_pro.mgi.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gomousenoctua/input ${DATALOADSOUTPUT}/go/gomousenoctua/input.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gomousenoctua/output ${DATALOADSOUTPUT}/go/gomousenoctua/output.prod
 
 # littriageload
 #rsync -avz bhmgiapp01:/data/loads/mgi/littriageload/logs ${DATALOADSOUTPUT}/mgi/littriageload/logs.prod
@@ -52,6 +42,7 @@ scp bhmgiapp01:/data/downloads/fms.alliancegenome.org/download/GENE-DESCRIPTION-
 # vocload/MP
 #rsync -avz bhmgiapp01:/data/loads/mgi/vocload/runTimeMP ${DATALOADSOUTPUT}/mgi/vocload/runTimeMP.prod
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMP/MPheno_OBO.ontology ${DATALOADSOUTPUT}/mgi/vocload/runTimeMP
+scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMP/MP.header ${DATALOADSOUTPUT}/mgi/vocload/runTimeMP
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMP/MP.note ${DATALOADSOUTPUT}/mgi/vocload/runTimeMP
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMP/MP.synonym ${DATALOADSOUTPUT}/mgi/vocload/runTimeMP
 scp bhmgiapp01:/data/loads/mgi/vocload/runTimeMP/mp.json ${DATALOADSOUTPUT}/mgi/vocload/runTimeMP

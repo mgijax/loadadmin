@@ -189,9 +189,9 @@ date | tee -a ${LOG}
 echo 'Run Marker/DO Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkdo.csh
 
-date | tee -a ${LOG}
-echo 'Run GO Loads' | tee -a ${LOG}
-${GOLOAD}/go.sh
+#date | tee -a ${LOG}
+#echo 'Run GO Loads' | tee -a ${LOG}
+#${GOLOAD}/bin/goload.sh
 
 date | tee -a ${LOG}
 echo 'Update Reference Workflow Status' | tee -a ${LOG}

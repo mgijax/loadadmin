@@ -51,27 +51,8 @@ scp bhmgiapp01:/data/downloads/zfin.org/downloads/xpat_fish.txt /data/downloads/
 # goload
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downloads/purl.obolibrary.org/obo/pr
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
-scp bhmgiapp01:/data/downloads/goa/HUMAN/goa_human.gaf.gz /data/downloads/goa/HUMAN
-scp bhmgiapp01:/data/downloads/goa/HUMAN/goa_human_isoform.gaf.gz /data/downloads/goa/HUMAN
-scp bhmgiapp01:/data/downloads/goa/MOUSE/goa_mouse.gaf.gz /data/downloads/goa/MOUSE
-scp bhmgiapp01:/data/downloads/goa/MOUSE/goa_mouse_isoform.gaf.gz /data/downloads/goa/MOUSE
-scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/products/upstream_and_raw_data/mgi-prediction.gaf /data/downloads/snapshot.geneontology.org/products/upstream_and_raw_data
-scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master/gaf-eco-mapping-derived.txt /data/downloads/raw.githubusercontent.com/evidenceontology/evidenceontology/master
-scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gaf.gz /data/downloads/snapshot.geneontology.org/annotations
-scp bhmgiapp01:/data/downloads/current.geneontology.org/annotations/rgd.gaf.gz /data/downloads/current.geneontology.org/annotations
-
-#rsync -avz bhmgiapp01:/data/loads/go/goahuman/input ${DATALOADSOUTPUT}/go/goahuman/input.prod
-#rsync -avz bhmgiapp01:/data/loads/go/goahuman/output ${DATALOADSOUTPUT}/go/goahuman/output.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gocfp/input ${DATALOADSOUTPUT}/go/gocfp/input.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gocfp/output ${DATALOADSOUTPUT}/go/gocfp/output.prod
-#rsync -avz bhmgiapp01:/data/loads/go/goamouse/input ${DATALOADSOUTPUT}/go/goamouse/input.prod
-#rsync -avz bhmgiapp01:/data/loads/go/goamouse/output ${DATALOADSOUTPUT}/go/goamouse/output.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gomousenoctua/input ${DATALOADSOUTPUT}/go/gomousenoctua/input.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gomousenoctua/output ${DATALOADSOUTPUT}/go/gomousenoctua/output.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gorat/input ${DATALOADSOUTPUT}/go/gorat/input.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gorat/output ${DATALOADSOUTPUT}/go/gorat/output.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gorefgen/input ${DATALOADSOUTPUT}/go/gorefgen/input.prod
-#rsync -avz bhmgiapp01:/data/loads/go/gorefgen/output ${DATALOADSOUTPUT}/go/gorefgen/output.prod
+scp bhmgiapp01:/data/downloads/current.geneontology.org/annotations/mgi.gpad.gz /data/downloads/current.geneontology.org/annotations
+scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse.gpi.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
 
 # vocload
 # Mouse Adult Anatomy
