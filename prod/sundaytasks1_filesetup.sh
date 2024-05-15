@@ -52,9 +52,6 @@ scp bhmgiapp01:/data/loads/mgi/rvload/input/RelationshipVocab.obo ${DATALOADSOUT
 #rsync -avz bhmgiapp01:/data/loads/mgi/rvload/input ${DATALOADSOUTPUT}/mgi/rvload/input.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/rvload/output ${DATALOADSOUTPUT}/mgi/rvload/output.prod
 
-# fearload  - this file should  load 22 relationships
-scp bhmgiap09lt:/data/fear/current/cluster_has_member/cluster_20190731.txt ${DATALOADSOUTPUT}/mgi/fearload/input/fearload.txt
-
 # slimtermload
 scp bhmgiapp01:/data/loads/mgi/slimtermload/emapslimload/input/emapslimload.txt ${DATALOADSOUTPUT}/mgi/slimtermload/emapslimload/input
 #rsync -avz bhmgiapp01:/data/loads/mgi/slimtermload/emapslimload/input ${DATALOADSOUTPUT}/mgi/slimtermload/emapslimload/input.prod
