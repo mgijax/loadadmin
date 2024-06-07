@@ -51,8 +51,7 @@ scp bhmgiapp01:/data/downloads/zfin.org/downloads/xpat_fish.txt /data/downloads/
 # goload
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/pr/pr-dev.gpi /data/downloads/purl.obolibrary.org/obo/pr
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/uberon.obo /data/downloads/purl.obolibrary.org/obo
-scp bhmgiapp01:/data/downloads/current.geneontology.org/annotations/mgi.gpad.gz /data/downloads/current.geneontology.org/annotations
-scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE/goa_mouse.gpi.gz /data/downloads/ftp.ebi.ac.uk/pub/databases/GO/goa/MOUSE
+scp bhmgiapp01:/data/downloads/snapshot.geneontology.org/annotations/mgi.gpad.gz /data/downloads/snapshot.geneontology.org/annotations
 
 # vocload
 # Mouse Adult Anatomy
