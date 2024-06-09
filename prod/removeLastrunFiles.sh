@@ -21,7 +21,7 @@ rm -f ${DATALOADSOUTPUT}/mgi/htmpload/impclaczload.alz/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/htmpload/impclaczload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/mcvload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/mrkcoordload/input/lastrun
-rm -f ${DATALOADSOUTPUT}/mgi/nomenload/input/lastrun
+#rm -f ${DATALOADSOUTPUT}/mgi/nomenload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/partnerofload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/problemseqsetload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/qtlarchiveload/input/lastrun
