@@ -206,6 +206,10 @@ echo 'Generate Sunday QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcsunday_reports.csh
 
 date | tee -a ${LOG}
+echo 'Generate Sunday Public Reports' | tee -a ${LOG}
+${PUBRPTS}/run_weekly.csh
+
+date | tee -a ${LOG}
 echo 'Create Post-Sunday Database Backups' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postsunday.dump
 ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postsunday.dump
