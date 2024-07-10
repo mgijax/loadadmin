@@ -13,7 +13,7 @@ if (${?FEWI_MEM_MAX}) then
 endif
 
 setenv SERVER_NAME `uname -n`
-setenv JAVA_OPTS "-d64 -Xms${MEM_MIN} -Xmx${MEM_MAX} -XX:MaxPermSize=1g -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -XX:+UseConcMarkSweepGC -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled "
+setenv JAVA_OPTS "-Xms${MEM_MIN} -Xmx${MEM_MAX} -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 "
 
 # Remove any "failed" or "undeployed" files from the deployment directory.
 # These files will cause the Fewi to not start up properly.
