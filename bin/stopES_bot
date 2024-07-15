@@ -1,0 +1,16 @@
+#!/bin/tcsh -f
+
+cd `dirname $0` && source ./Configuration
+
+#
+# Get the process ID of the elasticsearch instance if it is running.
+#
+set ES_PID=`ps -aef | grep "startup=/usr/local/mgi/elasticsearch_bot/bin/elasticsearch" | grep -v grep | awk '{print $2}'`
+
+#
+# If elasticsearch is running, kill it.
+#
+if ( "${ES_PID}" != "" ) then
+    echo "Kill ES process: ${ES_PID}"
+    kill -9 ${ES_PID}
+endif
