@@ -101,13 +101,20 @@ if ( $weekday == 3 ) then
     ${SEQDELETER}/bin/seqdeleter.sh gbseqdeleter.config
 endif
 
-date | tee -a ${LOG}
-echo 'Run Nomen/Mapping load' | tee -a ${LOG}
-${NOMENLOAD}/bin/nomenload.sh ${NOMENLOAD}/nomenload.config
+# 
+# Do not run on Monday
+# nomenclature loads require additional MCV associations 
+# and that will not happen until the next day
+#
+if ( $weekday != 1 ) then
+    date | tee -a ${LOG}
+    echo 'Run Nomen/Mapping load' | tee -a ${LOG}
+    ${NOMENLOAD}/bin/nomenload.sh ${NOMENLOAD}/nomenload.config
 
-date | tee -a ${LOG}
-echo 'Run Nomen/Batch Rename load' | tee -a ${LOG}
-${NOMENLOAD}/bin/batchrename.sh ${NOMENLOAD}/nomenload.config
+    date | tee -a ${LOG}
+    echo 'Run Nomen/Batch Rename load' | tee -a ${LOG}
+    ${NOMENLOAD}/bin/batchrename.sh ${NOMENLOAD}/nomenload.config
+endif
 
 date | tee -a ${LOG}
 echo 'Run Lit Triage Load' | tee -a ${LOG}
