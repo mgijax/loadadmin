@@ -21,7 +21,7 @@ else
 fi
 
 echo "Stopping Java API"
-./stopApi.sh
+${API_HOME}/stopApi.sh
 
 echo "Save log file: ${LOG_FILE}.old"
 cp ${LOG_FILE} ${LOG_FILE}.old
