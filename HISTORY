@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-24-4
+DATE: 10/20/2024
+STAFF: lec
+CHANGES:
+wts2-1543/e4g-17/VISTA load 2024-08
+add ${GENEMODELLOAD}/bin/genemodelload.sh vistareg to sundaytasks1.csh
+
 TAG: loadadmin-6-0-24-3
 DATE: 08/12/2024
 STAFF: jer
