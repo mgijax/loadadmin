@@ -65,10 +65,10 @@ if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
     date | tee -a ${LOG}
     echo 'Save a copy of the prior database backups' | tee -a ${LOG}
     if ( -f ${DB_BACKUP_DIR}/mgd.midsunday.dump ) then
-        cp -p ${DB_BACKUP_DIR}/mgd.midsunday.dump ${DB_BACKUP_DIR}/save
+        cp -p ${DB_BACKUP_DIR}/mgd.midsunday.dump ${DB_BACKUP_DIR}/mgd.midsunday.dump.save
     endif
     if ( -f ${DB_BACKUP_DIR}/radar.midsunday.dump ) then
-        cp -p ${DB_BACKUP_DIR}/radar.midsunday.dump ${DB_BACKUP_DIR}/save
+        cp -p ${DB_BACKUP_DIR}/radar.midsunday.dump ${DB_BACKUP_DIR}/radar.midsunday.dump.save
     endif
 endif
 
@@ -189,9 +189,9 @@ date | tee -a ${LOG}
 echo 'Run Marker/DO Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkdo.csh
 
-#date | tee -a ${LOG}
-#echo 'Run GO Loads' | tee -a ${LOG}
-#${GOLOAD}/bin/goload.sh
+date | tee -a ${LOG}
+echo 'Run GO Loads' | tee -a ${LOG}
+${GOLOAD}/bin/goload.sh
 
 date | tee -a ${LOG}
 echo 'Update Reference Workflow Status' | tee -a ${LOG}

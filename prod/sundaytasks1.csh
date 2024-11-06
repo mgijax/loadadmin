@@ -63,10 +63,10 @@ if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
     date | tee -a ${LOG}
     echo 'Save a copy of the prior database backups' | tee -a ${LOG}
     if ( -f ${DB_BACKUP_DIR}/mgd.presunday.dump ) then
-        cp -p ${DB_BACKUP_DIR}/mgd.presunday.dump ${DB_BACKUP_DIR}/save
+        cp -p ${DB_BACKUP_DIR}/mgd.presunday.dump ${DB_BACKUP_DIR}/mgd.presunday.dump.save
     endif
     if ( -f ${DB_BACKUP_DIR}/radar.presunday.dump ) then
-        cp -p ${DB_BACKUP_DIR}/radar.presunday.dump ${DB_BACKUP_DIR}/save
+        cp -p ${DB_BACKUP_DIR}/radar.presunday.dump ${DB_BACKUP_DIR}/radar.presunday.dump.save
     endif
 endif
 

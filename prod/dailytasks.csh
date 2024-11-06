@@ -75,10 +75,10 @@ if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
     date | tee -a ${LOG}
     echo 'Save a copy of the prior database backups' | tee -a ${LOG}
     if ( -f ${DB_BACKUP_DIR}/mgd.predaily.dump ) then
-        cp -p ${DB_BACKUP_DIR}/mgd.predaily.dump ${DB_BACKUP_DIR}/save
+        cp -p ${DB_BACKUP_DIR}/mgd.predaily.dump ${DB_BACKUP_DIR}/mgd.predaily.dump.save
     endif
     if ( -f ${DB_BACKUP_DIR}/radar.predaily.dump ) then
-        cp -p ${DB_BACKUP_DIR}/radar.predaily.dump ${DB_BACKUP_DIR}/save
+        cp -p ${DB_BACKUP_DIR}/radar.predaily.dump ${DB_BACKUP_DIR}/radar.predaily.dump.save
     endif
 endif
 
@@ -217,9 +217,9 @@ if ( $weekday == 1 ) then
     ${GOTEXTLOAD}/bin/gotextload.sh
 endif
 
-#date | tee -a ${LOG}
-#echo 'Run GO Load' | tee -a ${LOG}
-#${GOLOAD}/bin/goload.sh
+date | tee -a ${LOG}
+echo 'Run GO Load' | tee -a ${LOG}
+${GOLOAD}/bin/goload.sh
 
 date | tee -a ${LOG}
 echo 'Run Curator Allele Load' | tee -a ${LOG}
