@@ -192,14 +192,6 @@ echo 'Run Curator Strain Load' | tee -a ${LOG}
 ${CURATORSTRAINLOAD}/bin/curatorstrainload.sh
 
 date | tee -a ${LOG}
-echo 'Run QTL Candidate Load' | tee -a ${LOG}
-${QTLCANDIDATELOAD}/bin/qtlcandidateload.sh
-
-date | tee -a ${LOG}
-echo 'Run QTL Interaction Load' | tee -a ${LOG}
-${QTLINTERACTIONLOAD}/bin/qtlinteractionload.sh
-
-date | tee -a ${LOG}
 echo 'Run Strain Gene Model Load' | tee -a ${LOG}
 ${STRAINGENEMODELLOAD}/bin/straingenemodelload.sh
 
@@ -212,12 +204,20 @@ echo 'Run Rollup Load' | tee -a ${LOG}
 ${ROLLUPLOAD}/bin/rollupload.sh
 
 date | tee -a ${LOG}
-echo 'Run QTL Archive Load' | tee -a ${LOG}
-${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
-
-date | tee -a ${LOG}
 echo 'Run PubMed Review' | tee -a ${LOG}
 ${LITTRIAGELOAD}/bin/processPubMedReview.sh
+
+#date | tee -a ${LOG}
+#echo 'Run QTL Candidate Load' | tee -a ${LOG}
+#${QTLCANDIDATELOAD}/bin/qtlcandidateload.sh
+
+#date | tee -a ${LOG}
+#echo 'Run QTL Interaction Load' | tee -a ${LOG}
+#${QTLINTERACTIONLOAD}/bin/qtlinteractionload.sh
+
+#date | tee -a ${LOG}
+#echo 'Run QTL Archive Load' | tee -a ${LOG}
+#${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
 
 date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
