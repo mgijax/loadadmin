@@ -203,9 +203,9 @@ date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
 ${ROLLUPLOAD}/bin/rollupload.sh
 
-date | tee -a ${LOG}
-echo 'Run PubMed Review' | tee -a ${LOG}
-${LITTRIAGELOAD}/bin/processPubMedReview.sh
+#date | tee -a ${LOG}
+#echo 'Run PubMed Review' | tee -a ${LOG}
+#${LITTRIAGELOAD}/bin/processPubMedReview.sh
 
 #date | tee -a ${LOG}
 #echo 'Run QTL Candidate Load' | tee -a ${LOG}
