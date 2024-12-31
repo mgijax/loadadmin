@@ -68,12 +68,12 @@ if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
     if ( -f ${DB_BACKUP_DIR}/radar.presunday.dump ) then
         cp -p ${DB_BACKUP_DIR}/radar.presunday.dump ${DB_BACKUP_DIR}/radar.presunday.dump.save
     endif
-endif
 
-date | tee -a ${LOG}
-echo 'Create Pre-Sunday Database Backups' | tee -a ${LOG}
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.presunday.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presunday.dump
+    date | tee -a ${LOG}
+    echo 'Create Pre-Sunday Database Backups' | tee -a ${LOG}
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.presunday.dump
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.presunday.dump
+endif
 
 date | tee -a ${LOG}
 echo 'Run HPO Vocab Load' | tee -a ${LOG}

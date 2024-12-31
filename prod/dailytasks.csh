@@ -80,12 +80,12 @@ if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
     if ( -f ${DB_BACKUP_DIR}/radar.predaily.dump ) then
         cp -p ${DB_BACKUP_DIR}/radar.predaily.dump ${DB_BACKUP_DIR}/radar.predaily.dump.save
     endif
-endif
 
-date | tee -a ${LOG}
-echo 'Create Pre-Daily Database Backups' | tee -a ${LOG}
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.predaily.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.predaily.dump
+    date | tee -a ${LOG}
+    echo 'Create Pre-Daily Database Backups' | tee -a ${LOG}
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.predaily.dump
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.predaily.dump
+endif
 
 #
 # Run prior to cache loads because deleted sequences aren't selected as
@@ -249,10 +249,12 @@ date | tee -a ${LOG}
 echo 'Generate Daily Public Reports' | tee -a ${LOG}
 ${PUBRPTS}/run_daily.csh
 
-date | tee -a ${LOG}
-echo 'Create Post-Daily Database Backups' | tee -a ${LOG}
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postdaily.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postdaily.dump
+if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
+    date | tee -a ${LOG}
+    echo 'Create Post-Daily Database Backups' | tee -a ${LOG}
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postdaily.dump
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postdaily.dump
+endif
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}

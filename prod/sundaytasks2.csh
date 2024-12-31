@@ -70,12 +70,12 @@ if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
     if ( -f ${DB_BACKUP_DIR}/radar.midsunday.dump ) then
         cp -p ${DB_BACKUP_DIR}/radar.midsunday.dump ${DB_BACKUP_DIR}/radar.midsunday.dump.save
     endif
-endif
 
-date | tee -a ${LOG}
-echo 'Create Mid-Sunday Database Backups' | tee -a ${LOG}
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.midsunday.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.midsunday.dump
+    date | tee -a ${LOG}
+    echo 'Create Mid-Sunday Database Backups' | tee -a ${LOG}
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.midsunday.dump
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.midsunday.dump
+endif
 
 date | tee -a ${LOG}
 echo 'Run Pubmed To Gene Load' | tee -a ${LOG}
@@ -205,10 +205,12 @@ date | tee -a ${LOG}
 echo 'Generate Sunday QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcsunday_reports.csh
 
-date | tee -a ${LOG}
-echo 'Create Post-Sunday Database Backups' | tee -a ${LOG}
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postsunday.dump
-${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postsunday.dump
+if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
+    date | tee -a ${LOG}
+    echo 'Create Post-Sunday Database Backups' | tee -a ${LOG}
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} mgd ${DB_BACKUP_DIR}/mgd.postsunday.dump
+    ${PG_DBUTILS}/bin/dumpDB.csh ${PG_DBSERVER} ${PG_DBNAME} radar ${DB_BACKUP_DIR}/radar.postsunday.dump
+endif
 
 echo "${SCRIPT_NAME} completed successfully" | tee -a ${LOG}
 date | tee -a ${LOG}
