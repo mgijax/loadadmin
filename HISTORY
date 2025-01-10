@@ -1,3 +1,17 @@
+
+sundaytasks1.csh: removed
+${QTLCANDIDATELOAD}/bin/qtlcandidateload.sh
+${QTLINTERACTIONLOAD}/bin/qtlinteractionload.sh
+${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
+${LITTRIAGELOAD}/bin/processPubMedReview.sh
+
+TAG: loadadmin-6-0-25-4
+DATE: 12/31/2024
+STAFF: lec
+CHANGES:
+turn off mrkcoordload
+prod/dailytasks.csh
+
 TAG: loadadmin-6-0-25-3
 TAG: loadadmin-6-0-25-2
 TAG: loadadmin-6-0-25-1

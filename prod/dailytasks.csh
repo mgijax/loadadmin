@@ -128,9 +128,9 @@ date | tee -a ${LOG}
 echo 'Run MCV Annotation Load' | tee -a ${LOG}
 ${MCVLOAD}/bin/mcvload.sh
 
-date | tee -a ${LOG}
-echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
-${MRKCOORDLOAD}/bin/mrkcoordload.sh
+#date | tee -a ${LOG}
+#echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
+#${MRKCOORDLOAD}/bin/mrkcoordload.sh
 
 date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
