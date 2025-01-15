@@ -20,6 +20,7 @@ rm -rf ${DATALOADSOUTPUT}/mgi/strainmarkerload/output/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/slimtermload/emapslimload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/slimtermload/goslimload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/slimtermload/mpslimload/input/lastrun
+rm -rf ${DATALOADSOUTPUT}/mgi/slimtermload/celltypeslimload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/pro/proload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/mgi/rvload/input/lastrun
 rm -rf ${DATALOADSOUTPUT}/swissprot/spseqload/input/lastrun
@@ -62,6 +63,7 @@ scp bhmgiapp01:/data/loads/mgi/slimtermload/goslimload/input/goslimload.txt ${DA
 scp bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/input/mpslimload.txt ${DATALOADSOUTPUT}/mgi/slimtermload/mpslimload/input
 #rsync -avz bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/input ${DATALOADSOUTPUT}/mgi/slimtermload/mpslimload/input.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/slimtermload/mpslimload/output ${DATALOADSOUTPUT}/mgi/slimtermload/mpslimload/output.prod
+scp bhmgiapp01:/data/loads/mgi/slimtermload/celltypeslimload/input/celltypeslimload.txt ${DATALOADSOUTPUT}/mgi/slimtermload/celltypeslimload/input
 
 # alleleload
 scp bhmgiapp01:/data/downloads/www.gentar.org/mgi_modification_current /data/downloads/www.gentar.org

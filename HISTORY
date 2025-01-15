@@ -5,6 +5,13 @@ ${QTLINTERACTIONLOAD}/bin/qtlinteractionload.sh
 ${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
 ${LITTRIAGELOAD}/bin/processPubMedReview.sh
 
+TAG: loadadmin-6-0-25-5
+DATE: 01/15/2025
+STAFF: lec
+CHANGES:
+e4g/slimtermload/cell type
+sundaytasks1.csh
+
 TAG: loadadmin-6-0-25-4
 DATE: 12/31/2024
 STAFF: lec

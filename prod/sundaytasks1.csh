@@ -112,6 +112,10 @@ echo 'Run MP Slim Load' | tee -a ${LOG}
 ${SLIMTERMLOAD}/bin/slimtermload.sh mpslimload.config
 
 date | tee -a ${LOG}
+echo 'Run Cell Type Slim Load' | tee -a ${LOG}
+${SLIMTERMLOAD}/bin/slimtermload.sh celltypeslimload.config
+
+date | tee -a ${LOG}
 echo 'Run Allele Load' | tee -a ${LOG}
 ${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
