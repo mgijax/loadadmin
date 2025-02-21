@@ -5,6 +5,13 @@ ${QTLINTERACTIONLOAD}/bin/qtlinteractionload.sh
 ${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
 ${LITTRIAGELOAD}/bin/processPubMedReview.sh
 
+TAG: loadadmin-6-0-25-6
+DATE: 02/21/2025
+STAFF: lec
+CHANGES:
+wts2-1600/e4g-115/Marker Coordinate Load changes/Delete
+add ${MRKCOORDLOAD}/bin/mrkcoordloadDelete.sh to prod/dailytasks.csh
+
 TAG: loadadmin-6-0-25-5
 DATE: 01/15/2025
 STAFF: lec
