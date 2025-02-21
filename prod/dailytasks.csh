@@ -130,7 +130,7 @@ ${MCVLOAD}/bin/mcvload.sh
 
 date | tee -a ${LOG}
 echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
-#${MRKCOORDLOAD}/bin/mrkcoordload.sh
+${MRKCOORDLOAD}/bin/mrkcoordload.sh
 ${MRKCOORDLOAD}/bin/mrkcoordloadDelete.sh
 
 date | tee -a ${LOG}
