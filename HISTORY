@@ -5,6 +5,7 @@ ${QTLINTERACTIONLOAD}/bin/qtlinteractionload.sh
 ${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
 ${LITTRIAGELOAD}/bin/processPubMedReview.sh
 
+TAG: loadadmin-6-0-25-8
 TAG: loadadmin-6-0-25-7
 TAG: loadadmin-6-0-25-6
 DATE: 02/21/2025
