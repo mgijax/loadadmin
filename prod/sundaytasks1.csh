@@ -268,6 +268,10 @@ echo 'Run Bib Citation Cache Load' | tee -a ${LOG}
 ${MGICACHELOAD}/bibcitation.csh
 
 date | tee -a ${LOG}
+echo 'Run Gene Model/MGI Reg GFF3' | tee -a ${LOG}
+${GENEMODELLOAD}/bin/MGIreg.gff3.sh
+
+date | tee -a ${LOG}
 echo 'Update Reference Workflow Status' | tee -a ${LOG}
 ${PG_DBUTILS}/sp/run_BIB_updateWFStatus.csh
 

@@ -5,6 +5,13 @@ ${QTLINTERACTIONLOAD}/bin/qtlinteractionload.sh
 ${QTLARCHIVELOAD}/bin/qtlarchiveload.sh ${QTLARCHIVELOAD}/qtlarchiveload.config
 ${LITTRIAGELOAD}/bin/processPubMedReview.sh
 
+TAG: loadadmin-6-0-25-10
+DATE: 03/13/2025
+STAFF: lec
+CHANGES:
+wts2-1392/e4g-155/ENSEMBL Regulatory 113
+        modified:   sundaytasks1.csh
+
 TAG: loadadmin-6-0-25-9
 TAG: loadadmin-6-0-25-8
 TAG: loadadmin-6-0-25-7
