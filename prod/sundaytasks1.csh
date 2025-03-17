@@ -171,9 +171,9 @@ ${GENEMODELLOAD}/bin/genemodelload.sh ensemblreg
 #echo 'Run VISTA Reg Gene Model/Association Load' | tee -a ${LOG}
 #${GENEMODELLOAD}/bin/genemodelload.sh vistareg
 
-#date | tee -a ${LOG}
-#echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
-#${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
+date | tee -a ${LOG}
+echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
+${GENEMODELLOAD}/bin/seqgenemodelload-old.sh ncbi
 
 date | tee -a ${LOG}
 echo 'Run EMAL Load' | tee -a ${LOG}
