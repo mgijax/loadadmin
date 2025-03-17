@@ -155,25 +155,25 @@ date | tee -a ${LOG}
 echo 'Run GenBank Sequence Load' | tee -a ${LOG}
 ${GBSEQLOAD}/bin/gbseqload.sh
 
-date | tee -a ${LOG}
-echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
-${GENEMODELLOAD}/bin/genemodelload.sh ensembl
+#date | tee -a ${LOG}
+#echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
+#${GENEMODELLOAD}/bin/genemodelload.sh ensembl
 
 date | tee -a ${LOG}
 echo 'Run Ensembl Regulatory Gene Model/Association Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/genemodelload.sh ensemblreg
 
-date | tee -a ${LOG}
-echo 'Run NCBI Gene Model/Association Load' | tee -a ${LOG}
-${GENEMODELLOAD}/bin/genemodelload.sh ncbi
+#date | tee -a ${LOG}
+#echo 'Run NCBI Gene Model/Association Load' | tee -a ${LOG}
+#${GENEMODELLOAD}/bin/genemodelload.sh ncbi
 
-date | tee -a ${LOG}
-echo 'Run VISTA Reg Gene Model/Association Load' | tee -a ${LOG}
-${GENEMODELLOAD}/bin/genemodelload.sh vistareg
+#date | tee -a ${LOG}
+#echo 'Run VISTA Reg Gene Model/Association Load' | tee -a ${LOG}
+#${GENEMODELLOAD}/bin/genemodelload.sh vistareg
 
-date | tee -a ${LOG}
-echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
-${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
+#date | tee -a ${LOG}
+#echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
+#${GENEMODELLOAD}/bin/seqgenemodelload.sh ncbi
 
 date | tee -a ${LOG}
 echo 'Run EMAL Load' | tee -a ${LOG}
