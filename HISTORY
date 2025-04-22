@@ -1,3 +1,11 @@
+TAG: loadadmin-6-0-25-12
+DATE: 04/22/2025
+STAFF: lec
+CHANGES:
+wts2-1647/e4g-220/Retire neXtProt from MGI
+        modified:   removeLastrunFiles.sh
+	modified:   sundaytasks2.csh
+        modified:   sundaytasks2_filesetup.sh
 
 sundaytasks1.csh: removed
 ${QTLCANDIDATELOAD}/bin/qtlcandidateload.sh

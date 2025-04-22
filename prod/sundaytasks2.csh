@@ -162,10 +162,6 @@ echo 'Run Load Marker/Probe Cache Load' | tee -a ${LOG}
 ${MRKCACHELOAD}/mrkprobe.csh
 
 date | tee -a ${LOG}
-echo 'Run NextProt Load' | tee -a ${LOG}
-${NEXTPROTLOAD}/bin/nextprotload.sh
-
-date | tee -a ${LOG}
 echo 'Run Homology Loads' | tee -a ${LOG}
 ${HOMOLOGYLOAD}/bin/homologyload.sh alliance_directload.config
 ${HOMOLOGYLOAD}/bin/homologyload.sh alliance_clusteredload.config
