@@ -13,10 +13,6 @@ fi
 
 . ${MGICONFIG}/master.config.sh
 
-# remove lastrun
-rm -rf ${DATALOADSOUTPUT}/mp_hpo/input/lastrun
-rm -rf ${DATALOADSOUTPUT}/nextprot/nextprotload/input/lastrun
-
 # pubmed2geneload
 #scp bhmgiapp01:/data/loads/pubmed2geneload/output/MGI_Reference_Assoc.bcp ${DATALOADSOUTPUT}/pubmed2geneload/output/MGI_Reference_Assoc.bcp.prod
 #scp bhmgiapp01:/data/loads/pubmed2geneload/logs/pubmed2geneload.cur.log ${DATALOADSOUTPUT}/pubmed2geneload/logs/pubmed2geneload.cur.log.prod
@@ -126,11 +122,6 @@ scp bhmgiapp01:/data/downloads/ccds_mus/CCDS.current.txt /data/downloads/ccds_mu
 
 # mrkcacheload
 #rsync -avz bhmgiapp01:/data/loads/mgi/mrkcacheload/output ${DATALOADSOUTPUT}/mgi/mrkcacheload/output.prod
-
-# nextprotload
-scp bhmgiapp01:/data/downloads/download.nextprot.org/pub/current_release/mapping/nextprot_geneid.txt /data/downloads/download.nextprot.org/pub/current_release/mapping/
-#rsync -avz bhmgiapp01:/data/loads/nextprot/nextprotload/input ${DATALOADSOUTPUT}/nextprot/nextprotload/input.prod
-#rsync -avz bhmgiapp01:/data/loads/nextprot/nextprotload/output ${DATALOADSOUTPUT}/nextprot/nextprotload/output.prod
 
 # omim_hpoload
 scp bhmgiapp01:/data/downloads/purl.obolibrary.org/obo/hp/hpoa/phenotype.hpoa /data/downloads/purl.obolibrary.org/obo/hp/hpoa/

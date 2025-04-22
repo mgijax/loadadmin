@@ -34,7 +34,6 @@ rm -f ${DATALOADSOUTPUT}/mgi/strainmarkerload/output/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/uniprotmusfilter/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/vocload/emap/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mp_hpo/input/lastrun
-rm -f ${DATALOADSOUTPUT}/nextprot/nextprotload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/pro/proload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/swissprot/spseqload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/swissprot/trseqload/input/lastrun
