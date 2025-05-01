@@ -114,6 +114,10 @@ if ( $weekday != 1 ) then
     date | tee -a ${LOG}
     echo 'Run Nomen/Batch Rename load' | tee -a ${LOG}
     ${NOMENLOAD}/bin/batchrename.sh ${NOMENLOAD}/nomenload.config
+
+    date | tee -a ${LOG}
+    echo 'Run Nomen/Batch Delete load' | tee -a ${LOG}
+    ${NOMENLOAD}/bin/batchdelete.sh ${NOMENLOAD}/nomenload.config
 endif
 
 date | tee -a ${LOG}

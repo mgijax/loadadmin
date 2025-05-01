@@ -1,3 +1,9 @@
+TAG: loadadmin-6-0-25-13
+DATE: 05/01/2025
+STAFF: lec
+wts2-1656/e4g-247/Batch Tool/added call to ${NOMENLOAD}/bin/batchdelete.sh
+        modified:   prod/dailytasks.csh
+
 TAG: loadadmin-6-0-25-12
 DATE: 04/22/2025
 STAFF: lec
