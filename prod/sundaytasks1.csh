@@ -155,9 +155,9 @@ date | tee -a ${LOG}
 echo 'Run GenBank Sequence Load' | tee -a ${LOG}
 ${GBSEQLOAD}/bin/gbseqload.sh
 
-#date | tee -a ${LOG}
-#echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
-#${GENEMODELLOAD}/bin/genemodelload.sh ensembl
+date | tee -a ${LOG}
+echo 'Run Ensembl Gene Model/Association Load' | tee -a ${LOG}
+${GENEMODELLOAD}/bin/genemodelload.sh ensembl
 
 date | tee -a ${LOG}
 echo 'Run Ensembl Regulatory Gene Model/Association Load' | tee -a ${LOG}
