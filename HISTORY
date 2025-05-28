@@ -1,3 +1,8 @@
+TAG: loadadmin-6-0-25-14
+DATE: 05/28/2025
+STAFF: lec
+sundaytasks1.csh/turn on ${GENEMODELLOAD}/bin/genemodelload.sh ensembl
+
 TAG: loadadmin-6-0-25-13
 DATE: 05/01/2025
 STAFF: lec
