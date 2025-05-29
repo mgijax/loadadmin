@@ -1,3 +1,13 @@
+TAG: loadadmin-6-0-25-16
+DATE: 05/29/2025
+STAFF: lec
+move GO loads from dailytasks -> sundaytasks1
+move GO loads from sundaytasks2 -> sundaytasks1
+        modified:   dailytasks.csh
+        modified:   dailytasks.csh
+        modified:   sundaytasks1.csh
+        modified:   sundaytasks2.csh
+
 TAG: loadadmin-6-0-25-15
 TAG: loadadmin-6-0-25-14
 DATE: 05/28/2025

@@ -210,23 +210,6 @@ echo 'Run RV Load' | tee -a ${LOG}
 ${RVLOAD}/bin/rvload.sh
 
 date | tee -a ${LOG}
-echo 'Run GO Load' | tee -a ${LOG}
-${VOCLOAD}/runOBOIncLoad.sh GO.config
-
-#
-# Only load the GO Text on Monday.
-#
-if ( $weekday == 1 ) then
-    date | tee -a ${LOG}
-    echo 'Run GO Text Load' | tee -a ${LOG}
-    ${GOTEXTLOAD}/bin/gotextload.sh
-endif
-
-date | tee -a ${LOG}
-echo 'Run GO Load' | tee -a ${LOG}
-${GOLOAD}/bin/goload.sh
-
-date | tee -a ${LOG}
 echo 'Run Curator Allele Load' | tee -a ${LOG}
 ${CURATORALLELELOAD}/bin/curatoralleleload.sh
 

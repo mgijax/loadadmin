@@ -80,6 +80,18 @@ echo 'Run HPO Vocab Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh HPO.config
 
 date | tee -a ${LOG}
+echo 'Run GO Load/Ontology' | tee -a ${LOG}
+${VOCLOAD}/runOBOIncLoad.sh GO.config
+
+date | tee -a ${LOG}
+echo 'Run GO Load' | tee -a ${LOG}
+${GOLOAD}/bin/goload.sh
+
+date | tee -a ${LOG}
+echo 'Run GO Text Load' | tee -a ${LOG}
+${GOTEXTLOAD}/bin/gotextload.sh
+
+date | tee -a ${LOG}
 echo 'Run GEO Load' | tee -a ${LOG}
 ${GEOLOAD}/bin/geoload.sh
 
