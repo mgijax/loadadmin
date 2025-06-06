@@ -137,14 +137,9 @@ echo 'Run Marker/Coordinate Load' | tee -a ${LOG}
 ${MRKCOORDLOAD}/bin/mrkcoordload.sh
 ${MRKCOORDLOAD}/bin/mrkcoordDelete.sh
 
-#
-# only run on Monday
-#
-if ( $weekday == 1 ) then
-	date | tee -a ${LOG}
-	echo 'Run Rollup Load' | tee -a ${LOG}
-	${ROLLUPLOAD}/bin/rollupload.sh
-endif
+date | tee -a ${LOG}
+echo 'Run Rollup Load' | tee -a ${LOG}
+${ROLLUPLOAD}/bin/rollupload.sh
 
 date | tee -a ${LOG}
 echo 'Create Dummy Sequences' | tee -a ${LOG}
