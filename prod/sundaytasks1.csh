@@ -187,9 +187,10 @@ date | tee -a ${LOG}
 echo 'Run NCBI SEQ_GeneModel Load' | tee -a ${LOG}
 ${GENEMODELLOAD}/bin/seqgenemodelload-old.sh ncbi
 
-date | tee -a ${LOG}
-echo 'Run EMAL Load' | tee -a ${LOG}
-${EMALLOAD}/bin/emalload.sh  ${EMALLOAD}/impc.config
+# last run 2020
+#date | tee -a ${LOG}
+#echo 'Run EMAL Load' | tee -a ${LOG}
+#${EMALLOAD}/bin/emalload.sh  ${EMALLOAD}/impc.config
 
 date | tee -a ${LOG}
 echo 'Run TSS Gene Load' | tee -a ${LOG}
