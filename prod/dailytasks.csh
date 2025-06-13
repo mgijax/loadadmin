@@ -194,10 +194,6 @@ echo 'Run Allele/CRE Cache Load' | tee -a ${LOG}
 ${ALLCACHELOAD}/allelecrecache.csh
 
 date | tee -a ${LOG}
-echo 'Update Last Dump Date' | tee -a ${LOG}
-${PG_DBUTILS}/bin/updateLastDumpDate.csh ${PG_DBSERVER} ${PG_DBNAME} ${tomorrow}
-
-date | tee -a ${LOG}
 echo 'Run Mammalian Phenotype Load' | tee -a ${LOG}
 ${VOCLOAD}/runOBOIncLoad.sh MP.config
 
@@ -236,6 +232,10 @@ ${QCRPTS}/qcnightly_reports.csh
 date | tee -a ${LOG}
 echo 'Generate Daily Public Reports' | tee -a ${LOG}
 ${PUBRPTS}/run_daily.csh
+
+date | tee -a ${LOG}
+echo 'Update Last Dump Date' | tee -a ${LOG}
+${PG_DBUTILS}/bin/updateLastDumpDate.csh ${PG_DBSERVER} ${PG_DBNAME} ${tomorrow}
 
 if ( "`uname -n | cut -d'.' -f1`" == "bhmgiapp01" ) then
     date | tee -a ${LOG}
