@@ -134,10 +134,6 @@ echo 'Run MP/HPO Relationship Load' | tee -a ${LOG}
 ${MPHPOLOAD}/bin/mp_hpoload.sh
 
 date | tee -a ${LOG}
-echo "Load Entrezgeneload files" | tee -a "${LOG}"
-${ENTREZGENELOAD}/loadFiles.csh
-
-date | tee -a ${LOG}
 echo 'Run Non-Mouse EntrezGene Load' | tee -a ${LOG}
 ${ENTREZGENELOAD}/loadAll.csh
 
