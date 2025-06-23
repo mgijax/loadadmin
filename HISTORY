@@ -1,7 +1,9 @@
+TAG: loadadmin-6-0-25-21
 TAG: loadadmin-6-0-25-20
-DATE: 06/17/2025
+DATE: 06/17/2025, 06/23/2025
 STAFF: lec
 add to sundaytasks2.csh entrezgeneload/loadFiles.csh
+remove sundaytasks2.csh entrezgeneload/loadFiles.csh
 
 TAG: loadadmin-6-0-25-19
 TAG: loadadmin-6-0-25-18
