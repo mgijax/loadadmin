@@ -226,6 +226,10 @@ echo 'Update Reference Workflow Status' | tee -a ${LOG}
 ${PG_DBUTILS}/sp/run_BIB_updateWFStatus.csh
 
 date | tee -a ${LOG}
+echo 'Delete Duplicate Notes' | tee -a ${LOG}
+${PG_DBUTILS}/bin/deleteDuplicateNotes.csh
+
+date | tee -a ${LOG}
 echo 'Generate Nightly QC Reports' | tee -a ${LOG}
 ${QCRPTS}/qcnightly_reports.csh
 
