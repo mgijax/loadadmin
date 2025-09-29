@@ -15,6 +15,7 @@ rm -f ${DATALOADSOUTPUT}/mgi/curatorstrainload/input/lastruncreate
 rm -f ${DATALOADSOUTPUT}/mgi/curatorstrainload/input/lastrunupdate
 rm -f ${DATALOADSOUTPUT}/mgi/emalload/impc/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/fearload/input/lastrun
+rm -f ${DATALOADSOUTPUT}/mgi/genemodelload/input/*lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/htmpload/impcmpload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/mcvload/input/lastrun
 rm -f ${DATALOADSOUTPUT}/mgi/mrkcoordload/input/lastrun
