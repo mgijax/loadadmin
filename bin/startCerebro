@@ -6,6 +6,6 @@ setenv CE_HOME "/usr/local/mgi/cerebro-0.9.4"
 setenv CE_PORT "9000"
 
 # Cerebro will *not* run under Java 17. Need jdk 11.
-setenv JAVA_HOME "/usr/java/jdk-11.0.24+8"
+setenv JAVA_HOME "/usr/java/jdk-11.0.28+6"
 
 ${CE_HOME}/bin/cerebro -java-home ${JAVA_HOME} -Dhttp.port=${CE_PORT} &
