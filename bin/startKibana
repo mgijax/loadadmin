@@ -1,0 +1,9 @@
+#!/bin/csh -f
+
+cd `dirname $0` && source ./Configuration
+
+setenv KI_HOME "/usr/local/mgi/kibana"
+setenv KI_PORT "5601"
+
+nohup ${KI_HOME}/bin/kibana > & /usr/local/mgi/kibana/logs/kibana.out &
+
