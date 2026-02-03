@@ -1,12 +1,39 @@
 #!/bin/csh -f
+# Robust Elasticsearch startup script for csh/tcsh
 
-cd `dirname $0` && source ./Configuration
+# Move to the script directory
+cd `dirname $0`
 
-setenv ES_JAVA_HOME ${JAVA_HOME}
+# Source Configuration if it exists (must be csh-compatible)
+if (-e ./Configuration) then
+    source ./Configuration
+endif
+
+# Ensure ES_HOME is set
+if (! $?ES_HOME) then
+    echo "ERROR: ES_HOME is not set. Please define it in Configuration or the environment."
+    exit 1
+endif
+
+# Clear any legacy JAVA variables to avoid conflicts
+unsetenv JAVA
+unsetenv JAVA_HOME
+unsetenv CLASSPATH
+unsetenv ES_CLASSPATH
+
+# Use bundled JDK
+setenv JAVA_HOME "${ES_HOME}/jdk"
+setenv ES_JAVA_HOME "${JAVA_HOME}"
 setenv ES_JAVA_OPTS "-Dstartup=${ES_HOME}/bin/elasticsearch"
 
+# Add memory settings if defined
 if (${?ES_MEM_MIN} && ${?ES_MEM_MAX}) then
     setenv ES_JAVA_OPTS "${ES_JAVA_OPTS} -Xms${ES_MEM_MIN} -Xmx${ES_MEM_MAX}"
 endif
 
-${ES_HOME}/bin/elasticsearch &
+# Optional: enable security manager if needed
+# setenv ES_JAVA_OPTS "${ES_JAVA_OPTS} -Djava.security.manager=disabled"
+
+# Launch Elasticsearch in the background with propagated environment
+echo "Starting Elasticsearch from ${ES_HOME} with bundled JDK..."
+env JAVA_HOME=$JAVA_HOME ES_JAVA_HOME=$ES_JAVA_HOME ES_JAVA_OPTS="$ES_JAVA_OPTS" ${ES_HOME}/bin/elasticsearch &
