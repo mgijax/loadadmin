@@ -132,6 +132,10 @@ echo 'Run Allele Load' | tee -a ${LOG}
 ${ALLELELOAD}/bin/makeIKMC.sh ikmc.config
 
 date | tee -a ${LOG}
+echo 'Run Allele IMPC Note Load' | tee -a ${LOG}
+${ALLELELOAD}/bin/makeIMPCNote.sh
+
+date | tee -a ${LOG}
 echo 'Update IMSR Germline' | tee -a ${LOG}
 ${PG_DBUTILS}/bin/updateIMSRgermline.csh
 

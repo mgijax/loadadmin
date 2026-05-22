@@ -1,3 +1,10 @@
+TAG: loadadmin-6-0-28-?
+DATE: 05/22/2026
+STAFF: lec
+wts2-1857/Allele Molecular IMPC Note Load
+        modified:   prod/sundaytasks1.csh
+	${ALLELELOAD}/bin/makeIMPCNote.sh
+
 TAG: loadadmin-6-0-27-8
 DATE: 04/03/2026
 STAFF: lec
