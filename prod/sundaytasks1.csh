@@ -216,8 +216,12 @@ echo 'Run Strain Gene Model Load' | tee -a ${LOG}
 ${STRAINGENEMODELLOAD}/bin/straingenemodelload.sh
 
 date | tee -a ${LOG}
-echo 'Run RNA Sequence Load' | tee -a ${LOG}
-${RNASEQLOAD}/bin/rnaseqload.sh
+echo 'Run RNA Sequence Load/Process Withdrawn' | tee -a ${LOG}
+${RNASEQLOAD}/bin/processWithdrawnMarkers.sh
+
+#date | tee -a ${LOG}
+#echo 'Run RNA Sequence Load/Baseline' | tee -a ${LOG}
+#${RNASEQLOAD}/bin/run_rnaseqBaseline.sh
 
 date | tee -a ${LOG}
 echo 'Run Rollup Load' | tee -a ${LOG}
