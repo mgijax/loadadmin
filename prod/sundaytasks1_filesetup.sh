@@ -155,8 +155,8 @@ rsync -avz bhmgiapp01:/data/loads/mgi/rnaseqload/raw_input ${DATALOADSOUTPUT}/mg
 
 # strainmarkerload
 # mgigff3 file is copied by the load
-scp bhmgiapp01:/export/gondor/ftp/pub/mgigff3/MGI.gff3.gz ${DATALOADSOUTPUT}/mgi/strainmarkerload/input
-rsync -avz bhmgiapp01:/data/downloads/ftp.ensembl.org/pub/release-92/gff3 /data/downloads/ftp.ensembl.org/pub/release-92/
+#scp bhmgiapp01:/export/gondor/ftp/pub/mgigff3/MGI.gff3.gz ${DATALOADSOUTPUT}/mgi/strainmarkerload/input
+#rsync -avz bhmgiapp01:/data/downloads/ftp.ensembl.org/pub/release-116/gff3 /data/downloads/ftp.ensembl.org/pub/release-116/
 #rsync -avz bhmgiapp01:/data/loads/mgi/strainmarkerload/input ${DATALOADSOUTPUT}/mgi/strainmarkerload/input.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/strainmarkerload/output ${DATALOADSOUTPUT}/mgi/strainmarkerload/output.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/strainmarkerload/logs ${DATALOADSOUTPUT}/mgi/strainmarkerload/logs.prod
