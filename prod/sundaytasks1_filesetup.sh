@@ -93,7 +93,7 @@ scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapp
 scp bhmgiapp01:/data/downloads/raw.githubusercontent.com/mapping-commons/mh_mapping_initiative/master/mappings/mp_hp_xry_impc.sssom.tsv /data/loads/mp_hpmappingload/input
 
 # gxdhtload
-scp bhmgiapp01:/data/downloads/www.ebi.ac.uk/arrayexpress.json /data/downloads/www.ebi.ac.uk
+#scp bhmgiapp01:/data/downloads/www.ebi.ac.uk/arrayexpress.json /data/downloads/www.ebi.ac.uk
 #rsync -avz bhmgiapp01:/data/loads/mgi/gxdhtload/input ${DATALOADSOUTPUT}/mgi/gxdhtload/input.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/gxdhtload/output ${DATALOADSOUTPUT}/mgi/gxdhtload/output.prod
 #rsync -avz bhmgiapp01:/data/loads/mgi/gxdhtload/reports ${DATALOADSOUTPUT}/mgi/gxdhtload/reports.prod

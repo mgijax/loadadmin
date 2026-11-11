@@ -95,7 +95,6 @@ scp bhmgiapp01:/data/downloads/ftp.ncbi.nih.gov/gene/DATA/mim2gene_medgen /data/
 
 # uniprotload
 scp bhmgiapp01:/data/downloads/uniprot/uniprotmus.dat /data/downloads/uniprot
-scp bhmgiapp01:/data/downloads/ftp.ebi.ac.uk/pub/databases/interpro/names.dat /data/downloads/ftp.ebi.ac.uk/pub/databases/interpro
 #rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/logs ${DATALOADSOUTPUT}/uniprot/uniprotload/logs.prod
 #rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/output ${DATALOADSOUTPUT}/uniprot/uniprotload/output.prod
 #rsync -avz bhmgiapp01:/data/loads/uniprot/uniprotload/reports ${DATALOADSOUTPUT}/uniprot/uniprotload/reports.prod
