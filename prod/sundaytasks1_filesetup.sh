@@ -131,7 +131,7 @@ scp bhmgiapp01:/data/loads/mgi/curatoralleleload/input/curatoralleleload.txt /da
 # rnaseqload
 #${MIRROR_WGET}/download_package www.ebi.ac.uk.arrayexpress.json
 
-rsync -avz bhmgiapp01:/data/loads/mgi/rnaseqload/raw_input ${DATALOADSOUTPUT}/mgi/rnaseqload
+#rsync -avz bhmgiapp01:/data/loads/mgi/rnaseqload/raw_input ${DATALOADSOUTPUT}/mgi/rnaseqload
 
 # rollupload
 #rsync -avz  bhmgiapp01:/data/loads/rollupload/input ${DATALOADSOUTPUT}/rollupload/input.prod
