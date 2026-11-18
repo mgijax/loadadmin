@@ -11,6 +11,20 @@ touch ${LOG}
 echo "$0" >> ${LOG}
 env | sort >> ${LOG}
 
+cd $MGI_JAVALIB
+foreach i (lib_java_core lib_java_dbsmgd lib_java_dbsrdr lib_java_dla lib_java_seqfilter lib_java_seqrecord)
+cd $i
+Install
+cd ..
+end
+
+cd $MGI_LIVE/dataload
+foreach i (assocload egload ensemblseqload gbseqload pirsfload refseqload spseqload)
+cd $i
+Install
+cd ..
+end
+
 date | tee -a ${LOG}
 echo 'Run RefSeq Sequence Deleter' | tee -a ${LOG}
 ${SEQDELETER}/bin/seqdeleter.sh refseqdeleter.config
